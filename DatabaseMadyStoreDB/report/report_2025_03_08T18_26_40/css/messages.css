@@ -1,0 +1,202 @@
+img {border: 0px;}
+.icons 	{  zoom:91%;position:relative;    top:3px; }
+.tableIcons 	{zoom:91%; position:relative;    top:0px;}
+.tablePlusIcons,.tableMinusIcons { position:relative; top:3px; }
+.selectedTable 	{  position:relative;    top:5px; }
+.unSelectedTable 	{ display:none; position:relative;    top:40px; }
+a.nodeSel 
+{
+    background-color: #c0d2ec;
+}
+.unSelectedTab 
+{ 
+    position:relative;   top:4px;height:22px;
+}
+.selectedTab 
+{ 
+    position:relative;   top:3px;height:22px;
+		
+    background-Color: #DFEEEE;
+    font-family:  Courier New, sans-serif; font-size: 9pt;border:1px solid blue;
+}
+			
+.panel .add-nav {
+float:left;padding:0;margin:3px 0 0;
+list-style:none;overflow:hidden;
+}
+.panel .add-nav li {
+	float:left;height:26px;
+	border-left:1px solid gray;
+	padding:0 8px;
+}
+
+.conversion-message {
+    padding: 2px 6px 0px 6px;
+}
+
+.conversion-message .node-message {
+    padding: 2px;
+}
+
+.conversion-message td {
+    padding: 0px;
+}
+
+.conversion-message table {
+    border-spacing: 0px;
+}
+
+.panel .add-nav li:first-child {border:none;}
+.panel .add-nav .unSelectedTab {top:0;margin:4px 0 0;padding:1px;display:block;}
+.panel .add-nav .mover,
+.panel .add-nav .selectedTab {height:auto;margin:4px 0 0;display:block;top:0;}
+.panel .add-nav .mover {margin:4px 0 0;}
+.panel .add-nav > span {display:block;}
+.panel .add-nav img {vertical-align:bottom;}
+a[role='button'] { text-decoration: none; color: black; }
+
+.messages-iframe {
+    width: 100%;
+    height: calc(100vh - 32px);
+    border-style: none;
+}
+
+.panel {
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: table;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;
+    min-height: 30px;
+    color: black;
+    background-color: lightgrey;
+    background-image: linear-gradient(white, lightgrey);
+}
+
+.buttons {
+    display: inline-block;
+    height: 100%;
+}
+
+.button {
+    display: inline-block;
+    height: 30px;
+    width: 150px;
+    cursor: pointer;
+    text-align: center;
+    border-style: solid;
+    border-width: 0px 1px 0px 1px;
+    border-radius: 6px 6px 0px 0px;
+    border-color: transparent;
+    user-select: none;
+    text-decoration: none;
+    color: black;
+}
+
+.button:hover:not(.tab-selected){
+    border-width: 0px 1px 0px 1px;
+    border-style: solid;
+    border-color: darkgrey;
+    border-radius: 0px;
+}
+
+.button.tab-selected {
+    border-width: 0px 1px 0px 1px;
+    background-image: linear-gradient( 0deg, transparent, lightgrey, transparent);
+    border-style: solid;
+    border-color: grey;
+}
+
+.hidden-element {
+    display: none;
+}
+
+.node-select {
+    min-width: 250px;
+}
+
+.messages-node-select {
+    display: inline-block;
+    float: right;
+    margin: 2px 5px;
+}
+
+.button:not(.tab-selected) .expander-arrow {
+    display: none;
+}
+
+.message-flex-body {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.panel-tab-image {
+    width: 14px;
+    height: 14px;
+}
+
+#messages-body {
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.panel-tab-text {
+    position: relative;
+    top: 2px;
+}
+
+.panel-tab-image {
+    position: relative;
+    top: 3px;
+}
+
+body {
+    font-family: Arial;
+}
+
+.expander_td:hover {
+    background-image: url('../img/expander_button.gif');
+}
+
+.expander_td {
+    width: 28px;
+    height: 6px;
+    display: inline-block;
+    position: absolute;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 1px;
+    left: 50%;
+    bottom: 0px;
+    padding-left: 19px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.expander_td span {
+    padding-left: 19px;
+    background: url(../img/expander_arrow_down.gif) no-repeat;
+}
+
+.expander_td.close span {
+    background: url(../img/expander_arrow_up.gif) no-repeat;
+}
+
+.hidden-element {
+    display: none !important;
+}
+
+#innerDiv {
+    display: inline-block;
+    width: 100%;
+}
+
+.messages-window {
+    height: calc(100vh - 36px);
+    display: block;
+    overflow-y: scroll;
+    padding: 5px 0px 0px 5px;
+}
+
+.expander-link {
+    vertical-align: middle;
+}
