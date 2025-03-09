@@ -73,6 +73,7 @@ namespace MadyBoardGame_Shop
                         regiscommand.Parameters.AddWithValue("@password", password);
                         regiscommand.ExecuteNonQuery();
                     }
+                    //ส่งข้อมูลไป Table Member
                     using (regiscommand = new SqlCommand(commandprom2 , regisconnection))
                     {
                         regiscommand.Parameters.AddWithValue("@name" , name);
