@@ -67,7 +67,7 @@ namespace MadyBoardGame_Shop
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
                     string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate) " +
                         "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis)";
-                    using (regiscommand = new SqlCommand(commandprom1, regisconnection))
+                    using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
                         regiscommand.Parameters.AddWithValue("@password", password);
