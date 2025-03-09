@@ -35,9 +35,14 @@ namespace MadyBoardGame_Shop
                     return;
                 }
                 //ดึงค่าจาก TextBox และ Trim ช่องว่าง
+                string name = txtName.Text.Trim();
+                string lname = txtLastName.Text.Trim();
+                string idennum = txtIdentityNum.Text.Trim();
+                string phone = txtPhoneNum.Text.Trim();
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
+                DateTime dateregis = DateTime.Now;
 
                 //เช็ครหัสผ่านว่าตรงกันหรือไม่
                 if (password != confirmPassword)
@@ -53,21 +58,32 @@ namespace MadyBoardGame_Shop
                     return;
                 }
                 //ตรวจสอบว่า ข้อความช่องต่าง ๆ กรอกได้ถูกต้อง
-                
+
                 using (regisconnection = new SqlConnection(InitializeUser._key_con))
                 {
                     regisconnection.Open();
-                    
+
                     //ส่งข้อมูลไป Table MemberUsername
-                    string commandprom = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)"; 
-                    using (regiscommand = new SqlCommand(commandprom, regisconnection))
+                    string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
+                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate) " +
+                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis)";
+                    using (regiscommand = new SqlCommand(commandprom1, regisconnection))
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
                         regiscommand.Parameters.AddWithValue("@password", password);
                         regiscommand.ExecuteNonQuery();
                     }
+                    using (regiscommand = new SqlCommand(commandprom2 , regisconnection))
+                    {
+                        regiscommand.Parameters.AddWithValue("@name" , name);
+                        regiscommand.Parameters.AddWithValue("@lastname" , lname);
+                        regiscommand.Parameters.AddWithValue("@idennum", idennum);
+                        regiscommand.Parameters.AddWithValue("@username" , username);
+                        regiscommand.Parameters.AddWithValue("@phonenum" , phone);
+                        regiscommand.Parameters.AddWithValue("@dateregis", dateregis);
+                        regiscommand.ExecuteNonQuery();
+                    }
                 }
-
                 MessageBox.Show("ลงทะเบียนสำเร็จ");
                 this.Close();
             }
@@ -78,42 +94,53 @@ namespace MadyBoardGame_Shop
         }
         private bool TextBoxNotNullRight()
         {
-            string warningstring = "";
-            bool checklist = false;
-            if (string.IsNullOrEmpty(txtName.Text.Trim()))
+            StringBuilder warningstring = new StringBuilder();
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                warningstring += "กรุณากรอกชื่อจริง\n";
+                warningstring.AppendLine("กรุณากรอกชื่อจริง");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtLastName.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
             {
-                warningstring += "กรุณากรอกนามสกุล\n";
+                warningstring.AppendLine("กรุณากรอกนามสกุล");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtPhoneNum.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtPhoneNum.Text))
             {
-                warningstring += "กรุณากรอกเบอร์โทรศัพท์\n";
+                warningstring.AppendLine("กรุณากรอกเบอร์โทรศัพท์");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtIdentityNum.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtIdentityNum.Text))
             {
-                warningstring += "กรุณากรอกรหัสบัตรประชาชน\n";
+                warningstring.AppendLine("กรุณากรอกรหัสบัตรประชาชน");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtUsername.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                warningstring += "กรุณากรอก Username";
+                warningstring.AppendLine("กรุณากรอก Username");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtPassword.Text))
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                warningstring += "กรุณากรอกรหัสผ่าน\n";
+                warningstring.AppendLine("กรุณากรอกรหัสผ่าน");
+                isValid = false;
             }
-            if (string.IsNullOrEmpty(txtConPassword.Text))
+            if (string.IsNullOrWhiteSpace(txtConPassword.Text))
             {
-                warningstring += "กรุณายืนยันรหัสผ่าน\n";
+                warningstring.AppendLine("กรุณายืนยันรหัสผ่าน");
+                isValid = false;
             }
-            if (!checklist)
+
+            if (!isValid)
             {
-                MessageBox.Show(warningstring);
+                MessageBox.Show(warningstring.ToString());
             }
-            return checklist;
+
+            return isValid;
         }
+
         private bool ValidateData(string username)
         {
             try
