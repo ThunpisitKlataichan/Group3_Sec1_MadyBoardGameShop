@@ -41,7 +41,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(26, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 29);
+            this.label1.Size = new System.Drawing.Size(107, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username :";
             // 
@@ -50,22 +50,22 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(31, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 29);
+            this.label2.Size = new System.Drawing.Size(102, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password :";
             // 
             // txt_Username
             // 
-            this.txt_Username.Location = new System.Drawing.Point(168, 56);
+            this.txt_Username.Location = new System.Drawing.Point(139, 56);
             this.txt_Username.Name = "txt_Username";
-            this.txt_Username.Size = new System.Drawing.Size(349, 34);
+            this.txt_Username.Size = new System.Drawing.Size(349, 29);
             this.txt_Username.TabIndex = 2;
             // 
             // txt_Password
             // 
-            this.txt_Password.Location = new System.Drawing.Point(168, 104);
+            this.txt_Password.Location = new System.Drawing.Point(139, 104);
             this.txt_Password.Name = "txt_Password";
-            this.txt_Password.Size = new System.Drawing.Size(349, 34);
+            this.txt_Password.Size = new System.Drawing.Size(349, 29);
             this.txt_Password.TabIndex = 3;
             this.txt_Password.UseSystemPasswordChar = true;
             // 
@@ -87,14 +87,14 @@
             this.lableregis.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.lableregis.Location = new System.Drawing.Point(389, 144);
             this.lableregis.Name = "lableregis";
-            this.lableregis.Size = new System.Drawing.Size(101, 25);
+            this.lableregis.Size = new System.Drawing.Size(86, 20);
             this.lableregis.TabIndex = 5;
             this.lableregis.Text = "สมัครสมาชิค";
             this.lableregis.Click += new System.EventHandler(this.lableregis_Click);
             // 
             // formLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 241);
             this.Controls.Add(this.lableregis);
