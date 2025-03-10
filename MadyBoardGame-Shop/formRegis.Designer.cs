@@ -46,9 +46,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -59,7 +59,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(118, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 24);
+            this.label1.Size = new System.Drawing.Size(39, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "ชื่อ";
             // 
@@ -68,7 +68,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(78, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 24);
+            this.label2.Size = new System.Drawing.Size(91, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "นามสกุล";
             // 
@@ -76,21 +76,21 @@
             // 
             this.txtName.Location = new System.Drawing.Point(154, 35);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(300, 29);
+            this.txtName.Size = new System.Drawing.Size(300, 34);
             this.txtName.TabIndex = 2;
             // 
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(154, 70);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(300, 29);
+            this.txtLastName.Size = new System.Drawing.Size(300, 34);
             this.txtLastName.TabIndex = 3;
             // 
             // txtPhoneNum
             // 
             this.txtPhoneNum.Location = new System.Drawing.Point(416, 105);
             this.txtPhoneNum.Name = "txtPhoneNum";
-            this.txtPhoneNum.Size = new System.Drawing.Size(130, 29);
+            this.txtPhoneNum.Size = new System.Drawing.Size(130, 34);
             this.txtPhoneNum.TabIndex = 4;
             // 
             // label3
@@ -98,7 +98,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(367, 108);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 24);
+            this.label3.Size = new System.Drawing.Size(62, 29);
             this.label3.TabIndex = 5;
             this.label3.Text = "เบอร์";
             // 
@@ -107,7 +107,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 24);
+            this.label4.Size = new System.Drawing.Size(183, 29);
             this.label4.TabIndex = 7;
             this.label4.Text = "รหัสบัตรประชาชน";
             // 
@@ -115,7 +115,7 @@
             // 
             this.txtIdentityNum.Location = new System.Drawing.Point(154, 105);
             this.txtIdentityNum.Name = "txtIdentityNum";
-            this.txtIdentityNum.Size = new System.Drawing.Size(209, 29);
+            this.txtIdentityNum.Size = new System.Drawing.Size(209, 34);
             this.txtIdentityNum.TabIndex = 6;
             // 
             // label5
@@ -123,7 +123,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(131, 26);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 24);
+            this.label5.Size = new System.Drawing.Size(136, 29);
             this.label5.TabIndex = 8;
             this.label5.Text = "Username :";
             // 
@@ -132,7 +132,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(136, 63);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 24);
+            this.label6.Size = new System.Drawing.Size(132, 29);
             this.label6.TabIndex = 9;
             this.label6.Text = "Password :";
             // 
@@ -141,7 +141,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(66, 100);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(172, 24);
+            this.label7.Size = new System.Drawing.Size(222, 29);
             this.label7.TabIndex = 10;
             this.label7.Text = "Confirm Password :";
             // 
@@ -149,14 +149,14 @@
             // 
             this.txtUsername.Location = new System.Drawing.Point(244, 23);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(300, 29);
+            this.txtUsername.Size = new System.Drawing.Size(300, 34);
             this.txtUsername.TabIndex = 11;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(244, 60);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(300, 29);
+            this.txtPassword.Size = new System.Drawing.Size(300, 34);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -164,7 +164,7 @@
             // 
             this.txtConPassword.Location = new System.Drawing.Point(244, 97);
             this.txtConPassword.Name = "txtConPassword";
-            this.txtConPassword.Size = new System.Drawing.Size(300, 29);
+            this.txtConPassword.Size = new System.Drawing.Size(300, 34);
             this.txtConPassword.TabIndex = 13;
             this.txtConPassword.UseSystemPasswordChar = true;
             // 
@@ -211,6 +211,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ที่อยู่";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(223, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 29);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "นนทำตรงนี้ดิ๊";
+            // 
             // btn_Confirm
             // 
             this.btn_Confirm.Location = new System.Drawing.Point(166, 429);
@@ -231,18 +240,9 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(112, 44);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 24);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "นนทำตรงนี้ดิ๊";
-            // 
             // formRegis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 501);
             this.Controls.Add(this.btn_close);
