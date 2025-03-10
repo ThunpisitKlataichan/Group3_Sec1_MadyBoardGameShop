@@ -65,10 +65,72 @@ namespace MadyBoardGame_Shop
 
         private void listBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string product = listBoxProduct.SelectedItem.ToString();
-            string command = "SELECT ProductName , Price , ProductType FROM Products Where Productshelf = 1 and ProductName = @productname";
-            ordercommand = new SqlCommand(command, orderconnection);
-            ordercommand.Parameters.AddWithValue("@productname", listBoxProduct.SelectedItem.ToString());
+            try
+            {
+                string productname = listBoxProduct.SelectedItem.ToString();
+                string command = "SELECT ProductName , Price , ProductType FROM Products Where Productshelf = 1 and ProductName = @productname";
+                ordercommand = new SqlCommand(command, orderconnection);
+                ordercommand.Parameters.AddWithValue("@productname", productname);
+
+                using (orderadapter = new SqlDataAdapter(ordercommand))
+                {
+                    ordertable = new DataTable();
+                    orderadapter.Fill(ordertable);
+                    ordermanager = (CurrencyManager)BindingContext[ordertable];
+
+                    txtProductname.DataBindings.Clear();
+                    txtPrice.DataBindings.Clear();
+                    txtProductType.DataBindings.Clear();
+
+                    txtProductname.DataBindings.Add("Text", ordertable, "ProductName");
+                    txtPrice.DataBindings.Add("Text", ordertable, "Price");
+                    txtProductType.DataBindings.Add("Text", ordertable, "ProductType");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            listBoxCart.Items.Add(listBoxProduct.SelectedItem);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            listBoxCart.Items.Remove(listBoxCart.SelectedItem);
+        }
+
+        private void listBoxCart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string productname = listBoxCart.SelectedItem.ToString();
+                string command = "SELECT ProductName , Price , ProductType FROM Products Where Productshelf = 1 and ProductName = @productname";
+                ordercommand = new SqlCommand(command, orderconnection);
+                ordercommand.Parameters.AddWithValue("@productname", productname);
+
+                using (orderadapter = new SqlDataAdapter(ordercommand))
+                {
+                    ordertable = new DataTable();
+                    orderadapter.Fill(ordertable);
+                    ordermanager = (CurrencyManager)BindingContext[ordertable];
+
+                    txtProductname.DataBindings.Clear();
+                    txtPrice.DataBindings.Clear();
+                    txtProductType.DataBindings.Clear();
+
+                    txtProductname.DataBindings.Add("Text", ordertable, "ProductName");
+                    txtPrice.DataBindings.Add("Text", ordertable, "Price");
+                    txtProductType.DataBindings.Add("Text", ordertable, "ProductType");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
