@@ -38,22 +38,23 @@
             this.button5 = new System.Windows.Forms.Button();
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtProductType = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtProductname = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.numericCount = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCount)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxProduct
@@ -153,37 +154,21 @@
             this.label1.TabIndex = 46;
             this.label1.Text = "วิธีชำระ";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 257);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 24);
-            this.label2.TabIndex = 47;
-            this.label2.Text = "จำนวน";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(129, 254);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 29);
-            this.textBox1.TabIndex = 48;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.numericCount);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.listBoxProduct);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.listBoxCart);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.btnRemove);
             this.groupBox1.Controls.Add(this.btnRemoveall);
             this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(387, 494);
+            this.groupBox1.Size = new System.Drawing.Size(387, 525);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             // 
@@ -195,15 +180,6 @@
             this.label8.Size = new System.Drawing.Size(108, 24);
             this.label8.TabIndex = 50;
             this.label8.Text = "ตะกร้าของคุณ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(235, 257);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 24);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "ชิ้น";
             // 
             // groupBox2
             // 
@@ -221,6 +197,15 @@
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(130, 302);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 24);
+            this.label9.TabIndex = 55;
+            this.label9.Text = "ต่อชิ้น";
             // 
             // txtProductType
             // 
@@ -270,20 +255,41 @@
             this.txtProductname.Size = new System.Drawing.Size(217, 29);
             this.txtProductname.TabIndex = 44;
             // 
-            // label9
+            // numericCount
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(130, 302);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 24);
-            this.label9.TabIndex = 55;
-            this.label9.Text = "ต่อชิ้น";
+            this.numericCount.Location = new System.Drawing.Point(198, 254);
+            this.numericCount.Name = "numericCount";
+            this.numericCount.Size = new System.Drawing.Size(46, 29);
+            this.numericCount.TabIndex = 51;
+            this.numericCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(103, 254);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 24);
+            this.label10.TabIndex = 52;
+            this.label10.Text = "เพิ่มจำนวน";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(250, 256);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 24);
+            this.label11.TabIndex = 53;
+            this.label11.Text = "ชิ้น";
             // 
             // formOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 513);
+            this.ClientSize = new System.Drawing.Size(736, 567);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -300,6 +306,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,10 +323,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBoxmethonPayment;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtProductname;
         private System.Windows.Forms.TextBox txtPrice;
@@ -329,5 +333,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numericCount;
     }
 }
