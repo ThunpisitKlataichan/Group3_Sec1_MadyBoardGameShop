@@ -42,15 +42,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -136,17 +136,17 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(57, 28);
+            this.pictureBox2.Location = new System.Drawing.Point(21, 28);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(193, 148);
+            this.pictureBox2.Size = new System.Drawing.Size(266, 228);
             this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(508, 396);
+            this.button5.Location = new System.Drawing.Point(415, 435);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(111, 46);
+            this.button5.Size = new System.Drawing.Size(304, 46);
             this.button5.TabIndex = 44;
             this.button5.Text = "ชำระ";
             this.button5.UseVisualStyleBackColor = true;
@@ -154,15 +154,15 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(531, 345);
+            this.comboBox1.Location = new System.Drawing.Point(484, 397);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 32);
+            this.comboBox1.Size = new System.Drawing.Size(205, 32);
             this.comboBox1.TabIndex = 45;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(461, 345);
+            this.label1.Location = new System.Drawing.Point(414, 397);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 46;
@@ -203,6 +203,15 @@
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 299);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 24);
+            this.label8.TabIndex = 50;
+            this.label8.Text = "ตะกร้าของคุณ";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -223,67 +232,58 @@
             this.groupBox2.Controls.Add(this.pictureBox2);
             this.groupBox2.Location = new System.Drawing.Point(415, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 298);
+            this.groupBox2.Size = new System.Drawing.Size(304, 379);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(57, 182);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(193, 29);
-            this.textBox2.TabIndex = 44;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 185);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 24);
-            this.label4.TabIndex = 50;
-            this.label4.Text = "ชื่อ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 222);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 24);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "ราคา";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(57, 219);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(59, 29);
-            this.textBox3.TabIndex = 52;
-            // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(139, 257);
+            this.textBox4.Location = new System.Drawing.Point(108, 334);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(142, 29);
+            this.textBox4.Size = new System.Drawing.Size(166, 29);
             this.textBox4.TabIndex = 54;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(2, 257);
+            this.label7.Location = new System.Drawing.Point(2, 337);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(131, 24);
+            this.label7.Size = new System.Drawing.Size(107, 24);
             this.label7.TabIndex = 53;
-            this.label7.Text = "ประเภทบอร์ดเกม";
+            this.label7.Text = "ประเภทสินค้า";
             // 
-            // label8
+            // textBox3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 299);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 24);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "ตะกร้าของคุณ";
+            this.textBox3.Location = new System.Drawing.Point(57, 299);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(59, 29);
+            this.textBox3.TabIndex = 52;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(2, 302);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 24);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "ราคา";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 265);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 24);
+            this.label4.TabIndex = 50;
+            this.label4.Text = "ชื่อ";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(57, 262);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(217, 29);
+            this.textBox2.TabIndex = 44;
             // 
             // formOrder
             // 

@@ -83,7 +83,7 @@
             // 
             // btn_exit
             // 
-            this.btn_exit.Location = new System.Drawing.Point(19, 225);
+            this.btn_exit.Location = new System.Drawing.Point(19, 215);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(163, 45);
@@ -104,7 +104,7 @@
             // 
             // btn_Order
             // 
-            this.btn_Order.Location = new System.Drawing.Point(19, 111);
+            this.btn_Order.Location = new System.Drawing.Point(19, 101);
             this.btn_Order.Margin = new System.Windows.Forms.Padding(6);
             this.btn_Order.Name = "btn_Order";
             this.btn_Order.Size = new System.Drawing.Size(163, 45);
@@ -133,7 +133,7 @@
             // 
             // btn_LogOut
             // 
-            this.btn_LogOut.Location = new System.Drawing.Point(19, 168);
+            this.btn_LogOut.Location = new System.Drawing.Point(19, 158);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(163, 45);
