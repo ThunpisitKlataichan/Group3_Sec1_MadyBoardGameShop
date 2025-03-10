@@ -65,7 +65,7 @@ namespace MadyBoardGame_Shop
 
         private void listBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            Console.Beep();
         }
     }
 }
