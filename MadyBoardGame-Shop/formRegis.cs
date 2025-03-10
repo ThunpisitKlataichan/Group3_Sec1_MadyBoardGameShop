@@ -147,7 +147,8 @@ namespace MadyBoardGame_Shop
         {
             try
             {
-                string commandprom = "SELECT Username FROM MemberUsername WHERE Username = @username;";
+                string commandprom = "SELECT MemberUsername.Username , EmpUsername.Username FROM MemberUsername , EmpUsername " +
+                    "WHERE MemberUsername.Username = @username or EmpUsername.Username = @username;";
 
                 using (regisconnection = new SqlConnection(InitializeUser._key_con))
                 {

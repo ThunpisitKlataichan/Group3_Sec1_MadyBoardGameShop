@@ -73,7 +73,7 @@ namespace MadyBoardGame_Shop
                     this.Text = "MadyStore (Member)";
                     break;
             }
-            labelUsername.Text = "Welcome " + InitializeUser.UsernameLogin;
+            labelUsername.Text = "Welcome " + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }
     }
 }
