@@ -11,6 +11,9 @@ namespace MadyBoardGame_Shop
     public static class InitializeUser
     {
         public static string _key_con;
+        public static string UserState;
+        public static string UserNameLogin;
+        public static string UserLastNameLogin;
         public static void Confic()
         {
             string stringcon = Path.Combine(Application.StartupPath, "ConnectionString.ini");

@@ -46,18 +46,54 @@ namespace MadyBoardGame_Shop
 
                             if (logintable.Rows.Count > 0)
                             {
+                                InitializeUser.UserState = "Member";
                                 formMain mainForm = new formMain();
                                 this.Hide();
                                 mainForm.ShowDialog();
                                 this.Dispose();
                             }
-
                             else
                             {
-                                MessageBox.Show("ไม่พบผู้ใช้");
+                                query = "SELECT * FROM EmpUsername WHERE Username = @username and Password = @password";
+                                using (loginCommand = new SqlCommand(query , loginConnection))
+                                {
+                                    loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
+                                    loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim().ToLower());
+
+                                    using (loginAdapter = new SqlDataAdapter(loginCommand))
+                                    {
+                                        logintable = new DataTable();
+                                        loginAdapter.Fill(logintable);
+                                        if (logintable.Rows.Count > 0)
+                                        {
+                                            InitializeUser.UserState = "Employee";
+
+                                            using (loginCommand = new SqlCommand("SELECT empName from Employees Where Employees.Username = EmpUsername.Username", loginConnection))
+                                            {
+                                                loginAdapter.SelectCommand = loginCommand;
+                                                logintable = new DataTable();
+                                                loginAdapter.Fill(logintable);
+                                                if (logintable.Rows.Count > 0)
+                                                {
+                                                    InitializeUser.UserNameLogin = logintable.Rows[0]["empName"].ToString();
+                                                }
+                                            }
+                                                formMain mainForm = new formMain();
+                                            this.Hide();
+                                            mainForm.ShowDialog();
+                                            this.Dispose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Username หรือ Password ไม่ถูกต้อง");
+                                        }
+                                    }
+                                }
                             }
+                            
                         }
                     }
+                    
                 }
             }
             catch (Exception ex)
@@ -82,6 +118,11 @@ namespace MadyBoardGame_Shop
         {
             formRegis a = new formRegis();
             a.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

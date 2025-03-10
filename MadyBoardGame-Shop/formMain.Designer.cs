@@ -35,11 +35,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Order = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelUsername = new System.Windows.Forms.Label();
             this.btn_LogOut = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxEmp = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxEmp.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -110,21 +110,21 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.labelUsername);
             this.groupBox1.Location = new System.Drawing.Point(19, 280);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(372, 73);
+            this.groupBox1.Size = new System.Drawing.Size(596, 73);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
-            // label2
+            // labelUsername
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "User :";
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(6, 15);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(59, 24);
+            this.labelUsername.TabIndex = 0;
+            this.labelUsername.Text = "User :";
             // 
             // btn_LogOut
             // 
@@ -137,24 +137,24 @@
             this.btn_LogOut.UseVisualStyleBackColor = true;
             this.btn_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);
             // 
-            // groupBox2
+            // groupBoxEmp
             // 
-            this.groupBox2.Controls.Add(this.btn_stock);
-            this.groupBox2.Controls.Add(this.btn_member);
-            this.groupBox2.Controls.Add(this.btn_payment);
-            this.groupBox2.Location = new System.Drawing.Point(191, 80);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 204);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "พนักงาน";
+            this.groupBoxEmp.Controls.Add(this.btn_stock);
+            this.groupBoxEmp.Controls.Add(this.btn_member);
+            this.groupBoxEmp.Controls.Add(this.btn_payment);
+            this.groupBoxEmp.Location = new System.Drawing.Point(191, 70);
+            this.groupBoxEmp.Name = "groupBoxEmp";
+            this.groupBoxEmp.Size = new System.Drawing.Size(424, 204);
+            this.groupBoxEmp.TabIndex = 8;
+            this.groupBoxEmp.TabStop = false;
+            this.groupBoxEmp.Text = "พนักงาน";
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 365);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(627, 365);
+            this.Controls.Add(this.groupBoxEmp);
             this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Order);
@@ -167,7 +167,7 @@
             this.Load += new System.EventHandler(this.formMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBoxEmp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,9 +182,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_Order;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Button btn_LogOut;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxEmp;
     }
 }
 

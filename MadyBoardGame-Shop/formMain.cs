@@ -32,7 +32,7 @@ namespace MadyBoardGame_Shop
 
         private void formMain_Load(object sender, EventArgs e)
         {
-            
+            SetStage();
         }
 
         private void btn_member_Click(object sender, EventArgs e)
@@ -59,6 +59,21 @@ namespace MadyBoardGame_Shop
         private void btn_payment_Click(object sender, EventArgs e)
         {
 
+        }
+        private void SetStage()
+        {
+            switch(InitializeUser.UserState)
+            {
+                case "Employee":
+                    groupBoxEmp.Enabled = true;
+                    this.Text = "MadyStore (Employee)";
+                    break;
+                case "Member":
+                    groupBoxEmp.Enabled = false;
+                    this.Text = "MadyStore (Member)";
+                    break;
+            }
+            labelUsername.Text = "Welcome " + InitializeUser.UsernameLogin;
         }
     }
 }

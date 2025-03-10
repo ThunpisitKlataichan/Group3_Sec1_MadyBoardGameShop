@@ -82,6 +82,7 @@ namespace MadyBoardGame_Shop
                         regiscommand.Parameters.AddWithValue("@username" , username);
                         regiscommand.Parameters.AddWithValue("@phonenum" , phone);
                         regiscommand.Parameters.AddWithValue("@dateregis", dateregis);
+                        
                         regiscommand.ExecuteNonQuery();
                     }
                 }

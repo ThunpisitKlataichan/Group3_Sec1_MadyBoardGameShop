@@ -34,6 +34,7 @@
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.lableregis = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -92,11 +93,22 @@
             this.lableregis.Text = "สมัครสมาชิค";
             this.lableregis.Click += new System.EventHandler(this.lableregis_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(287, 172);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(142, 57);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "ปิด";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // formLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 241);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lableregis);
             this.Controls.Add(this.btn_confirm);
             this.Controls.Add(this.txt_Password);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.TextBox txt_Password;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Label lableregis;
+        private System.Windows.Forms.Button btnClose;
     }
 }
