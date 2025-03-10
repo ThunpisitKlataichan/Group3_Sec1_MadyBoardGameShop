@@ -34,7 +34,7 @@ namespace MadyBoardGame_Shop
                 stockconnection.Open();
 
                 string query = "SELECT p.ProductName , p.CostPrice , p.Price , p.ProductType , p.Productshelf ," +
-                    "s.StockDate , s.StockQuality FROM Products as p , Stock as s WHERE p.ProductID = s.ProductID"; //<---, p.ProductImg  เอาก็อปไปวางงด้วยถ้าทำต่อ
+                    "s.StockDate , s.StockQuality FROM Products as p , Stock as s WHERE p.ProductID = s.ProductID"; //<---   , p.ProductImg  เอาก็อปไปวางงด้วยถ้าทำต่อ
                 stockcommand = new SqlCommand(query, stockconnection);
                 stockadapter = new SqlDataAdapter();
                 stockadapter.SelectCommand = stockcommand;
@@ -46,13 +46,13 @@ namespace MadyBoardGame_Shop
                 txtPrice.DataBindings.Add("Text", stockdatatable, "Price");
                 txtProductType.DataBindings.Add("Text", stockdatatable, "ProductType");
                 //4
+
                 //pictureBoxProduct.DataBindings.Add("Image", stockdatatable, "ProductImg"); <--- มาทำต่อด้วยตัง มันเพิ่มรูปยาก
                 txtAmountremain.DataBindings.Add("Text", stockdatatable, "StockQuality");
                 txtleastUpdate.DataBindings.Add("Text", stockdatatable, "StockDate");
                 checkBoxShowonShelf.DataBindings.Add("Checked", stockdatatable, "Productshelf");
                 //8
-
-
+                stockmanager = (CurrencyManager)this.BindingContext[stockdatatable];
             }
             catch (Exception ex)
             {
@@ -62,6 +62,7 @@ namespace MadyBoardGame_Shop
 
         private void formStock_FormClosing(object sender, FormClosingEventArgs e)
         {
+            stockconnection.Close();
             stockconnection.Dispose();
             stockcommand.Dispose();
             stockadapter.Dispose();

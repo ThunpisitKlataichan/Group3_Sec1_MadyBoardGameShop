@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxProduct = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxCart = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -56,29 +56,15 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBoxProduct
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "2",
-            "5",
-            "4",
-            "89",
-            "5",
-            "31",
-            "1",
-            "6",
-            "443"});
-            this.listBox1.Location = new System.Drawing.Point(6, 42);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(374, 148);
-            this.listBox1.TabIndex = 1;
+            this.listBoxProduct.FormattingEnabled = true;
+            this.listBoxProduct.ItemHeight = 24;
+            this.listBoxProduct.Location = new System.Drawing.Point(6, 42);
+            this.listBoxProduct.Name = "listBoxProduct";
+            this.listBoxProduct.Size = new System.Drawing.Size(374, 148);
+            this.listBoxProduct.TabIndex = 1;
+            this.listBoxProduct.SelectedIndexChanged += new System.EventHandler(this.listBoxProduct_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -89,14 +75,14 @@
             this.label6.TabIndex = 34;
             this.label6.Text = "รายการสินค้า";
             // 
-            // listBox2
+            // listBoxCart
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 24;
-            this.listBox2.Location = new System.Drawing.Point(6, 326);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(374, 148);
-            this.listBox2.TabIndex = 37;
+            this.listBoxCart.FormattingEnabled = true;
+            this.listBoxCart.ItemHeight = 24;
+            this.listBoxCart.Location = new System.Drawing.Point(6, 326);
+            this.listBoxCart.Name = "listBoxCart";
+            this.listBoxCart.Size = new System.Drawing.Size(374, 148);
+            this.listBoxCart.TabIndex = 37;
             // 
             // button1
             // 
@@ -154,6 +140,11 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "เงินสด",
+            "พร้อมเพย์",
+            "ธนาคาร",
+            "ทรูวอเลท"});
             this.comboBox1.Location = new System.Drawing.Point(484, 397);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(205, 32);
@@ -188,11 +179,11 @@
             // 
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.listBoxProduct);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.listBox2);
+            this.groupBox1.Controls.Add(this.listBoxCart);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button4);
@@ -299,6 +290,8 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formOrder";
             this.Text = "สั่งซื้อสินค้า";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formOrder_FormClosing);
+            this.Load += new System.EventHandler(this.formOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -310,9 +303,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxProduct;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxCart;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
