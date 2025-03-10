@@ -66,11 +66,18 @@ namespace MadyBoardGame_Shop
             {
                 case "Employee":
                     groupBoxEmp.Enabled = true;
+                    groupBoxmanager.Enabled = false;
                     this.Text = "MadyStore (Employee)";
                     break;
                 case "Member":
                     groupBoxEmp.Enabled = false;
+                    groupBoxmanager.Enabled = false;
                     this.Text = "MadyStore (Member)";
+                    break;
+                case "Manager":
+                    groupBoxEmp.Enabled = true;
+                    groupBoxmanager.Enabled = true;
+                    this.Text = "MadyStore (Manager)";
                     break;
             }
             labelUsername.Text = "Welcome " + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;

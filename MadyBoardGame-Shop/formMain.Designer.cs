@@ -38,8 +38,13 @@
             this.labelUsername = new System.Windows.Forms.Label();
             this.btn_LogOut = new System.Windows.Forms.Button();
             this.groupBoxEmp = new System.Windows.Forms.GroupBox();
+            this.groupBoxmanager = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
+            this.groupBoxmanager.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -144,16 +149,60 @@
             this.groupBoxEmp.Controls.Add(this.btn_payment);
             this.groupBoxEmp.Location = new System.Drawing.Point(191, 70);
             this.groupBoxEmp.Name = "groupBoxEmp";
-            this.groupBoxEmp.Size = new System.Drawing.Size(424, 204);
+            this.groupBoxEmp.Size = new System.Drawing.Size(211, 204);
             this.groupBoxEmp.TabIndex = 8;
             this.groupBoxEmp.TabStop = false;
             this.groupBoxEmp.Text = "พนักงาน";
+            // 
+            // groupBoxmanager
+            // 
+            this.groupBoxmanager.Controls.Add(this.button1);
+            this.groupBoxmanager.Controls.Add(this.button2);
+            this.groupBoxmanager.Controls.Add(this.button3);
+            this.groupBoxmanager.Location = new System.Drawing.Point(408, 70);
+            this.groupBoxmanager.Name = "groupBoxmanager";
+            this.groupBoxmanager.Size = new System.Drawing.Size(211, 204);
+            this.groupBoxmanager.TabIndex = 9;
+            this.groupBoxmanager.TabStop = false;
+            this.groupBoxmanager.Text = "ผู้จัดการ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(17, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 45);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "คลังสินค้า";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 145);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(163, 45);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "จัดการสมาชิค";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 2;
+            this.button3.Location = new System.Drawing.Point(17, 31);
+            this.button3.Margin = new System.Windows.Forms.Padding(6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(163, 45);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "ชำระสินค้า";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 365);
+            this.Controls.Add(this.groupBoxmanager);
             this.Controls.Add(this.groupBoxEmp);
             this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.groupBox1);
@@ -168,6 +217,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBoxEmp.ResumeLayout(false);
+            this.groupBoxmanager.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,6 +235,10 @@
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Button btn_LogOut;
         private System.Windows.Forms.GroupBox groupBoxEmp;
+        private System.Windows.Forms.GroupBox groupBoxmanager;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 
