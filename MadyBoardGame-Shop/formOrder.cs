@@ -65,7 +65,10 @@ namespace MadyBoardGame_Shop
 
         private void listBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.Beep();
+            string product = listBoxProduct.SelectedItem.ToString();
+            string command = "SELECT ProductName , Price , ProductType FROM Products Where Productshelf = 1 and ProductName = @productname";
+            ordercommand = new SqlCommand(command, orderconnection);
+            ordercommand.Parameters.AddWithValue("@productname", listBoxProduct.SelectedItem.ToString());
         }
     }
 }
