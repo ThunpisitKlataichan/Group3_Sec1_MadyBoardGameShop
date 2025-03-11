@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,12 @@ using System.Windows.Forms;
 namespace MadyBoardGame_Shop
 {
     public partial class formRegis : Form
+
     {
+        private string[] _arProvinces = null;
+        private string[][] _arDistricts = null;
+        private string[][][] _arSubDistricts = null;
+        private string[][][] _arPostcodes = null;
         public formRegis()
         {
             InitializeComponent();
@@ -183,7 +189,62 @@ namespace MadyBoardGame_Shop
         private void formRegis_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
+            AddressUtil.ReadAddressInfoFromCSVFile("ProvinceDistrictSubDis.csv", ref _arProvinces, ref _arDistricts, ref _arSubDistricts, ref _arPostcodes);
+            if (_arProvinces != null)
+            {
+                comboBoxProvince.Items.AddRange(_arProvinces);
+            }
+            //addItemProvince();
+            if (File.Exists("ProvinceDistrictSubDis.csv"))
+                MessageBox.Show("found");
+            else
+                MessageBox.Show("Not found");
+
         }
-        
+
+        private void comboBoxProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            if (provinceIndex >= 0 && _arDistricts != null)
+            {
+                comboBoxDistrict.Text = "";
+                comboBoxSubDistrict.Text = "";
+                textCusPostalCode.Text = "";
+                // อัปเดตรายการอำเภอใน ComboBox
+
+                comboBoxDistrict.Items.Clear();
+                comboBoxDistrict.Items.AddRange(_arDistricts[provinceIndex]);
+
+
+                // ล้างข้อมูลใน ComboBox 
+
+            }
+        }
+
+        private void comboBoxDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            int districtIndex = comboBoxDistrict.SelectedIndex;
+            if (provinceIndex >= 0 && districtIndex >= 0 && _arSubDistricts != null)
+            {
+                // อัปเดตรายการตำบลใน ComboBox
+
+                comboBoxSubDistrict.Items.Clear();
+                comboBoxSubDistrict.Items.AddRange(_arSubDistricts[provinceIndex][districtIndex]);
+
+            }
+        }
+
+        private void comboBoxSubDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            int districtIndex = comboBoxDistrict.SelectedIndex;
+            int subDistrictIndex = comboBoxSubDistrict.SelectedIndex;
+            if (provinceIndex >= 0 && districtIndex >= 0 && subDistrictIndex >= 0 && _arPostcodes != null)
+            {
+                // อัปเดตรายการรหัสไปรษณีย์ใน ComboBox
+                textCusPostalCode.Text = _arPostcodes[provinceIndex][districtIndex][subDistrictIndex];
+            }
+        }
     }
 }
