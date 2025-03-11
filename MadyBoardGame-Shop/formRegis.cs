@@ -36,8 +36,24 @@ namespace MadyBoardGame_Shop
         {
             try
             {
+                //ดูว่าใส่ข้อมูลครบทุกช่องไหม
                 if (!TextBoxNotNullRight())
                 {
+                    return;
+                }
+                /* check รหัสบัตรปชช เช่น เลขไม่ครบ13หลัก
+                                      มีตัวอักษรอยู่ไหม
+                                      มีจริงไหม*/
+                if (!ValidateThaiID(txtIdentityNum.Text))
+                {
+                    return ;
+                }
+
+                // check หมู่ ว่าเป็นตัวเลขไหม
+                if (!int.TryParse(textCusMoo.Text, out int check_moo))
+                {
+                    // กรณีแปลงเป็น int ไม่ได้ (เช่น ผู้ใช้กรอกตัวอักษร)
+                    MessageBox.Show("ที่ช่องหมู่กรุณากรอกข้อมูลเป็นตัวเลข");
                     return;
                 }
                 //ดึงค่าจาก TextBox และ Trim ช่องว่าง
@@ -185,6 +201,39 @@ namespace MadyBoardGame_Shop
             }
 
             return isValid;
+        }
+        static bool ValidateThaiID(string id)
+        {
+            // เช็คว่ามี 13 หลัก
+            if (id.Length != 13)
+            {
+                MessageBox.Show("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
+                return false;
+            }
+
+            // เช็คว่าเป็นตัวเลขทั้งหมด
+            if (!long.TryParse(id, out _))
+            {
+                MessageBox.Show("หมายเลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น");
+                return false;
+            }
+
+            // ตรวจสอบว่ามีจริงไหม ---เหมือนตอนทำในปี1
+            int sum = 0;
+            for (int i = 0; i < 12; i++) 
+            {
+                sum += (id[i] - '0') * (13 - i);
+            }
+
+            int checkDigit = (11 - (sum % 11)) % 10; 
+            int lastDigit = id[12] - '0';
+
+            if (checkDigit != lastDigit)
+            {
+                MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                return false;
+            }
+            return true;
         }
 
         private bool ValidateData(string username)
