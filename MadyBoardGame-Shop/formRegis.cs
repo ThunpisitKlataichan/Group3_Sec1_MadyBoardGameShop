@@ -14,7 +14,7 @@ namespace MadyBoardGame_Shop
 {
     public partial class formRegis : Form
 
-    {
+    {  
         private string[] _arProvinces = null;
         private string[][] _arDistricts = null;
         private string[][][] _arSubDistricts = null;
@@ -48,6 +48,9 @@ namespace MadyBoardGame_Shop
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
+                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "หมู่ที่" + textCusMoo.Text + "ซอย" + textCusSoi.Text
+                                   + "ถนน" + textCusRoad.Text + "จังหวัด" + comboBoxProvince.Text + "อำเภอ/เขต" + comboBoxDistrict.Text
+                                   + "ตำบล/แขวง" + comboBoxSubDistrict.Text + "รหัสไปรษณีย์" + textCusPostalCode.Text;
                 DateTime dateregis = DateTime.Now;
 
                 //เช็ครหัสผ่านว่าตรงกันหรือไม่
@@ -123,6 +126,41 @@ namespace MadyBoardGame_Shop
             if (string.IsNullOrWhiteSpace(txtIdentityNum.Text))
             {
                 warningstring.AppendLine("กรุณากรอกรหัสบัตรประชาชน");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusHouseNumber.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกเลขที่อยู่");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusMoo.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกหมู่");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusSoi.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกซอย");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusRoad.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกชื่อถนน");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxProvince.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกจังหวัด");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxDistrict.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกอำเภอ/เขต");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxSubDistrict.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกตำบล/แขวง");
                 isValid = false;
             }
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
