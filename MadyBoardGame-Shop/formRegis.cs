@@ -64,10 +64,11 @@ namespace MadyBoardGame_Shop
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
-                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "   หมู่ที่" + textCusMoo.Text + "   ซอย" + textCusSoi.Text
-                                   + "   ถนน" + textCusRoad.Text + "   จังหวัด" + comboBoxProvince.Text + "   อำเภอ/เขต" + comboBoxDistrict.Text
-                                   + "   ตำบล/แขวง" + comboBoxSubDistrict.Text + "   รหัสไปรษณีย์" + textCusPostalCode.Text;
+                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "  หมู่ที่  " + textCusMoo.Text + "  ซอย  " + textCusSoi.Text
+                                   + "  ถนน  " + textCusRoad.Text + "  จังหวัด  " + comboBoxProvince.Text + "  อำเภอ/เขต  " + comboBoxDistrict.Text
+                                   + "  ตำบล/แขวง  " + comboBoxSubDistrict.Text + "  รหัสไปรษณีย์  " + textCusPostalCode.Text;
                 DateTime dateregis = DateTime.Now;
+                DateTime dateBorn = dateTimePicker_Born.Value;
 
                 //เช็ครหัสผ่านว่าตรงกันหรือไม่
                 if (password != confirmPassword)
@@ -91,8 +92,8 @@ namespace MadyBoardGame_Shop
                     //ส่งข้อมูลไป Table MemberUsername
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
                     //ส่งข้อมูลไป Table Member
-                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate, mem_Location) " +
-                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis, @location)";
+                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate, mem_Location,mem_BornDate) " +
+                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis, @location,@BornDate)";
                     using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
@@ -109,6 +110,8 @@ namespace MadyBoardGame_Shop
                         regiscommand.Parameters.AddWithValue("@phonenum" , phone);
                         regiscommand.Parameters.AddWithValue("@dateregis", dateregis);
                         regiscommand.Parameters.AddWithValue("@location", location);
+                        regiscommand.Parameters.AddWithValue("@BornDate", dateBorn);
+
 
                         regiscommand.ExecuteNonQuery();
                     }
