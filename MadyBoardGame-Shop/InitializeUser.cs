@@ -26,6 +26,10 @@ namespace MadyBoardGame_Shop
                     MessageBox.Show("ไฟล์ ConnectionString.ini ว่างเปล่า หรือไม่ได้ตั้งค่า");
                 }
             }
+            else
+            {
+                MessageBox.Show("ไม่เจอไฟล์ ConnectionString.ini");
+            }
         }
     }
 }
