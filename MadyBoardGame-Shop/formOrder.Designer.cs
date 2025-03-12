@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBoxProduct = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.listBoxCart = new System.Windows.Forms.ListBox();
             this.btnRemoveall = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnpayment = new System.Windows.Forms.Button();
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
@@ -48,24 +45,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtProductname = new System.Windows.Forms.TextBox();
-            this.numericCount = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.numericCount = new System.Windows.Forms.NumericUpDown();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.listBoxProduct = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCount)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listBoxProduct
-            // 
-            this.listBoxProduct.FormattingEnabled = true;
-            this.listBoxProduct.ItemHeight = 24;
-            this.listBoxProduct.Location = new System.Drawing.Point(6, 42);
-            this.listBoxProduct.Name = "listBoxProduct";
-            this.listBoxProduct.Size = new System.Drawing.Size(374, 148);
-            this.listBoxProduct.TabIndex = 1;
-            this.listBoxProduct.SelectedIndexChanged += new System.EventHandler(this.listBoxProduct_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -80,7 +70,7 @@
             // 
             this.listBoxCart.FormattingEnabled = true;
             this.listBoxCart.ItemHeight = 24;
-            this.listBoxCart.Location = new System.Drawing.Point(6, 326);
+            this.listBoxCart.Location = new System.Drawing.Point(6, 371);
             this.listBoxCart.Name = "listBoxCart";
             this.listBoxCart.Size = new System.Drawing.Size(374, 148);
             this.listBoxCart.TabIndex = 37;
@@ -94,26 +84,6 @@
             this.btnRemoveall.TabIndex = 38;
             this.btnRemoveall.Text = "⇈";
             this.btnRemoveall.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(170, 213);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(46, 33);
-            this.btnAdd.TabIndex = 40;
-            this.btnAdd.Text = "+";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(118, 213);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(46, 33);
-            this.btnRemove.TabIndex = 41;
-            this.btnRemove.Text = "-";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // pictureBox2
             // 
@@ -176,7 +146,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 299);
+            this.label8.Location = new System.Drawing.Point(6, 344);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(108, 24);
             this.label8.TabIndex = 50;
@@ -256,18 +226,6 @@
             this.txtProductname.Size = new System.Drawing.Size(217, 29);
             this.txtProductname.TabIndex = 44;
             // 
-            // numericCount
-            // 
-            this.numericCount.Location = new System.Drawing.Point(198, 254);
-            this.numericCount.Name = "numericCount";
-            this.numericCount.Size = new System.Drawing.Size(46, 29);
-            this.numericCount.TabIndex = 51;
-            this.numericCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -285,6 +243,48 @@
             this.label11.Size = new System.Drawing.Size(34, 24);
             this.label11.TabIndex = 53;
             this.label11.Text = "ชิ้น";
+            // 
+            // numericCount
+            // 
+            this.numericCount.Location = new System.Drawing.Point(198, 254);
+            this.numericCount.Name = "numericCount";
+            this.numericCount.Size = new System.Drawing.Size(46, 29);
+            this.numericCount.TabIndex = 51;
+            this.numericCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(170, 213);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(46, 33);
+            this.btnAdd.TabIndex = 40;
+            this.btnAdd.Text = "+";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(118, 213);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(46, 33);
+            this.btnRemove.TabIndex = 41;
+            this.btnRemove.Text = "-";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // listBoxProduct
+            // 
+            this.listBoxProduct.FormattingEnabled = true;
+            this.listBoxProduct.ItemHeight = 24;
+            this.listBoxProduct.Location = new System.Drawing.Point(6, 42);
+            this.listBoxProduct.Name = "listBoxProduct";
+            this.listBoxProduct.Size = new System.Drawing.Size(374, 148);
+            this.listBoxProduct.TabIndex = 1;
+            this.listBoxProduct.SelectedIndexChanged += new System.EventHandler(this.listBoxProduct_SelectedIndexChanged);
             // 
             // formOrder
             // 
@@ -314,12 +314,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBoxProduct;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox listBoxCart;
         private System.Windows.Forms.Button btnRemoveall;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnpayment;
         private System.Windows.Forms.ComboBox comboBoxmethonPayment;
@@ -337,5 +334,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numericCount;
+        private System.Windows.Forms.ListBox listBoxProduct;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnRemove;
     }
 }
