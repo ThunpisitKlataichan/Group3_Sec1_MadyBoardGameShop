@@ -64,9 +64,9 @@ namespace MadyBoardGame_Shop
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
-                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "หมู่ที่" + textCusMoo.Text + "ซอย" + textCusSoi.Text
-                                   + "ถนน" + textCusRoad.Text + "จังหวัด" + comboBoxProvince.Text + "อำเภอ/เขต" + comboBoxDistrict.Text
-                                   + "ตำบล/แขวง" + comboBoxSubDistrict.Text + "รหัสไปรษณีย์" + textCusPostalCode.Text;
+                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "   หมู่ที่" + textCusMoo.Text + "   ซอย" + textCusSoi.Text
+                                   + "   ถนน" + textCusRoad.Text + "   จังหวัด" + comboBoxProvince.Text + "   อำเภอ/เขต" + comboBoxDistrict.Text
+                                   + "   ตำบล/แขวง" + comboBoxSubDistrict.Text + "   รหัสไปรษณีย์" + textCusPostalCode.Text;
                 DateTime dateregis = DateTime.Now;
 
                 //เช็ครหัสผ่านว่าตรงกันหรือไม่
@@ -90,15 +90,16 @@ namespace MadyBoardGame_Shop
 
                     //ส่งข้อมูลไป Table MemberUsername
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
-                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate) " +
-                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis)";
+                    //ส่งข้อมูลไป Table Member
+                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate, mem_Location) " +
+                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis, @location)";
                     using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
                         regiscommand.Parameters.AddWithValue("@password", password);
                         regiscommand.ExecuteNonQuery();
                     }
-                    //ส่งข้อมูลไป Table Member
+                    
                     using (regiscommand = new SqlCommand(commandprom2 , regisconnection))
                     {
                         regiscommand.Parameters.AddWithValue("@name" , name);
@@ -107,9 +108,11 @@ namespace MadyBoardGame_Shop
                         regiscommand.Parameters.AddWithValue("@username" , username);
                         regiscommand.Parameters.AddWithValue("@phonenum" , phone);
                         regiscommand.Parameters.AddWithValue("@dateregis", dateregis);
-                        
+                        regiscommand.Parameters.AddWithValue("@location", location);
+
                         regiscommand.ExecuteNonQuery();
                     }
+                    
                 }
                 MessageBox.Show("ลงทะเบียนสำเร็จ");
                 this.Close();
@@ -275,7 +278,10 @@ namespace MadyBoardGame_Shop
 
         private void formRegis_Load(object sender, EventArgs e)
         {
+
+            //ตรวจสอบว่ามีไฟล์.ini ที่เอาไว้เชื่อม data base ไหม
             InitializeUser.Confic();
+            //อ่านไฟล์.csv เพื่อ add ที่อยู่ จังหวัด ตำบล อำเภอ รหัส ปณ.
             AddressUtil.ReadAddressInfoFromCSVFile("ProvinceDistrictSubDis.csv", ref _arProvinces, ref _arDistricts, ref _arSubDistricts, ref _arPostcodes);
             if (_arProvinces != null)
             {
