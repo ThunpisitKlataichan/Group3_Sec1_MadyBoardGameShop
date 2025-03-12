@@ -106,6 +106,7 @@ namespace MadyBoardGame_Shop
 
         private void listBoxCart_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBoxCart.SelectedItem == null) return; // ป้องกันข้อผิดพลาด
             try
             {
                 string[] arrsplit = listBoxCart.SelectedItem.ToString().Split(':');
