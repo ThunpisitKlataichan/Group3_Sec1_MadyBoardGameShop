@@ -16,5 +16,10 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
+
+        private void formMember_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

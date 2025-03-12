@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,12 @@ using System.Windows.Forms;
 namespace MadyBoardGame_Shop
 {
     public partial class formRegis : Form
-    {
+
+    {  
+        private string[] _arProvinces = null;
+        private string[][] _arDistricts = null;
+        private string[][][] _arSubDistricts = null;
+        private string[][][] _arPostcodes = null;
         public formRegis()
         {
             InitializeComponent();
@@ -30,8 +36,24 @@ namespace MadyBoardGame_Shop
         {
             try
             {
+                //ดูว่าใส่ข้อมูลครบทุกช่องไหม
                 if (!TextBoxNotNullRight())
                 {
+                    return;
+                }
+                /* check รหัสบัตรปชช เช่น เลขไม่ครบ13หลัก
+                                      มีตัวอักษรอยู่ไหม
+                                      มีจริงไหม*/
+                if (!ValidateThaiID(txtIdentityNum.Text))
+                {
+                    return ;
+                }
+
+                // check หมู่ ว่าเป็นตัวเลขไหม
+                if (!int.TryParse(textCusMoo.Text, out int check_moo))
+                {
+                    // กรณีแปลงเป็น int ไม่ได้ (เช่น ผู้ใช้กรอกตัวอักษร)
+                    MessageBox.Show("ที่ช่องหมู่กรุณากรอกข้อมูลเป็นตัวเลข");
                     return;
                 }
                 //ดึงค่าจาก TextBox และ Trim ช่องว่าง
@@ -42,6 +64,9 @@ namespace MadyBoardGame_Shop
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
+                string location = "เลขที่อยู่" + textCusHouseNumber.Text + "หมู่ที่" + textCusMoo.Text + "ซอย" + textCusSoi.Text
+                                   + "ถนน" + textCusRoad.Text + "จังหวัด" + comboBoxProvince.Text + "อำเภอ/เขต" + comboBoxDistrict.Text
+                                   + "ตำบล/แขวง" + comboBoxSubDistrict.Text + "รหัสไปรษณีย์" + textCusPostalCode.Text;
                 DateTime dateregis = DateTime.Now;
 
                 //เช็ครหัสผ่านว่าตรงกันหรือไม่
@@ -119,6 +144,41 @@ namespace MadyBoardGame_Shop
                 warningstring.AppendLine("กรุณากรอกรหัสบัตรประชาชน");
                 isValid = false;
             }
+            if (string.IsNullOrWhiteSpace(textCusHouseNumber.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกเลขที่อยู่");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusMoo.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกหมู่");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusSoi.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกซอย");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(textCusRoad.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกชื่อถนน");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxProvince.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกจังหวัด");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxDistrict.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกอำเภอ/เขต");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxSubDistrict.Text))
+            {
+                warningstring.AppendLine("กรุณาเลือกตำบล/แขวง");
+                isValid = false;
+            }
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 warningstring.AppendLine("กรุณากรอก Username");
@@ -141,6 +201,39 @@ namespace MadyBoardGame_Shop
             }
 
             return isValid;
+        }
+        static bool ValidateThaiID(string id)
+        {
+            // เช็คว่ามี 13 หลัก
+            if (id.Length != 13)
+            {
+                MessageBox.Show("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
+                return false;
+            }
+
+            // เช็คว่าเป็นตัวเลขทั้งหมด
+            if (!long.TryParse(id, out _))
+            {
+                MessageBox.Show("หมายเลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น");
+                return false;
+            }
+
+            // ตรวจสอบว่ามีจริงไหม ---เหมือนตอนทำในปี1
+            int sum = 0;
+            for (int i = 0; i < 12; i++) 
+            {
+                sum += (id[i] - '0') * (13 - i);
+            }
+
+            int checkDigit = (11 - (sum % 11)) % 10; 
+            int lastDigit = id[12] - '0';
+
+            if (checkDigit != lastDigit)
+            {
+                MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                return false;
+            }
+            return true;
         }
 
         private bool ValidateData(string username)
@@ -183,7 +276,62 @@ namespace MadyBoardGame_Shop
         private void formRegis_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
+            AddressUtil.ReadAddressInfoFromCSVFile("ProvinceDistrictSubDis.csv", ref _arProvinces, ref _arDistricts, ref _arSubDistricts, ref _arPostcodes);
+            if (_arProvinces != null)
+            {
+                comboBoxProvince.Items.AddRange(_arProvinces);
+            }
+            //addItemProvince();
+            if (File.Exists("ProvinceDistrictSubDis.csv"))
+                MessageBox.Show("found");
+            else
+                MessageBox.Show("Not found");
+
         }
-        
+
+        private void comboBoxProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            if (provinceIndex >= 0 && _arDistricts != null)
+            {
+                comboBoxDistrict.Text = "";
+                comboBoxSubDistrict.Text = "";
+                textCusPostalCode.Text = "";
+                // อัปเดตรายการอำเภอใน ComboBox
+
+                comboBoxDistrict.Items.Clear();
+                comboBoxDistrict.Items.AddRange(_arDistricts[provinceIndex]);
+
+
+                // ล้างข้อมูลใน ComboBox 
+
+            }
+        }
+
+        private void comboBoxDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            int districtIndex = comboBoxDistrict.SelectedIndex;
+            if (provinceIndex >= 0 && districtIndex >= 0 && _arSubDistricts != null)
+            {
+                // อัปเดตรายการตำบลใน ComboBox
+
+                comboBoxSubDistrict.Items.Clear();
+                comboBoxSubDistrict.Items.AddRange(_arSubDistricts[provinceIndex][districtIndex]);
+
+            }
+        }
+
+        private void comboBoxSubDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int provinceIndex = comboBoxProvince.SelectedIndex;
+            int districtIndex = comboBoxDistrict.SelectedIndex;
+            int subDistrictIndex = comboBoxSubDistrict.SelectedIndex;
+            if (provinceIndex >= 0 && districtIndex >= 0 && subDistrictIndex >= 0 && _arPostcodes != null)
+            {
+                // อัปเดตรายการรหัสไปรษณีย์ใน ComboBox
+                textCusPostalCode.Text = _arPostcodes[provinceIndex][districtIndex][subDistrictIndex];
+            }
+        }
     }
 }
