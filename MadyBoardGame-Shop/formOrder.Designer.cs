@@ -35,7 +35,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnpayment = new System.Windows.Forms.Button();
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -123,14 +123,15 @@
             this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
             // 
-            // button5
+            // btnpayment
             // 
-            this.button5.Location = new System.Drawing.Point(415, 435);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(304, 46);
-            this.button5.TabIndex = 44;
-            this.button5.Text = "ชำระ";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnpayment.Location = new System.Drawing.Point(415, 435);
+            this.btnpayment.Name = "btnpayment";
+            this.btnpayment.Size = new System.Drawing.Size(304, 46);
+            this.btnpayment.TabIndex = 44;
+            this.btnpayment.Text = "ชำระ";
+            this.btnpayment.UseVisualStyleBackColor = true;
+            this.btnpayment.Click += new System.EventHandler(this.btnpayment_Click);
             // 
             // comboBoxmethonPayment
             // 
@@ -294,7 +295,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxmethonPayment);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnpayment);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formOrder";
@@ -320,7 +321,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnpayment;
         private System.Windows.Forms.ComboBox comboBoxmethonPayment;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;

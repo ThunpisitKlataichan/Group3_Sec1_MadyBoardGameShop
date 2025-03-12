@@ -95,7 +95,8 @@ namespace MadyBoardGame_Shop
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            listBoxCart.Items.Add(listBoxProduct.SelectedItem);
+            listBoxCart.Items.Add(listBoxProduct.SelectedItem + " :" +numericCount.Value);
+            
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -107,7 +108,8 @@ namespace MadyBoardGame_Shop
         {
             try
             {
-                string productname = listBoxCart.SelectedItem.ToString();
+                string[] arrsplit = listBoxCart.SelectedItem.ToString().Split(':');
+                string productname = arrsplit[0].Trim();
                 string command = "SELECT ProductName , Price , ProductType FROM Products Where Productshelf = 1 and ProductName = @productname";
                 ordercommand = new SqlCommand(command, orderconnection);
                 ordercommand.Parameters.AddWithValue("@productname", productname);
@@ -131,6 +133,11 @@ namespace MadyBoardGame_Shop
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void btnpayment_Click(object sender, EventArgs e)
+        {
+           // string command = "SELECT ProductName , Price , "
         }
     }
 }
