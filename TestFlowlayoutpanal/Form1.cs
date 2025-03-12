@@ -15,16 +15,8 @@ namespace TestFlowlayoutpanal
     {
         public Form1()
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
         }
-
-
-        
-
-
-
-
 
         List<Panel> panelProduct = new List<Panel>();
         List<Panel> panelscart = new List<Panel>();
