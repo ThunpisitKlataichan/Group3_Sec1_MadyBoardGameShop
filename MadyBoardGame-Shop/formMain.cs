@@ -26,7 +26,7 @@ namespace MadyBoardGame_Shop
 
         private void btn_stock_Click(object sender, EventArgs e)
         {
-            formStock a = new formStock();
+            formProduct a = new formProduct();
             a.ShowDialog();
         }
 
