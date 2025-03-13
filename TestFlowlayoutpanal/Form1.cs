@@ -172,7 +172,6 @@ namespace TestFlowlayoutpanal
                 }
                 panelsearch.Clear();
             }
-            
         }
         private Panel FindPanelByButtonText(FlowLayoutPanel flowLayout, string buttonText)
         {

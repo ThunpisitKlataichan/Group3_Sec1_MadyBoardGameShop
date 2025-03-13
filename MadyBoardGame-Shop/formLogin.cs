@@ -21,7 +21,6 @@ namespace MadyBoardGame_Shop
         SqlConnection loginConnection;
         SqlCommand loginCommand;
         SqlDataAdapter loginAdapter;
-        CurrencyManager loginmanager;
         DataTable logintable;
         private void btn_confirm_Click(object sender, EventArgs e)
         {

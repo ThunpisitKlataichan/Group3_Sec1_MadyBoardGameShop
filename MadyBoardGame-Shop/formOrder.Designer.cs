@@ -195,6 +195,7 @@
             this.txtFindProduct.Name = "txtFindProduct";
             this.txtFindProduct.Size = new System.Drawing.Size(350, 29);
             this.txtFindProduct.TabIndex = 53;
+            this.txtFindProduct.TextChanged += new System.EventHandler(this.txtFindProduct_TextChanged);
             // 
             // label2
             // 
