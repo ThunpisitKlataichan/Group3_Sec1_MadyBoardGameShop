@@ -42,10 +42,12 @@
             this.txtProductname = new System.Windows.Forms.TextBox();
             this.flowLayoutProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutCart = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtFindCart = new System.Windows.Forms.TextBox();
             this.txtFindProduct = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDesription = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             // 
             // btnpayment
             // 
-            this.btnpayment.Location = new System.Drawing.Point(827, 445);
+            this.btnpayment.Location = new System.Drawing.Point(827, 573);
             this.btnpayment.Name = "btnpayment";
             this.btnpayment.Size = new System.Drawing.Size(304, 46);
             this.btnpayment.TabIndex = 44;
@@ -76,7 +78,7 @@
             "พร้อมเพย์",
             "ธนาคาร",
             "ทรูวอเลท"});
-            this.comboBoxmethonPayment.Location = new System.Drawing.Point(896, 407);
+            this.comboBoxmethonPayment.Location = new System.Drawing.Point(896, 535);
             this.comboBoxmethonPayment.Name = "comboBoxmethonPayment";
             this.comboBoxmethonPayment.Size = new System.Drawing.Size(205, 32);
             this.comboBoxmethonPayment.TabIndex = 45;
@@ -84,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(826, 407);
+            this.label1.Location = new System.Drawing.Point(826, 535);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 46;
@@ -92,6 +94,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtDesription);
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtProductType);
             this.groupBox2.Controls.Add(this.label7);
@@ -102,7 +106,7 @@
             this.groupBox2.Controls.Add(this.pictureBox2);
             this.groupBox2.Location = new System.Drawing.Point(827, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 379);
+            this.groupBox2.Size = new System.Drawing.Size(304, 510);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
@@ -120,7 +124,7 @@
             // 
             this.txtProductType.Location = new System.Drawing.Point(108, 334);
             this.txtProductType.Name = "txtProductType";
-            this.txtProductType.Size = new System.Drawing.Size(166, 29);
+            this.txtProductType.Size = new System.Drawing.Size(179, 29);
             this.txtProductType.TabIndex = 54;
             // 
             // label7
@@ -161,37 +165,30 @@
             // 
             this.txtProductname.Location = new System.Drawing.Point(57, 262);
             this.txtProductname.Name = "txtProductname";
-            this.txtProductname.Size = new System.Drawing.Size(217, 29);
+            this.txtProductname.Size = new System.Drawing.Size(230, 29);
             this.txtProductname.TabIndex = 44;
             // 
             // flowLayoutProduct
             // 
             this.flowLayoutProduct.AutoScroll = true;
             this.flowLayoutProduct.BackColor = System.Drawing.SystemColors.GrayText;
-            this.flowLayoutProduct.Location = new System.Drawing.Point(12, 50);
+            this.flowLayoutProduct.Location = new System.Drawing.Point(12, 80);
             this.flowLayoutProduct.Name = "flowLayoutProduct";
-            this.flowLayoutProduct.Size = new System.Drawing.Size(486, 441);
+            this.flowLayoutProduct.Size = new System.Drawing.Size(486, 539);
             this.flowLayoutProduct.TabIndex = 51;
             // 
             // flowLayoutCart
             // 
             this.flowLayoutCart.AutoScroll = true;
             this.flowLayoutCart.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.flowLayoutCart.Location = new System.Drawing.Point(504, 50);
+            this.flowLayoutCart.Location = new System.Drawing.Point(504, 80);
             this.flowLayoutCart.Name = "flowLayoutCart";
-            this.flowLayoutCart.Size = new System.Drawing.Size(314, 441);
+            this.flowLayoutCart.Size = new System.Drawing.Size(314, 539);
             this.flowLayoutCart.TabIndex = 52;
-            // 
-            // txtFindCart
-            // 
-            this.txtFindCart.Location = new System.Drawing.Point(569, 15);
-            this.txtFindCart.Name = "txtFindCart";
-            this.txtFindCart.Size = new System.Drawing.Size(200, 29);
-            this.txtFindCart.TabIndex = 54;
             // 
             // txtFindProduct
             // 
-            this.txtFindProduct.Location = new System.Drawing.Point(105, 15);
+            this.txtFindProduct.Location = new System.Drawing.Point(72, 50);
             this.txtFindProduct.Name = "txtFindProduct";
             this.txtFindProduct.Size = new System.Drawing.Size(350, 29);
             this.txtFindProduct.TabIndex = 53;
@@ -200,29 +197,56 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 18);
+            this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 24);
             this.label2.TabIndex = 55;
             this.label2.Text = "ค้นหา";
             // 
-            // label3
+            // label6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(509, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 24);
-            this.label3.TabIndex = 56;
-            this.label3.Text = "ค้นหา";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(2, 370);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 24);
+            this.label6.TabIndex = 56;
+            this.label6.Text = "รายละเอียด";
+            // 
+            // txtDesription
+            // 
+            this.txtDesription.Location = new System.Drawing.Point(6, 397);
+            this.txtDesription.Multiline = true;
+            this.txtDesription.Name = "txtDesription";
+            this.txtDesription.Size = new System.Drawing.Size(281, 110);
+            this.txtDesription.TabIndex = 57;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.GrayText;
+            this.label8.Location = new System.Drawing.Point(206, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 24);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "รายการ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(500, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 24);
+            this.label10.TabIndex = 58;
+            this.label10.Text = "ตะกร้า";
             // 
             // formOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1143, 502);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(1143, 631);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtFindCart);
             this.Controls.Add(this.txtFindProduct);
             this.Controls.Add(this.flowLayoutCart);
             this.Controls.Add(this.flowLayoutProduct);
@@ -258,9 +282,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutCart;
-        private System.Windows.Forms.TextBox txtFindCart;
         private System.Windows.Forms.TextBox txtFindProduct;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDesription;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
     }
 }

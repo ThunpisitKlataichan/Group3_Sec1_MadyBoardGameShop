@@ -66,13 +66,25 @@ namespace MadyBoardGame_Shop
 
                     Label lblprodID = new Label();
                     lblprodID.Text = ordertable.Rows[i]["ProductID"].ToString();
+                    lblprodID.Tag = "ProductID";
                     lblprodID.Visible = true;
                     lblprodID.Location = new Point(0, 0);
 
+                    Label lblPrice = new Label();
+                    lblPrice.Text = Convert.ToDecimal(ordertable.Rows[i]["Price"]).ToString("N2") + "฿";
+                    lblPrice.Tag = "Price";
+                    lblPrice.Visible = true;
+                    lblPrice.Size = new Size(100, 25);
+                    lblPrice.AutoSize = false;
+                    lblPrice.Location = new Point(0, panel.Height - lblPrice.Height);
+                    
+
                     panel.MouseMove += Panel_MouseMove;
                     panel.MouseLeave += Panel_Leave;
+                    panel.Click += Panel_Click;
                     btn.Click += Addtocart_click;
 
+                    panel.Controls.Add(lblPrice);
                     panel.Controls.Add(lblprodID);
                     panel.Controls.Add(lblprodName);
                     panel.Controls.Add(pic);
@@ -87,6 +99,10 @@ namespace MadyBoardGame_Shop
                         pic.MouseLeave += PictureBox_Leave;
                         btn.MouseMove += btn_MouseMove;
                         btn.MouseLeave += btn_Leave;
+                        lblprodID.Click += lbl_Click;
+                        lblprodName.Click += lbl_Click;
+                        pic.Click += PictureBox_Click;
+
                     }
 
                     panelProduct.Add(panel);
@@ -125,7 +141,7 @@ namespace MadyBoardGame_Shop
             // สร้าง Panel ใหม่ ที่เป็นสำเนาของ originalPanel
             Panel cartPanel = new Panel();
             cartPanel.Size = originalPanel.Size;
-            cartPanel.BackColor = originalPanel.BackColor;
+            cartPanel.BackColor = Color.Yellow;
 
             // คัดลอก PictureBox จาก Panel ต้นฉบับ
             PictureBox pic = new PictureBox();
@@ -189,7 +205,11 @@ namespace MadyBoardGame_Shop
             }
 
             flowLayoutCart.Controls.Remove(cartPanel); // ลบ Panel ออกจากตะกร้า
-        }
+        }// ลบสินค้าออกจากตะกร้า
+
+
+
+        // ส่วนของการเปลี่ยนสีเมื่อเมาส์เข้าไป
         private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
             Panel pn = (Panel)sender;
@@ -262,11 +282,70 @@ namespace MadyBoardGame_Shop
             Panel pn = (Panel)num.Parent;
             pn.BackColor = Color.Yellow;
         }
+        //-------------------------------------------------------------------------------------
 
+        private void Panel_Click(object sender, EventArgs e)
+        {
+            CallDetailData(sender);
+        }
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            CallDetailData(sender);
+        }
+        private void lbl_Click(object sender, EventArgs e)
+        {
+            CallDetailData(sender);
+        }
+
+        private void CallDetailData(object sender)
+        {
+            try
+            {
+                string key_ProductID = "";
+                Panel panel = null;
+                if(sender is Panel)
+                {
+                    panel = (Panel)sender;
+                }
+                else if (sender is PictureBox)
+                {
+                    panel = (Panel)((PictureBox)sender).Parent;
+                }
+                else if (sender is Label)
+                {
+                    panel = (Panel)((Label)sender).Parent;
+                }
+                foreach (Control control in panel.Controls)
+                {
+                    if (control is Label label)
+                    {
+                        if (label.Tag?.ToString() == "ProductID")
+                        {
+                            key_ProductID = label.Text;
+                        }
+                    }
+                }
+                orderconnection = new SqlConnection(InitializeUser._key_con);
+                orderconnection.Open();
+                string command = "SELECT ProductID , ProductName , Price , ProductType , ProductImg , Productshelf FROM Products Where Productshelf = 1 And ProductID = @key_ProductID";
+                ordercommand = new SqlCommand(command, orderconnection);
+                ordercommand.Parameters.AddWithValue("@key_ProductID", key_ProductID);
+                orderadapter = new SqlDataAdapter(ordercommand);
+                ordertable = new DataTable();
+                orderadapter.Fill(ordertable);
+                txtProductname.Text = ordertable.Rows[0]["ProductName"].ToString();
+                txtPrice.Text = ordertable.Rows[0]["Price"].ToString();
+                txtProductType.Text = ordertable.Rows[0]["ProductType"].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
         private void btnpayment_Click(object sender, EventArgs e)
         {
-           // string command = "SELECT ProductName , Price , "
-        }
+            // string command = "SELECT ProductName , Price , "
+        }// ส่งข้อมูลไปยังฐานข้อมูล
 
         private void txtFindProduct_TextChanged(object sender, EventArgs e)
         {
@@ -288,7 +367,7 @@ namespace MadyBoardGame_Shop
                 }
                 panelsearch.Clear();
             }
-        }
+        } // ค้นหาสินค้า
         private void FindPanelByButtonText(FlowLayoutPanel flowLayout, string Productname)
         {
             foreach (Control control in panelProduct)
@@ -307,6 +386,6 @@ namespace MadyBoardGame_Shop
                     }
                 }
             }
-        }
+        } // ค้นหา Panel จากชื่อสินค้า
     }
 }

@@ -81,17 +81,6 @@ namespace TestFlowlayoutpanal
             pic.Location = new Point((cartPanel.Width - pic.Width) / 2, 10);
             cartPanel.Controls.Add(pic);
 
-            // เพิ่มปุ่มควบคุมใน Panel (เฉพาะใน Cart)
-            //Button plus = new Button();
-            //plus.Text = "+";
-            //plus.Size = new Size(25, 25);
-            //plus.Location = new Point(cartPanel.Width - plus.Width - 5, cartPanel.Height - 30);
-
-            //Button minus = new Button();
-            //minus.Text = "-";
-            //minus.Size = new Size(25, 25);
-            //minus.Location = new Point(cartPanel.Width - minus.Width - 50, cartPanel.Height - 30);
-
             NumericUpDown numericUpDown = new NumericUpDown();
             numericUpDown.Minimum = 1;
             numericUpDown.Size = new Size(50, 25);
