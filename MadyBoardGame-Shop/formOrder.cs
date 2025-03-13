@@ -23,9 +23,21 @@ namespace MadyBoardGame_Shop
         SqlDataAdapter paymentdataadapter;
         DataTable paymenttable;
 
+        SqlConnection orderconnection;
+        SqlCommand ordercommand;
+        SqlDataAdapter orderdataadapter;
+        DataTable ordertable;
+
+        SqlConnection orderdetailconnection;
+        SqlCommand orderdetailcommand;
+        SqlDataAdapter orderdetaildataadapter;
+        DataTable orderdetailtable;
+
         List<Panel> panelProduct = new List<Panel>();
         List<Panel> panelscart = new List<Panel>();
         List<Panel> panelsearch = new List<Panel>();
+
+        private decimal totalPrice = 0;
         public formOrder()
         {
             InitializeComponent();
@@ -54,6 +66,7 @@ namespace MadyBoardGame_Shop
                     pic.BackColor = Color.Red;
                     pic.Size = new Size(100, 100); // กำหนดขนาดก่อน
                     pic.Location = new Point((panel.Width - pic.Width) / 2, 10); // คำนวณตำแหน่งใหม่
+                    pic.Tag = "ProductImg";
 
                     Button btn = new Button();
                     btn.Text = "Add";
@@ -127,12 +140,8 @@ namespace MadyBoardGame_Shop
             productdataadapter.Dispose();
             producttable.Dispose();
 
-            paymentconnection.Close();
             paymentcommand.Dispose();
             paymentconnection.Dispose();
-            paymentdataadapter.Dispose();
-            paymenttable.Dispose();
-
         }
 
         private void Addtocart_click(object sender, EventArgs e)
@@ -389,8 +398,97 @@ namespace MadyBoardGame_Shop
         }
         private void btnpayment_Click(object sender, EventArgs e)
         {
+            CalculateTotalPrice();
+            if (totalPrice == 0)
+            {
+                MessageBox.Show("กรุณาเลือกสินค้าก่อนชำระเงิน");
+                return;
+            }
+            if (InitializeUser.UserState is "Member")
+            {
+                if (MessageBox.Show("ยืนยันการสั่งซื้อสินค้า", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // ส่งข้อมูลไปยังฐานข้อมูล Orders
+                        orderconnection = new SqlConnection(InitializeUser._key_con);
+                        orderconnection.Open();
+                        int orderID = 0;
+                        string command = "INSERT INTO Orders (mem_ID, empID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @empID, @OrderDate)";
+                        ordercommand = new SqlCommand(command, orderconnection);
+                        ordercommand.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
+                        ordercommand.Parameters.AddWithValue("@empID", "1");
+                        ordercommand.Parameters.AddWithValue("@OrderDate", DateTime.Now);
+                        orderID = (int)ordercommand.ExecuteScalar();
+                        orderconnection.Close();
+
+                        // ส่งข้อมูลไปยังฐานข้อมูล OrderDetails
+                        orderdetailconnection = new SqlConnection(InitializeUser._key_con);
+                        orderdetailconnection.Open();
+                        foreach (Control control in flowLayoutCart.Controls)
+                        {
+                            if (control is Panel panel)
+                            {
+                                Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
+                                NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+                                Label priceLabel = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "Price");
+
+                                if (lblProductID != null && quantityControl != null && priceLabel != null)
+                                {
+                                    string command1 = "INSERT INTO OrderDetials (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
+                                    orderdetailcommand = new SqlCommand(command1, orderdetailconnection);
+                                    orderdetailcommand.Parameters.AddWithValue("@OrderID", orderID);
+                                    orderdetailcommand.Parameters.AddWithValue("@ProductID", lblProductID.Text);
+                                    orderdetailcommand.Parameters.AddWithValue("@Quantity", quantityControl.Value);
+
+                                    orderdetailcommand.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                        orderdetailconnection.Close();
+
+                        paymentconnection = new SqlConnection(InitializeUser._key_con);
+                        paymentconnection.Open();
+                        string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
+                        paymentcommand = new SqlCommand(command2, paymentconnection);
+                        paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
+                        paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
+                        paymentcommand.Parameters.AddWithValue("@orderid", orderID);
+                        paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
+                        paymentcommand.ExecuteNonQuery();
+                        paymentconnection.Close();
+
+                        MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
+                        flowLayoutCart.Controls.Clear();
+
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
 
         }// ส่งข้อมูลไปยังฐานข้อมูล
+        private void CalculateTotalPrice()
+        {
+            totalPrice = 0;
+            foreach (Control control in flowLayoutCart.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+                    Label priceLabel = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "Price");
+
+                    if (quantityControl != null && priceLabel != null)
+                    {
+                        decimal price = decimal.Parse(priceLabel.Text.Replace("฿", "").Trim());
+                        totalPrice += price * quantityControl.Value;
+                    }
+                }
+            }
+        }
 
         private void txtFindProduct_TextChanged(object sender, EventArgs e)
         {

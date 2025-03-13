@@ -45,6 +45,8 @@
             this.txtConPassword = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker_Born = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textCusPostalCode = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker_Born = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -107,7 +107,7 @@
             // 
             this.txtPhoneNum.Location = new System.Drawing.Point(416, 105);
             this.txtPhoneNum.Name = "txtPhoneNum";
-            this.txtPhoneNum.Size = new System.Drawing.Size(130, 29);
+            this.txtPhoneNum.Size = new System.Drawing.Size(175, 29);
             this.txtPhoneNum.TabIndex = 4;
             // 
             // label3
@@ -219,6 +219,22 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ข้อมูลส่วนตัว";
+            // 
+            // dateTimePicker_Born
+            // 
+            this.dateTimePicker_Born.Location = new System.Drawing.Point(154, 151);
+            this.dateTimePicker_Born.Name = "dateTimePicker_Born";
+            this.dateTimePicker_Born.Size = new System.Drawing.Size(193, 29);
+            this.dateTimePicker_Born.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(91, 153);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 24);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "วันเกิด";
             // 
             // groupBox3
             // 
@@ -413,22 +429,6 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(91, 153);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 24);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "วันเกิด";
-            // 
-            // dateTimePicker_Born
-            // 
-            this.dateTimePicker_Born.Location = new System.Drawing.Point(154, 151);
-            this.dateTimePicker_Born.Name = "dateTimePicker_Born";
-            this.dateTimePicker_Born.Size = new System.Drawing.Size(392, 29);
-            this.dateTimePicker_Born.TabIndex = 10;
-            // 
             // formRegis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -442,6 +442,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formRegis";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "สมัครสมาชิค";
             this.Load += new System.EventHandler(this.formRegis_Load);
             this.groupBox1.ResumeLayout(false);

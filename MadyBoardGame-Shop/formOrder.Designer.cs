@@ -33,6 +33,8 @@
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDesription = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtProductType = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.flowLayoutCart = new System.Windows.Forms.FlowLayoutPanel();
             this.txtFindProduct = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDesription = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -110,6 +110,23 @@
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
+            // 
+            // txtDesription
+            // 
+            this.txtDesription.Location = new System.Drawing.Point(6, 397);
+            this.txtDesription.Multiline = true;
+            this.txtDesription.Name = "txtDesription";
+            this.txtDesription.Size = new System.Drawing.Size(281, 110);
+            this.txtDesription.TabIndex = 57;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(2, 370);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 24);
+            this.label6.TabIndex = 56;
+            this.label6.Text = "รายละเอียด";
             // 
             // label9
             // 
@@ -203,23 +220,6 @@
             this.label2.TabIndex = 55;
             this.label2.Text = "ค้นหา";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 370);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 24);
-            this.label6.TabIndex = 56;
-            this.label6.Text = "รายละเอียด";
-            // 
-            // txtDesription
-            // 
-            this.txtDesription.Location = new System.Drawing.Point(6, 397);
-            this.txtDesription.Multiline = true;
-            this.txtDesription.Name = "txtDesription";
-            this.txtDesription.Size = new System.Drawing.Size(281, 110);
-            this.txtDesription.TabIndex = 57;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -243,7 +243,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1143, 631);
+            this.ClientSize = new System.Drawing.Size(1143, 628);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
@@ -257,6 +257,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formOrder_FormClosing);
             this.Load += new System.EventHandler(this.formOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

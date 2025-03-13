@@ -43,7 +43,7 @@ namespace MadyBoardGame_Shop
                             if (logintable.Rows.Count > 0)
                             {
                                 InitializeUser.UserState = "Member";
-                                loginCommand = new SqlCommand("SELECT mem_Name , mem_LName FROM Member WHERE Username = @username", loginConnection);
+                                loginCommand = new SqlCommand("SELECT mem_ID, mem_Name , mem_LName FROM Member WHERE Username = @username", loginConnection);
                                 loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
                                 loginAdapter = new SqlDataAdapter();
                                 loginAdapter.SelectCommand = loginCommand;
@@ -51,6 +51,7 @@ namespace MadyBoardGame_Shop
                                 loginAdapter.Fill(logintable);
                                 InitializeUser.UserNameLogin = logintable.Rows[0][0].ToString();
                                 InitializeUser.UserLastNameLogin = logintable.Rows[0][1].ToString();
+                                InitializeUser.UserID = logintable.Rows[0]["mem_ID"].ToString();
                                 formMain mainForm = new formMain();
                                 this.Hide();
                                 mainForm.ShowDialog();
@@ -63,7 +64,6 @@ namespace MadyBoardGame_Shop
                                 {
                                     loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
                                     loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim().ToLower());
-
                                     using (loginAdapter = new SqlDataAdapter(loginCommand))
                                     {
                                         logintable = new DataTable();
@@ -71,7 +71,7 @@ namespace MadyBoardGame_Shop
                                         if (logintable.Rows.Count > 0)
                                         {
                                             InitializeUser.UserState = "Employee";
-
+                                            
                                             loginCommand = new SqlCommand("SELECT empName , empLName FROM Employees WHERE Username = @username", loginConnection);
                                             loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
                                             loginAdapter = new SqlDataAdapter();
@@ -80,6 +80,7 @@ namespace MadyBoardGame_Shop
                                             loginAdapter.Fill(logintable);
                                             InitializeUser.UserNameLogin = logintable.Rows[0][0].ToString();
                                             InitializeUser.UserLastNameLogin = logintable.Rows[0][1].ToString();
+                                            InitializeUser.UserID = logintable.Rows[0][0].ToString();
 
                                             formMain mainForm = new formMain();
                                             this.Hide();
