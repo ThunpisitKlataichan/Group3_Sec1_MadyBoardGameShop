@@ -1,6 +1,6 @@
 ﻿namespace MadyBoardGame_Shop
 {
-    partial class formStock
+    partial class formProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -47,17 +47,16 @@
             this.btn_Next = new System.Windows.Forms.Button();
             this.btn_Last = new System.Windows.Forms.Button();
             this.btn_Add = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_Update = new System.Windows.Forms.Button();
+            this.btn_Cancle = new System.Windows.Forms.Button();
+            this.btn_Close = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridStock = new System.Windows.Forms.DataGridView();
-            this.pictureBoxProduct = new System.Windows.Forms.PictureBox();
             this.columeProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumeCostPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +64,10 @@
             this.columeStockquality = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columeShowOnShelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columeUpdateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBoxProduct = new System.Windows.Forms.PictureBox();
+            this.button_browse = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtProductID = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStock)).BeginInit();
@@ -74,53 +77,55 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 30);
+            this.label1.Location = new System.Drawing.Point(63, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 24);
+            this.label1.Size = new System.Drawing.Size(128, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "ชื่อบอร์ดเกม";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 101);
+            this.label2.Location = new System.Drawing.Point(64, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 24);
+            this.label2.Size = new System.Drawing.Size(118, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "ราคาต้นทุน";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 66);
+            this.label3.Location = new System.Drawing.Point(1, 133);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 24);
+            this.label3.Size = new System.Drawing.Size(212, 29);
             this.label3.TabIndex = 2;
             this.label3.Text = "ประเภทของบอร์ดเกม";
             // 
             // txtproductName
             // 
-            this.txtproductName.Location = new System.Drawing.Point(172, 27);
+            this.txtproductName.Location = new System.Drawing.Point(164, 94);
             this.txtproductName.Name = "txtproductName";
-            this.txtproductName.Size = new System.Drawing.Size(396, 29);
+            this.txtproductName.Size = new System.Drawing.Size(396, 34);
             this.txtproductName.TabIndex = 3;
             // 
             // txtProductType
             // 
-            this.txtProductType.Location = new System.Drawing.Point(172, 63);
+            this.txtProductType.Location = new System.Drawing.Point(164, 130);
             this.txtProductType.Name = "txtProductType";
-            this.txtProductType.Size = new System.Drawing.Size(396, 29);
+            this.txtProductType.Size = new System.Drawing.Size(396, 34);
             this.txtProductType.TabIndex = 4;
             // 
             // txtCostPrice
             // 
-            this.txtCostPrice.Location = new System.Drawing.Point(172, 98);
+            this.txtCostPrice.Location = new System.Drawing.Point(164, 165);
             this.txtCostPrice.Name = "txtCostPrice";
-            this.txtCostPrice.Size = new System.Drawing.Size(128, 29);
+            this.txtCostPrice.Size = new System.Drawing.Size(128, 34);
             this.txtCostPrice.TabIndex = 5;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtProductID);
             this.groupBox1.Controls.Add(this.checkBoxShowonShelf);
             this.groupBox1.Controls.Add(this.txtPrice);
             this.groupBox1.Controls.Add(this.label8);
@@ -136,7 +141,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(595, 233);
+            this.groupBox1.Size = new System.Drawing.Size(595, 297);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสินค้า";
@@ -144,58 +149,58 @@
             // checkBoxShowonShelf
             // 
             this.checkBoxShowonShelf.AutoSize = true;
-            this.checkBoxShowonShelf.Location = new System.Drawing.Point(326, 134);
+            this.checkBoxShowonShelf.Location = new System.Drawing.Point(318, 201);
             this.checkBoxShowonShelf.Name = "checkBoxShowonShelf";
-            this.checkBoxShowonShelf.Size = new System.Drawing.Size(180, 28);
+            this.checkBoxShowonShelf.Size = new System.Drawing.Size(235, 33);
             this.checkBoxShowonShelf.TabIndex = 22;
             this.checkBoxShowonShelf.Text = "แสดงในรายการสินค้า";
             this.checkBoxShowonShelf.UseVisualStyleBackColor = true;
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(385, 98);
+            this.txtPrice.Location = new System.Drawing.Point(377, 165);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(128, 29);
+            this.txtPrice.Size = new System.Drawing.Size(128, 34);
             this.txtPrice.TabIndex = 21;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(306, 101);
+            this.label8.Location = new System.Drawing.Point(298, 168);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 24);
+            this.label8.Size = new System.Drawing.Size(94, 29);
             this.label8.TabIndex = 20;
             this.label8.Text = "ราคาขาย";
             // 
             // txtleastUpdate
             // 
-            this.txtleastUpdate.Location = new System.Drawing.Point(172, 168);
+            this.txtleastUpdate.Location = new System.Drawing.Point(164, 235);
             this.txtleastUpdate.Name = "txtleastUpdate";
-            this.txtleastUpdate.Size = new System.Drawing.Size(128, 29);
+            this.txtleastUpdate.Size = new System.Drawing.Size(128, 34);
             this.txtleastUpdate.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(38, 171);
+            this.label5.Location = new System.Drawing.Point(30, 238);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 24);
+            this.label5.Size = new System.Drawing.Size(167, 29);
             this.label5.TabIndex = 8;
             this.label5.Text = "วันที่อัพเดตล่าสุด";
             // 
             // txtAmountremain
             // 
-            this.txtAmountremain.Location = new System.Drawing.Point(172, 133);
+            this.txtAmountremain.Location = new System.Drawing.Point(164, 200);
             this.txtAmountremain.Name = "txtAmountremain";
-            this.txtAmountremain.Size = new System.Drawing.Size(128, 29);
+            this.txtAmountremain.Size = new System.Drawing.Size(128, 34);
             this.txtAmountremain.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 136);
+            this.label4.Location = new System.Drawing.Point(44, 203);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 24);
+            this.label4.Size = new System.Drawing.Size(150, 29);
             this.label4.TabIndex = 6;
             this.label4.Text = "จำนวนคงเหลือ";
             // 
@@ -247,42 +252,46 @@
             this.btn_Add.TabIndex = 11;
             this.btn_Add.Text = "เพิ่ม";
             this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
-            // button1
+            // btn_delete
             // 
-            this.button1.Location = new System.Drawing.Point(701, 295);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 38);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "ลบ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_delete.Location = new System.Drawing.Point(701, 295);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(82, 38);
+            this.btn_delete.TabIndex = 12;
+            this.btn_delete.Text = "ลบ";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
-            // button2
+            // btn_Update
             // 
-            this.button2.Location = new System.Drawing.Point(613, 295);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 38);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "แก้ไข";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_Update.Location = new System.Drawing.Point(613, 295);
+            this.btn_Update.Name = "btn_Update";
+            this.btn_Update.Size = new System.Drawing.Size(82, 38);
+            this.btn_Update.TabIndex = 13;
+            this.btn_Update.Text = "แก้ไข";
+            this.btn_Update.UseVisualStyleBackColor = true;
+            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
-            // button3
+            // btn_Cancle
             // 
-            this.button3.Location = new System.Drawing.Point(789, 251);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 38);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "ยกเลิก";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_Cancle.Location = new System.Drawing.Point(789, 251);
+            this.btn_Cancle.Name = "btn_Cancle";
+            this.btn_Cancle.Size = new System.Drawing.Size(82, 38);
+            this.btn_Cancle.TabIndex = 14;
+            this.btn_Cancle.Text = "ยกเลิก";
+            this.btn_Cancle.UseVisualStyleBackColor = true;
+            this.btn_Cancle.Click += new System.EventHandler(this.btn_Cancle_Click);
             // 
-            // button4
+            // btn_Close
             // 
-            this.button4.Location = new System.Drawing.Point(789, 295);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(82, 38);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "ปิด";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_Close.Location = new System.Drawing.Point(789, 295);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(82, 38);
+            this.btn_Close.TabIndex = 15;
+            this.btn_Close.Text = "ปิด";
+            this.btn_Close.UseVisualStyleBackColor = true;
             // 
             // btn_Save
             // 
@@ -292,6 +301,7 @@
             this.btn_Save.TabIndex = 16;
             this.btn_Save.Text = "บันทึก";
             this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // groupBox2
             // 
@@ -318,7 +328,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(13, 94);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 29);
+            this.textBox1.Size = new System.Drawing.Size(178, 34);
             this.textBox1.TabIndex = 1;
             // 
             // label6
@@ -341,10 +351,61 @@
             this.columeStockquality,
             this.columeShowOnShelf,
             this.columeUpdateDate});
-            this.dataGridStock.Location = new System.Drawing.Point(25, 339);
+            this.dataGridStock.Location = new System.Drawing.Point(26, 388);
             this.dataGridStock.Name = "dataGridStock";
+            this.dataGridStock.RowHeadersWidth = 51;
             this.dataGridStock.Size = new System.Drawing.Size(1185, 213);
             this.dataGridStock.TabIndex = 18;
+            // 
+            // columeProductName
+            // 
+            this.columeProductName.HeaderText = "ชื่อโปรดัค";
+            this.columeProductName.MinimumWidth = 6;
+            this.columeProductName.Name = "columeProductName";
+            this.columeProductName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.columeProductName.Width = 300;
+            // 
+            // columnProductType
+            // 
+            this.columnProductType.HeaderText = "ชนิดสินค้า";
+            this.columnProductType.MinimumWidth = 6;
+            this.columnProductType.Name = "columnProductType";
+            this.columnProductType.Width = 200;
+            // 
+            // ColumeCostPrice
+            // 
+            this.ColumeCostPrice.HeaderText = "ราคาต้นทุน";
+            this.ColumeCostPrice.MinimumWidth = 6;
+            this.ColumeCostPrice.Name = "ColumeCostPrice";
+            this.ColumeCostPrice.Width = 150;
+            // 
+            // columeProductPrice
+            // 
+            this.columeProductPrice.HeaderText = "ราคา";
+            this.columeProductPrice.MinimumWidth = 6;
+            this.columeProductPrice.Name = "columeProductPrice";
+            this.columeProductPrice.Width = 150;
+            // 
+            // columeStockquality
+            // 
+            this.columeStockquality.HeaderText = "จำนวน";
+            this.columeStockquality.MinimumWidth = 6;
+            this.columeStockquality.Name = "columeStockquality";
+            this.columeStockquality.Width = 150;
+            // 
+            // columeShowOnShelf
+            // 
+            this.columeShowOnShelf.HeaderText = "เเสดงรายการสินค้า";
+            this.columeShowOnShelf.MinimumWidth = 6;
+            this.columeShowOnShelf.Name = "columeShowOnShelf";
+            this.columeShowOnShelf.Width = 50;
+            // 
+            // columeUpdateDate
+            // 
+            this.columeUpdateDate.HeaderText = "อัพเดต";
+            this.columeUpdateDate.MinimumWidth = 6;
+            this.columeUpdateDate.Name = "columeUpdateDate";
+            this.columeUpdateDate.Width = 125;
             // 
             // pictureBoxProduct
             // 
@@ -353,62 +414,48 @@
             this.pictureBoxProduct.Size = new System.Drawing.Size(321, 321);
             this.pictureBoxProduct.TabIndex = 19;
             this.pictureBoxProduct.TabStop = false;
+            this.pictureBoxProduct.Click += new System.EventHandler(this.pictureBoxProduct_Click);
             // 
-            // columeProductName
+            // button_browse
             // 
-            this.columeProductName.HeaderText = "ชื่อโปรดัค";
-            this.columeProductName.Name = "columeProductName";
-            this.columeProductName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.columeProductName.Width = 300;
+            this.button_browse.Location = new System.Drawing.Point(998, 344);
+            this.button_browse.Name = "button_browse";
+            this.button_browse.Size = new System.Drawing.Size(103, 38);
+            this.button_browse.TabIndex = 20;
+            this.button_browse.Text = "Browse";
+            this.button_browse.UseVisualStyleBackColor = true;
+            this.button_browse.Click += new System.EventHandler(this.button_browse_Click);
             // 
-            // columnProductType
+            // label7
             // 
-            this.columnProductType.HeaderText = "ชนิดสินค้า";
-            this.columnProductType.Name = "columnProductType";
-            this.columnProductType.Width = 200;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(63, 57);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(143, 29);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "รหัสบอร์ดเกม";
             // 
-            // ColumeCostPrice
+            // txtProductID
             // 
-            this.ColumeCostPrice.HeaderText = "ราคาต้นทุน";
-            this.ColumeCostPrice.Name = "ColumeCostPrice";
-            this.ColumeCostPrice.Width = 150;
+            this.txtProductID.Location = new System.Drawing.Point(164, 54);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(396, 34);
+            this.txtProductID.TabIndex = 24;
             // 
-            // columeProductPrice
+            // formProduct
             // 
-            this.columeProductPrice.HeaderText = "ราคา";
-            this.columeProductPrice.Name = "columeProductPrice";
-            this.columeProductPrice.Width = 150;
-            // 
-            // columeStockquality
-            // 
-            this.columeStockquality.HeaderText = "จำนวน";
-            this.columeStockquality.Name = "columeStockquality";
-            this.columeStockquality.Width = 150;
-            // 
-            // columeShowOnShelf
-            // 
-            this.columeShowOnShelf.HeaderText = "เเสดงรายการสินค้า";
-            this.columeShowOnShelf.Name = "columeShowOnShelf";
-            this.columeShowOnShelf.Width = 50;
-            // 
-            // columeUpdateDate
-            // 
-            this.columeUpdateDate.HeaderText = "อัพเดต";
-            this.columeUpdateDate.Name = "columeUpdateDate";
-            // 
-            // formStock
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 554);
+            this.ClientSize = new System.Drawing.Size(1223, 613);
+            this.Controls.Add(this.button_browse);
             this.Controls.Add(this.pictureBoxProduct);
             this.Controls.Add(this.dataGridStock);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_Save);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_Close);
+            this.Controls.Add(this.btn_Cancle);
+            this.Controls.Add(this.btn_Update);
+            this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.btn_Last);
             this.Controls.Add(this.btn_Next);
@@ -417,8 +464,8 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "formStock";
-            this.Text = "คลังสินค้า";
+            this.Name = "formProduct";
+            this.Text = "สินค้าในร้าน";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formStock_FormClosing);
             this.Load += new System.EventHandler(this.formStock_Load);
             this.groupBox1.ResumeLayout(false);
@@ -449,10 +496,10 @@
         private System.Windows.Forms.Button btn_Next;
         private System.Windows.Forms.Button btn_Last;
         private System.Windows.Forms.Button btn_Add;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_Update;
+        private System.Windows.Forms.Button btn_Cancle;
+        private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label6;
@@ -470,5 +517,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columeStockquality;
         private System.Windows.Forms.DataGridViewTextBoxColumn columeShowOnShelf;
         private System.Windows.Forms.DataGridViewTextBoxColumn columeUpdateDate;
+        private System.Windows.Forms.Button button_browse;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtProductID;
     }
 }

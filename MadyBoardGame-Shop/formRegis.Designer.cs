@@ -46,24 +46,26 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textCusPostalCode = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBoxSubDistrict = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.comboBoxDistrict = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBoxProvince = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textCusRoad = new System.Windows.Forms.TextBox();
+            this.textCusSoi = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textCusMoo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textCusHouseNumber = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textCusHouseNumber = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textCusMoo = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textCusSoi = new System.Windows.Forms.TextBox();
-            this.textCusRoad = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboBoxProvince = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.comboBoxDistrict = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.comboBoxSubDistrict = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textCusPostalCode = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker_Born = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -191,7 +193,7 @@
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtUsername);
-            this.groupBox1.Location = new System.Drawing.Point(12, 405);
+            this.groupBox1.Location = new System.Drawing.Point(12, 451);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(605, 140);
             this.groupBox1.TabIndex = 14;
@@ -200,6 +202,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dateTimePicker_Born);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.txtPhoneNum);
             this.groupBox2.Controls.Add(this.txtLastName);
@@ -211,7 +215,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(605, 387);
+            this.groupBox2.Size = new System.Drawing.Size(605, 433);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ข้อมูลส่วนตัว";
@@ -234,161 +238,21 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.textCusHouseNumber);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(6, 140);
+            this.groupBox3.Location = new System.Drawing.Point(6, 186);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(593, 241);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ที่อยู่";
             // 
-            // btn_Confirm
+            // textCusPostalCode
             // 
-            this.btn_Confirm.Location = new System.Drawing.Point(148, 565);
-            this.btn_Confirm.Name = "btn_Confirm";
-            this.btn_Confirm.Size = new System.Drawing.Size(142, 45);
-            this.btn_Confirm.TabIndex = 16;
-            this.btn_Confirm.Text = "ยืนยัน";
-            this.btn_Confirm.UseVisualStyleBackColor = true;
-            this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
-            // 
-            // btn_close
-            // 
-            this.btn_close.Location = new System.Drawing.Point(324, 565);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(142, 45);
-            this.btn_close.TabIndex = 17;
-            this.btn_close.Text = "ยกเลิก";
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 25);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 24);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "เลขที่อยู่";
-            // 
-            // textCusHouseNumber
-            // 
-            this.textCusHouseNumber.Location = new System.Drawing.Point(76, 25);
-            this.textCusHouseNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textCusHouseNumber.Name = "textCusHouseNumber";
-            this.textCusHouseNumber.Size = new System.Drawing.Size(148, 29);
-            this.textCusHouseNumber.TabIndex = 32;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(232, 28);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 24);
-            this.label10.TabIndex = 33;
-            this.label10.Text = "หมู่ที่";
-            // 
-            // textCusMoo
-            // 
-            this.textCusMoo.Location = new System.Drawing.Point(274, 26);
-            this.textCusMoo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textCusMoo.Name = "textCusMoo";
-            this.textCusMoo.Size = new System.Drawing.Size(67, 29);
-            this.textCusMoo.TabIndex = 34;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(349, 29);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 24);
-            this.label11.TabIndex = 35;
-            this.label11.Text = "ซอย";
-            // 
-            // textCusSoi
-            // 
-            this.textCusSoi.Location = new System.Drawing.Point(392, 26);
-            this.textCusSoi.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textCusSoi.Name = "textCusSoi";
-            this.textCusSoi.Size = new System.Drawing.Size(148, 29);
-            this.textCusSoi.TabIndex = 36;
-            // 
-            // textCusRoad
-            // 
-            this.textCusRoad.Location = new System.Drawing.Point(76, 65);
-            this.textCusRoad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textCusRoad.Name = "textCusRoad";
-            this.textCusRoad.Size = new System.Drawing.Size(223, 29);
-            this.textCusRoad.TabIndex = 35;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(22, 71);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(46, 24);
-            this.label12.TabIndex = 37;
-            this.label12.Text = "ถนน";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(11, 114);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 24);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "จังหวัด";
-            // 
-            // comboBoxProvince
-            // 
-            this.comboBoxProvince.FormattingEnabled = true;
-            this.comboBoxProvince.Location = new System.Drawing.Point(76, 106);
-            this.comboBoxProvince.Name = "comboBoxProvince";
-            this.comboBoxProvince.Size = new System.Drawing.Size(182, 32);
-            this.comboBoxProvince.TabIndex = 48;
-            this.comboBoxProvince.SelectedIndexChanged += new System.EventHandler(this.comboBoxProvince_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(-4, 153);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 24);
-            this.label15.TabIndex = 49;
-            this.label15.Text = "อำเภอ/เขต";
-            // 
-            // comboBoxDistrict
-            // 
-            this.comboBoxDistrict.FormattingEnabled = true;
-            this.comboBoxDistrict.Location = new System.Drawing.Point(76, 150);
-            this.comboBoxDistrict.Name = "comboBoxDistrict";
-            this.comboBoxDistrict.Size = new System.Drawing.Size(196, 32);
-            this.comboBoxDistrict.TabIndex = 50;
-            this.comboBoxDistrict.SelectedIndexChanged += new System.EventHandler(this.comboBoxDistrict_SelectedIndexChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(279, 154);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(89, 24);
-            this.label14.TabIndex = 51;
-            this.label14.Text = "ตำบล/แขวง";
-            // 
-            // comboBoxSubDistrict
-            // 
-            this.comboBoxSubDistrict.FormattingEnabled = true;
-            this.comboBoxSubDistrict.Location = new System.Drawing.Point(365, 150);
-            this.comboBoxSubDistrict.Name = "comboBoxSubDistrict";
-            this.comboBoxSubDistrict.Size = new System.Drawing.Size(220, 32);
-            this.comboBoxSubDistrict.TabIndex = 52;
-            this.comboBoxSubDistrict.SelectedIndexChanged += new System.EventHandler(this.comboBoxSubDistrict_SelectedIndexChanged);
+            this.textCusPostalCode.Location = new System.Drawing.Point(110, 194);
+            this.textCusPostalCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textCusPostalCode.Name = "textCusPostalCode";
+            this.textCusPostalCode.ReadOnly = true;
+            this.textCusPostalCode.Size = new System.Drawing.Size(162, 29);
+            this.textCusPostalCode.TabIndex = 54;
             // 
             // label16
             // 
@@ -400,20 +264,176 @@
             this.label16.TabIndex = 53;
             this.label16.Text = "รหัสไปรษณีย์";
             // 
-            // textCusPostalCode
+            // comboBoxSubDistrict
             // 
-            this.textCusPostalCode.Location = new System.Drawing.Point(110, 194);
-            this.textCusPostalCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textCusPostalCode.Name = "textCusPostalCode";
-            this.textCusPostalCode.ReadOnly = true;
-            this.textCusPostalCode.Size = new System.Drawing.Size(162, 29);
-            this.textCusPostalCode.TabIndex = 54;
+            this.comboBoxSubDistrict.FormattingEnabled = true;
+            this.comboBoxSubDistrict.Location = new System.Drawing.Point(365, 150);
+            this.comboBoxSubDistrict.Name = "comboBoxSubDistrict";
+            this.comboBoxSubDistrict.Size = new System.Drawing.Size(220, 32);
+            this.comboBoxSubDistrict.TabIndex = 52;
+            this.comboBoxSubDistrict.SelectedIndexChanged += new System.EventHandler(this.comboBoxSubDistrict_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(11, 114);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 24);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "จังหวัด";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(279, 154);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(89, 24);
+            this.label14.TabIndex = 51;
+            this.label14.Text = "ตำบล/แขวง";
+            // 
+            // comboBoxDistrict
+            // 
+            this.comboBoxDistrict.FormattingEnabled = true;
+            this.comboBoxDistrict.Location = new System.Drawing.Point(76, 150);
+            this.comboBoxDistrict.Name = "comboBoxDistrict";
+            this.comboBoxDistrict.Size = new System.Drawing.Size(196, 32);
+            this.comboBoxDistrict.TabIndex = 50;
+            this.comboBoxDistrict.SelectedIndexChanged += new System.EventHandler(this.comboBoxDistrict_SelectedIndexChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(-4, 153);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(83, 24);
+            this.label15.TabIndex = 49;
+            this.label15.Text = "อำเภอ/เขต";
+            // 
+            // comboBoxProvince
+            // 
+            this.comboBoxProvince.FormattingEnabled = true;
+            this.comboBoxProvince.Location = new System.Drawing.Point(76, 106);
+            this.comboBoxProvince.Name = "comboBoxProvince";
+            this.comboBoxProvince.Size = new System.Drawing.Size(182, 32);
+            this.comboBoxProvince.TabIndex = 48;
+            this.comboBoxProvince.SelectedIndexChanged += new System.EventHandler(this.comboBoxProvince_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(22, 71);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 24);
+            this.label12.TabIndex = 37;
+            this.label12.Text = "ถนน";
+            // 
+            // textCusRoad
+            // 
+            this.textCusRoad.Location = new System.Drawing.Point(76, 65);
+            this.textCusRoad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textCusRoad.Name = "textCusRoad";
+            this.textCusRoad.Size = new System.Drawing.Size(223, 29);
+            this.textCusRoad.TabIndex = 35;
+            // 
+            // textCusSoi
+            // 
+            this.textCusSoi.Location = new System.Drawing.Point(392, 26);
+            this.textCusSoi.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textCusSoi.Name = "textCusSoi";
+            this.textCusSoi.Size = new System.Drawing.Size(148, 29);
+            this.textCusSoi.TabIndex = 36;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(349, 29);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 24);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "ซอย";
+            // 
+            // textCusMoo
+            // 
+            this.textCusMoo.Location = new System.Drawing.Point(274, 26);
+            this.textCusMoo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textCusMoo.Name = "textCusMoo";
+            this.textCusMoo.Size = new System.Drawing.Size(67, 29);
+            this.textCusMoo.TabIndex = 34;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(232, 28);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 24);
+            this.label10.TabIndex = 33;
+            this.label10.Text = "หมู่ที่";
+            // 
+            // textCusHouseNumber
+            // 
+            this.textCusHouseNumber.Location = new System.Drawing.Point(76, 25);
+            this.textCusHouseNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textCusHouseNumber.Name = "textCusHouseNumber";
+            this.textCusHouseNumber.Size = new System.Drawing.Size(148, 29);
+            this.textCusHouseNumber.TabIndex = 32;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 25);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 24);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "เลขที่อยู่";
+            // 
+            // btn_Confirm
+            // 
+            this.btn_Confirm.Location = new System.Drawing.Point(148, 611);
+            this.btn_Confirm.Name = "btn_Confirm";
+            this.btn_Confirm.Size = new System.Drawing.Size(142, 45);
+            this.btn_Confirm.TabIndex = 16;
+            this.btn_Confirm.Text = "ยืนยัน";
+            this.btn_Confirm.UseVisualStyleBackColor = true;
+            this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
+            // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(324, 611);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(142, 45);
+            this.btn_close.TabIndex = 17;
+            this.btn_close.Text = "ยกเลิก";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(91, 153);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 24);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "วันเกิด";
+            // 
+            // dateTimePicker_Born
+            // 
+            this.dateTimePicker_Born.Location = new System.Drawing.Point(154, 151);
+            this.dateTimePicker_Born.Name = "dateTimePicker_Born";
+            this.dateTimePicker_Born.Size = new System.Drawing.Size(392, 29);
+            this.dateTimePicker_Born.TabIndex = 10;
             // 
             // formRegis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 633);
+            this.ClientSize = new System.Drawing.Size(632, 676);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_Confirm);
             this.Controls.Add(this.groupBox2);
@@ -472,5 +492,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textCusHouseNumber;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_Born;
     }
 }
