@@ -87,7 +87,6 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
         private void formOrder_FormClosing(object sender, FormClosingEventArgs e)
         {
             orderconnection.Close();
@@ -101,6 +100,8 @@ namespace MadyBoardGame_Shop
             Panel originalPanel = (Panel)btn.Parent; // ดึง Panel ต้นฉบับ 
 
             Label lblProductID = originalPanel.Controls.OfType<Label>().FirstOrDefault(l => l.Tag != null);
+            Label lblProductName = originalPanel.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "ProductName");
+
             originalPanel.Tag = lblProductID.Tag?.ToString();
 
             if (panelscart.Any(p => p.Tag == originalPanel.Tag))
@@ -151,7 +152,7 @@ namespace MadyBoardGame_Shop
             removebtn.Click += RemoveformCart_click;// กำหนด Event ให้ปุ่มลบ
 
             Label lbl = new Label();
-            lbl.Text = lblProductID.Text;
+            lbl.Text = lblProductName.Text;
             lbl.BackColor = Color.White;
             lbl.AutoSize = false;
             lbl.Size = new Size(150, 70);
