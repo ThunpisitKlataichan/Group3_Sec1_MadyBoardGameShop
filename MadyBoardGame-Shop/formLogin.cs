@@ -111,6 +111,8 @@ namespace MadyBoardGame_Shop
         private void formLogin_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
+            /*formMember testmem = new formMember();
+            testmem.Show();*/
         }
 
         private void formLogin_FormClosing(object sender, FormClosingEventArgs e)
