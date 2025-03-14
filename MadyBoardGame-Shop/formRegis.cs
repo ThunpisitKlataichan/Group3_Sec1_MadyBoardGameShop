@@ -208,7 +208,7 @@ namespace MadyBoardGame_Shop
 
             return isValid;
         }
-        static bool ValidateThaiID(string id)
+        private bool ValidateThaiID(string id)
         {
             // เช็คว่ามี 13 หลัก
             if (id.Length != 13)
