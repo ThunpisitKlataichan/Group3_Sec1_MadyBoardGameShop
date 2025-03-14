@@ -44,8 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridMem = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_Find = new System.Windows.Forms.Button();
+            this.text_find = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -203,8 +203,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.btn_Find);
+            this.groupBox2.Controls.Add(this.text_find);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(13, 368);
             this.groupBox2.Name = "groupBox2";
@@ -213,21 +213,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ค้นหา";
             // 
-            // button5
+            // btn_Find
             // 
-            this.button5.Location = new System.Drawing.Point(45, 138);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(111, 38);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "ค้นหา";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn_Find.Location = new System.Drawing.Point(41, 135);
+            this.btn_Find.Name = "btn_Find";
+            this.btn_Find.Size = new System.Drawing.Size(111, 38);
+            this.btn_Find.TabIndex = 19;
+            this.btn_Find.Text = "ค้นหา";
+            this.btn_Find.UseVisualStyleBackColor = true;
+            this.btn_Find.Click += new System.EventHandler(this.btn_Find_Click);
             // 
-            // textBox1
+            // text_find
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 94);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 29);
-            this.textBox1.TabIndex = 1;
+            this.text_find.Location = new System.Drawing.Point(13, 94);
+            this.text_find.Name = "text_find";
+            this.text_find.Size = new System.Drawing.Size(178, 29);
+            this.text_find.TabIndex = 1;
             // 
             // label6
             // 
@@ -255,6 +256,7 @@
             this.button4.TabIndex = 28;
             this.button4.Text = "ปิด";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -373,8 +375,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridMem;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox text_find;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button button4;
@@ -399,5 +400,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Born;
         private System.Windows.Forms.TextBox textLocation;
+        private System.Windows.Forms.Button btn_Find;
     }
 }

@@ -13,8 +13,8 @@ namespace MadyBoardGame_Shop
 {
     public partial class formMember : Form
     {
-        CurrencyManager titlesManager;
-
+        CurrencyManager mem_Manager;
+        DataTable dt = new DataTable();
         public formMember()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace MadyBoardGame_Shop
                     conn.Open();
                     string query = "SELECT * FROM Member";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
+                    
                     adapter.Fill(dt);
                     dataGridMem.DataSource = dt;
                     //ซ่่อนcolumsที่ไม่จำเป็นออก ให้แสดงเฉพาะ ชื่อ-นามสกุล
@@ -74,7 +74,7 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_Born.DataBindings.Add("Value", dt, "mem_BornDate", true, DataSourceUpdateMode.OnPropertyChanged);
                     textLocation.DataBindings.Add("Text", dt, "mem_Location");
                     //ตำแหน่งปัจจุบันของข้อมูล
-                    titlesManager = (CurrencyManager)this.BindingContext[dt];
+                    mem_Manager = (CurrencyManager)this.BindingContext[dt];
                     
 
                 }
@@ -91,50 +91,69 @@ namespace MadyBoardGame_Shop
 
         private void btn_Frist_Click(object sender, EventArgs e)
         {
-            titlesManager.Position = 0;
+            mem_Manager.Position = 0;
             buttonState();
         }
 
         private void btn_Previous_Click(object sender, EventArgs e)
         {
-            titlesManager.Position--;
+            mem_Manager.Position--;
             buttonState();
         }
 
         private void btn_Next_Click(object sender, EventArgs e)
         {
-            titlesManager.Position++;
+            mem_Manager.Position++;
             buttonState();
         }
 
         private void btn_Last_Click(object sender, EventArgs e)
         {
-            titlesManager.Position = titlesManager.Count - 1;
+            mem_Manager.Position = mem_Manager.Count - 1;
             buttonState();
         }
         private void buttonState() 
         {
-            if (titlesManager.Position == 0) 
+            if (mem_Manager.Position == 0) 
             {
                 btn_Frist.Enabled = false;
                 btn_Previous.Enabled = false;
             }
-            if (titlesManager.Position != 0) 
+            if (mem_Manager.Position != 0) 
             {
                 btn_Frist.Enabled = true;
                 btn_Previous.Enabled = true;
                 
             }
-            if(titlesManager.Position != titlesManager.Count - 1)
+            if(mem_Manager.Position != mem_Manager.Count - 1)
             {
                 btn_Next.Enabled = true;
                 btn_Last.Enabled = true;
             }
-            if (titlesManager.Position == titlesManager.Count - 1)
+            if (mem_Manager.Position == mem_Manager.Count - 1)
             {
                 btn_Next.Enabled = false;
                 btn_Last.Enabled = false;
             }
+        }
+
+        private void btn_Find_Click(object sender, EventArgs e)
+        {
+            string searchText = text_find.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                dt.DefaultView.RowFilter = ""; // แสดงข้อมูลทั้งหมดถ้าช่องค้นหาว่าง
+            }
+            else
+            {
+                dt.DefaultView.RowFilter = $"mem_Name LIKE '%{searchText}%'";
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
