@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,7 +60,7 @@ namespace MadyBoardGame_Shop
                 orderdetailcommand = new SqlCommand();
 
 
-                string command = "SELECT ProductID , ProductName , Price , ProductType , ProductImg , ProductsShelf FROM Products Where ProductsShelf = 1";
+                string command = "SELECT ProductID , ProductName , Price , ProductType , ProductImg , ProductsShelf , ProductImg FROM Products Where ProductsShelf = 1";
                 productcommand = new SqlCommand(command, productconnection);
                 productdataadapter = new SqlDataAdapter(productcommand);
                 producttable = new DataTable();
@@ -76,6 +77,10 @@ namespace MadyBoardGame_Shop
                     pic.Size = new Size(100, 100); // กำหนดขนาดก่อน
                     pic.Location = new Point((panel.Width - pic.Width) / 2, 10); // คำนวณตำแหน่งใหม่
                     pic.Tag = "ProductImg";
+                    pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                    byte[] imageBytes = (byte[])producttable.Rows[i]["ProductImg"]; //ใน database จะเก็บรูปภาพเป็น byte จึงต้องแปลงกลับเป็นรูปภาพ
+                    MemoryStream ms = new MemoryStream(imageBytes);
+                    pic.Image = Image.FromStream(ms);
 
                     Button btn = new Button();
                     btn.Text = "Add";
@@ -178,7 +183,10 @@ namespace MadyBoardGame_Shop
             pic.Size = new Size(100, 100);
             pic.BackColor = Color.Red;
             pic.Location = new Point((cartPanel.Width - pic.Width) / 2, 10);
-            
+            pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic.Tag = "ProductImg";
+            pic.Image = originalPanel.Controls.OfType<PictureBox>().FirstOrDefault().Image;
+
 
             // สร้าง NumericUpDown ใหม่
             NumericUpDown numericUpDown = new NumericUpDown(); // ปุ่มเพิ่มลดจำนวนสินค้า
@@ -408,6 +416,9 @@ namespace MadyBoardGame_Shop
                 txtPrice.Text = producttable.Rows[0]["Price"].ToString();
                 txtProductType.Text = producttable.Rows[0]["ProductType"].ToString();
                 txtDesription.Text = producttable.Rows[0]["ProductDetail"].ToString();
+                byte[] imageBytes = (byte[])producttable.Rows[0]["ProductImg"];
+                MemoryStream ms = new MemoryStream(imageBytes);
+                picProduct.Image = Image.FromStream(ms);
             }
             catch (Exception ex)
             {
