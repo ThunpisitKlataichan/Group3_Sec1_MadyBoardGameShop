@@ -368,7 +368,13 @@ namespace MadyBoardGame_Shop
             return true;
         }
         private void btn_Save_Click(object sender, EventArgs e)
-        {   
+        {   /* check รหัสบัตรปชช เช่น เลขไม่ครบ13หลัก
+                                      มีตัวอักษรอยู่ไหม
+                                      มีจริงไหม*/
+            if (!ValidateThaiID(textIdentityNum.Text))
+            {
+                return;
+            }
             using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
             {
                 try
