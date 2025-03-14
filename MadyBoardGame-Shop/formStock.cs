@@ -112,26 +112,24 @@
                     }
                 };
 
-                Binding imgBinding = new Binding("Image", stockdatatable, "ProductImg", true);
-                    imgBinding.Format += new ConvertEventHandler(ImageBinding_Format);
-                    pictureBoxProduct.DataBindings.Add(imgBinding);
+                Binding imgBinding = new Binding("Image", stockdatatable, "ProductImg", true); // ผูกข้อมูลรูปภาพ
+                imgBinding.Format += new ConvertEventHandler(ImageBinding_Format); // กำหนดเหตุการณ์เมื่อมีการแปลงค่า
+                pictureBoxProduct.DataBindings.Add(imgBinding);
                 
-                    txtAmountremain.DataBindings.Add("Text", stockdatatable, "StockQuality");
-                    txtleastUpdate.DataBindings.Add(new Binding("Text", stockdatatable, "StockDate", true, DataSourceUpdateMode.Never, ""));
-                    txtleastUpdate.DataBindings[0].Format += (s, ev) =>
+                txtAmountremain.DataBindings.Add("Text", stockdatatable, "StockQuality");
+
+                txtleastUpdate.DataBindings.Add(new Binding("Text", stockdatatable, "StockDate", true, DataSourceUpdateMode.Never, ""));
+                txtleastUpdate.DataBindings[0].Format += (s, ev) =>
+                {
+                    if (ev.Value == DBNull.Value)
                     {
-                        if (ev.Value == DBNull.Value)
-                        {
-                            ev.Value = ""; // หรือข้อความอื่น ๆ เช่น "ไม่ระบุ"
-                        }
-                        else
-                        {
-                            ev.Value = Convert.ToDateTime(ev.Value).ToString("dd/MM/yyyy"); // จัดรูปแบบวันที่
-                        }
-                    };
-
-
-
+                        ev.Value = ""; // หรือข้อความอื่น ๆ เช่น "ไม่ระบุ"
+                    }
+                    else
+                    {
+                        ev.Value = Convert.ToDateTime(ev.Value).ToString("dd/MM/yyyy"); // จัดรูปแบบวันที่
+                    }
+                };
 
                     // ตรวจสอบ BindingContext
                     if (this.BindingContext.Contains(stockdatatable))
@@ -375,86 +373,84 @@
             
             }
 
-            private void btn_Update_Click(object sender, EventArgs e)
-            {
-                SetState("update");
+        private void btn_Update_Click(object sender, EventArgs e)
+        {
+            SetState("update");
             
             
-            }
+        }
 
-            private void btn_Add_Click(object sender, EventArgs e)
-            {
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
             
-                SetState("insert");
+            SetState("insert");
             
-            }
+        }
 
-            private void btn_Cancle_Click(object sender, EventArgs e)
+        private void btn_Cancle_Click(object sender, EventArgs e)
+        {
+            stockmanager.CancelCurrentEdit();
+            if (mystate.Equals("insert"))
             {
-                stockmanager.CancelCurrentEdit();
-                if (mystate.Equals("insert"))
-                {
-                    stockmanager.Position = Productmark;
-                }
-                SetState("view");
+                stockmanager.Position = Productmark;
             }
+            SetState("view");
+        }
 
-            private void button_browse_Click(object sender, EventArgs e)
+        private void button_browse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "png files(*.png)|*.png|jpg files(*.jpg)|*.jpg|All files(*.*)|*.*";
+            if(ofd.ShowDialog() == DialogResult.OK)
             {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Filter = "png files(*.png)|*.png|jpg files(*.jpg)|*.jpg|All files(*.*)|*.*";
-                if(ofd.ShowDialog() == DialogResult.OK)
-                {
-                     immage = ofd.FileName.ToString();
-                    pictureBoxProduct.ImageLocation = immage;
-
-                
-                }
+                immage = ofd.FileName.ToString();
+                pictureBoxProduct.ImageLocation = immage;
             }
-            private Image ByteArrayToImage(byte[] byteArray)
+        }
+        private Image ByteArrayToImage(byte[] byteArray) // แปลงข้อมูลรูปภาพจาก byte[] เป็น Image
+        {
+            if (byteArray == null)
             {
-                if (byteArray == null)
-                {
-                    // จัดการกรณีที่ byteArray เป็น null
-                    // อาจจะ return รูปเริ่มต้น หรือ throw exception
-                    return new Bitmap(1, 1); // สร้างรูปว่างเปล่า (หรือโหลดรูปเริ่มต้น)
-                }
-                using (MemoryStream ms = new MemoryStream(byteArray))
-                {
-                    return Image.FromStream(ms);
-                }
+                // จัดการกรณีที่ byteArray เป็น null
+                // อาจจะ return รูปเริ่มต้น หรือ throw exception
+                return new Bitmap(1, 1); // สร้างรูปว่างเปล่า (หรือโหลดรูปเริ่มต้น)
             }
-            private void ImageBinding_Format(object sender, ConvertEventArgs e)
+            using (MemoryStream ms = new MemoryStream(byteArray))
             {
-
-                if (e.Value == DBNull.Value)
-                {
-                    e.Value = immage; // ใช้รูปเปล่าขนาด 1x1 pixel
-                }
-                else
-                {
-                    e.Value = ByteArrayToImage((byte[])e.Value);
-                }
+                return Image.FromStream(ms);
             }
+        }
+        private void ImageBinding_Format(object sender, ConvertEventArgs e) // แปลงข้อมูลรูปภาพจาก byte[] เป็น Image
+        {
 
-            private void btn_delete_Click(object sender, EventArgs e)
+            if (e.Value == DBNull.Value)
             {
-                DialogResult response;
-                response = MessageBox.Show("คุณแน่ใจมั้ยว่าจะลบข้อมูลนี้" , "ลบ",MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
-                if (response == DialogResult.Yes)
-                {
-                    return;
-                }
-                try
-                {
-                    stockmanager.RemoveAt(stockmanager.Position);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("เกิดข้อผิดพลาดข้อมูลในการลบ","ข้อผิดพลาด",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                }
-
+                e.Value = immage; // ใช้รูปเปล่าขนาด 1x1 pixel
             }
+            else
+            {
+                e.Value = ByteArrayToImage((byte[])e.Value);
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            DialogResult response;
+            response = MessageBox.Show("คุณแน่ใจมั้ยว่าจะลบข้อมูลนี้" , "ลบ",MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+            if (response == DialogResult.Yes)
+            {
+                return;
+            }
+            try
+            {
+                stockmanager.RemoveAt(stockmanager.Position);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("เกิดข้อผิดพลาดข้อมูลในการลบ","ข้อผิดพลาด",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+        }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {

@@ -49,8 +49,8 @@ namespace MadyBoardGame_Shop
                                 loginAdapter.SelectCommand = loginCommand;
                                 logintable = new DataTable();
                                 loginAdapter.Fill(logintable);
-                                InitializeUser.UserNameLogin = logintable.Rows[0][0].ToString();
-                                InitializeUser.UserLastNameLogin = logintable.Rows[0][1].ToString();
+                                InitializeUser.UserNameLogin = logintable.Rows[0]["mem_Name"].ToString();
+                                InitializeUser.UserLastNameLogin = logintable.Rows[0]["mem_LName"].ToString();
                                 InitializeUser.UserID = logintable.Rows[0]["mem_ID"].ToString();
                                 formMain mainForm = new formMain();
                                 this.Hide();

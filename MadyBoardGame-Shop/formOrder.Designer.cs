@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picProduct = new System.Windows.Forms.PictureBox();
             this.btnpayment = new System.Windows.Forms.Button();
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,17 +48,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox2
+            // picProduct
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(21, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(266, 228);
-            this.pictureBox2.TabIndex = 43;
-            this.pictureBox2.TabStop = false;
+            this.picProduct.Location = new System.Drawing.Point(21, 28);
+            this.picProduct.Name = "picProduct";
+            this.picProduct.Size = new System.Drawing.Size(266, 228);
+            this.picProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picProduct.TabIndex = 43;
+            this.picProduct.TabStop = false;
             // 
             // btnpayment
             // 
@@ -103,7 +104,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtProductname);
-            this.groupBox2.Controls.Add(this.pictureBox2);
+            this.groupBox2.Controls.Add(this.picProduct);
             this.groupBox2.Location = new System.Drawing.Point(827, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(304, 510);
@@ -260,7 +261,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formOrder_FormClosing);
             this.Load += new System.EventHandler(this.formOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -269,7 +270,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox picProduct;
         private System.Windows.Forms.Button btnpayment;
         private System.Windows.Forms.ComboBox comboBoxmethonPayment;
         private System.Windows.Forms.Label label1;
