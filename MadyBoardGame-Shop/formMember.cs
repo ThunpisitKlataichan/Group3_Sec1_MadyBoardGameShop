@@ -52,7 +52,7 @@ namespace MadyBoardGame_Shop
                     dataGridMem.Columns["emp_IDregis"].Visible = false; // ซ่อน
                     dataGridMem.Columns["mem_Location"].Visible = false; // ซ่อน
                     dataGridMem.Columns["Username"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
+                    //dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
                     //------------------------------------------------------------------//
 
 

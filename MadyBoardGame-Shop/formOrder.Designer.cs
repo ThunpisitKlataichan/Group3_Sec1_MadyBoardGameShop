@@ -66,23 +66,26 @@
             this.btnpayment.Location = new System.Drawing.Point(827, 573);
             this.btnpayment.Name = "btnpayment";
             this.btnpayment.Size = new System.Drawing.Size(304, 46);
-            this.btnpayment.TabIndex = 44;
+            this.btnpayment.TabIndex = 3;
             this.btnpayment.Text = "ชำระ";
             this.btnpayment.UseVisualStyleBackColor = true;
             this.btnpayment.Click += new System.EventHandler(this.btnpayment_Click);
             // 
             // comboBoxmethonPayment
             // 
+            this.comboBoxmethonPayment.BackColor = System.Drawing.Color.White;
+            this.comboBoxmethonPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxmethonPayment.FormattingEnabled = true;
             this.comboBoxmethonPayment.Items.AddRange(new object[] {
             "เงินสด",
-            "พร้อมเพย์",
+            "ทรูวอเลท",
             "ธนาคาร",
-            "ทรูวอเลท"});
+            "พร้อมเพย์"});
             this.comboBoxmethonPayment.Location = new System.Drawing.Point(896, 535);
             this.comboBoxmethonPayment.Name = "comboBoxmethonPayment";
-            this.comboBoxmethonPayment.Size = new System.Drawing.Size(205, 32);
-            this.comboBoxmethonPayment.TabIndex = 45;
+            this.comboBoxmethonPayment.Size = new System.Drawing.Size(218, 32);
+            this.comboBoxmethonPayment.Sorted = true;
+            this.comboBoxmethonPayment.TabIndex = 2;
             // 
             // label1
             // 
@@ -114,6 +117,8 @@
             // 
             // txtDesription
             // 
+            this.txtDesription.BackColor = System.Drawing.Color.White;
+            this.txtDesription.Enabled = false;
             this.txtDesription.Location = new System.Drawing.Point(6, 397);
             this.txtDesription.Multiline = true;
             this.txtDesription.Name = "txtDesription";
@@ -140,6 +145,8 @@
             // 
             // txtProductType
             // 
+            this.txtProductType.BackColor = System.Drawing.Color.White;
+            this.txtProductType.Enabled = false;
             this.txtProductType.Location = new System.Drawing.Point(108, 334);
             this.txtProductType.Name = "txtProductType";
             this.txtProductType.Size = new System.Drawing.Size(179, 29);
@@ -156,6 +163,8 @@
             // 
             // txtPrice
             // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.Enabled = false;
             this.txtPrice.Location = new System.Drawing.Point(57, 299);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(67, 29);
@@ -181,6 +190,8 @@
             // 
             // txtProductname
             // 
+            this.txtProductname.BackColor = System.Drawing.Color.White;
+            this.txtProductname.Enabled = false;
             this.txtProductname.Location = new System.Drawing.Point(57, 262);
             this.txtProductname.Name = "txtProductname";
             this.txtProductname.Size = new System.Drawing.Size(230, 29);
@@ -209,7 +220,7 @@
             this.txtFindProduct.Location = new System.Drawing.Point(72, 50);
             this.txtFindProduct.Name = "txtFindProduct";
             this.txtFindProduct.Size = new System.Drawing.Size(350, 29);
-            this.txtFindProduct.TabIndex = 53;
+            this.txtFindProduct.TabIndex = 1;
             this.txtFindProduct.TextChanged += new System.EventHandler(this.txtFindProduct_TextChanged);
             // 
             // label2

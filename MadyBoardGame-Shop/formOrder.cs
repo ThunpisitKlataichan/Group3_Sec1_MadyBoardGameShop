@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -98,7 +99,7 @@ namespace MadyBoardGame_Shop
                     Label lblprodID = new Label();
                     lblprodID.Text = producttable.Rows[i]["ProductID"].ToString();
                     lblprodID.Tag = "ProductID";
-                    lblprodID.Visible = true;
+                    lblprodID.Visible = false;
                     lblprodID.Location = new Point(0, 0);
 
                     Label lblPrice = new Label();
@@ -414,6 +415,7 @@ namespace MadyBoardGame_Shop
 
                 txtProductname.Text = producttable.Rows[0]["ProductName"].ToString();
                 txtPrice.Text = producttable.Rows[0]["Price"].ToString();
+                txtPrice.Text = Convert.ToDecimal(txtPrice.Text).ToString("N2") + " ฿";
                 txtProductType.Text = producttable.Rows[0]["ProductType"].ToString();
                 txtDesription.Text = producttable.Rows[0]["ProductDetail"].ToString();
                 byte[] imageBytes = (byte[])producttable.Rows[0]["ProductImg"];
@@ -425,8 +427,19 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        private void Checkpayment()
+        {
+            if (string.IsNullOrEmpty(comboBoxmethonPayment.Text))
+            {
+                MessageBox.Show("โปรดเลือกวิธีชำระเงิน" , "เกิดข้อผิดพลาด" , MessageBoxButtons.OK , MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+
         private void btnpayment_Click(object sender, EventArgs e)
         {
+            Checkpayment();
             CalculateTotalPrice();
             if (totalPrice == 0)
             {
@@ -559,7 +572,8 @@ namespace MadyBoardGame_Shop
                     {
                         if (control1 is Label label && label.Tag?.ToString()== "ProductName")
                         {
-                            if (label.Text.Contains(Productname))
+                            
+                            if (Regex.IsMatch(label.Text.ToLower(), Productname.ToLower()))
                             {
                                 panelsearch.Add(panel);
                             }

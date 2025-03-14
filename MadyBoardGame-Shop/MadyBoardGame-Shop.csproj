@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
+    <Compile Include="formEmployeeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formEmployeeManage.Designer.cs">
+      <DependentUpon>formEmployeeManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMember.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="formEmployeeManage.resx">
+      <DependentUpon>formEmployeeManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.cs</DependentUpon>
     </EmbeddedResource>

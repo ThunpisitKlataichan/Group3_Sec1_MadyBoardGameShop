@@ -82,5 +82,12 @@ namespace MadyBoardGame_Shop
             }
             labelUsername.Text = "Welcome " + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }
+
+        private void buttonformEmpmange_Click(object sender, EventArgs e)
+        {
+            formEmployeeManage a = new formEmployeeManage();
+            a.ShowDialog();
+            
+        }
     }
 }
