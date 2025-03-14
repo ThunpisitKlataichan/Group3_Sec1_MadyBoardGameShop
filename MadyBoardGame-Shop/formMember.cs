@@ -13,9 +13,8 @@ namespace MadyBoardGame_Shop
 {
     public partial class formMember : Form
     {
-        string All_customer = "select mem_Name,mem_LName from Member ";
+        CurrencyManager titlesManager;
 
-        
         public formMember()
         {
             InitializeComponent();
@@ -23,8 +22,15 @@ namespace MadyBoardGame_Shop
 
         private void formMember_Load(object sender, EventArgs e)
         {
+            loadDataIntoGrid();
+            
+            buttonState();
+        }
+        private void loadDataIntoGrid()
+        {
             //เช็คว่ามีไฟล์ไหม
             InitializeUser.Confic();
+            
             //แสดงรายชื่อสมาชิกทั้งหมดในฐานข้อมูล-------------------------------------------------------//
             using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
             {
@@ -46,7 +52,7 @@ namespace MadyBoardGame_Shop
                     dataGridMem.Columns["emp_IDregis"].Visible = false; // ซ่อน
                     dataGridMem.Columns["mem_Location"].Visible = false; // ซ่อน
                     dataGridMem.Columns["Username"].Visible = false; // ซ่อน
-                    //dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
                     //------------------------------------------------------------------//
 
 
@@ -65,8 +71,11 @@ namespace MadyBoardGame_Shop
                     textMen_LName.DataBindings.Add("Text", dt, "mem_LName");
                     textIdentityNum.DataBindings.Add("Text", dt, "mem_IdentityNum");
                     textPhoneNum.DataBindings.Add("Text", dt, "mem_Phone");
-                    dateTimePicker_Born.DataBindings.Add("Value",dt, "mem_BornDate", true, DataSourceUpdateMode.OnPropertyChanged);
+                    dateTimePicker_Born.DataBindings.Add("Value", dt, "mem_BornDate", true, DataSourceUpdateMode.OnPropertyChanged);
                     textLocation.DataBindings.Add("Text", dt, "mem_Location");
+                    //ตำแหน่งปัจจุบันของข้อมูล
+                    titlesManager = (CurrencyManager)this.BindingContext[dt];
+                    
 
                 }
                 catch (Exception ex)
@@ -75,10 +84,57 @@ namespace MadyBoardGame_Shop
                 }
             }
         }
-
         private void formMember_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void btn_Frist_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position = 0;
+            buttonState();
+        }
+
+        private void btn_Previous_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position--;
+            buttonState();
+        }
+
+        private void btn_Next_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position++;
+            buttonState();
+        }
+
+        private void btn_Last_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position = titlesManager.Count - 1;
+            buttonState();
+        }
+        private void buttonState() 
+        {
+            if (titlesManager.Position == 0) 
+            {
+                btn_Frist.Enabled = false;
+                btn_Previous.Enabled = false;
+            }
+            if (titlesManager.Position != 0) 
+            {
+                btn_Frist.Enabled = true;
+                btn_Previous.Enabled = true;
+                
+            }
+            if(titlesManager.Position != titlesManager.Count - 1)
+            {
+                btn_Next.Enabled = true;
+                btn_Last.Enabled = true;
+            }
+            if (titlesManager.Position == titlesManager.Count - 1)
+            {
+                btn_Next.Enabled = false;
+                btn_Last.Enabled = false;
+            }
         }
     }
 }
