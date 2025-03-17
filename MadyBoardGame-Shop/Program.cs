@@ -16,7 +16,7 @@ namespace MadyBoardGame_Shop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formProduct());
+            Application.Run(new formLogin());
         }
     }
 }
