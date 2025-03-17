@@ -224,7 +224,7 @@
             // 
             this.dateTimePicker_Born.Location = new System.Drawing.Point(154, 151);
             this.dateTimePicker_Born.Name = "dateTimePicker_Born";
-            this.dateTimePicker_Born.Size = new System.Drawing.Size(193, 29);
+            this.dateTimePicker_Born.Size = new System.Drawing.Size(324, 29);
             this.dateTimePicker_Born.TabIndex = 10;
             // 
             // label8
