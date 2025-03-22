@@ -16,5 +16,20 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
+
+        private void textSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
