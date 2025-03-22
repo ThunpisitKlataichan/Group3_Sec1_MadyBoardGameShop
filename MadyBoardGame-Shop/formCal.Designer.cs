@@ -36,12 +36,13 @@
             this.labelAmount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonConfirm = new System.Windows.Forms.Button();
+            this.comboMethodPay = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textQRcode
             // 
-            this.textQRcode.Location = new System.Drawing.Point(11, 102);
+            this.textQRcode.Location = new System.Drawing.Point(384, 96);
             this.textQRcode.Margin = new System.Windows.Forms.Padding(6);
             this.textQRcode.Name = "textQRcode";
             this.textQRcode.Size = new System.Drawing.Size(237, 29);
@@ -71,7 +72,7 @@
             this.flowLayoutProduct.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.flowLayoutProduct.Location = new System.Drawing.Point(11, 193);
             this.flowLayoutProduct.Name = "flowLayoutProduct";
-            this.flowLayoutProduct.Size = new System.Drawing.Size(610, 234);
+            this.flowLayoutProduct.Size = new System.Drawing.Size(610, 242);
             this.flowLayoutProduct.TabIndex = 5;
             // 
             // labelAmount
@@ -79,7 +80,7 @@
             this.labelAmount.BackColor = System.Drawing.SystemColors.Desktop;
             this.labelAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.labelAmount.ForeColor = System.Drawing.Color.LimeGreen;
-            this.labelAmount.Location = new System.Drawing.Point(11, 131);
+            this.labelAmount.Location = new System.Drawing.Point(11, 132);
             this.labelAmount.Name = "labelAmount";
             this.labelAmount.Size = new System.Drawing.Size(610, 59);
             this.labelAmount.TabIndex = 6;
@@ -106,12 +107,25 @@
             this.buttonConfirm.UseVisualStyleBackColor = false;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
             // 
+            // comboMethodPay
+            // 
+            this.comboMethodPay.FormattingEnabled = true;
+            this.comboMethodPay.Items.AddRange(new object[] {
+            "เงินสด",
+            "Truewallet",
+            "Prompay"});
+            this.comboMethodPay.Location = new System.Drawing.Point(327, 448);
+            this.comboMethodPay.Name = "comboMethodPay";
+            this.comboMethodPay.Size = new System.Drawing.Size(158, 32);
+            this.comboMethodPay.TabIndex = 8;
+            // 
             // formCal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(666, 497);
+            this.ClientSize = new System.Drawing.Size(653, 497);
+            this.Controls.Add(this.comboMethodPay);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.labelAmount);
@@ -139,5 +153,6 @@
         private System.Windows.Forms.Label labelAmount;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonConfirm;
+        private System.Windows.Forms.ComboBox comboMethodPay;
     }
 }
