@@ -51,6 +51,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
@@ -58,6 +59,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -85,10 +87,10 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(643, 506);
+            this.btn_exit.Location = new System.Drawing.Point(560, 408);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(94, 45);
+            this.btn_exit.Size = new System.Drawing.Size(173, 45);
             this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "ออก";
             this.btn_exit.UseVisualStyleBackColor = false;
@@ -98,7 +100,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(42, 21);
+            this.label1.Location = new System.Drawing.Point(30, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(390, 39);
             this.label1.TabIndex = 5;
@@ -118,7 +120,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labelUsername);
-            this.groupBox1.Location = new System.Drawing.Point(456, 6);
+            this.groupBox1.Location = new System.Drawing.Point(462, 37);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(269, 73);
             this.groupBox1.TabIndex = 6;
@@ -127,7 +129,7 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(6, 15);
+            this.labelUsername.Location = new System.Drawing.Point(6, 16);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(59, 24);
             this.labelUsername.TabIndex = 0;
@@ -136,10 +138,10 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(537, 506);
+            this.btn_LogOut.Location = new System.Drawing.Point(560, 465);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
-            this.btn_LogOut.Size = new System.Drawing.Size(94, 45);
+            this.btn_LogOut.Size = new System.Drawing.Size(173, 45);
             this.btn_LogOut.TabIndex = 7;
             this.btn_LogOut.Text = "ล็อกเอ้าร์";
             this.btn_LogOut.UseVisualStyleBackColor = false;
@@ -150,7 +152,7 @@
             this.groupBoxEmp.Controls.Add(this.button4);
             this.groupBoxEmp.Controls.Add(this.btn_stock);
             this.groupBoxEmp.Controls.Add(this.btn_member);
-            this.groupBoxEmp.Location = new System.Drawing.Point(186, 94);
+            this.groupBoxEmp.Location = new System.Drawing.Point(194, 144);
             this.groupBoxEmp.Name = "groupBoxEmp";
             this.groupBoxEmp.Size = new System.Drawing.Size(177, 204);
             this.groupBoxEmp.TabIndex = 8;
@@ -163,7 +165,7 @@
             this.groupBoxmanager.Controls.Add(this.buttonformEmpmange);
             this.groupBoxmanager.Controls.Add(this.button2);
             this.groupBoxmanager.Controls.Add(this.button3);
-            this.groupBoxmanager.Location = new System.Drawing.Point(369, 94);
+            this.groupBoxmanager.Location = new System.Drawing.Point(377, 144);
             this.groupBoxmanager.Name = "groupBoxmanager";
             this.groupBoxmanager.Size = new System.Drawing.Size(356, 204);
             this.groupBoxmanager.TabIndex = 9;
@@ -215,7 +217,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btn_Order);
-            this.groupBox2.Location = new System.Drawing.Point(2, 94);
+            this.groupBox2.Location = new System.Drawing.Point(10, 144);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(173, 204);
             this.groupBox2.TabIndex = 4;
@@ -235,7 +237,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Location = new System.Drawing.Point(2, 307);
+            this.groupBox3.Location = new System.Drawing.Point(10, 357);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(173, 153);
             this.groupBox3.TabIndex = 10;
@@ -256,7 +258,7 @@
             // 
             this.groupBox4.Controls.Add(this.button8);
             this.groupBox4.Controls.Add(this.button6);
-            this.groupBox4.Location = new System.Drawing.Point(186, 307);
+            this.groupBox4.Location = new System.Drawing.Point(194, 357);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(177, 153);
             this.groupBox4.TabIndex = 11;
@@ -276,7 +278,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.button7);
-            this.groupBox5.Location = new System.Drawing.Point(369, 307);
+            this.groupBox5.Location = new System.Drawing.Point(377, 357);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(171, 153);
             this.groupBox5.TabIndex = 12;
@@ -303,11 +305,23 @@
             this.button8.Text = "การขนส่ง (Store)";
             this.button8.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Location = new System.Drawing.Point(-6, -16);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(774, 150);
+            this.panel1.TabIndex = 13;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(752, 566);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -316,8 +330,6 @@
             this.Controls.Add(this.groupBoxmanager);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.groupBoxEmp);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formMain";
@@ -332,8 +344,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -362,6 +375,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
