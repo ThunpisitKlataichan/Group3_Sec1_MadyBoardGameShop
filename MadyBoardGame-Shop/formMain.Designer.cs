@@ -38,15 +38,26 @@
             this.btn_LogOut = new System.Windows.Forms.Button();
             this.groupBoxEmp = new System.Windows.Forms.GroupBox();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -56,7 +67,7 @@
             this.btn_stock.Name = "btn_stock";
             this.btn_stock.Size = new System.Drawing.Size(163, 45);
             this.btn_stock.TabIndex = 3;
-            this.btn_stock.Text = "คลังสินค้า";
+            this.btn_stock.Text = "จัดการสินค้าสินค้า";
             this.btn_stock.UseVisualStyleBackColor = true;
             this.btn_stock.Click += new System.EventHandler(this.btn_stock_Click);
             // 
@@ -74,7 +85,7 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(631, 307);
+            this.btn_exit.Location = new System.Drawing.Point(643, 506);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(94, 45);
@@ -125,7 +136,7 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(525, 307);
+            this.btn_LogOut.Location = new System.Drawing.Point(537, 506);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(94, 45);
@@ -136,14 +147,15 @@
             // 
             // groupBoxEmp
             // 
+            this.groupBoxEmp.Controls.Add(this.button4);
             this.groupBoxEmp.Controls.Add(this.btn_stock);
             this.groupBoxEmp.Controls.Add(this.btn_member);
-            this.groupBoxEmp.Location = new System.Drawing.Point(181, 94);
+            this.groupBoxEmp.Location = new System.Drawing.Point(186, 94);
             this.groupBoxEmp.Name = "groupBoxEmp";
-            this.groupBoxEmp.Size = new System.Drawing.Size(182, 204);
+            this.groupBoxEmp.Size = new System.Drawing.Size(177, 204);
             this.groupBoxEmp.TabIndex = 8;
             this.groupBoxEmp.TabStop = false;
-            this.groupBoxEmp.Text = "พนักงาน";
+            this.groupBoxEmp.Text = "Cashier";
             // 
             // groupBoxmanager
             // 
@@ -156,11 +168,21 @@
             this.groupBoxmanager.Size = new System.Drawing.Size(356, 204);
             this.groupBoxmanager.TabIndex = 9;
             this.groupBoxmanager.TabStop = false;
-            this.groupBoxmanager.Text = "ผู้จัดการ";
+            this.groupBoxmanager.Text = "Manager";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 45);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "รายงานพนักงาน";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // buttonformEmpmange
             // 
-            this.buttonformEmpmange.Location = new System.Drawing.Point(183, 145);
+            this.buttonformEmpmange.Location = new System.Drawing.Point(183, 31);
             this.buttonformEmpmange.Margin = new System.Windows.Forms.Padding(6);
             this.buttonformEmpmange.Name = "buttonformEmpmange";
             this.buttonformEmpmange.Size = new System.Drawing.Size(163, 45);
@@ -176,7 +198,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 45);
             this.button2.TabIndex = 2;
-            this.button2.Text = "รายงานงบการเงิน";
+            this.button2.Text = "รายงานการเงิน";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -198,23 +220,97 @@
             this.groupBox2.Size = new System.Drawing.Size(173, 204);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "สมาชิค";
+            this.groupBox2.Text = "Member";
             // 
-            // button1
+            // button4
             // 
-            this.button1.Location = new System.Drawing.Point(8, 88);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 45);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "รายงานพนักงาน";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button4.Location = new System.Drawing.Point(5, 145);
+            this.button4.Margin = new System.Windows.Forms.Padding(6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(163, 45);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "คิดเงิน";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Location = new System.Drawing.Point(2, 307);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(173, 153);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Packing";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(9, 31);
+            this.button5.Margin = new System.Windows.Forms.Padding(6);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(163, 45);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "ยืนยันบรรจุสินค้า";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button8);
+            this.groupBox4.Controls.Add(this.button6);
+            this.groupBox4.Location = new System.Drawing.Point(186, 307);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(177, 153);
+            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Shipping";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(5, 31);
+            this.button6.Margin = new System.Windows.Forms.Padding(6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(163, 45);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "การขนส่ง (Order)";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.button7);
+            this.groupBox5.Location = new System.Drawing.Point(369, 307);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(171, 153);
+            this.groupBox5.TabIndex = 12;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Purchase";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(5, 31);
+            this.button7.Margin = new System.Windows.Forms.Padding(6);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(163, 45);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "เติมสินคค้า";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(5, 88);
+            this.button8.Margin = new System.Windows.Forms.Padding(6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(163, 45);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "การขนส่ง (Store)";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 357);
+            this.ClientSize = new System.Drawing.Size(752, 566);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.groupBoxmanager);
@@ -233,6 +329,9 @@
             this.groupBoxEmp.ResumeLayout(false);
             this.groupBoxmanager.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,6 +354,14 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
 
