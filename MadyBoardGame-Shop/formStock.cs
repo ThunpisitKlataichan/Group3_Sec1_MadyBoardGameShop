@@ -28,171 +28,101 @@
             int Productmark;
             string mystate = "";
 
-            private void formStock_Load(object sender, EventArgs e)
-            {
+        private void formStock_Load(object sender, EventArgs e)
+        {
             try
             {
                 productsconnection = new SqlConnection(InitializeUser._key_con);
+                productcommand = new SqlCommand();
+                productadapter = new SqlDataAdapter();
+                productdatatable = new DataTable();
+                
                 productsconnection.Open();
+
                 string query = "SELECT * FROM Products";
 
                 productcommand = new SqlCommand(query, productsconnection);
-                productadapter = new SqlDataAdapter(productcommand);
+                productadapter = new SqlDataAdapter();
+                productadapter.SelectCommand = productcommand;
+
                 productdatatable = new DataTable();
                 productadapter.Fill(productdatatable);
 
-            if (productdatatable.Rows.Count == 0)
-            {
-                MessageBox.Show("ไม่มีข้อมูลสินค้าในฐานข้อมูล", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-                // Bind ข้อมูลให้กับ Controls
                 txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
                 txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
                 txtCostPrice.DataBindings.Add("Text", productdatatable, "CostPrice");
                 txtPrice.DataBindings.Add("Text", productdatatable, "Price");
+                txtAmountremain.DataBindings.Add("Text", productdatatable, "Quality"); //5
                 txtProductType.DataBindings.Add("Text", productdatatable, "ProductType");
-                // ผูกข้อมูลกับ checkbox และจัดการการแปลงค่า
-                checkBoxShowonShelf.DataBindings.Add(new Binding("Checked", productdatatable, "ProductsShelf", true, DataSourceUpdateMode.Never, false));
+                txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
+                txtSuppilersID.DataBindings.Add("Text", productdatatable, "SuppilersID");
+                txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
 
-                // เพิ่ม EventHandler สำหรับจัดการการแปลงค่าระหว่างฐานข้อมูลและ Checkbox
-                checkBoxShowonShelf.DataBindings[0].Format += (s, ev) =>
-                {
-                    // ตรวจสอบว่าค่าเป็น DBNull หรือไม่
-                    if (ev.Value == DBNull.Value)
-                    {
-                        ev.Value = false; // หากค่าเป็น NULL ให้ตั้งค่าเป็น false
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // พยายามแปลงค่าให้เป็น Boolean
-                            if (ev.Value is bool)
-                            {
-                                // ถ้าเป็น Boolean อยู่แล้ว ไม่ต้องทำอะไรเพิ่มเติม
-                                return;
-                            }
-                            else if (ev.Value is int)
-                            {
-                                // หากค่าเป็นตัวเลข (0 หรือ 1) ให้แปลงเป็น Boolean
-                                ev.Value = Convert.ToBoolean(ev.Value);
-                            }
-                            else
-                            {
-                                // หากค่าเป็นสตริง ให้ตรวจสอบและแปลงเป็น Boolean
-                                string stringValue = ev.Value.ToString().ToLower(); // แปลงเป็นตัวพิมพ์เล็กเพื่อเปรียบเทียบง่ายขึ้น
-                                if (stringValue == "true" || stringValue == "yes" || stringValue == "1")
-                                {
-                                    ev.Value = true;
-                                }
-                                else if (stringValue == "false" || stringValue == "no" || stringValue == "0")
-                                {
-                                    ev.Value = false;
-                                }
-                                else
-                                {
-                                    // กรณีที่ค่าผิดปกติ ให้ตั้งค่าเริ่มต้นเป็น false และแจ้งเตือนใน Console (สำหรับ Debugging)
-                                    ev.Value = false;
-                                    Console.WriteLine($"พบค่าที่ไม่คาดคิดใน ProductsShelf: {ev.Value}");
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            // จัดการข้อผิดพลาดหากเกิดขึ้นระหว่างการแปลงค่า
-                            Console.WriteLine($"เกิดข้อผิดพลาดในการแปลงค่า: {ex.Message}");
-                            ev.Value = false; // ตั้งค่าเริ่มต้นเป็น false ในกรณีเกิดข้อผิดพลาด
-                        }
-                    }
-                };
+                ChangeImage();
 
-                Binding imgBinding = new Binding("Image", productdatatable, "ProductImg", true); // ผูกข้อมูลรูปภาพ
-                imgBinding.Format += new ConvertEventHandler(ImageBinding_Format); // กำหนดเหตุการณ์เมื่อมีการแปลงค่า
-                pictureBoxProduct.DataBindings.Add(imgBinding);
-                
-                txtAmountremain.DataBindings.Add("Text", productdatatable, "StockQuality");
-
-                txtleastUpdate.DataBindings.Add(new Binding("Text", productdatatable, "StockDate", true, DataSourceUpdateMode.Never, ""));
-                txtleastUpdate.DataBindings[0].Format += (s, ev) =>
-                {
-                    if (ev.Value == DBNull.Value)
-                    {
-                        ev.Value = ""; // หรือข้อความอื่น ๆ เช่น "ไม่ระบุ"
-                    }
-                    else
-                    {
-                        ev.Value = Convert.ToDateTime(ev.Value).ToString("dd/MM/yyyy"); // จัดรูปแบบวันที่
-                    }
-                };
-
-                    // ตรวจสอบ BindingContext
-                    if (this.BindingContext.Contains(productdatatable))
-                    {
-                        productmanager = (CurrencyManager)this.BindingContext[productdatatable];
-                    }
-                    else
-                    {
-                        MessageBox.Show("BindingContext ยังไม่ได้ถูกกำหนด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        productmanager = null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("โหลดฟอร์มไม่สำเร็จ: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    productsconnection.Close();
-                }
-
+                checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//11
+                productmanager = (CurrencyManager)this.BindingContext[productdatatable];
                 SetState("view");
+                
+                
             }
-
-            private void formStock_FormClosing(object sender, FormClosingEventArgs e)
+            catch (Exception ex)
             {
-                productsconnection.Close();
-                productsconnection.Dispose();
-                productcommand.Dispose();
-                productadapter.Dispose();
-                productdatatable.Dispose();
+                MessageBox.Show("เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void formStock_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            productsconnection.Close();
+            productsconnection.Dispose();
+            productcommand.Dispose();
+            productadapter.Dispose();
+            productdatatable.Dispose();
+        }
 
-            private void btn_Next_Click(object sender, EventArgs e)
-            {
-                    productmanager.Position ++;
-            }
+        private void btn_Next_Click(object sender, EventArgs e)
+        {
+            productmanager.Position ++;
+            ChangeImage();
+        }
 
-            private void btn_Previous_Click(object sender, EventArgs e)
-            {
-                productmanager.Position --;
-            }
+        private void btn_Previous_Click(object sender, EventArgs e)
+        {
+            productmanager.Position --;
+            ChangeImage();
+        }
 
-            private void btn_Last_Click(object sender, EventArgs e)
-            {
-                productmanager.Position = productmanager.Count - 1;
-            }
+        private void btn_Last_Click(object sender, EventArgs e)
+        {
+            productmanager.Position = productmanager.Count - 1;
+            ChangeImage();
+        }
 
-            private void btn_Frist_Click(object sender, EventArgs e)
-            {
-                productmanager.Position = 0;
-            }
+        private void btn_Frist_Click(object sender, EventArgs e)
+        {
+            productmanager.Position = 0;
+            ChangeImage();
+        }
 
-            private void pictureBoxProduct_Click(object sender, EventArgs e)
-            {
+        private void pictureBoxProduct_Click(object sender, EventArgs e)
+        {
 
-            }
-
+        }
+        private void ChangeImage()
+        {
+            byte[] imageBytes = (byte[])productdatatable.Rows[productmanager.Position]["ProductImg"];
+            MemoryStream ms = new MemoryStream(imageBytes);
+            pictureBoxProduct.Image = Image.FromStream(ms);
+            pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
         private void btn_Save_Click(object sender, EventArgs e)
         {
             try
             {
-                if (mystate == "update") // <-จัดการกับฐานข้อมูล
+                if (mystate == "update") 
                 {
                     // สร้าง query สำหรับ update ข้อมูล
                     string updateQuery = "UPDATE Products SET ProductName = @ProductName, CostPrice = @CostPrice, Price = @Price, ProductType = @ProductType, ProductsShelf = @ProductsShelf, ProductImg = @ProductImg WHERE ProductID = @ProductID";
-
                     productcommand = new SqlCommand(updateQuery, productsconnection);
                     productcommand.Parameters.AddWithValue("@ProductID", txtProductID.Text);
                     productcommand.Parameters.AddWithValue("@ProductName", txtproductName.Text);
@@ -222,21 +152,23 @@
                 }
                 else if (mystate == "insert")
                 {
-                    string insertQuery = "INSERT INTO Products (ProductName, CostPrice, Price, ProductType, ProductsShelf, ProductImg,SuppilersID) " +
-                                "VALUES (@ProductName, @CostPrice, @Price, @ProductType, @ProductsShelf, @ProductImg,1);" +
-                                "INSERT INTO Stock (ProductID, StockDate, StockQuality) " +
-                                "VALUES ((SELECT ProductID FROM Products WHERE ProductName = @ProductName), @StockDate, @StockQuality)";
+                    string insertQuery = "INSERT INTO Products(ProductName, CostPrice , Price , Quality , ProductType , ProductsShelf , LatestDate , SuppilersID , ProductImg , ProductDetail) " +
+                        "VALUES(@productName , @costPrice , @price , @quality , @productType , @productsShelf , @latestDate , @suppilersID , @productImg , @productDetail)";
 
                     productcommand = new SqlCommand(insertQuery, productsconnection);
 
                     // กำหนดค่า parameters
-                    productcommand.Parameters.AddWithValue("@ProductName", txtproductName.Text);
-                    productcommand.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
-                    productcommand.Parameters.AddWithValue("@Price", txtPrice.Text);
-                    productcommand.Parameters.AddWithValue("@ProductType", txtProductType.Text);
-                    productcommand.Parameters.AddWithValue("@ProductsShelf", checkBoxShowonShelf.Checked);
-
-                    // จัดการรูปภาพ
+                    //productcommand.Parameters.AddWithValue("@productID", txtProductID.Text);
+                    productcommand.Parameters.AddWithValue("@productName", txtproductName.Text);
+                    productcommand.Parameters.AddWithValue("@costPrice", txtCostPrice.Text);
+                    productcommand.Parameters.AddWithValue("@price", txtPrice.Text);
+                    productcommand.Parameters.AddWithValue("@quality", txtAmountremain.Text); //5
+                    productcommand.Parameters.AddWithValue("@productType", txtProductType.Text);
+                    productcommand.Parameters.AddWithValue("@productsShelf", checkBoxShowonShelf.Checked);
+                    productcommand.Parameters.AddWithValue("@latestDate", txtleastUpdate.Text);
+                    productcommand.Parameters.AddWithValue("@suppilersID", txtSuppilersID.Text);
+                    productcommand.Parameters.AddWithValue("@productDetail", txtDetails.Text);
+                    
                     byte[] imageBytes = null;
                     if (!string.IsNullOrEmpty(immage))
                     {
@@ -247,17 +179,13 @@
                             imageBytes = ms.ToArray();
                         }
                     }
-                    productcommand.Parameters.AddWithValue("@ProductImg", imageBytes == null ? DBNull.Value : (object)imageBytes);
-
-                    // กำหนดค่า parameters สำหรับ Stock table
-                    productcommand.Parameters.AddWithValue("@StockDate", DateTime.Now); // หรือ txtleastUpdate.Text หากต้องการให้ผู้ใช้กำหนด
-                    productcommand.Parameters.AddWithValue("@StockQuality", txtAmountremain.Text); // ปริมาณคงเหลือ
-
-                    productsconnection.Open();
-                    productcommand.ExecuteNonQuery(); // execute query
-
-                    productsconnection.Close();
-
+                    else
+                    {
+                        MessageBox.Show("กรุณาเลือกรูปภาพ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    productcommand.Parameters.AddWithValue("@productImg", imageBytes == null ? DBNull.Value : (object)imageBytes); //11
+                    productcommand.ExecuteNonQuery();
                     MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 SetState("view");
@@ -372,15 +300,11 @@
         private void btn_Update_Click(object sender, EventArgs e)
         {
             SetState("update");
-            
-            
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
-        {
-            
+        {      
             SetState("insert");
-            
         }
 
         private void btn_Cancle_Click(object sender, EventArgs e)
@@ -403,32 +327,6 @@
                 pictureBoxProduct.ImageLocation = immage;
             }
         }
-        private Image ByteArrayToImage(byte[] byteArray) // แปลงข้อมูลรูปภาพจาก byte[] เป็น Image
-        {
-            if (byteArray == null)
-            {
-                // จัดการกรณีที่ byteArray เป็น null
-                // อาจจะ return รูปเริ่มต้น หรือ throw exception
-                return new Bitmap(1, 1); // สร้างรูปว่างเปล่า (หรือโหลดรูปเริ่มต้น)
-            }
-            using (MemoryStream ms = new MemoryStream(byteArray))
-            {
-                return Image.FromStream(ms);
-            }
-        }
-        private void ImageBinding_Format(object sender, ConvertEventArgs e) // แปลงข้อมูลรูปภาพจาก byte[] เป็น Image
-        {
-
-            if (e.Value == DBNull.Value)
-            {
-                e.Value = immage; // ใช้รูปเปล่าขนาด 1x1 pixel
-            }
-            else
-            {
-                e.Value = ByteArrayToImage((byte[])e.Value);
-            }
-        }
-
         private void btn_delete_Click(object sender, EventArgs e)
         {
             DialogResult response;

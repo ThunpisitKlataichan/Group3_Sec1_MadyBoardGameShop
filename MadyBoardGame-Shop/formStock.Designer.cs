@@ -68,6 +68,10 @@
             this.columeUpdateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBoxProduct = new System.Windows.Forms.PictureBox();
             this.button_browse = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSuppilersID = new System.Windows.Forms.TextBox();
+            this.txtDetails = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStock)).BeginInit();
@@ -124,6 +128,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtDetails);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtSuppilersID);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtProductID);
             this.groupBox1.Controls.Add(this.checkBoxShowonShelf);
@@ -141,7 +149,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(595, 297);
+            this.groupBox1.Size = new System.Drawing.Size(595, 395);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสินค้า";
@@ -368,10 +376,10 @@
             this.columeStockquality,
             this.columeShowOnShelf,
             this.columeUpdateDate});
-            this.dataGridStock.Location = new System.Drawing.Point(26, 388);
+            this.dataGridStock.Location = new System.Drawing.Point(26, 413);
             this.dataGridStock.Name = "dataGridStock";
             this.dataGridStock.RowHeadersWidth = 51;
-            this.dataGridStock.Size = new System.Drawing.Size(1185, 213);
+            this.dataGridStock.Size = new System.Drawing.Size(1185, 188);
             this.dataGridStock.TabIndex = 18;
             // 
             // columeProductName
@@ -429,6 +437,7 @@
             this.pictureBoxProduct.Location = new System.Drawing.Point(889, 12);
             this.pictureBoxProduct.Name = "pictureBoxProduct";
             this.pictureBoxProduct.Size = new System.Drawing.Size(321, 321);
+            this.pictureBoxProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProduct.TabIndex = 19;
             this.pictureBoxProduct.TabStop = false;
             this.pictureBoxProduct.Click += new System.EventHandler(this.pictureBoxProduct_Click);
@@ -442,6 +451,40 @@
             this.button_browse.Text = "Browse";
             this.button_browse.UseVisualStyleBackColor = true;
             this.button_browse.Click += new System.EventHandler(this.button_browse_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(77, 271);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 24);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "ผู้จำหน่าย";
+            // 
+            // txtSuppilersID
+            // 
+            this.txtSuppilersID.Location = new System.Drawing.Point(164, 268);
+            this.txtSuppilersID.Name = "txtSuppilersID";
+            this.txtSuppilersID.Size = new System.Drawing.Size(334, 29);
+            this.txtSuppilersID.TabIndex = 26;
+            // 
+            // txtDetails
+            // 
+            this.txtDetails.Location = new System.Drawing.Point(164, 303);
+            this.txtDetails.Multiline = true;
+            this.txtDetails.Name = "txtDetails";
+            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDetails.Size = new System.Drawing.Size(396, 86);
+            this.txtDetails.TabIndex = 28;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(28, 306);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 24);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "รายละเอียดสินค้า";
             // 
             // formProduct
             // 
@@ -521,5 +564,9 @@
         private System.Windows.Forms.Button button_browse;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtProductID;
+        private System.Windows.Forms.TextBox txtSuppilersID;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDetails;
+        private System.Windows.Forms.Label label10;
     }
 }
