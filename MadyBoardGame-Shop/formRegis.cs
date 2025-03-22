@@ -25,8 +25,6 @@ namespace MadyBoardGame_Shop
         }
         SqlConnection regisconnection;
         SqlCommand regiscommand;
-        SqlDataAdapter regisadapter;
-        DataTable regisdatatable;
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -92,7 +90,7 @@ namespace MadyBoardGame_Shop
                     //ส่งข้อมูลไป Table MemberUsername
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
                     //ส่งข้อมูลไป Table Member
-                    string commandprom2 = "INSERT INTO Member (mem_Name, mem_LName, mem_IdentityNum, Username, mem_Phone , emp_IDregis , mem_RegisDate, mem_Location,mem_BornDate) " +
+                    string commandprom2 = "INSERT INTO Member (memName, memLName, memIdentityNum, Username, memPhoneNum , empIDregis , memRegisDate, memLocation , memBornDate) " +
                         "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis, @location,@BornDate)";
                     using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
@@ -225,20 +223,20 @@ namespace MadyBoardGame_Shop
             }
 
             // ตรวจสอบว่ามีจริงไหม ---เหมือนตอนทำในปี1
-            int sum = 0;
-            for (int i = 0; i < 12; i++) 
-            {
-                sum += (id[i] - '0') * (13 - i);
-            }
+            //int sum = 0;
+            //for (int i = 0; i < 12; i++) 
+            //{
+            //    sum += (id[i] - '0') * (13 - i);
+            //}
 
-            int checkDigit = (11 - (sum % 11)) % 10; 
-            int lastDigit = id[12] - '0';
+            //int checkDigit = (11 - (sum % 11)) % 10; 
+            //int lastDigit = id[12] - '0';
 
-            if (checkDigit != lastDigit)
-            {
-                MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
-                return false;
-            }
+            //if (checkDigit != lastDigit)
+            //{
+            //    MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+            //    return false;
+            //}
             return true;
         }
 
@@ -282,20 +280,12 @@ namespace MadyBoardGame_Shop
         private void formRegis_Load(object sender, EventArgs e)
         {
 
-            //ตรวจสอบว่ามีไฟล์.ini ที่เอาไว้เชื่อม data base ไหม
             InitializeUser.Confic();
-            //อ่านไฟล์.csv เพื่อ add ที่อยู่ จังหวัด ตำบล อำเภอ รหัส ปณ.
             AddressUtil.ReadAddressInfoFromCSVFile("ProvinceDistrictSubDis.csv", ref _arProvinces, ref _arDistricts, ref _arSubDistricts, ref _arPostcodes);
             if (_arProvinces != null)
             {
                 comboBoxProvince.Items.AddRange(_arProvinces);
             }
-            //addItemProvince();
-            if (File.Exists("ProvinceDistrictSubDis.csv"))
-                MessageBox.Show("found");
-            else
-                MessageBox.Show("Not found");
-
         }
 
         private void comboBoxProvince_SelectedIndexChanged(object sender, EventArgs e)
