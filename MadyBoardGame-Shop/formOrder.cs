@@ -117,13 +117,13 @@ namespace MadyBoardGame_Shop
                     panel.Click += Panel_Click;
                     btn.Click += Addtocart_click;
 
-                    panel.Controls.Add(lblPrice);
+                    panel.Controls.Add(lblPrice); // เพิ่ม Control ลงใน Panel
                     panel.Controls.Add(lblprodID);
                     panel.Controls.Add(lblprodName);
                     panel.Controls.Add(pic);
                     panel.Controls.Add(btn);
 
-                    lblprodName.MouseMove += lbl_MouseMove;
+                    lblprodName.MouseMove += lbl_MouseMove; // เกี่ยวกับการเปลี่ยนสีเมื่อเมาส์เข้าไป
                     lblprodName.MouseLeave += lbl_Leave;
                     lblprodID.MouseMove += lbl_MouseMove;
                     lblprodID.MouseLeave += lbl_Leave;

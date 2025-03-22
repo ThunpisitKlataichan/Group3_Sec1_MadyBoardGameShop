@@ -91,5 +91,11 @@ namespace MadyBoardGame_Shop
             formShippingOrder formShippingOrder = new formShippingOrder();
             formShippingOrder.ShowDialog();
         }
+
+        private void buttonShippingPur_Click(object sender, EventArgs e)
+        {
+            formShippingPur formShippingPur = new formShippingPur();
+            formShippingPur.ShowDialog();
+        }
     }
 }

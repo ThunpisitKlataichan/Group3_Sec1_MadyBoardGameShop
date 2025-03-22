@@ -276,6 +276,7 @@
             this.buttonShippingPur.TabIndex = 1;
             this.buttonShippingPur.Text = "การขนส่ง (Store)";
             this.buttonShippingPur.UseVisualStyleBackColor = true;
+            this.buttonShippingPur.Click += new System.EventHandler(this.buttonShippingPur_Click);
             // 
             // buttonShippingOrder
             // 

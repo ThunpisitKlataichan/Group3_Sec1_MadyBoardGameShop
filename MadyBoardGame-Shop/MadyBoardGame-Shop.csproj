@@ -89,6 +89,12 @@
     <Compile Include="formRegis.Designer.cs">
       <DependentUpon>formRegis.cs</DependentUpon>
     </Compile>
+    <Compile Include="formShippingPur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formShippingPur.Designer.cs">
+      <DependentUpon>formShippingPur.cs</DependentUpon>
+    </Compile>
     <Compile Include="InitializeUser.cs" />
     <Compile Include="formLogin.cs">
       <SubType>Form</SubType>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formShippingOrder.resx">
       <DependentUpon>formShippingOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formShippingPur.resx">
+      <DependentUpon>formShippingPur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formStock.resx">
       <DependentUpon>formStock.cs</DependentUpon>
