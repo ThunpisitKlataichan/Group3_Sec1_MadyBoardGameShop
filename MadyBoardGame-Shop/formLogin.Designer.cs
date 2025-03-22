@@ -72,12 +72,13 @@
             // 
             // btn_confirm
             // 
+            this.btn_confirm.BackColor = System.Drawing.Color.PaleGreen;
             this.btn_confirm.Location = new System.Drawing.Point(139, 172);
             this.btn_confirm.Name = "btn_confirm";
             this.btn_confirm.Size = new System.Drawing.Size(142, 57);
             this.btn_confirm.TabIndex = 4;
             this.btn_confirm.Text = "ยืนยัน";
-            this.btn_confirm.UseVisualStyleBackColor = true;
+            this.btn_confirm.UseVisualStyleBackColor = false;
             this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
             // 
             // lableregis
@@ -95,12 +96,13 @@
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.Color.IndianRed;
             this.btnClose.Location = new System.Drawing.Point(287, 172);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(142, 57);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "ปิด";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // formLogin
@@ -116,6 +118,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

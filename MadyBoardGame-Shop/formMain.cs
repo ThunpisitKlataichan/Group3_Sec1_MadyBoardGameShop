@@ -89,5 +89,12 @@ namespace MadyBoardGame_Shop
             a.ShowDialog();
             
         }
+
+        private void buttonCashierCal_Click(object sender, EventArgs e)
+        {
+            formCal a = new formCal();
+            a.ShowDialog();
+
+        }
     }
 }

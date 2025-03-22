@@ -43,7 +43,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -149,7 +149,7 @@
             // 
             // groupBoxEmp
             // 
-            this.groupBoxEmp.Controls.Add(this.button4);
+            this.groupBoxEmp.Controls.Add(this.buttonCashierCal);
             this.groupBoxEmp.Controls.Add(this.btn_stock);
             this.groupBoxEmp.Controls.Add(this.btn_member);
             this.groupBoxEmp.Location = new System.Drawing.Point(194, 144);
@@ -224,15 +224,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Member";
             // 
-            // button4
+            // buttonCashierCal
             // 
-            this.button4.Location = new System.Drawing.Point(5, 145);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(163, 45);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "คิดเงิน";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonCashierCal.Location = new System.Drawing.Point(5, 145);
+            this.buttonCashierCal.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonCashierCal.Name = "buttonCashierCal";
+            this.buttonCashierCal.Size = new System.Drawing.Size(163, 45);
+            this.buttonCashierCal.TabIndex = 4;
+            this.buttonCashierCal.Text = "คิดเงิน";
+            this.buttonCashierCal.UseVisualStyleBackColor = true;
+            this.buttonCashierCal.Click += new System.EventHandler(this.buttonCashierCal_Click);
             // 
             // groupBox3
             // 
@@ -331,6 +332,7 @@
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.groupBoxEmp);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -367,7 +369,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonCashierCal;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox4;

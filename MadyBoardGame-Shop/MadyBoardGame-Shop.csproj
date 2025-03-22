@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
+    <Compile Include="formCal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCal.Designer.cs">
+      <DependentUpon>formCal.cs</DependentUpon>
+    </Compile>
     <Compile Include="formEmployeeManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="formCal.resx">
+      <DependentUpon>formCal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formEmployeeManage.resx">
       <DependentUpon>formEmployeeManage.cs</DependentUpon>
     </EmbeddedResource>
