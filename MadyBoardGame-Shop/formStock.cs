@@ -58,7 +58,10 @@
                 txtSuppilersID.DataBindings.Add("Text", productdatatable, "SuppilersID");
                 txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
 
-                ChangeImage();
+                byte[] imageBytes = (byte[])productdatatable.Rows[0]["ProductImg"];
+                MemoryStream ms = new MemoryStream(imageBytes);
+                pictureBoxProduct.Image = Image.FromStream(ms);
+                pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//11
                 productmanager = (CurrencyManager)this.BindingContext[productdatatable];
@@ -189,6 +192,8 @@
                     MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 SetState("view");
+                productcommand = new SqlCommand("SELECT * FROM Products", productsconnection);
+                productadapter = new SqlDataAdapter(productcommand);
             }
             catch (Exception ex)
             {
