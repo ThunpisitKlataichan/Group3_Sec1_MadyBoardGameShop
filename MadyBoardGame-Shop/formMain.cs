@@ -68,7 +68,7 @@ namespace MadyBoardGame_Shop
                     this.Text = "MadyStore (Manager)";
                     break;
             }
-            labelUsername.Text = "Welcome " + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
+            labelUsername.Text = "User\n" + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }
         private void buttonformEmpmange_Click(object sender, EventArgs e)
         {
@@ -84,6 +84,12 @@ namespace MadyBoardGame_Shop
         {
             formPacking a = new formPacking();
             a.ShowDialog();
+        }
+
+        private void buttonShippingOrder_Click(object sender, EventArgs e)
+        {
+            formShippingOrder formShippingOrder = new formShippingOrder();
+            formShippingOrder.ShowDialog();
         }
     }
 }

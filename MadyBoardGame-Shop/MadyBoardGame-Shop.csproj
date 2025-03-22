@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
+    <Compile Include="formShippingOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formShippingOrder.Designer.cs">
+      <DependentUpon>formShippingOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="formPacking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formRegis.resx">
       <DependentUpon>formRegis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formShippingOrder.resx">
+      <DependentUpon>formShippingOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formStock.resx">
       <DependentUpon>formStock.cs</DependentUpon>

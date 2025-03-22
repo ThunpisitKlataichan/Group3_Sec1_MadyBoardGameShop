@@ -47,8 +47,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonPacking = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonShippingPur = new System.Windows.Forms.Button();
+            this.buttonShippingOrder = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -258,8 +258,8 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button8);
-            this.groupBox4.Controls.Add(this.button6);
+            this.groupBox4.Controls.Add(this.buttonShippingPur);
+            this.groupBox4.Controls.Add(this.buttonShippingOrder);
             this.groupBox4.Location = new System.Drawing.Point(194, 357);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(177, 153);
@@ -267,25 +267,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Shipping";
             // 
-            // button8
+            // buttonShippingPur
             // 
-            this.button8.Location = new System.Drawing.Point(5, 88);
-            this.button8.Margin = new System.Windows.Forms.Padding(6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(163, 45);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "การขนส่ง (Store)";
-            this.button8.UseVisualStyleBackColor = true;
+            this.buttonShippingPur.Location = new System.Drawing.Point(5, 88);
+            this.buttonShippingPur.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonShippingPur.Name = "buttonShippingPur";
+            this.buttonShippingPur.Size = new System.Drawing.Size(163, 45);
+            this.buttonShippingPur.TabIndex = 1;
+            this.buttonShippingPur.Text = "การขนส่ง (Store)";
+            this.buttonShippingPur.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonShippingOrder
             // 
-            this.button6.Location = new System.Drawing.Point(5, 31);
-            this.button6.Margin = new System.Windows.Forms.Padding(6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(163, 45);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "การขนส่ง (Order)";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonShippingOrder.Location = new System.Drawing.Point(5, 31);
+            this.buttonShippingOrder.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonShippingOrder.Name = "buttonShippingOrder";
+            this.buttonShippingOrder.Size = new System.Drawing.Size(163, 45);
+            this.buttonShippingOrder.TabIndex = 0;
+            this.buttonShippingOrder.Text = "การขนส่ง (Order)";
+            this.buttonShippingOrder.UseVisualStyleBackColor = true;
+            this.buttonShippingOrder.Click += new System.EventHandler(this.buttonShippingOrder_Click);
             // 
             // groupBox5
             // 
@@ -304,7 +305,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(163, 45);
             this.button7.TabIndex = 0;
-            this.button7.Text = "เติมสินคค้า";
+            this.button7.Text = "เติมสินค้า";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -374,10 +375,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button buttonPacking;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonShippingOrder;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button buttonShippingPur;
         private System.Windows.Forms.Panel panel1;
     }
 }
