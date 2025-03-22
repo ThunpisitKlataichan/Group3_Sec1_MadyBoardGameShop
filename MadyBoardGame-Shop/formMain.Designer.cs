@@ -37,20 +37,20 @@
             this.labelUsername = new System.Windows.Forms.Label();
             this.btn_LogOut = new System.Windows.Forms.Button();
             this.groupBoxEmp = new System.Windows.Forms.GroupBox();
+            this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonPacking = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
@@ -159,6 +159,17 @@
             this.groupBoxEmp.TabStop = false;
             this.groupBoxEmp.Text = "Cashier";
             // 
+            // buttonCashierCal
+            // 
+            this.buttonCashierCal.Location = new System.Drawing.Point(5, 145);
+            this.buttonCashierCal.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonCashierCal.Name = "buttonCashierCal";
+            this.buttonCashierCal.Size = new System.Drawing.Size(163, 45);
+            this.buttonCashierCal.TabIndex = 4;
+            this.buttonCashierCal.Text = "คิดเงิน";
+            this.buttonCashierCal.UseVisualStyleBackColor = true;
+            this.buttonCashierCal.Click += new System.EventHandler(this.buttonCashierCal_Click);
+            // 
             // groupBoxmanager
             // 
             this.groupBoxmanager.Controls.Add(this.button1);
@@ -224,20 +235,9 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Member";
             // 
-            // buttonCashierCal
-            // 
-            this.buttonCashierCal.Location = new System.Drawing.Point(5, 145);
-            this.buttonCashierCal.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonCashierCal.Name = "buttonCashierCal";
-            this.buttonCashierCal.Size = new System.Drawing.Size(163, 45);
-            this.buttonCashierCal.TabIndex = 4;
-            this.buttonCashierCal.Text = "คิดเงิน";
-            this.buttonCashierCal.UseVisualStyleBackColor = true;
-            this.buttonCashierCal.Click += new System.EventHandler(this.buttonCashierCal_Click);
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.buttonPacking);
             this.groupBox3.Location = new System.Drawing.Point(10, 357);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(173, 153);
@@ -245,15 +245,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Packing";
             // 
-            // button5
+            // buttonPacking
             // 
-            this.button5.Location = new System.Drawing.Point(9, 31);
-            this.button5.Margin = new System.Windows.Forms.Padding(6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(163, 45);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "ยืนยันบรรจุสินค้า";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonPacking.Location = new System.Drawing.Point(9, 31);
+            this.buttonPacking.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonPacking.Name = "buttonPacking";
+            this.buttonPacking.Size = new System.Drawing.Size(163, 45);
+            this.buttonPacking.TabIndex = 0;
+            this.buttonPacking.Text = "จัดส่งสินค้า";
+            this.buttonPacking.UseVisualStyleBackColor = true;
+            this.buttonPacking.Click += new System.EventHandler(this.buttonPacking_Click);
             // 
             // groupBox4
             // 
@@ -265,6 +266,16 @@
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Shipping";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(5, 88);
+            this.button8.Margin = new System.Windows.Forms.Padding(6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(163, 45);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "การขนส่ง (Store)";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -296,16 +307,6 @@
             this.button7.Text = "เติมสินคค้า";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(5, 88);
-            this.button8.Margin = new System.Windows.Forms.Padding(6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(163, 45);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "การขนส่ง (Store)";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -321,7 +322,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(752, 566);
+            this.ClientSize = new System.Drawing.Size(750, 566);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -371,7 +372,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonCashierCal;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonPacking;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox5;

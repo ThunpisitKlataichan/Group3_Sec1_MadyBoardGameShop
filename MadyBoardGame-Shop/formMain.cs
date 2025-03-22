@@ -18,30 +18,24 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
-
         private void btn_exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btn_stock_Click(object sender, EventArgs e)
         {
             formProduct a = new formProduct();
             a.ShowDialog();
         }
-
         private void formMain_Load(object sender, EventArgs e)
         {
             SetStage();
         }
-
         private void btn_member_Click(object sender, EventArgs e)
         {
             formMember a = new formMember();
             a.ShowDialog();
-
         }
-
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -49,16 +43,10 @@ namespace MadyBoardGame_Shop
             a.ShowDialog();
             this.Dispose();
         }
-
         private void btn_Order_Click(object sender, EventArgs e)
         {
             formOrder a = new formOrder();
             a.ShowDialog();
-        }
-
-        private void btn_payment_Click(object sender, EventArgs e)
-        {
-
         }
         private void SetStage()
         {
@@ -82,19 +70,20 @@ namespace MadyBoardGame_Shop
             }
             labelUsername.Text = "Welcome " + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }
-
         private void buttonformEmpmange_Click(object sender, EventArgs e)
         {
             formEmployeeManage a = new formEmployeeManage();
             a.ShowDialog();
-            
         }
-
         private void buttonCashierCal_Click(object sender, EventArgs e)
         {
             formCal a = new formCal();
             a.ShowDialog();
-
+        }
+        private void buttonPacking_Click(object sender, EventArgs e)
+        {
+            formPacking a = new formPacking();
+            a.ShowDialog();
         }
     }
 }
