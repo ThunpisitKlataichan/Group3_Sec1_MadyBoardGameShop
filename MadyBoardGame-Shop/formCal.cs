@@ -21,5 +21,14 @@ namespace MadyBoardGame_Shop
         {
             this.Close();
         }
+
+        private void textQRcode_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textQRcode.Text))
+            {
+                label4.Text = textQRcode.Text;
+                textQRcode.Text = ""; // ล้างข้อความหลังจากคัดลอก
+            }
+        }
     }
 }

@@ -53,6 +53,7 @@
             this.textQRcode.Size = new System.Drawing.Size(237, 29);
             this.textQRcode.TabIndex = 0;
             this.textQRcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textQRcode.TextChanged += new System.EventHandler(this.textQRcode_TextChanged);
             // 
             // buttonBack
             // 
