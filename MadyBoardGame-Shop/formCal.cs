@@ -23,6 +23,9 @@ namespace MadyBoardGame_Shop
         SqlDataAdapter productdataadapter;
         DataTable productdatatable;
 
+        List<string> checkTagCartpanalTag = new List<string>();
+        decimal amount;
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,31 +51,80 @@ namespace MadyBoardGame_Shop
                     if (productdatatable.Rows.Count <= 0)
                     {
                         MessageBox.Show("ไม่เจอสินค้า");
+                        textQRcode.Text = "";
                         return;
                     }
+                    string productID = productdatatable.Rows[0]["ProductID"].ToString();
+                    string productName = productdatatable.Rows[0]["ProductName"].ToString();
+                    decimal price = Convert.ToDecimal(productdatatable.Rows[0]["Price"]);
+
+
                     Panel panel = new Panel();
                     panel.BorderStyle = BorderStyle.FixedSingle;
                     panel.Size = new Size(586, 69);
                     panel.BackColor = Color.White;
+                    panel.Tag = productID;
+
+                    if (checkTagCartpanalTag.Any(a => a == panel.Tag.ToString()))
+                    {
+                        Panel existPanal = new Panel();
+                        foreach (Control control in flowLayoutProduct.Controls)
+                        {
+                            if (control is Panel)
+                            {
+                                if (control.Tag != null && control.Tag.ToString() == panel.Tag.ToString())
+                                {
+                                    existPanal = control as Panel;
+                                }
+                            }
+                        }
+                        Label existQuality = new Label();
+                        Label existPrice = new Label();
+                        foreach (Control control in existPanal.Controls)
+                        {
+                            if (control is Label)
+                            {
+                                if (control.Tag != null && control.Tag.ToString() == "Quality")
+                                {
+                                    existQuality = control as Label;
+                                }
+                                if (control.Text.Contains("฿"))
+                                {
+                                    existPrice = control as Label;
+                                }
+                            }
+                        }
+                        int count = Convert.ToInt32(existQuality.Text.Split(' ')[1]);
+                        decimal dprice = Convert.ToDecimal(existPrice.Text.Split(' ')[0]);
+                        amount += dprice;
+                        labelAmount.Text = amount.ToString("F2") + " ฿";
+
+                        existQuality.Text = "X " + (Convert.ToInt32(count + 1)).ToString();
+                        textQRcode.Text = "";
+                        return;
+                    }
+                    else
+                    {
+                        checkTagCartpanalTag.Add(panel.Tag.ToString());
+                        textQRcode.Text = "";
+                    }
 
                     Label labelProID = new Label();
-                    labelProID.Text = productdatatable.Rows[0]["ProductID"].ToString();
+                    labelProID.Text = productID;
                     labelProID.AutoSize = false;
                     labelProID.Size = new Size(50, 20);
                     labelProID.Location = new Point(5 , (panel.Height -labelProID.Height) / 2 );
                     labelProID.BackColor = Color.Gray;
                     labelProID.TextAlign = ContentAlignment.MiddleLeft;
                     
-
                     Label labelproname = new Label();
-                    labelproname.Text = productdatatable.Rows[0]["ProductName"].ToString();
+                    labelproname.Text = productName;
                     labelproname.AutoSize = false;
                     labelproname.TextAlign = ContentAlignment.MiddleLeft;
                     labelproname.Size = new Size(320, 20);
                     labelproname.Location = new Point(70, (panel.Height - labelproname.Height) / 2);
                     labelproname.BackColor = Color.Green;
                     
-
                     Label labelQuality = new Label();
                     labelQuality.Text = "X 1";
                     labelQuality.AutoSize = false;
@@ -82,18 +134,16 @@ namespace MadyBoardGame_Shop
                     labelQuality.TextAlign = ContentAlignment.MiddleRight;
                     labelQuality.Tag = "Quality";
 
-
                     Label labelprice = new Label();
-                    labelprice.Text = Convert.ToDecimal(productdatatable.Rows[0]["Price"]).ToString("F2") + " ฿";
+                    labelprice.Text = price.ToString("F2") + " ฿";
                     labelprice.AutoSize = false;
                     labelprice.Size = new Size(150, 20);
                     labelprice.Location = new Point(panel.Width - labelQuality.Width - labelprice.Width, (panel.Height - labelprice.Height) / 2);
                     labelprice.BackColor = Color.Orange;
-                    
                     labelprice.TextAlign = ContentAlignment.MiddleRight;
-                    
 
-                    
+                    amount += Convert.ToDecimal(productdatatable.Rows[0]["Price"]);
+                    labelAmount.Text = amount.ToString("F2") + " ฿";
 
                     panel.Controls.Add(labelQuality);
                     panel.Controls.Add(labelprice);
@@ -113,6 +163,12 @@ namespace MadyBoardGame_Shop
         private void formCal_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
+            amount = 0m;
+        }
+
+        private void buttonConfirm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

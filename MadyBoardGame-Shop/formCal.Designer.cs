@@ -35,6 +35,7 @@
             this.flowLayoutProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.labelAmount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonConfirm = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             this.labelAmount.Name = "labelAmount";
             this.labelAmount.Size = new System.Drawing.Size(610, 59);
             this.labelAmount.TabIndex = 6;
-            this.labelAmount.Text = "1523899.35$";
+            this.labelAmount.Text = "0.00$";
             this.labelAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel2
@@ -91,15 +92,27 @@
             this.panel2.Controls.Add(this.buttonBack);
             this.panel2.Location = new System.Drawing.Point(-15, -15);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(673, 108);
+            this.panel2.Size = new System.Drawing.Size(840, 108);
             this.panel2.TabIndex = 7;
+            // 
+            // buttonConfirm
+            // 
+            this.buttonConfirm.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonConfirm.Location = new System.Drawing.Point(491, 441);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(130, 44);
+            this.buttonConfirm.TabIndex = 2;
+            this.buttonConfirm.Text = "ยืนยันการซื้อ";
+            this.buttonConfirm.UseVisualStyleBackColor = false;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
             // 
             // formCal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(650, 453);
+            this.ClientSize = new System.Drawing.Size(666, 497);
+            this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.labelAmount);
             this.Controls.Add(this.flowLayoutProduct);
@@ -108,6 +121,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formCal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formCal";
             this.Load += new System.EventHandler(this.formCal_Load);
             this.panel2.ResumeLayout(false);
@@ -124,5 +138,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
         private System.Windows.Forms.Label labelAmount;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonConfirm;
     }
 }
