@@ -17,7 +17,15 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
-        
+        SqlConnection productconnect;
+        SqlCommand productcommand;
+        SqlDataAdapter productadapter;
+        DataTable productdata;
+
+        SqlConnection shippingconnect;
+        SqlCommand shippingcommand;
+        SqlDataAdapter shippingdataadapter;
+        DataTable shippingdata;
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -28,12 +36,31 @@ namespace MadyBoardGame_Shop
 
         private void formAddProductQuality_Load(object sender, EventArgs e)
         {
+            InitializeUser.Confic();
+            productconnect = new SqlConnection(InitializeUser._key_con);
+            productconnect.Open();
+            string qry = "Select ProductID , ProductName , CostPrice";
+            productcommand = new SqlCommand(qry , productconnect);
+            productadapter.SelectCommand = productcommand;
+            productdata = new DataTable();
+            productadapter.Fill(productdata);
+
             
         }
 
         private void formAddProductQuality_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            productconnect.Dispose();
+        }
+
+        private void buttonexit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonAddlist_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

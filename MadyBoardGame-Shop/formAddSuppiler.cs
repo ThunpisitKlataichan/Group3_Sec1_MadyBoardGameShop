@@ -42,13 +42,13 @@ namespace MadyBoardGame_Shop
         {
             suppilerConnection.Close();
             suppilerConnection.Dispose();
-            suppilerCommand.Dispose();
         }
 
         private void formAddSuppiler_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
             suppilerConnection = new SqlConnection(InitializeUser._key_con);
+            suppilerCommand = new SqlCommand();
             suppilerConnection.Open();
         }
     }

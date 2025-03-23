@@ -39,6 +39,7 @@
             this.groupBoxEmp = new System.Windows.Forms.GroupBox();
             this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -50,10 +51,9 @@
             this.buttonShippingPur = new System.Windows.Forms.Button();
             this.buttonShippingOrder = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnAddSupplier = new System.Windows.Forms.Button();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAddSupplier = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
@@ -66,7 +66,7 @@
             // 
             // btn_stock
             // 
-            this.btn_stock.Location = new System.Drawing.Point(3, 145);
+            this.btn_stock.Location = new System.Drawing.Point(3, 31);
             this.btn_stock.Margin = new System.Windows.Forms.Padding(6);
             this.btn_stock.Name = "btn_stock";
             this.btn_stock.Size = new System.Drawing.Size(163, 45);
@@ -89,10 +89,10 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(560, 454);
+            this.btn_exit.Location = new System.Drawing.Point(557, 454);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(173, 45);
+            this.btn_exit.Size = new System.Drawing.Size(176, 45);
             this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "ออก";
             this.btn_exit.UseVisualStyleBackColor = false;
@@ -140,10 +140,10 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(560, 511);
+            this.btn_LogOut.Location = new System.Drawing.Point(557, 511);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
-            this.btn_LogOut.Size = new System.Drawing.Size(173, 45);
+            this.btn_LogOut.Size = new System.Drawing.Size(176, 45);
             this.btn_LogOut.TabIndex = 7;
             this.btn_LogOut.Text = "ล็อกเอ้าร์";
             this.btn_LogOut.UseVisualStyleBackColor = false;
@@ -184,6 +184,16 @@
             this.groupBoxmanager.TabIndex = 9;
             this.groupBoxmanager.TabStop = false;
             this.groupBoxmanager.Text = "Manager";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(183, 88);
+            this.button4.Margin = new System.Windows.Forms.Padding(6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(163, 45);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "ข้อมูลร้านค้า";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -303,14 +313,25 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Purchase";
             // 
+            // btnAddSupplier
+            // 
+            this.btnAddSupplier.Location = new System.Drawing.Point(3, 88);
+            this.btnAddSupplier.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddSupplier.Name = "btnAddSupplier";
+            this.btnAddSupplier.Size = new System.Drawing.Size(163, 45);
+            this.btnAddSupplier.TabIndex = 4;
+            this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
+            this.btnAddSupplier.UseVisualStyleBackColor = true;
+            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(3, 88);
+            this.btnAddProduct.Location = new System.Drawing.Point(3, 145);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(163, 45);
             this.btnAddProduct.TabIndex = 0;
-            this.btnAddProduct.Text = "เติมสินค้า";
+            this.btnAddProduct.Text = "สั่งซื้อเติมสินค้า";
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
@@ -323,27 +344,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(774, 150);
             this.panel1.TabIndex = 13;
-            // 
-            // btnAddSupplier
-            // 
-            this.btnAddSupplier.Location = new System.Drawing.Point(3, 31);
-            this.btnAddSupplier.Margin = new System.Windows.Forms.Padding(6);
-            this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(163, 45);
-            this.btnAddSupplier.TabIndex = 4;
-            this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
-            this.btnAddSupplier.UseVisualStyleBackColor = true;
-            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(183, 88);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(163, 45);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "ข้อมูลร้านค้า";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // formMain
             // 

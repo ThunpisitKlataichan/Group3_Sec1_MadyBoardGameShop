@@ -177,6 +177,8 @@
                 {
                     string insertQuery = "INSERT INTO Products(ProductName, CostPrice , Price , Quality , ProductType , ProductsShelf , LatestDate , SuppilersID , ProductImg , ProductDetail) " +
                         "VALUES(@productName , @costPrice , @price , @quality , @productType , @productsShelf , @latestDate , @suppilersID , @productImg , @productDetail)";
+                    productsconnection = new SqlConnection(InitializeUser._key_con);
+                    productsconnection.Open();
                     productcommand = new SqlCommand(insertQuery, productsconnection);
 
                     // กำหนดค่า parameters
@@ -209,6 +211,8 @@
                     productcommand.Parameters.AddWithValue("@productImg", imageBytes == null ? DBNull.Value : (object)imageBytes); //11
                     productcommand.ExecuteNonQuery();
                     MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshData();
+
                 }
                 SetState("view");
                 productcommand = new SqlCommand("SELECT * FROM Products", productsconnection);
@@ -224,7 +228,11 @@
                 productsconnection.Close();
             }
         }
-
+        private void RefreshData()
+        {
+            productdatatable.Clear();
+            productadapter.Fill(productdatatable);
+        }
         private void SetState(string AddState)
             {
                 mystate = AddState;
