@@ -102,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(30, 56);
+            this.label1.Location = new System.Drawing.Point(193, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(390, 39);
             this.label1.TabIndex = 5;
@@ -122,9 +122,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labelUsername);
-            this.groupBox1.Location = new System.Drawing.Point(462, 37);
+            this.groupBox1.Location = new System.Drawing.Point(25, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 73);
+            this.groupBox1.Size = new System.Drawing.Size(436, 73);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -333,6 +333,7 @@
             this.btnAddSupplier.TabIndex = 4;
             this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
             this.btnAddSupplier.UseVisualStyleBackColor = true;
+            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
             // button4
             // 

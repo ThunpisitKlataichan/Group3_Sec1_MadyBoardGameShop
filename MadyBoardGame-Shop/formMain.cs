@@ -103,5 +103,11 @@ namespace MadyBoardGame_Shop
             formAddProductQuality formAddProductQuality = new formAddProductQuality();
             formAddProductQuality.ShowDialog();
         }
+
+        private void btnAddSupplier_Click(object sender, EventArgs e)
+        {
+            formAddSuppiler formAddSuppiler = new formAddSuppiler();
+            formAddSuppiler.ShowDialog();
+        }
     }
 }

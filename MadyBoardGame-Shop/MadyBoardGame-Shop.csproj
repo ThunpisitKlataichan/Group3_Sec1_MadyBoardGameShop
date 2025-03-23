@@ -53,6 +53,12 @@
     <Compile Include="formAddProductQuality.Designer.cs">
       <DependentUpon>formAddProductQuality.cs</DependentUpon>
     </Compile>
+    <Compile Include="formAddSuppiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAddSuppiler.Designer.cs">
+      <DependentUpon>formAddSuppiler.cs</DependentUpon>
+    </Compile>
     <Compile Include="formShippingOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="formAddProductQuality.resx">
       <DependentUpon>formAddProductQuality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAddSuppiler.resx">
+      <DependentUpon>formAddSuppiler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formCal.resx">
       <DependentUpon>formCal.cs</DependentUpon>
