@@ -97,5 +97,11 @@ namespace MadyBoardGame_Shop
             formShippingPur formShippingPur = new formShippingPur();
             formShippingPur.ShowDialog();
         }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            formAddProductQuality formAddProductQuality = new formAddProductQuality();
+            formAddProductQuality.ShowDialog();
+        }
     }
 }

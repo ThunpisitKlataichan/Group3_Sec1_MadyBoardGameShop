@@ -50,8 +50,10 @@
             this.buttonShippingPur = new System.Windows.Forms.Button();
             this.buttonShippingOrder = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddSupplier = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxEmp.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
@@ -64,7 +66,7 @@
             // 
             // btn_stock
             // 
-            this.btn_stock.Location = new System.Drawing.Point(5, 31);
+            this.btn_stock.Location = new System.Drawing.Point(3, 145);
             this.btn_stock.Margin = new System.Windows.Forms.Padding(6);
             this.btn_stock.Name = "btn_stock";
             this.btn_stock.Size = new System.Drawing.Size(163, 45);
@@ -75,7 +77,7 @@
             // 
             // btn_member
             // 
-            this.btn_member.Location = new System.Drawing.Point(5, 88);
+            this.btn_member.Location = new System.Drawing.Point(5, 31);
             this.btn_member.Margin = new System.Windows.Forms.Padding(6);
             this.btn_member.Name = "btn_member";
             this.btn_member.Size = new System.Drawing.Size(163, 45);
@@ -87,7 +89,7 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(560, 408);
+            this.btn_exit.Location = new System.Drawing.Point(560, 454);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(173, 45);
@@ -138,7 +140,7 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(560, 465);
+            this.btn_LogOut.Location = new System.Drawing.Point(560, 511);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(173, 45);
@@ -150,7 +152,6 @@
             // groupBoxEmp
             // 
             this.groupBoxEmp.Controls.Add(this.buttonCashierCal);
-            this.groupBoxEmp.Controls.Add(this.btn_stock);
             this.groupBoxEmp.Controls.Add(this.btn_member);
             this.groupBoxEmp.Location = new System.Drawing.Point(194, 144);
             this.groupBoxEmp.Name = "groupBoxEmp";
@@ -161,7 +162,7 @@
             // 
             // buttonCashierCal
             // 
-            this.buttonCashierCal.Location = new System.Drawing.Point(5, 145);
+            this.buttonCashierCal.Location = new System.Drawing.Point(5, 88);
             this.buttonCashierCal.Margin = new System.Windows.Forms.Padding(6);
             this.buttonCashierCal.Name = "buttonCashierCal";
             this.buttonCashierCal.Size = new System.Drawing.Size(163, 45);
@@ -172,6 +173,7 @@
             // 
             // groupBoxmanager
             // 
+            this.groupBoxmanager.Controls.Add(this.button4);
             this.groupBoxmanager.Controls.Add(this.button1);
             this.groupBoxmanager.Controls.Add(this.buttonformEmpmange);
             this.groupBoxmanager.Controls.Add(this.button2);
@@ -240,7 +242,7 @@
             this.groupBox3.Controls.Add(this.buttonPacking);
             this.groupBox3.Location = new System.Drawing.Point(10, 357);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(173, 153);
+            this.groupBox3.Size = new System.Drawing.Size(173, 199);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Packing";
@@ -262,7 +264,7 @@
             this.groupBox4.Controls.Add(this.buttonShippingOrder);
             this.groupBox4.Location = new System.Drawing.Point(194, 357);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(177, 153);
+            this.groupBox4.Size = new System.Drawing.Size(177, 199);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Shipping";
@@ -291,23 +293,26 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button7);
+            this.groupBox5.Controls.Add(this.btnAddSupplier);
+            this.groupBox5.Controls.Add(this.btnAddProduct);
+            this.groupBox5.Controls.Add(this.btn_stock);
             this.groupBox5.Location = new System.Drawing.Point(377, 357);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(171, 153);
+            this.groupBox5.Size = new System.Drawing.Size(171, 199);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Purchase";
             // 
-            // button7
+            // btnAddProduct
             // 
-            this.button7.Location = new System.Drawing.Point(5, 31);
-            this.button7.Margin = new System.Windows.Forms.Padding(6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(163, 45);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "เติมสินค้า";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Location = new System.Drawing.Point(3, 88);
+            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(163, 45);
+            this.btnAddProduct.TabIndex = 0;
+            this.btnAddProduct.Text = "เติมสินค้า";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // panel1
             // 
@@ -319,12 +324,32 @@
             this.panel1.Size = new System.Drawing.Size(774, 150);
             this.panel1.TabIndex = 13;
             // 
+            // btnAddSupplier
+            // 
+            this.btnAddSupplier.Location = new System.Drawing.Point(3, 31);
+            this.btnAddSupplier.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddSupplier.Name = "btnAddSupplier";
+            this.btnAddSupplier.Size = new System.Drawing.Size(163, 45);
+            this.btnAddSupplier.TabIndex = 4;
+            this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
+            this.btnAddSupplier.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(183, 88);
+            this.button4.Margin = new System.Windows.Forms.Padding(6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(163, 45);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "ข้อมูลร้านค้า";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(750, 566);
+            this.ClientSize = new System.Drawing.Size(750, 568);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -378,9 +403,11 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button buttonShippingOrder;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Button buttonShippingPur;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnAddSupplier;
+        private System.Windows.Forms.Button button4;
     }
 }
 

@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
+    <Compile Include="formAddProductQuality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAddProductQuality.Designer.cs">
+      <DependentUpon>formAddProductQuality.cs</DependentUpon>
+    </Compile>
     <Compile Include="formShippingOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="formAddProductQuality.resx">
+      <DependentUpon>formAddProductQuality.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formCal.resx">
       <DependentUpon>formCal.cs</DependentUpon>
     </EmbeddedResource>
