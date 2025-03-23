@@ -24,6 +24,7 @@ namespace MadyBoardGame_Shop
         DataTable productdatatable;
 
         List<string> checkTagCartpanalTag = new List<string>();
+
         decimal amount;
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -116,6 +117,7 @@ namespace MadyBoardGame_Shop
                     labelProID.Location = new Point(5 , (panel.Height -labelProID.Height) / 2 );
                     labelProID.BackColor = Color.Gray;
                     labelProID.TextAlign = ContentAlignment.MiddleLeft;
+                    labelProID.Tag = "ProductID";
                     
                     Label labelproname = new Label();
                     labelproname.Text = productName;
@@ -172,15 +174,105 @@ namespace MadyBoardGame_Shop
             {
                 try
                 {
-                    SqlConnection PayfrontStore = new SqlConnection(InitializeUser._key_con);
-                    PayfrontStore.Open();
+                    SqlConnection PayfrontStoreConnection = new SqlConnection(InitializeUser._key_con);
+                    string qry = "INSERT INTO PayFrontStore(Amount , empID , Paymethod) VALUES(@amount , @empID , @paymethod)";
+                    SqlCommand PayfrontStoreCommand = new SqlCommand(qry , PayfrontStoreConnection);
+                    PayfrontStoreConnection.Open();
+                    PayfrontStoreCommand.Parameters.AddWithValue("@amount", amount);
+                    PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                    PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
+                    DecressProductQuality(flowLayoutProduct);
+
+                    PayfrontStoreCommand.ExecuteNonQuery();
+
                     MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    flowLayoutProduct.Controls.Clear();
+                    labelAmount.Text = "0.00 ฿";
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        private void DecressProductQuality(FlowLayoutPanel flows)
+        {
+            int quality = 0;
+            string productID = "0";
+            foreach (Control control in flows.Controls) // ลบของตามจำนวณที่สั่ง
+            {
+                if (control is Panel panel)
+                {
+                    foreach (Control panelControl in panel.Controls)
+                    {
+                        if (panelControl is Label label)
+                        {
+                            if (label.Tag != null)
+                            {
+                                switch (label.Tag.ToString())
+                                {
+                                    case "Quality":
+                                        string qual = label.Text.Split(' ')[1];
+                                        if (int.TryParse(qual, out int parsedQuality))
+                                        {
+                                            quality = parsedQuality;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Invalid quality value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return; 
+                                        }
+                                        break;
+
+                                    case "ProductID":
+                                        productID = label.Text;
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    if (productID != "0" && quality > 0)
+                    {
+                        UpdateProductQualityInDatabase(productID, quality);
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่เขอ ID หรือ จำนวน", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void UpdateProductQualityInDatabase(string productID, int quality)
+        {
+            using (productcon = new SqlConnection(InitializeUser._key_con))
+            {
+                int originQuality = 0;
+                productcon.Open();
+
+                string qry1 = "Select Quality FROM Products WHERE ProductID = @productID";
+                using (productcommand = new SqlCommand(qry1, productcon))
+                {
+                    productcommand.Parameters.AddWithValue("@productID", productID);
+                    productdataadapter.SelectCommand = productcommand;
+                    productdatatable = new DataTable();
+                    productdataadapter.Fill(productdatatable);
+                    if (productdatatable.Rows.Count > 0)
+                    {
+                        originQuality = int.Parse(productdatatable.Rows[0][0].ToString());
+                    }
+                    productdatatable.Clear();
+                }
+
+                string qry2 = "UPDATE Products SET Quality = @qualityupdate WHERE ProductID = @productID";
+                using (productcommand = new SqlCommand(qry2, productcon))
+                {
+                    productcommand.Parameters.AddWithValue("@productID", productID);
+                    productcommand.Parameters.AddWithValue("@qualityupdate", originQuality - quality);
+                    productcommand.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }
