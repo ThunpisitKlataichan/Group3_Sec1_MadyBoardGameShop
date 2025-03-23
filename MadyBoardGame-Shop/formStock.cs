@@ -57,13 +57,26 @@
                 txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
                 txtSuppilersID.DataBindings.Add("Text", productdatatable, "SuppilersID");
                 txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
+                checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//10
+                if (productdatatable.Rows.Count == 0)
+                {
+                    MessageBox.Show("ไม่มีข้อมูลสินค้า");
+                }
+                else
+                {
+                    byte[] imageBytes = (byte[])productdatatable.Rows[0]["ProductImg"]; //1
+                    if (imageBytes != null)
+                    {
+                        MemoryStream ms = new MemoryStream(imageBytes);
+                        pictureBoxProduct.Image = Image.FromStream(ms);
+                        pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        pictureBoxProduct.Image = null;
+                    }
+                }
 
-                byte[] imageBytes = (byte[])productdatatable.Rows[0]["ProductImg"];
-                MemoryStream ms = new MemoryStream(imageBytes);
-                pictureBoxProduct.Image = Image.FromStream(ms);
-                pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//11
                 productmanager = (CurrencyManager)this.BindingContext[productdatatable];
                 SetState("view");
                 
@@ -114,9 +127,16 @@
         private void ChangeImage()
         {
             byte[] imageBytes = (byte[])productdatatable.Rows[productmanager.Position]["ProductImg"];
-            MemoryStream ms = new MemoryStream(imageBytes);
-            pictureBoxProduct.Image = Image.FromStream(ms);
-            pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+            if (imageBytes != null)
+            {
+                MemoryStream ms = new MemoryStream(imageBytes);
+                pictureBoxProduct.Image = Image.FromStream(ms);
+                pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                pictureBoxProduct.Image = null;
+            }
         }
         private void btn_Save_Click(object sender, EventArgs e)
         {
@@ -157,7 +177,6 @@
                 {
                     string insertQuery = "INSERT INTO Products(ProductName, CostPrice , Price , Quality , ProductType , ProductsShelf , LatestDate , SuppilersID , ProductImg , ProductDetail) " +
                         "VALUES(@productName , @costPrice , @price , @quality , @productType , @productsShelf , @latestDate , @suppilersID , @productImg , @productDetail)";
-
                     productcommand = new SqlCommand(insertQuery, productsconnection);
 
                     // กำหนดค่า parameters
@@ -168,7 +187,7 @@
                     productcommand.Parameters.AddWithValue("@quality", txtAmountremain.Text); //5
                     productcommand.Parameters.AddWithValue("@productType", txtProductType.Text);
                     productcommand.Parameters.AddWithValue("@productsShelf", checkBoxShowonShelf.Checked);
-                    productcommand.Parameters.AddWithValue("@latestDate", txtleastUpdate.Text);
+                    productcommand.Parameters.AddWithValue("@latestDate", DateTime.Now);
                     productcommand.Parameters.AddWithValue("@suppilersID", txtSuppilersID.Text);
                     productcommand.Parameters.AddWithValue("@productDetail", txtDetails.Text);
                     
@@ -194,6 +213,7 @@
                 SetState("view");
                 productcommand = new SqlCommand("SELECT * FROM Products", productsconnection);
                 productadapter = new SqlDataAdapter(productcommand);
+                productadapter.Fill(productdatatable);
             }
             catch (Exception ex)
             {

@@ -22,7 +22,6 @@ namespace MadyBoardGame_Shop
         SqlCommand productcommand;
         SqlDataAdapter productdataadapter;
         DataTable productdatatable;
-        string cusfrontstoreID = "5";
 
         List<string> checkTagCartpanalTag = new List<string>();
         decimal amount;
@@ -173,33 +172,8 @@ namespace MadyBoardGame_Shop
             {
                 try
                 {
-                    // บันทึกข้อมูลการสั่งซื้อ (Orders)
-                    string qry = "INSERT INTO Orders(mem_ID, empID, OrderDate) VALUES(@memID, @empID, @orderDate); SELECT SCOPE_IDENTITY();";
-                    using (SqlConnection orderConnection = new SqlConnection(InitializeUser._key_con))
-                    using (SqlCommand orderCommand = new SqlCommand(qry, orderConnection))
-                    {
-                        orderConnection.Open();
-                        orderCommand.Parameters.AddWithValue("@memID", cusfrontstoreID);
-                        orderCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
-                        orderCommand.Parameters.AddWithValue("@orderDate", DateTime.Today);
-
-                        // ดึง OrderID ที่เพิ่งสร้าง
-                        int orderID = Convert.ToInt32(orderCommand.ExecuteScalar());
-
-                        // บันทึกข้อมูลการชำระเงิน (Payments)
-                        qry = "INSERT INTO Payments(Amount, Method, PayDate, OrderID) VALUES(@amount, @method, @payDate, @orderID)";
-                        using (SqlConnection paymentConnection = new SqlConnection(InitializeUser._key_con))
-                        using (SqlCommand paymentCommand = new SqlCommand(qry, paymentConnection))
-                        {
-                            paymentConnection.Open();
-                            paymentCommand.Parameters.AddWithValue("@amount", decimal.Parse(labelAmount.Text.Replace(" ฿", "")));
-                            paymentCommand.Parameters.AddWithValue("@method", comboMethodPay.Text);
-                            paymentCommand.Parameters.AddWithValue("@payDate", DateTime.Today);
-                            paymentCommand.Parameters.AddWithValue("@orderID", orderID);
-                            paymentCommand.ExecuteNonQuery();
-                        }
-                    }
-
+                    SqlConnection PayfrontStore = new SqlConnection(InitializeUser._key_con);
+                    PayfrontStore.Open();
                     MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)

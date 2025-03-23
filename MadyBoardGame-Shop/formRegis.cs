@@ -90,8 +90,8 @@ namespace MadyBoardGame_Shop
                     //ส่งข้อมูลไป Table MemberUsername
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
                     //ส่งข้อมูลไป Table Member
-                    string commandprom2 = "INSERT INTO Member (memName, memLName, memIdentityNum, Username, memPhoneNum , empIDregis , memRegisDate, memLocation , memBornDate) " +
-                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , 1 , @dateregis, @location,@BornDate)";
+                    string commandprom2 = "INSERT INTO Member (memName, memLName, memIdentityNum, Username, memPhoneNum , memRegisDate, memLocation , memBornDate) " +
+                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , @dateregis, @location,@BornDate)";
                     using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
