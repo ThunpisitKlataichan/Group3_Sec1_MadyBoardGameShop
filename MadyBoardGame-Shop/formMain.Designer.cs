@@ -89,7 +89,7 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(557, 454);
+            this.btn_exit.Location = new System.Drawing.Point(560, 454);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(176, 45);
@@ -140,7 +140,7 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(557, 511);
+            this.btn_LogOut.Location = new System.Drawing.Point(560, 508);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(176, 45);
@@ -252,7 +252,7 @@
             this.groupBox3.Controls.Add(this.buttonPacking);
             this.groupBox3.Location = new System.Drawing.Point(10, 357);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(173, 199);
+            this.groupBox3.Size = new System.Drawing.Size(173, 196);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Packing";
@@ -274,7 +274,7 @@
             this.groupBox4.Controls.Add(this.buttonShippingOrder);
             this.groupBox4.Location = new System.Drawing.Point(194, 357);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(177, 199);
+            this.groupBox4.Size = new System.Drawing.Size(177, 196);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Shipping";
@@ -303,15 +303,15 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnAddSupplier);
             this.groupBox5.Controls.Add(this.btnAddProduct);
+            this.groupBox5.Controls.Add(this.btnAddSupplier);
             this.groupBox5.Controls.Add(this.btn_stock);
             this.groupBox5.Location = new System.Drawing.Point(377, 357);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(171, 199);
+            this.groupBox5.Size = new System.Drawing.Size(171, 196);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Purchase";
+            this.groupBox5.Text = "Stock";
             // 
             // btnAddSupplier
             // 
@@ -326,7 +326,7 @@
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(3, 145);
+            this.btnAddProduct.Location = new System.Drawing.Point(3, 142);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(163, 45);
