@@ -31,8 +31,6 @@ namespace MadyBoardGame_Shop
 
         SqlConnection shippingconnect;
         SqlCommand shippingcommand;
-        SqlDataAdapter shippingdataadapter;
-        DataTable shippingdata;
 
         List<Panel> listpanel = new List<Panel>();
 
@@ -126,6 +124,7 @@ namespace MadyBoardGame_Shop
             byte[] img = (byte[])productdata.Rows[0]["ProductImg"];
             MemoryStream ms = new MemoryStream(img);
             pic.Image = Image.FromStream(ms);
+            pic.Click += PictureBox_Click;
 
             Label labelNameTitle = new Label();
             labelNameTitle.Text = "ชื่อ";
@@ -155,6 +154,7 @@ namespace MadyBoardGame_Shop
             numQuality.Minimum = 1;
             numQuality.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
             numQuality.Tag = "Quality";
+            numQuality.Click += Label_Click;
 
             Label labelCostTitle = new Label();
             labelCostTitle.Text = "ราคาซื้อ";
@@ -200,6 +200,7 @@ namespace MadyBoardGame_Shop
             panel.Click += Panel_Click;
 
             flowLayoutListProduct.Controls.Add(panel);
+            SetDetail(panel.Tag.ToString());
         }
 
         private void comboBoxSupp_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,13 +219,13 @@ namespace MadyBoardGame_Shop
             }
             
         }
-
         private void buttondelete_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             Panel panel = (Panel)btn.Parent;
             flowLayoutListProduct.Controls.Remove(panel);
             listpanel.Remove(panel);
+            CallDetailData(sender);
         }
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -266,37 +267,50 @@ namespace MadyBoardGame_Shop
                 {
                     panel = (Panel)((Button)sender).Parent;
                 }
+                else if (sender is NumericUpDown)
+                {
+                    panel = (Panel)((NumericUpDown)sender).Parent;
+                }
                 key_ProductID = panel.Tag.ToString();
-                productconnect = new SqlConnection(InitializeUser._key_con);
-                productconnect.Open();
-                string command = "SELECT ProductID , ProductName ,CostPrice , Price , ProductImg , SuppilerName , Quality FROM Products , Suppilers Where ProductID = @key_ProductID";
-                productcommand = new SqlCommand(command, productconnect);
-                productcommand.Parameters.AddWithValue("@key_ProductID", key_ProductID);
-                productadapter = new SqlDataAdapter(productcommand);
-                productdata2 = new DataTable();
-                productadapter.Fill(productdata2);
+                SetDetail(key_ProductID);
 
-                labelProname.Text = productdata2.Rows[0]["ProductName"].ToString();
-                labelCostPrice.Text = Convert.ToDecimal(productdata2.Rows[0]["CostPrice"]).ToString("N2");
-                labelPrice.Text = Convert.ToDecimal(productdata2.Rows[0]["Price"]).ToString("N2");
-                labelSupName.Text = productdata2.Rows[0]["SuppilerName"].ToString();
-                labelQuality.Text = productdata2.Rows[0]["Quality"].ToString();
-                byte[] img = (byte[])productdata2.Rows[0]["ProductImg"];
-                MemoryStream ms = new MemoryStream(img);
-                pictureBoxProduct.Image = Image.FromStream(ms);
-                pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        private void SetDetail(string key_ProductID)
+        {
+            productconnect = new SqlConnection(InitializeUser._key_con);
+            productconnect.Open();
+            string command = "SELECT ProductID , ProductName ,CostPrice , Price , ProductImg , SuppilerName , Quality FROM Products , Suppilers Where ProductID = @key_ProductID";
+            productcommand = new SqlCommand(command, productconnect);
+            productcommand.Parameters.AddWithValue("@key_ProductID", key_ProductID);
+            productadapter = new SqlDataAdapter(productcommand);
+            productdata2 = new DataTable();
+            productadapter.Fill(productdata2);
 
+            labelProname.Text = productdata2.Rows[0]["ProductName"].ToString();
+            labelCostPrice.Text = Convert.ToDecimal(productdata2.Rows[0]["CostPrice"]).ToString("N2");
+            labelPrice.Text = Convert.ToDecimal(productdata2.Rows[0]["Price"]).ToString("N2");
+            labelSupName.Text = productdata2.Rows[0]["SuppilerName"].ToString();
+            labelQuality.Text = productdata2.Rows[0]["Quality"].ToString();
+            byte[] img = (byte[])productdata2.Rows[0]["ProductImg"];
+            MemoryStream ms = new MemoryStream(img);
+            pictureBoxProduct.Image = Image.FromStream(ms);
+            pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
         private void buttonPur_Click(object sender, EventArgs e)
         {
             try
             {
+                if (listpanel.Count == 0)
+                {
+                    MessageBox.Show("ไม่มีสินค้าในรายการ");
+                    return;
+                }
                 string qry = @"
                 INSERT INTO Purchasing (PurlDate, empID) 
                 VALUES (@purlDate, @empID); 
@@ -305,6 +319,16 @@ namespace MadyBoardGame_Shop
                 productcommand.Parameters.AddWithValue("@purlDate", DateTime.Now);
                 productcommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
                 int purID = Convert.ToInt32(productcommand.ExecuteScalar());
+
+                shippingconnect = new SqlConnection(InitializeUser._key_con);
+                shippingconnect.Open();
+                qry = "INSERT INTO ShippingPur (ShippingStatus , ShippingDate , PurID) VALUES(@shippingStatus , @shippingDate , @purID)";
+                shippingcommand = new SqlCommand(qry, shippingconnect);
+                shippingcommand.Parameters.AddWithValue("@shippingStatus", "กำลังขับไปรับสินค้า");
+                shippingcommand.Parameters.AddWithValue("@shippingDate", DateTime.Now);
+                shippingcommand.Parameters.AddWithValue("@purID", purID);
+                shippingcommand.ExecuteNonQuery();
+
                 string ID = "";
                 int Quality = 0;
                 foreach (Control c in flowLayoutListProduct.Controls)
@@ -328,6 +352,8 @@ namespace MadyBoardGame_Shop
                     }
                 }
                 MessageBox.Show("ทำรายการสั่งซื้อสำเร็จ", "สั่งซื้อ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                flowLayoutListProduct.Controls.Clear();
+                listpanel.Clear();
             }
             catch(Exception ex)
             {
