@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -98,7 +99,7 @@ namespace MadyBoardGame_Shop
                     Label lblprodID = new Label();
                     lblprodID.Text = producttable.Rows[i]["ProductID"].ToString();
                     lblprodID.Tag = "ProductID";
-                    lblprodID.Visible = true;
+                    lblprodID.Visible = false;
                     lblprodID.Location = new Point(0, 0);
 
                     Label lblPrice = new Label();
@@ -116,13 +117,13 @@ namespace MadyBoardGame_Shop
                     panel.Click += Panel_Click;
                     btn.Click += Addtocart_click;
 
-                    panel.Controls.Add(lblPrice);
+                    panel.Controls.Add(lblPrice); // เพิ่ม Control ลงใน Panel
                     panel.Controls.Add(lblprodID);
                     panel.Controls.Add(lblprodName);
                     panel.Controls.Add(pic);
                     panel.Controls.Add(btn);
 
-                    lblprodName.MouseMove += lbl_MouseMove;
+                    lblprodName.MouseMove += lbl_MouseMove; // เกี่ยวกับการเปลี่ยนสีเมื่อเมาส์เข้าไป
                     lblprodName.MouseLeave += lbl_Leave;
                     lblprodID.MouseMove += lbl_MouseMove;
                     lblprodID.MouseLeave += lbl_Leave;
@@ -414,6 +415,7 @@ namespace MadyBoardGame_Shop
 
                 txtProductname.Text = producttable.Rows[0]["ProductName"].ToString();
                 txtPrice.Text = producttable.Rows[0]["Price"].ToString();
+                txtPrice.Text = Convert.ToDecimal(txtPrice.Text).ToString("N2") + " ฿";
                 txtProductType.Text = producttable.Rows[0]["ProductType"].ToString();
                 txtDesription.Text = producttable.Rows[0]["ProductDetail"].ToString();
                 byte[] imageBytes = (byte[])producttable.Rows[0]["ProductImg"];
@@ -425,8 +427,19 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        private void Checkpayment()
+        {
+            if (string.IsNullOrEmpty(comboBoxmethonPayment.Text))
+            {
+                MessageBox.Show("โปรดเลือกวิธีชำระเงิน" , "เกิดข้อผิดพลาด" , MessageBoxButtons.OK , MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+
         private void btnpayment_Click(object sender, EventArgs e)
         {
+            Checkpayment();
             CalculateTotalPrice();
             if (totalPrice == 0)
             {
@@ -452,10 +465,9 @@ namespace MadyBoardGame_Shop
                             paymentconnection = new SqlConnection(InitializeUser._key_con);
                             paymentconnection.Open();
                             int orderID = 0;
-                            string command = "INSERT INTO Orders (mem_ID, empID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @empID, @OrderDate)";
+                            string command = "INSERT INTO Orders (mem_ID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
                             ordercommand = new SqlCommand(command, orderconnection);
                             ordercommand.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
-                            ordercommand.Parameters.AddWithValue("@empID", "1");
                             ordercommand.Parameters.AddWithValue("@OrderDate", DateTime.Now);
                             orderID = (int)ordercommand.ExecuteScalar();
                             orderconnection.Close();
@@ -473,33 +485,42 @@ namespace MadyBoardGame_Shop
 
                                     if (lblProductID != null && quantityControl != null && priceLabel != null)
                                     {
-                                        string command1 = "INSERT INTO OrderDetials (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
+                                        string command1 = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
                                         orderdetailcommand = new SqlCommand(command1, orderdetailconnection);
                                         orderdetailcommand.Parameters.AddWithValue("@OrderID", orderID);
                                         orderdetailcommand.Parameters.AddWithValue("@ProductID", lblProductID.Text);
                                         orderdetailcommand.Parameters.AddWithValue("@Quantity", quantityControl.Value);
-
                                         orderdetailcommand.ExecuteNonQuery();
                                     }
                                 }
                             }
-                            orderdetailconnection.Close();
-                            
-                            string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
-                            paymentcommand = new SqlCommand(command2, paymentconnection);
-                            paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
-                            paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
-                            paymentcommand.Parameters.AddWithValue("@orderid", orderID);
-                            paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
-                            paymentcommand.ExecuteNonQuery();
-                            paymentconnection.Close();
+                        
+                        
+                        orderdetailconnection.Close();
+                        string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
+                        paymentcommand = new SqlCommand(command2, paymentconnection);
+                        paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
+                        paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
+                        paymentcommand.Parameters.AddWithValue("@orderid", orderID);
+                        paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
+                        paymentcommand.ExecuteNonQuery();
+                        paymentconnection.Close();
 
-                            MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
+                        SqlConnection packconnection = new SqlConnection(InitializeUser._key_con);
+                        packconnection.Open();
+                        string command3 = "INSERT INTO Packing(PackStatus , PackDate , OrderID , empID) VALUES(@packstatus , @packDate , @orderID , @empID)";
+                        SqlCommand packcommand = new SqlCommand(command3, packconnection);
+                        packcommand.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
+                        packcommand.Parameters.AddWithValue("@packDate", DateTime.Now);
+                        packcommand.Parameters.AddWithValue("@orderID", orderID);
+                        packcommand.Parameters.AddWithValue("@empID", 1); //เซ็ตค่าเป็น 1 ก่อน
+                        packcommand.ExecuteNonQuery();
+                        packconnection.Close();
+
+                        MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
 
                             flowLayoutCart.Controls.Clear();
                             panelscart.Clear();
-
-
                     }
                         catch (Exception ex)
                         {
@@ -559,7 +580,8 @@ namespace MadyBoardGame_Shop
                     {
                         if (control1 is Label label && label.Tag?.ToString()== "ProductName")
                         {
-                            if (label.Text.Contains(Productname))
+                            
+                            if (Regex.IsMatch(label.Text.ToLower(), Productname.ToLower()))
                             {
                                 panelsearch.Add(panel);
                             }

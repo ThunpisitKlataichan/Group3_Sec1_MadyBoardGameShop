@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtIdentityNum = new System.Windows.Forms.TextBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -224,7 +223,7 @@
             // 
             this.dateTimePicker_Born.Location = new System.Drawing.Point(154, 151);
             this.dateTimePicker_Born.Name = "dateTimePicker_Born";
-            this.dateTimePicker_Born.Size = new System.Drawing.Size(324, 29);
+            this.dateTimePicker_Born.Size = new System.Drawing.Size(193, 29);
             this.dateTimePicker_Born.TabIndex = 10;
             // 
             // label8
@@ -465,7 +464,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtIdentityNum;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
