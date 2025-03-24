@@ -47,7 +47,7 @@ namespace MadyBoardGame_Shop
                     dataGridMem.DataSource = dt.DefaultView;
 
                     // ซ่อน Columns ที่ไม่ต้องการ
-                    dataGridMem.Columns["mem_ID"].Visible = false;
+                    dataGridMem.Columns["memID"].Visible = false;
                     dataGridMem.Columns["mem_BornDate"].Visible = false;
                     dataGridMem.Columns["mem_RegisDate"].Visible = false;
                     dataGridMem.Columns["mem_IdentityNum"].Visible = false;
