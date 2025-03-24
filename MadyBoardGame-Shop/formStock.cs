@@ -152,9 +152,8 @@
                     productcommand.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
                     productcommand.Parameters.AddWithValue("@Price", txtPrice.Text);
                     productcommand.Parameters.AddWithValue("@ProductType", txtProductType.Text);
-                    productcommand.Parameters.AddWithValue("@ProductsShelf", checkBoxShowonShelf.Checked);
+                    productcommand.Parameters.AddWithValue("@ProductsShelf", checkBoxShowonShelf.Checked ? "0" : "1" );
 
-                    // จัดการรูปภาพ
                     byte[] imageBytes = null;
                     if (!string.IsNullOrEmpty(immage))
                     {
@@ -165,8 +164,8 @@
                             imageBytes = ms.ToArray();
                         }
                     }
-                    productcommand.Parameters.AddWithValue("@ProductImg", imageBytes == null ? DBNull.Value : (object)imageBytes);
 
+                    productcommand.Parameters.AddWithValue("@ProductImg", imageBytes == null ? DBNull.Value : (object)imageBytes);
                     productsconnection.Open();
                     productcommand.ExecuteNonQuery(); // execute query
                     productsconnection.Close();

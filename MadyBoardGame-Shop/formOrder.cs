@@ -465,10 +465,9 @@ namespace MadyBoardGame_Shop
                             paymentconnection = new SqlConnection(InitializeUser._key_con);
                             paymentconnection.Open();
                             int orderID = 0;
-                            string command = "INSERT INTO Orders (mem_ID, empID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @empID, @OrderDate)";
+                            string command = "INSERT INTO Orders (mem_ID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
                             ordercommand = new SqlCommand(command, orderconnection);
                             ordercommand.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
-                            ordercommand.Parameters.AddWithValue("@empID", "1");
                             ordercommand.Parameters.AddWithValue("@OrderDate", DateTime.Now);
                             orderID = (int)ordercommand.ExecuteScalar();
                             orderconnection.Close();
@@ -486,33 +485,42 @@ namespace MadyBoardGame_Shop
 
                                     if (lblProductID != null && quantityControl != null && priceLabel != null)
                                     {
-                                        string command1 = "INSERT INTO OrderDetials (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
+                                        string command1 = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
                                         orderdetailcommand = new SqlCommand(command1, orderdetailconnection);
                                         orderdetailcommand.Parameters.AddWithValue("@OrderID", orderID);
                                         orderdetailcommand.Parameters.AddWithValue("@ProductID", lblProductID.Text);
                                         orderdetailcommand.Parameters.AddWithValue("@Quantity", quantityControl.Value);
-
                                         orderdetailcommand.ExecuteNonQuery();
                                     }
                                 }
                             }
-                            orderdetailconnection.Close();
-                            
-                            string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
-                            paymentcommand = new SqlCommand(command2, paymentconnection);
-                            paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
-                            paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
-                            paymentcommand.Parameters.AddWithValue("@orderid", orderID);
-                            paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
-                            paymentcommand.ExecuteNonQuery();
-                            paymentconnection.Close();
+                        
+                        
+                        orderdetailconnection.Close();
+                        string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
+                        paymentcommand = new SqlCommand(command2, paymentconnection);
+                        paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
+                        paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
+                        paymentcommand.Parameters.AddWithValue("@orderid", orderID);
+                        paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
+                        paymentcommand.ExecuteNonQuery();
+                        paymentconnection.Close();
 
-                            MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
+                        SqlConnection packconnection = new SqlConnection(InitializeUser._key_con);
+                        packconnection.Open();
+                        string command3 = "INSERT INTO Packing(PackStatus , PackDate , OrderID , empID) VALUES(@packstatus , @packDate , @orderID , @empID)";
+                        SqlCommand packcommand = new SqlCommand(command3, packconnection);
+                        packcommand.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
+                        packcommand.Parameters.AddWithValue("@packDate", DateTime.Now);
+                        packcommand.Parameters.AddWithValue("@orderID", orderID);
+                        packcommand.Parameters.AddWithValue("@empID", 1); //เซ็ตค่าเป็น 1 ก่อน
+                        packcommand.ExecuteNonQuery();
+                        packconnection.Close();
+
+                        MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
 
                             flowLayoutCart.Controls.Clear();
                             panelscart.Clear();
-
-
                     }
                         catch (Exception ex)
                         {
