@@ -29,7 +29,6 @@
             string immage = ""; // เก็บชื่อไฟล์รูปภาพ
             int Productmark;
             string mystate = ""; // ใช้เพื่อระบุสถานะ (insert, update, view)
-            byte[] imageBytes = null; // เก็บข้อมูลรูปภาพแบบไบต์
 
             // เมื่อโหลดฟอร์มสินค้า
             private void formStock_Load(object sender, EventArgs e)

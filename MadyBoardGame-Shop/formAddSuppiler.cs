@@ -19,8 +19,6 @@ namespace MadyBoardGame_Shop
         }
         SqlConnection suppilerConnection;
         SqlCommand suppilerCommand;
-        SqlDataAdapter suppilerdataAdapter;
-        DataTable suppilerDataTable;
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try

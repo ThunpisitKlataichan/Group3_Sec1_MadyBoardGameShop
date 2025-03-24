@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MadyBoardGame_Shop
@@ -50,7 +41,7 @@ namespace MadyBoardGame_Shop
         }
         private void SetStage()
         {
-            switch(InitializeUser.UserState)
+            switch (InitializeUser.UserState)
             {
                 case "Employee":
                     groupBoxCashier.Enabled = true;
