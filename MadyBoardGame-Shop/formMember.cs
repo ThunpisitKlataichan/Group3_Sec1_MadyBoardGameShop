@@ -45,20 +45,18 @@ namespace MadyBoardGame_Shop
                     //ซ่่อนcolumsที่ไม่จำเป็นออก ให้แสดงเฉพาะ ชื่อ-นามสกุล
                     dataGridMem.Columns["memID"].Visible = false; // ซ่อน
                     dataGridMem.Columns["memBornDate"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["memBornDate"].Visible = false; // ซ่อน
                     dataGridMem.Columns["memRegisDate"].Visible = false; // ซ่อน
                     dataGridMem.Columns["memIdentityNum"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["memPhone"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["empIDregis"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memPhoneNum"].Visible = false; // ซ่อน
                     dataGridMem.Columns["memLocation"].Visible = false; // ซ่อน
                     dataGridMem.Columns["Username"].Visible = false; // ซ่อน
-                    //dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
                     //------------------------------------------------------------------//
 
 
                     //เปลี่ยนชื่อcolumnsใน dataGridView ให้เข้าใจง่ายขึ้น-----------------------------//
-                    dataGridMem.Columns["mem_Name"].HeaderText = "ชื่อ";
-                    dataGridMem.Columns["mem_LName"].HeaderText = "นามสกุล";
+                    dataGridMem.Columns["memName"].HeaderText = "ชื่อ";
+                    dataGridMem.Columns["memLName"].HeaderText = "นามสกุล";
                     //เคลียข้อมูลก่อนหน้า
                     textMen_LName.DataBindings.Clear();
                     textMen_Name.DataBindings.Clear();
@@ -67,12 +65,12 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_Born.DataBindings.Clear();
                     textLocation.DataBindings.Clear();
                     //ผูกข้อมูล
-                    textMen_Name.DataBindings.Add("Text", dt, "mem_Name");
-                    textMen_LName.DataBindings.Add("Text", dt, "mem_LName");
-                    textIdentityNum.DataBindings.Add("Text", dt, "mem_IdentityNum");
-                    textPhoneNum.DataBindings.Add("Text", dt, "mem_Phone");
-                    dateTimePicker_Born.DataBindings.Add("Value", dt, "mem_BornDate", true, DataSourceUpdateMode.OnPropertyChanged);
-                    textLocation.DataBindings.Add("Text", dt, "mem_Location");
+                    textMen_Name.DataBindings.Add("Text", dt, "memName");
+                    textMen_LName.DataBindings.Add("Text", dt, "memLName");
+                    textIdentityNum.DataBindings.Add("Text", dt, "memIdentityNum");
+                    textPhoneNum.DataBindings.Add("Text", dt, "memPhoneNum");
+                    dateTimePicker_Born.DataBindings.Add("Value", dt, "memBornDate", true, DataSourceUpdateMode.OnPropertyChanged);
+                    textLocation.DataBindings.Add("Text", dt, "memLocation");
                     //ตำแหน่งปัจจุบันของข้อมูล
                     mem_Manager = (CurrencyManager)this.BindingContext[dt];
                     
@@ -147,13 +145,18 @@ namespace MadyBoardGame_Shop
             }
             else
             {
-                dt.DefaultView.RowFilter = $"mem_Name LIKE '%{searchText}%'";
+                dt.DefaultView.RowFilter = $"memName LIKE '%{searchText}%'";
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

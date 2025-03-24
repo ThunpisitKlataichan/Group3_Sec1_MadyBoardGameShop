@@ -83,12 +83,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสมาชิค";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // dateTimePicker_Born
             // 
             this.dateTimePicker_Born.Location = new System.Drawing.Point(148, 139);
             this.dateTimePicker_Born.Name = "dateTimePicker_Born";
-            this.dateTimePicker_Born.Size = new System.Drawing.Size(392, 34);
+            this.dateTimePicker_Born.Size = new System.Drawing.Size(392, 29);
             this.dateTimePicker_Born.TabIndex = 20;
             // 
             // label8
@@ -96,7 +97,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(85, 139);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 29);
+            this.label8.Size = new System.Drawing.Size(57, 24);
             this.label8.TabIndex = 19;
             this.label8.Text = "วันเกิด";
             // 
@@ -105,7 +106,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(506, 27);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(117, 33);
+            this.checkBox1.Size = new System.Drawing.Size(93, 28);
             this.checkBox1.TabIndex = 18;
             this.checkBox1.Text = "ล็อกบัญชี";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -132,14 +133,14 @@
             // 
             this.textPhoneNum.Location = new System.Drawing.Point(413, 98);
             this.textPhoneNum.Name = "textPhoneNum";
-            this.textPhoneNum.Size = new System.Drawing.Size(164, 34);
+            this.textPhoneNum.Size = new System.Drawing.Size(164, 29);
             this.textPhoneNum.TabIndex = 13;
             // 
             // textMen_LName
             // 
             this.textMen_LName.Location = new System.Drawing.Point(151, 63);
             this.textMen_LName.Name = "textMen_LName";
-            this.textMen_LName.Size = new System.Drawing.Size(300, 34);
+            this.textMen_LName.Size = new System.Drawing.Size(300, 29);
             this.textMen_LName.TabIndex = 12;
             // 
             // label1
@@ -147,7 +148,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(115, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 29);
+            this.label1.Size = new System.Drawing.Size(30, 24);
             this.label1.TabIndex = 9;
             this.label1.Text = "ชื่อ";
             // 
@@ -155,7 +156,7 @@
             // 
             this.textMen_Name.Location = new System.Drawing.Point(151, 28);
             this.textMen_Name.Name = "textMen_Name";
-            this.textMen_Name.Size = new System.Drawing.Size(300, 34);
+            this.textMen_Name.Size = new System.Drawing.Size(300, 29);
             this.textMen_Name.TabIndex = 11;
             // 
             // label3
@@ -163,7 +164,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(364, 101);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 29);
+            this.label3.Size = new System.Drawing.Size(43, 24);
             this.label3.TabIndex = 14;
             this.label3.Text = "เบอร์";
             // 
@@ -172,7 +173,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(183, 29);
+            this.label4.Size = new System.Drawing.Size(140, 24);
             this.label4.TabIndex = 16;
             this.label4.Text = "รหัสบัตรประชาชน";
             // 
@@ -180,7 +181,7 @@
             // 
             this.textIdentityNum.Location = new System.Drawing.Point(151, 98);
             this.textIdentityNum.Name = "textIdentityNum";
-            this.textIdentityNum.Size = new System.Drawing.Size(209, 34);
+            this.textIdentityNum.Size = new System.Drawing.Size(209, 29);
             this.textIdentityNum.TabIndex = 15;
             // 
             // label2
@@ -188,7 +189,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(75, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 29);
+            this.label2.Size = new System.Drawing.Size(70, 24);
             this.label2.TabIndex = 10;
             this.label2.Text = "นามสกุล";
             // 
@@ -227,7 +228,7 @@
             // 
             this.text_find.Location = new System.Drawing.Point(13, 94);
             this.text_find.Name = "text_find";
-            this.text_find.Size = new System.Drawing.Size(178, 34);
+            this.text_find.Size = new System.Drawing.Size(178, 29);
             this.text_find.TabIndex = 1;
             // 
             // label6
@@ -336,7 +337,7 @@
             // 
             // formMember
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 599);
             this.Controls.Add(this.groupBox2);
