@@ -43,14 +43,14 @@ namespace MadyBoardGame_Shop
                     adapter.Fill(dt);
                     dataGridMem.DataSource = dt;
                     //ซ่่อนcolumsที่ไม่จำเป็นออก ให้แสดงเฉพาะ ชื่อ-นามสกุล
-                    dataGridMem.Columns["mem_ID"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_BornDate"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_BornDate"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_RegisDate"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_IdentityNum"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_Phone"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["emp_IDregis"].Visible = false; // ซ่อน
-                    dataGridMem.Columns["mem_Location"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memID"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memBornDate"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memBornDate"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memRegisDate"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memIdentityNum"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memPhone"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["empIDregis"].Visible = false; // ซ่อน
+                    dataGridMem.Columns["memLocation"].Visible = false; // ซ่อน
                     dataGridMem.Columns["Username"].Visible = false; // ซ่อน
                     //dataGridMem.Columns["SSMA_TimeStamp"].Visible = false; // ซ่อน
                     //------------------------------------------------------------------//

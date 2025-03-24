@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxOrderdetail = new System.Windows.Forms.GroupBox();
             this.dataGridOrderDetail = new System.Windows.Forms.DataGridView();
             this.Productname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,16 +56,6 @@
             this.panel1.Size = new System.Drawing.Size(941, 119);
             this.panel1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(300, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 75);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ยืนยันจัดส่ง";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // buttonBack
             // 
             this.buttonBack.BackColor = System.Drawing.Color.IndianRed;
@@ -77,8 +67,19 @@
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(300, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(244, 75);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ยืนยันจัดส่ง";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 123);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -87,21 +88,13 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(401, 49);
             this.panel2.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(298, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 34);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "ยืนยันจัดส่ง";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -111,6 +104,15 @@
             this.label2.Size = new System.Drawing.Size(239, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "ออร์เดอร์ที่ 11 วันที่ 22/03/2568";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(298, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 34);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "ยืนยันจัดส่ง";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBoxOrderdetail
             // 
@@ -153,7 +155,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formPacking";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);

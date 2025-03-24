@@ -29,10 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,12 +53,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,6 +70,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(997, 103);
             this.panel1.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnBack.Location = new System.Drawing.Point(17, 38);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(82, 38);
+            this.btnBack.TabIndex = 22;
+            this.btnBack.Text = "back";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // label8
             // 
@@ -113,6 +124,56 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(971, 54);
             this.panel2.TabIndex = 1;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.OrangeRed;
+            this.button4.Location = new System.Drawing.Point(281, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(82, 38);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "ยกเลิก";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.YellowGreen;
+            this.button5.Location = new System.Drawing.Point(193, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(82, 38);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "เเก้ไข";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.YellowGreen;
+            this.button1.Location = new System.Drawing.Point(17, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 38);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "เพิ่ม";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.YellowGreen;
+            this.button2.Location = new System.Drawing.Point(105, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(82, 38);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "บันทึก";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.OrangeRed;
+            this.button3.Location = new System.Drawing.Point(369, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(82, 38);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "ลบ";
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -228,67 +289,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(354, 230);
             this.dataGridView1.TabIndex = 16;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.YellowGreen;
-            this.button1.Location = new System.Drawing.Point(17, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 38);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "เพิ่ม";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.YellowGreen;
-            this.button2.Location = new System.Drawing.Point(105, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 38);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "บันทึก";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.OrangeRed;
-            this.button3.Location = new System.Drawing.Point(369, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 38);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "ลบ";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.OrangeRed;
-            this.button4.Location = new System.Drawing.Point(281, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(82, 38);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "ยกเลิก";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.YellowGreen;
-            this.button5.Location = new System.Drawing.Point(193, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(82, 38);
-            this.button5.TabIndex = 21;
-            this.button5.Text = "เเก้ไข";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnBack.Location = new System.Drawing.Point(17, 38);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(82, 38);
-            this.btnBack.TabIndex = 22;
-            this.btnBack.Text = "back";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // formEmployeeManage
             // 
