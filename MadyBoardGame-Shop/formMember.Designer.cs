@@ -49,9 +49,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.btn_Edit = new System.Windows.Forms.Button();
-            this.btn_Del = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_Add = new System.Windows.Forms.Button();
             this.btn_Last = new System.Windows.Forms.Button();
             this.btn_Next = new System.Windows.Forms.Button();
@@ -83,6 +83,7 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสมาชิค";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // dateTimePicker_Born
             // 
@@ -247,7 +248,6 @@
             this.btn_Save.TabIndex = 29;
             this.btn_Save.Text = "บันทึก";
             this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // button4
             // 
@@ -259,35 +259,32 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // btn_Cancel
+            // button3
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(497, 462);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(111, 38);
-            this.btn_Cancel.TabIndex = 27;
-            this.btn_Cancel.Text = "ยกเลิก";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            this.button3.Location = new System.Drawing.Point(497, 462);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 38);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "ยกเลิก";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // btn_Edit
+            // button2
             // 
-            this.btn_Edit.Location = new System.Drawing.Point(263, 506);
-            this.btn_Edit.Name = "btn_Edit";
-            this.btn_Edit.Size = new System.Drawing.Size(111, 38);
-            this.btn_Edit.TabIndex = 26;
-            this.btn_Edit.Text = "แก้ไข";
-            this.btn_Edit.UseVisualStyleBackColor = true;
-            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
+            this.button2.Location = new System.Drawing.Point(263, 506);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(111, 38);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "แก้ไข";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // btn_Del
+            // button1
             // 
-            this.btn_Del.Location = new System.Drawing.Point(380, 506);
-            this.btn_Del.Name = "btn_Del";
-            this.btn_Del.Size = new System.Drawing.Size(111, 38);
-            this.btn_Del.TabIndex = 25;
-            this.btn_Del.Text = "ลบ";
-            this.btn_Del.UseVisualStyleBackColor = true;
-            this.btn_Del.Click += new System.EventHandler(this.btn_Del_Click);
+            this.button1.Location = new System.Drawing.Point(380, 506);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 38);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "ลบ";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btn_Add
             // 
@@ -297,7 +294,6 @@
             this.btn_Add.TabIndex = 24;
             this.btn_Add.Text = "เพิ่ม";
             this.btn_Add.UseVisualStyleBackColor = true;
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // btn_Last
             // 
@@ -347,9 +343,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Edit);
-            this.Controls.Add(this.btn_Del);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.btn_Last);
             this.Controls.Add(this.btn_Next);
@@ -384,9 +380,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.Button btn_Edit;
-        private System.Windows.Forms.Button btn_Del;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Add;
         private System.Windows.Forms.Button btn_Last;
         private System.Windows.Forms.Button btn_Next;

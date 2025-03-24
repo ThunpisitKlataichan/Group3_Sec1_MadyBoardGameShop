@@ -47,6 +47,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
+    <Compile Include="formAddProductQuality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAddProductQuality.Designer.cs">
+      <DependentUpon>formAddProductQuality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formAddSuppiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAddSuppiler.Designer.cs">
+      <DependentUpon>formAddSuppiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formShippingOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formShippingOrder.Designer.cs">
+      <DependentUpon>formShippingOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formPacking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPacking.Designer.cs">
+      <DependentUpon>formPacking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formCal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCal.Designer.cs">
+      <DependentUpon>formCal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formEmployeeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formEmployeeManage.Designer.cs">
+      <DependentUpon>formEmployeeManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMember.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +100,12 @@
     </Compile>
     <Compile Include="formRegis.Designer.cs">
       <DependentUpon>formRegis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formShippingPur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formShippingPur.Designer.cs">
+      <DependentUpon>formShippingPur.cs</DependentUpon>
     </Compile>
     <Compile Include="InitializeUser.cs" />
     <Compile Include="formLogin.cs">
@@ -86,6 +128,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="formAddProductQuality.resx">
+      <DependentUpon>formAddProductQuality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAddSuppiler.resx">
+      <DependentUpon>formAddSuppiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCal.resx">
+      <DependentUpon>formCal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formEmployeeManage.resx">
+      <DependentUpon>formEmployeeManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,11 +152,21 @@
     <EmbeddedResource Include="formOrder.resx">
       <DependentUpon>formOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formPacking.resx">
+      <DependentUpon>formPacking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formRegis.resx">
       <DependentUpon>formRegis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formShippingOrder.resx">
+      <DependentUpon>formShippingOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formShippingPur.resx">
+      <DependentUpon>formShippingPur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formStock.resx">
       <DependentUpon>formStock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
