@@ -47,18 +47,15 @@ namespace MadyBoardGame_Shop
                     dataGridMem.DataSource = dt.DefaultView;
 
                     // ซ่อน Columns ที่ไม่ต้องการ
-                    dataGridMem.Columns["mem_ID"].Visible = false;
-                    dataGridMem.Columns["mem_BornDate"].Visible = false;
-                    dataGridMem.Columns["mem_RegisDate"].Visible = false;
-                    dataGridMem.Columns["mem_IdentityNum"].Visible = false;
-                    dataGridMem.Columns["mem_Phone"].Visible = false;
-                    dataGridMem.Columns["emp_IDregis"].Visible = false;
-                    dataGridMem.Columns["mem_Location"].Visible = false;
+                    dataGridMem.Columns["memID"].Visible = false;
+                    dataGridMem.Columns["memBornDate"].Visible = false;
+                    dataGridMem.Columns["memRegisDate"].Visible = false;
+                    dataGridMem.Columns["memIdentityNum"].Visible = false;
+                    dataGridMem.Columns["memPhonenum"].Visible = false;
+                    dataGridMem.Columns["memLocation"].Visible = false;
                     dataGridMem.Columns["Username"].Visible = false;
-
-
-                    dataGridMem.Columns["mem_Name"].HeaderText = "ชื่อ";
-                    dataGridMem.Columns["mem_LName"].HeaderText = "นามสกุล";
+                    dataGridMem.Columns["memName"].HeaderText = "ชื่อ";
+                    dataGridMem.Columns["memLName"].HeaderText = "นามสกุล";
 
                     //  ใช้ DefaultView เพื่อให้สามารถกรองข้อมูลได้
                     mem_Manager = (CurrencyManager)this.BindingContext[dt.DefaultView];
@@ -223,12 +220,12 @@ namespace MadyBoardGame_Shop
             textLocation.DataBindings.Clear();
 
             // ใช้ DefaultView แทน DataTable ตรงๆ
-            textMen_Name.DataBindings.Add("Text", dt.DefaultView, "mem_Name");
-            textMen_LName.DataBindings.Add("Text", dt.DefaultView, "mem_LName");
-            textIdentityNum.DataBindings.Add("Text", dt.DefaultView, "mem_IdentityNum");
-            textPhoneNum.DataBindings.Add("Text", dt.DefaultView, "mem_Phone");
-            dateTimePicker_Born.DataBindings.Add("Value", dt.DefaultView, "mem_BornDate", true, DataSourceUpdateMode.OnPropertyChanged);
-            textLocation.DataBindings.Add("Text", dt.DefaultView, "mem_Location");
+            textMen_Name.DataBindings.Add("Text", dt.DefaultView, "memName");
+            textMen_LName.DataBindings.Add("Text", dt.DefaultView, "memLName");
+            textIdentityNum.DataBindings.Add("Text", dt.DefaultView, "memIdentityNum");
+            textPhoneNum.DataBindings.Add("Text", dt.DefaultView, "memPhonenum");
+            dateTimePicker_Born.DataBindings.Add("Value", dt.DefaultView, "memBornDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            textLocation.DataBindings.Add("Text", dt.DefaultView, "memLocation");
         }
         private void button4_Click(object sender, EventArgs e)
         {

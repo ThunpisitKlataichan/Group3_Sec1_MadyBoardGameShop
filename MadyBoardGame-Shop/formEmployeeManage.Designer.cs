@@ -47,12 +47,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBoxPosition = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -241,13 +241,6 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "ตำเเหน่ง :";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(668, 140);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(280, 29);
-            this.textBox3.TabIndex = 11;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -290,17 +283,25 @@
             this.dataGridView1.Size = new System.Drawing.Size(354, 230);
             this.dataGridView1.TabIndex = 16;
             // 
+            // comboBoxPosition
+            // 
+            this.comboBoxPosition.FormattingEnabled = true;
+            this.comboBoxPosition.Location = new System.Drawing.Point(668, 142);
+            this.comboBoxPosition.Name = "comboBoxPosition";
+            this.comboBoxPosition.Size = new System.Drawing.Size(280, 32);
+            this.comboBoxPosition.TabIndex = 17;
+            // 
             // formEmployeeManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 458);
+            this.ClientSize = new System.Drawing.Size(960, 461);
+            this.Controls.Add(this.comboBoxPosition);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label4);
@@ -339,7 +340,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label7;
@@ -353,5 +353,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBoxPosition;
     }
 }

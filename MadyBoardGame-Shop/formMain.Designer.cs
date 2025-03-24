@@ -34,12 +34,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Order = new System.Windows.Forms.Button();
             this.groupBoxUser = new System.Windows.Forms.GroupBox();
+            this.pictureUserPic = new System.Windows.Forms.PictureBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.btn_LogOut = new System.Windows.Forms.Button();
             this.groupBoxCashier = new System.Windows.Forms.GroupBox();
             this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonStoreInfo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -54,8 +55,8 @@
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.btnAddSupplier = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureUserPic = new System.Windows.Forms.PictureBox();
             this.groupBoxUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
             this.groupMember.SuspendLayout();
@@ -63,7 +64,6 @@
             this.groupShipping.SuspendLayout();
             this.groupboxStock.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -131,6 +131,14 @@
             this.groupBoxUser.TabIndex = 6;
             this.groupBoxUser.TabStop = false;
             // 
+            // pictureUserPic
+            // 
+            this.pictureUserPic.Location = new System.Drawing.Point(380, 17);
+            this.pictureUserPic.Name = "pictureUserPic";
+            this.pictureUserPic.Size = new System.Drawing.Size(50, 50);
+            this.pictureUserPic.TabIndex = 1;
+            this.pictureUserPic.TabStop = false;
+            // 
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
@@ -176,7 +184,7 @@
             // 
             // groupBoxmanager
             // 
-            this.groupBoxmanager.Controls.Add(this.button4);
+            this.groupBoxmanager.Controls.Add(this.buttonStoreInfo);
             this.groupBoxmanager.Controls.Add(this.button1);
             this.groupBoxmanager.Controls.Add(this.buttonformEmpmange);
             this.groupBoxmanager.Controls.Add(this.button2);
@@ -188,15 +196,15 @@
             this.groupBoxmanager.TabStop = false;
             this.groupBoxmanager.Text = "Manager";
             // 
-            // button4
+            // buttonStoreInfo
             // 
-            this.button4.Location = new System.Drawing.Point(183, 88);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(163, 45);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "ข้อมูลร้านค้า";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonStoreInfo.Location = new System.Drawing.Point(183, 88);
+            this.buttonStoreInfo.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonStoreInfo.Name = "buttonStoreInfo";
+            this.buttonStoreInfo.Size = new System.Drawing.Size(163, 45);
+            this.buttonStoreInfo.TabIndex = 5;
+            this.buttonStoreInfo.Text = "ข้อมูลร้านค้า";
+            this.buttonStoreInfo.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -348,20 +356,12 @@
             this.panel1.Size = new System.Drawing.Size(774, 150);
             this.panel1.TabIndex = 13;
             // 
-            // pictureUserPic
-            // 
-            this.pictureUserPic.Location = new System.Drawing.Point(380, 17);
-            this.pictureUserPic.Name = "pictureUserPic";
-            this.pictureUserPic.Size = new System.Drawing.Size(50, 50);
-            this.pictureUserPic.TabIndex = 1;
-            this.pictureUserPic.TabStop = false;
-            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(750, 568);
+            this.ClientSize = new System.Drawing.Size(746, 568);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupboxStock);
             this.Controls.Add(this.groupShipping);
@@ -380,6 +380,7 @@
             this.Load += new System.EventHandler(this.formMain_Load);
             this.groupBoxUser.ResumeLayout(false);
             this.groupBoxUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).EndInit();
             this.groupBoxCashier.ResumeLayout(false);
             this.groupBoxmanager.ResumeLayout(false);
             this.groupMember.ResumeLayout(false);
@@ -388,7 +389,6 @@
             this.groupboxStock.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,7 +420,7 @@
         private System.Windows.Forms.Button buttonShippingPur;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddSupplier;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonStoreInfo;
         private System.Windows.Forms.PictureBox pictureUserPic;
     }
 }
