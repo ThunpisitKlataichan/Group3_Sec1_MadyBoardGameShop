@@ -83,7 +83,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสมาชิค";
-            
             // 
             // dateTimePicker_Born
             // 
@@ -201,6 +200,7 @@
             this.dataGridMem.RowHeadersWidth = 4;
             this.dataGridMem.Size = new System.Drawing.Size(321, 560);
             this.dataGridMem.TabIndex = 19;
+            this.dataGridMem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridMem_CellContentClick);
             // 
             // groupBox2
             // 

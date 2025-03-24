@@ -188,7 +188,7 @@ namespace MadyBoardGame_Shop
             }
             else
             {
-                dt.DefaultView.RowFilter = $"mem_Name LIKE '%{searchText}%'";
+                dt.DefaultView.RowFilter = $"memName LIKE '%{searchText}%'";
             }
             /// เปลี่ยน DataSource ของ DataGridView ให้ใช้ข้อมูลที่ถูกกรอง
             dataGridMem.DataSource = dt.DefaultView;
@@ -311,8 +311,49 @@ namespace MadyBoardGame_Shop
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+
             formRegis form = new formRegis();
             form.ShowDialog();
+            dt.Clear();
+            InitializeUser.Confic();
+            using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Member";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    adapter.Fill(dt);
+
+                    // ใช้ DefaultView แทน DataTable ตรงๆ
+                    dataGridMem.DataSource = dt.DefaultView;
+
+                    // ซ่อน Columns ที่ไม่ต้องการ
+                    dataGridMem.Columns["memID"].Visible = false;
+                    dataGridMem.Columns["memBornDate"].Visible = false;
+                    dataGridMem.Columns["memRegisDate"].Visible = false;
+                    dataGridMem.Columns["memIdentityNum"].Visible = false;
+                    dataGridMem.Columns["memPhonenum"].Visible = false;
+                    dataGridMem.Columns["memLocation"].Visible = false;
+                    dataGridMem.Columns["Username"].Visible = false;
+                    dataGridMem.Columns["memName"].HeaderText = "ชื่อ";
+                    dataGridMem.Columns["memLName"].HeaderText = "นามสกุล";
+
+                    //  ใช้ DefaultView เพื่อให้สามารถกรองข้อมูลได้
+                    mem_Manager = (CurrencyManager)this.BindingContext[dt.DefaultView];
+
+                    //  รีเซ็ตตำแหน่งไปที่แถวแรก
+                    if (mem_Manager.Count > 0)
+                    {
+                        mem_Manager.Position = 0;
+                        dataGridMem.CurrentCell = dataGridMem.Rows[0].Cells[1];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -368,10 +409,10 @@ namespace MadyBoardGame_Shop
         {   /* check รหัสบัตรปชช เช่น เลขไม่ครบ13หลัก
                                       มีตัวอักษรอยู่ไหม
                                       มีจริงไหม*/
-            if (!ValidateThaiID(textIdentityNum.Text))
+            /*if (!ValidateThaiID(textIdentityNum.Text))
             {
                 return;
-            }
+            }*/
             using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
             {
                 try
@@ -480,6 +521,11 @@ namespace MadyBoardGame_Shop
                     }
                 }
             }
+        }
+
+        private void dataGridMem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
