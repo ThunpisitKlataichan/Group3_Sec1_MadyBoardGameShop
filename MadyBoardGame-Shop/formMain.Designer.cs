@@ -33,10 +33,10 @@
             this.btn_exit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Order = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxUser = new System.Windows.Forms.GroupBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.btn_LogOut = new System.Windows.Forms.Button();
-            this.groupBoxEmp = new System.Windows.Forms.GroupBox();
+            this.groupBoxCashier = new System.Windows.Forms.GroupBox();
             this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -44,24 +44,26 @@
             this.buttonformEmpmange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupMember = new System.Windows.Forms.GroupBox();
+            this.groupPacking = new System.Windows.Forms.GroupBox();
             this.buttonPacking = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupShipping = new System.Windows.Forms.GroupBox();
             this.buttonShippingPur = new System.Windows.Forms.Button();
             this.buttonShippingOrder = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnAddSupplier = new System.Windows.Forms.Button();
+            this.groupboxStock = new System.Windows.Forms.GroupBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
+            this.btnAddSupplier = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
-            this.groupBoxEmp.SuspendLayout();
+            this.pictureUserPic = new System.Windows.Forms.PictureBox();
+            this.groupBoxUser.SuspendLayout();
+            this.groupBoxCashier.SuspendLayout();
             this.groupBoxmanager.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.groupMember.SuspendLayout();
+            this.groupPacking.SuspendLayout();
+            this.groupShipping.SuspendLayout();
+            this.groupboxStock.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -119,14 +121,15 @@
             this.btn_Order.UseVisualStyleBackColor = true;
             this.btn_Order.Click += new System.EventHandler(this.btn_Order_Click);
             // 
-            // groupBox1
+            // groupBoxUser
             // 
-            this.groupBox1.Controls.Add(this.labelUsername);
-            this.groupBox1.Location = new System.Drawing.Point(25, 67);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(436, 73);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
+            this.groupBoxUser.Controls.Add(this.pictureUserPic);
+            this.groupBoxUser.Controls.Add(this.labelUsername);
+            this.groupBoxUser.Location = new System.Drawing.Point(25, 67);
+            this.groupBoxUser.Name = "groupBoxUser";
+            this.groupBoxUser.Size = new System.Drawing.Size(436, 73);
+            this.groupBoxUser.TabIndex = 6;
+            this.groupBoxUser.TabStop = false;
             // 
             // labelUsername
             // 
@@ -149,16 +152,16 @@
             this.btn_LogOut.UseVisualStyleBackColor = false;
             this.btn_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);
             // 
-            // groupBoxEmp
+            // groupBoxCashier
             // 
-            this.groupBoxEmp.Controls.Add(this.buttonCashierCal);
-            this.groupBoxEmp.Controls.Add(this.btn_member);
-            this.groupBoxEmp.Location = new System.Drawing.Point(194, 144);
-            this.groupBoxEmp.Name = "groupBoxEmp";
-            this.groupBoxEmp.Size = new System.Drawing.Size(177, 204);
-            this.groupBoxEmp.TabIndex = 8;
-            this.groupBoxEmp.TabStop = false;
-            this.groupBoxEmp.Text = "Cashier";
+            this.groupBoxCashier.Controls.Add(this.buttonCashierCal);
+            this.groupBoxCashier.Controls.Add(this.btn_member);
+            this.groupBoxCashier.Location = new System.Drawing.Point(194, 144);
+            this.groupBoxCashier.Name = "groupBoxCashier";
+            this.groupBoxCashier.Size = new System.Drawing.Size(177, 204);
+            this.groupBoxCashier.TabIndex = 8;
+            this.groupBoxCashier.TabStop = false;
+            this.groupBoxCashier.Text = "Cashier";
             // 
             // buttonCashierCal
             // 
@@ -237,25 +240,25 @@
             this.button3.Text = "รายงานสินค้า";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // groupMember
             // 
-            this.groupBox2.Controls.Add(this.btn_Order);
-            this.groupBox2.Location = new System.Drawing.Point(10, 144);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(173, 204);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Member";
+            this.groupMember.Controls.Add(this.btn_Order);
+            this.groupMember.Location = new System.Drawing.Point(10, 144);
+            this.groupMember.Name = "groupMember";
+            this.groupMember.Size = new System.Drawing.Size(173, 204);
+            this.groupMember.TabIndex = 4;
+            this.groupMember.TabStop = false;
+            this.groupMember.Text = "Member";
             // 
-            // groupBox3
+            // groupPacking
             // 
-            this.groupBox3.Controls.Add(this.buttonPacking);
-            this.groupBox3.Location = new System.Drawing.Point(10, 357);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(173, 196);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Packing";
+            this.groupPacking.Controls.Add(this.buttonPacking);
+            this.groupPacking.Location = new System.Drawing.Point(10, 357);
+            this.groupPacking.Name = "groupPacking";
+            this.groupPacking.Size = new System.Drawing.Size(173, 196);
+            this.groupPacking.TabIndex = 10;
+            this.groupPacking.TabStop = false;
+            this.groupPacking.Text = "Packing";
             // 
             // buttonPacking
             // 
@@ -268,16 +271,16 @@
             this.buttonPacking.UseVisualStyleBackColor = true;
             this.buttonPacking.Click += new System.EventHandler(this.buttonPacking_Click);
             // 
-            // groupBox4
+            // groupShipping
             // 
-            this.groupBox4.Controls.Add(this.buttonShippingPur);
-            this.groupBox4.Controls.Add(this.buttonShippingOrder);
-            this.groupBox4.Location = new System.Drawing.Point(194, 357);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(177, 196);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Shipping";
+            this.groupShipping.Controls.Add(this.buttonShippingPur);
+            this.groupShipping.Controls.Add(this.buttonShippingOrder);
+            this.groupShipping.Location = new System.Drawing.Point(194, 357);
+            this.groupShipping.Name = "groupShipping";
+            this.groupShipping.Size = new System.Drawing.Size(177, 196);
+            this.groupShipping.TabIndex = 11;
+            this.groupShipping.TabStop = false;
+            this.groupShipping.Text = "Shipping";
             // 
             // buttonShippingPur
             // 
@@ -301,28 +304,17 @@
             this.buttonShippingOrder.UseVisualStyleBackColor = true;
             this.buttonShippingOrder.Click += new System.EventHandler(this.buttonShippingOrder_Click);
             // 
-            // groupBox5
+            // groupboxStock
             // 
-            this.groupBox5.Controls.Add(this.btnAddProduct);
-            this.groupBox5.Controls.Add(this.btnAddSupplier);
-            this.groupBox5.Controls.Add(this.btn_stock);
-            this.groupBox5.Location = new System.Drawing.Point(377, 357);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(171, 196);
-            this.groupBox5.TabIndex = 12;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Stock";
-            // 
-            // btnAddSupplier
-            // 
-            this.btnAddSupplier.Location = new System.Drawing.Point(3, 88);
-            this.btnAddSupplier.Margin = new System.Windows.Forms.Padding(6);
-            this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(163, 45);
-            this.btnAddSupplier.TabIndex = 4;
-            this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
-            this.btnAddSupplier.UseVisualStyleBackColor = true;
-            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            this.groupboxStock.Controls.Add(this.btnAddProduct);
+            this.groupboxStock.Controls.Add(this.btnAddSupplier);
+            this.groupboxStock.Controls.Add(this.btn_stock);
+            this.groupboxStock.Location = new System.Drawing.Point(377, 357);
+            this.groupboxStock.Name = "groupboxStock";
+            this.groupboxStock.Size = new System.Drawing.Size(171, 196);
+            this.groupboxStock.TabIndex = 12;
+            this.groupboxStock.TabStop = false;
+            this.groupboxStock.Text = "Stock";
             // 
             // btnAddProduct
             // 
@@ -335,15 +327,34 @@
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
+            // btnAddSupplier
+            // 
+            this.btnAddSupplier.Location = new System.Drawing.Point(3, 88);
+            this.btnAddSupplier.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddSupplier.Name = "btnAddSupplier";
+            this.btnAddSupplier.Size = new System.Drawing.Size(163, 45);
+            this.btnAddSupplier.TabIndex = 4;
+            this.btnAddSupplier.Text = "เพิ่มผู้จัดจำหน่าย";
+            this.btnAddSupplier.UseVisualStyleBackColor = true;
+            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBoxUser);
             this.panel1.Location = new System.Drawing.Point(-6, -16);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(774, 150);
             this.panel1.TabIndex = 13;
+            // 
+            // pictureUserPic
+            // 
+            this.pictureUserPic.Location = new System.Drawing.Point(380, 17);
+            this.pictureUserPic.Name = "pictureUserPic";
+            this.pictureUserPic.Size = new System.Drawing.Size(50, 50);
+            this.pictureUserPic.TabIndex = 1;
+            this.pictureUserPic.TabStop = false;
             // 
             // formMain
             // 
@@ -352,14 +363,14 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(750, 568);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupboxStock);
+            this.Controls.Add(this.groupShipping);
+            this.Controls.Add(this.groupPacking);
+            this.Controls.Add(this.groupMember);
             this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.groupBoxmanager);
             this.Controls.Add(this.btn_exit);
-            this.Controls.Add(this.groupBoxEmp);
+            this.Controls.Add(this.groupBoxCashier);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -367,16 +378,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mady Boardgame Store ( Employees )";
             this.Load += new System.EventHandler(this.formMain_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBoxEmp.ResumeLayout(false);
+            this.groupBoxUser.ResumeLayout(false);
+            this.groupBoxUser.PerformLayout();
+            this.groupBoxCashier.ResumeLayout(false);
             this.groupBoxmanager.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.groupMember.ResumeLayout(false);
+            this.groupPacking.ResumeLayout(false);
+            this.groupShipping.ResumeLayout(false);
+            this.groupboxStock.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -388,27 +400,28 @@
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_Order;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxUser;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Button btn_LogOut;
-        private System.Windows.Forms.GroupBox groupBoxEmp;
+        private System.Windows.Forms.GroupBox groupBoxCashier;
         private System.Windows.Forms.GroupBox groupBoxmanager;
         private System.Windows.Forms.Button buttonformEmpmange;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupMember;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonCashierCal;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupPacking;
         private System.Windows.Forms.Button buttonPacking;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupShipping;
         private System.Windows.Forms.Button buttonShippingOrder;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupboxStock;
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Button buttonShippingPur;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddSupplier;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.PictureBox pictureUserPic;
     }
 }
 

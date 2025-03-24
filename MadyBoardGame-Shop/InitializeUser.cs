@@ -13,6 +13,7 @@ namespace MadyBoardGame_Shop
         public static string _key_con;
         public static string UserState;
         public static string UserID;
+        public static string Userusername;
         public static string UserNameLogin;
         public static string UserLastNameLogin;
         public static void Confic()

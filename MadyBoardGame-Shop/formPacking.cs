@@ -187,15 +187,58 @@ namespace MadyBoardGame_Shop
                 }
             }
         }
+        private void button_click(object sender)
+        {
+            Button btn = (Button)sender;
+            Panel panel = (Panel)btn.Parent;
+            string orderID = panel.Controls[1].Text;
+            using (SqlConnection orderdetailsConnection = new SqlConnection(InitializeUser._key_con))
+            {
+                orderdetailsConnection.Open();
+                string query = @"
+                SELECT 
+                    OrderDetails.ProductID, 
+                    Products.ProductName, 
+                    OrderDetails.Quantity 
+                FROM 
+                    OrderDetails 
+                INNER JOIN 
+                    Products ON OrderDetails.ProductID = Products.ProductID 
+                INNER JOIN 
+                    Orders ON OrderDetails.OrderID = Orders.OrderID 
+                WHERE 
+                    OrderDetails.OrderID = @orderID
+                ORDER BY OrderDetails.ProductID;";
+                using (SqlCommand orderdetailsCommand = new SqlCommand(query, orderdetailsConnection))
+                {
+                    orderdetailsCommand.Parameters.AddWithValue("@orderID", orderID);
+                    SqlDataAdapter orderdetailsAdapter = new SqlDataAdapter(orderdetailsCommand);
+                    DataTable orderdetailsTable = new DataTable();
+                    orderdetailsAdapter.Fill(orderdetailsTable);
+                    dataGridOrderDetails.DataSource = orderdetailsTable;
+                    dataGridOrderDetails.Columns[0].HeaderText = "รหัสสินค้า";
+                    dataGridOrderDetails.Columns[1].HeaderText = "ชื่อสินค้า";
+                    dataGridOrderDetails.Columns[2].HeaderText = "จำนวน";
+                    dataGridOrderDetails.Columns[0].Width = 100;
+                    dataGridOrderDetails.Columns[1].Width = 390;
+                    dataGridOrderDetails.Columns[2].Width = 100;
+                }
+            }
+        }
+        
         private void buttonConfiem_Click(object sender, EventArgs e)
         {
             try
             {
+                button_click(sender);
+
                 Label label = (Label)((Button)sender).Parent.Controls[5];
                 string orderID = ((Button)sender).Parent.Controls[1].Text;
+
                 using (SqlConnection updateConnection = new SqlConnection(InitializeUser._key_con))
                 {
                     updateConnection.Open();
+
                     string query = "UPDATE Packing SET PackStatus = @packStatus WHERE OrderID = @orderID";
                     using (SqlCommand updateCommand = new SqlCommand(query, updateConnection))
                     {
@@ -203,24 +246,42 @@ namespace MadyBoardGame_Shop
                         updateCommand.Parameters.AddWithValue("@orderID", orderID);
                         updateCommand.ExecuteNonQuery();
                     }
-                    string query2 = "UPDATE Products SET Quality = @quality";
+
+                    string query2 = "UPDATE Products SET Quality = @quality WHERE ProductID = @productID";
                     using (SqlCommand updateCommand2 = new SqlCommand(query2, updateConnection))
                     {
-                        for (int i = 0; i < dataGridOrderDetails.Rows.Count; i++)
+                        for (int i = 0; i < dataGridOrderDetails.Rows.Count-1; i++)
                         {
                             string productID = dataGridOrderDetails.Rows[i].Cells[0].Value.ToString();
-                            string quantity = dataGridOrderDetails.Rows[i].Cells[2].Value.ToString();
-                            updateCommand2.Parameters.AddWithValue("@quality", quantity);
-                            updateCommand2.ExecuteNonQuery();
+
+                            string qry = "SELECT Quality FROM Products WHERE ProductID = @productID";
+                            using (SqlCommand command = new SqlCommand(qry, updateConnection))
+                            {
+                                command.Parameters.AddWithValue("@productID", productID);
+                                object result = command.ExecuteScalar(); 
+
+                                if (result != null)
+                                {
+                                    int originalQuantity = Convert.ToInt32(result);
+                                    int orderedQuantity = Convert.ToInt32(dataGridOrderDetails.Rows[i].Cells[2].Value);
+                                    int newQuantity = originalQuantity - orderedQuantity;
+
+                                    updateCommand2.Parameters.Clear();
+                                    updateCommand2.Parameters.AddWithValue("@quality", newQuantity);
+                                    updateCommand2.Parameters.AddWithValue("@productID", productID);
+                                    updateCommand2.ExecuteNonQuery();
+                                }
+                            }
                         }
-                    }
+                    } 
+                    ((Button)sender).Enabled = false;
+                    label.Text = "จัดเตรียมสำเร็จ ✔️";
+                    MessageBox.Show("จัดเตรียมสำเร็จ" , "สำเร็จ" , MessageBoxButtons.OK , MessageBoxIcon.Information);
                 }
-                ((Button)sender).Enabled = false;
-                label.Text = "จัดเตรียมสำเร็จ ✔️"; 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error : ",ex.Message);
+                MessageBox.Show("Error : ", ex.Message);
             }
 
         }

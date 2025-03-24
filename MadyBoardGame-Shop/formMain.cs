@@ -53,22 +53,22 @@ namespace MadyBoardGame_Shop
             switch(InitializeUser.UserState)
             {
                 case "Employee":
-                    groupBoxEmp.Enabled = true;
+                    groupBoxCashier.Enabled = true;
                     groupBoxmanager.Enabled = false;
                     this.Text = "MadyStore (Employee)";
                     break;
                 case "Member":
-                    groupBoxEmp.Enabled = false;
+                    groupBoxCashier.Enabled = false;
                     groupBoxmanager.Enabled = false;
                     this.Text = "MadyStore (Member)";
                     break;
                 case "Manager":
-                    groupBoxEmp.Enabled = true;
+                    groupBoxCashier.Enabled = true;
                     groupBoxmanager.Enabled = true;
                     this.Text = "MadyStore (Manager)";
                     break;
             }
-            labelUsername.Text = "User\n" + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
+            labelUsername.Text = $"Username : {InitializeUser.Userusername}\n" + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }
         private void buttonformEmpmange_Click(object sender, EventArgs e)
         {

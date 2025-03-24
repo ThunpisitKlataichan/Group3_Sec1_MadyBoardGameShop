@@ -43,6 +43,7 @@ namespace MadyBoardGame_Shop
                             if (logintable.Rows.Count > 0)
                             {
                                 InitializeUser.UserState = "Member";
+                                InitializeUser.Userusername = logintable.Rows[0]["Username"].ToString();
                                 InitializeUser.UserNameLogin = logintable.Rows[0]["memName"].ToString();
                                 InitializeUser.UserLastNameLogin = logintable.Rows[0]["memLName"].ToString();
                                 InitializeUser.UserID = logintable.Rows[0]["memID"].ToString();
@@ -68,6 +69,7 @@ namespace MadyBoardGame_Shop
                                             InitializeUser.UserNameLogin = logintable.Rows[0]["empName"].ToString();
                                             InitializeUser.UserLastNameLogin = logintable.Rows[0]["empLName"].ToString();
                                             InitializeUser.UserID = logintable.Rows[0]["empID"].ToString();
+                                            InitializeUser.Userusername = logintable.Rows[0]["Username"].ToString();
                                             formMain mainForm = new formMain();
                                             this.Hide();
                                             mainForm.ShowDialog();
