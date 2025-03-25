@@ -30,7 +30,7 @@ namespace MadyBoardGame_Shop
                 {
                     loginConnection.Open();
                     //เช็ค Usernamw และ Password ใน MemberUsername
-                    string query = "SELECT MemberUsername.Username , memID , memName , memLName FROM MemberUsername , Member WHERE MemberUsername.Username = @username and Password = @password";
+                    string query = "SELECT MemberUsername.Username , memID , memName , memLName FROM MemberUsername , Member WHERE MemberUsername.Username = @username and Password = @password and MemberUsername.Username = Member.Username";
                     using (loginCommand = new SqlCommand(query, loginConnection))
                     {
                         loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
