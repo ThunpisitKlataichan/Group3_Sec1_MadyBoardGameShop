@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace MadyBoardGame_Shop
 {
@@ -17,22 +18,32 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
-
-        SqlConnection shippingconection;
-        SqlCommand shippingcommand;
-        SqlDataAdapter shippingadapter;
-        DataTable shippingtable;
-
-
         private void formShippingOrder_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
             SqlConnection shippingconection = new SqlConnection(InitializeUser._key_con);
             shippingconection.Open();
 
-            string sql = "SELECT SUBSTRING(memLocation, PATINDEX('%[0-9][0-9][0-9][0-9][0-9]%', memLocation), 5) as PostalCode , " +
-                "\r\ns.ShipingID , s.ShipingStatus , s.ShipingDate , s.empID , o.OrderID FROM Member as m , Orders as o , ShippingOrder as s, Packing as p Where " +
-                "\r\ns.PackID = p.PackID AND p.OrderID = o.OrderID AND \r\no.memID = m.memID  Order BY empID";
+            string sql = @" SELECT 
+                            SUBSTRING(m.memLocation, PATINDEX('%[0-9][0-9][0-9][0-9][0-9]%', m.memLocation), 5) as PostalCode,
+                            s.ShipingID, 
+                            s.ShipingStatus, 
+                            s.ShipingDate, 
+                            s.empID, 
+                            o.OrderID 
+                        FROM 
+                            Member as m 
+                            JOIN Orders as o ON m.memID = o.memID
+                            JOIN Packing as p ON o.OrderID = p.OrderID
+                            JOIN ShippingOrder as s ON p.PackID = s.PackID
+                        ORDER BY 
+                            CASE s.ShipingStatus
+                                WHEN 'กำลังนำสินค้าไปส่ง' THEN 1
+                                WHEN 'เตรียมขนส่ง' THEN 2
+                                WHEN 'จัดส่งสำเร็จ' THEN 3
+                                ELSE 5
+                            END ASC,
+                            s.empID ASC";  // เรียงตามสถานะก่อน แล้วตามด้วยพนักงาน
             SqlCommand shippingcommand = new SqlCommand(sql, shippingconection);
             SqlDataAdapter shippingadapter = new SqlDataAdapter(shippingcommand);
             DataTable shippingtable = new DataTable();
@@ -105,7 +116,7 @@ namespace MadyBoardGame_Shop
                 labelStatusTitle.Font = new Font("Arial", 14, FontStyle.Bold);
 
                 ComboBox comboBoxStatus = new ComboBox();
-                comboBoxStatus.Items.Add("เตรียมขนส่ง");
+                comboBoxStatus.Items.Add("เตรียมขนส่ง"); 
                 comboBoxStatus.Items.Add("กำลังนำสินค้าไปส่ง");
                 comboBoxStatus.Items.Add("จัดส่งสำเร็จ");
                 comboBoxStatus.SelectedItem = ShipingStatus;
@@ -197,6 +208,8 @@ namespace MadyBoardGame_Shop
                 dataGridDetail.Columns[3].Visible = false;
                 dataGridDetail.Columns[4].Visible = false;
                 dataGridDetail.Columns[5].Visible = false;
+                dataGridDetail.Columns[0].Width = 300;
+                dataGridDetail.Columns[1].Width = 200;
 
                 memName = table.Rows[0]["memName"].ToString();
                 memLastName = table.Rows[0]["memLName"].ToString();
@@ -213,46 +226,46 @@ namespace MadyBoardGame_Shop
         }
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxOIDSearch.Text == "")
+            if (textBoxOrderIDSearch.Text == "")
             {
                 foreach (Control control in flowLayoutShipList.Controls)
                 {
                     control.Visible = true;
-                    textBoxOIDSearch.Enabled = true;
                 }
+                textBoxShipIDSearch.Enabled = true;
             }
-            else
+            else if (textBoxOrderIDSearch.Text != "")
             {
                 foreach (Control control in flowLayoutShipList.Controls)
                 {
-                    if (control.Tag.ToString().Contains(textBoxOIDSearch.Text))
+                    if (control.Tag.ToString().Contains(textBoxOrderIDSearch.Text))
                     {
-                        
                         control.Visible = true;
                     }
                     else
                     {
                         control.Visible = false;
-                        textBoxOIDSearch.Enabled = false;
                     }
                 }
+                textBoxShipIDSearch.Enabled = false;
             }
         }
 
         private void textBoxSIDSearch_TextChanged(object sender, EventArgs e)
         {
-            if(textBoxSIDSearch.Text == "")
+            if(textBoxShipIDSearch.Text == "")
             {
                 foreach (Control control in flowLayoutShipList.Controls)
                 {
                     control.Visible = true;
                 }
+                textBoxOrderIDSearch.Enabled = true;
             }
-            else
+            else if (textBoxShipIDSearch.Text != "")
             {
                 foreach (Control control in flowLayoutShipList.Controls)
                 {
-                    if (control.Controls[1].Text.Contains(textBoxSIDSearch.Text))
+                    if (control.Controls[1].Text.Contains(textBoxShipIDSearch.Text))
                     {
                         control.Visible = true;
                     }
@@ -261,7 +274,38 @@ namespace MadyBoardGame_Shop
                         control.Visible = false;
                     }
                 }
+                textBoxOrderIDSearch.Enabled = false;
             }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("คุณยืนยันการเปลี่ยนแปลงสถานะขนส่งหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+            using( SqlConnection UpdatadataShippingOrder = new SqlConnection(InitializeUser._key_con))
+            {
+                UpdatadataShippingOrder.Open();
+                foreach (Control control in flowLayoutShipList.Controls)
+                {
+                    ComboBox comboBoxStatus = (ComboBox)control.Controls[7];
+                    string ShippingID = control.Controls[1].Text;
+                    string sql = "UPDATE ShippingOrder SET ShipingStatus = @status , empID = @empID WHERE ShipingID = @shipID";
+                    using (SqlCommand command = new SqlCommand(sql, UpdatadataShippingOrder))
+                    {
+                        command.Parameters.AddWithValue("@status", comboBoxStatus.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                        command.Parameters.AddWithValue("@shipID", ShippingID);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                
+            }
+            MessageBox.Show("บันทึกข้อมูลจัดส่งสำเร็จ", "บันทึกข้อมูลจัดส่ง" , MessageBoxButtons.OK , MessageBoxIcon.Information);
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

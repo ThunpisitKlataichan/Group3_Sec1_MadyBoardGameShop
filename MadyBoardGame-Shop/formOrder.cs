@@ -465,7 +465,7 @@ namespace MadyBoardGame_Shop
                             paymentconnection = new SqlConnection(InitializeUser._key_con);
                             paymentconnection.Open();
                             int orderID = 0;
-                            string command = "INSERT INTO Orders (mem_ID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
+                            string command = "INSERT INTO Orders (memID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
                             ordercommand = new SqlCommand(command, orderconnection);
                             ordercommand.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
                             ordercommand.Parameters.AddWithValue("@OrderDate", DateTime.Now);
