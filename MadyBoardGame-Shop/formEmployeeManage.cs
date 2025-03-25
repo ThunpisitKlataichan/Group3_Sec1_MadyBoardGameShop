@@ -31,5 +31,10 @@ namespace MadyBoardGame_Shop
         {
             this.Close();
         }
+
+        private void formEmployeeManage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

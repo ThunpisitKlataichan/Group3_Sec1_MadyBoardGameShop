@@ -317,6 +317,7 @@
             this.Name = "formEmployeeManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "formEmployeeManage";
+            this.Load += new System.EventHandler(this.formEmployeeManage_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

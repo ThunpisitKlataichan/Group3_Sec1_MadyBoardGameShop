@@ -104,9 +104,6 @@ namespace MadyBoardGame_Shop
                 flowLayoutPackOrder.Controls.Add(panel);
             }
         }
-
-
-
         private void Label_Click(object sender, EventArgs e)
         {
             Label label = (Label)sender;
@@ -226,62 +223,82 @@ namespace MadyBoardGame_Shop
             }
         }
         
-        private void buttonConfiem_Click(object sender, EventArgs e)
+        private void buttonConfiem_Click(object sender, EventArgs e) // ยืนยันจัดส่ง เเละ หักสินค้าใน Stock เสร็จเเล้ว
         {
             try
             {
                 button_click(sender);
-
-                Label label = (Label)((Button)sender).Parent.Controls[5];
-                string orderID = ((Button)sender).Parent.Controls[1].Text;
-
-                using (SqlConnection updateConnection = new SqlConnection(InitializeUser._key_con))
+                if (MessageBox.Show("ยืนยันการจัดเตรียมสำเร็จหรือไม่" , "" , MessageBoxButtons.YesNo , MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    updateConnection.Open();
-
-                    string query = "UPDATE Packing SET PackStatus = @packStatus WHERE OrderID = @orderID";
-                    using (SqlCommand updateCommand = new SqlCommand(query, updateConnection))
+                    Label label = (Label)((Button)sender).Parent.Controls[5];
+                    string orderID = ((Button)sender).Parent.Controls[1].Text;
+                    string PackID = null;
+                    using (SqlConnection updateConnection = new SqlConnection(InitializeUser._key_con))
                     {
-                        updateCommand.Parameters.AddWithValue("@packStatus", "จัดเตรียมสำเร็จ");
-                        updateCommand.Parameters.AddWithValue("@orderID", orderID);
-                        updateCommand.ExecuteNonQuery();
-                    }
+                        updateConnection.Open();
+                        
 
-                    string query2 = "UPDATE Products SET Quality = @quality WHERE ProductID = @productID";
-                    using (SqlCommand updateCommand2 = new SqlCommand(query2, updateConnection))
-                    {
-                        for (int i = 0; i < dataGridOrderDetails.Rows.Count-1; i++)
+                        string query = "UPDATE Packing SET PackStatus = @packStatus WHERE OrderID = @orderID";
+                        using (SqlCommand updateCommand = new SqlCommand(query, updateConnection))
                         {
-                            string productID = dataGridOrderDetails.Rows[i].Cells[0].Value.ToString();
+                            updateCommand.Parameters.AddWithValue("@packStatus", "จัดเตรียมสำเร็จ");
+                            updateCommand.Parameters.AddWithValue("@orderID", orderID);
+                            updateCommand.ExecuteNonQuery();
+                        }
 
-                            string qry = "SELECT Quality FROM Products WHERE ProductID = @productID";
-                            using (SqlCommand command = new SqlCommand(qry, updateConnection))
+                        string query2 = "UPDATE Products SET Quality = @quality WHERE ProductID = @productID";
+                        using (SqlCommand updateCommand2 = new SqlCommand(query2, updateConnection))
+                        {
+                            for (int i = 0; i < dataGridOrderDetails.Rows.Count - 1; i++)
                             {
-                                command.Parameters.AddWithValue("@productID", productID);
-                                object result = command.ExecuteScalar(); 
+                                string productID = dataGridOrderDetails.Rows[i].Cells[0].Value.ToString();
 
-                                if (result != null)
+                                string qry = "SELECT Quality FROM Products WHERE ProductID = @productID";
+                                using (SqlCommand command = new SqlCommand(qry, updateConnection))
                                 {
-                                    int originalQuantity = Convert.ToInt32(result);
-                                    int orderedQuantity = Convert.ToInt32(dataGridOrderDetails.Rows[i].Cells[2].Value);
-                                    int newQuantity = originalQuantity - orderedQuantity;
+                                    command.Parameters.AddWithValue("@productID", productID);
+                                    object result = command.ExecuteScalar();
 
-                                    updateCommand2.Parameters.Clear();
-                                    updateCommand2.Parameters.AddWithValue("@quality", newQuantity);
-                                    updateCommand2.Parameters.AddWithValue("@productID", productID);
-                                    updateCommand2.ExecuteNonQuery();
+                                    if (result != null)
+                                    {
+                                        int originalQuantity = Convert.ToInt32(result);
+                                        int orderedQuantity = Convert.ToInt32(dataGridOrderDetails.Rows[i].Cells[2].Value);
+                                        int newQuantity = originalQuantity - orderedQuantity;
+
+                                        updateCommand2.Parameters.Clear();
+                                        updateCommand2.Parameters.AddWithValue("@quality", newQuantity);
+                                        updateCommand2.Parameters.AddWithValue("@productID", productID);
+                                        updateCommand2.ExecuteNonQuery();
+                                    }
                                 }
                             }
                         }
-                    } 
-                    ((Button)sender).Enabled = false;
-                    label.Text = "จัดเตรียมสำเร็จ ✔️";
-                    MessageBox.Show("จัดเตรียมสำเร็จ" , "สำเร็จ" , MessageBoxButtons.OK , MessageBoxIcon.Information);
+                        string query3 = "SELECT PackID FROM Packing WHERE OrderID = @orderID";
+                        using (SqlCommand insertcommand = new SqlCommand(query3, updateConnection))
+                        {
+                            insertcommand.Parameters.AddWithValue("@orderID", orderID);
+                            PackID = insertcommand.ExecuteScalar().ToString();
+                        }
+                        string query4 = "INSERT INTO ShippingOrder (PackID, ShipingStatus , ShipingDate) VALUES (@packID, @shipStatus , @shipingStatus)";
+                        using (SqlCommand insertcommand = new SqlCommand(query4, updateConnection))
+                        {
+                            insertcommand.Parameters.AddWithValue("@packID", PackID);
+                            insertcommand.Parameters.AddWithValue("@shipStatus", "เตรียมขนส่ง");
+                            insertcommand.Parameters.AddWithValue("@shipingStatus", DateTime.Now);
+                            insertcommand.ExecuteNonQuery();
+                        }
+
+
+                        ((Button)sender).Enabled = false;
+                        label.Text = "จัดเตรียมสำเร็จ ✔️";
+                        MessageBox.Show("จัดเตรียมสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error : ", ex.Message);
+                MessageBox.Show("Error : "+ ex.Message , "Error" , MessageBoxButtons.OK , MessageBoxIcon.Error);
             }
 
         }

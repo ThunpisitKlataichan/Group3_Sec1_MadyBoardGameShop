@@ -168,7 +168,7 @@ namespace MadyBoardGame_Shop
             amount = 0m;
         }
 
-        private void buttonConfirm_Click(object sender, EventArgs e)
+        private void buttonConfirm_Click(object sender, EventArgs e) // ยืนยันการชำระเงิน เเละ ลดจำนวณสินค้าเสร็จเเล้ว
         {
             if (MessageBox.Show("ยืนยันการชำระเงินหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -187,6 +187,9 @@ namespace MadyBoardGame_Shop
 
                     MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     flowLayoutProduct.Controls.Clear();
+                    amount = 0;
+                    checkTagCartpanalTag.Clear();
+
                     labelAmount.Text = "0.00 ฿";
                 }
                 catch (Exception ex)
