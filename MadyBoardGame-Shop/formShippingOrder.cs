@@ -233,7 +233,7 @@ namespace MadyBoardGame_Shop
                     else
                     {
                         control.Visible = false;
-                        textBoxOIDSearch.Enabled = false
+                        textBoxOIDSearch.Enabled = false;
                     }
                 }
             }
