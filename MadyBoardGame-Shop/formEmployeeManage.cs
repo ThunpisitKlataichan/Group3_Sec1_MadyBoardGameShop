@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,7 +32,10 @@ namespace MadyBoardGame_Shop
                 try
                 {
                     conn.Open();
-                    string query = "SELECT empName, empLName, empPosition, empSalary, empBornDate, empLocation, empNumphone,Username FROM Employees";
+                    ds.Clear(); // ล้าง DataSet ก่อนโหลดข้อมูลใหม่
+                    ds.Relations.Clear(); // ล้างความสัมพันธ์ก่อนเพิ่มใหม่
+
+                    string query = "SELECT empName, empLName, empPosition, empSalary, empBornDate, empLocation, empNumphone, Username, empID FROM Employees";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.Fill(ds, "Employees");
 
@@ -39,19 +43,23 @@ namespace MadyBoardGame_Shop
                     credAdapter = new SqlDataAdapter("SELECT Username, Password FROM EmpUsername", conn);
                     credAdapter.Fill(ds, "EmpUsername");
 
-                    // สร้างความสัมพันธ์ระหว่าง `Username`
-                    DataRelation relation = new DataRelation(
-                        "EmpUserRelation",
-                        ds.Tables["Employees"].Columns["Username"],
-                        ds.Tables["EmpUsername"].Columns["Username"]
-                    );
+                    // ตรวจสอบก่อนเพิ่ม DataRelation เพื่อป้องกันซ้ำ
+                    if (!ds.Relations.Contains("EmpUserRelation"))
+                    {
+                        DataRelation relation = new DataRelation(
+                            "EmpUserRelation",
+                            ds.Tables["Employees"].Columns["Username"],
+                            ds.Tables["EmpUsername"].Columns["Username"]
+                        );
 
-                    ds.Relations.Add(relation);
+                        ds.Relations.Add(relation);
+                    }
 
                     // ผูก Grid กับพนักงาน
                     dataGrid_Emp.DataSource = ds.Tables["Employees"];
+
                     // ซ่อน Columns ที่ไม่ต้องการ
-                    
+                    dataGrid_Emp.Columns["empID"].Visible = false;
                     dataGrid_Emp.Columns["empSalary"].Visible = false;
                     dataGrid_Emp.Columns["empBornDate"].Visible = false;
                     dataGrid_Emp.Columns["empLocation"].Visible = false;
@@ -60,8 +68,6 @@ namespace MadyBoardGame_Shop
                     dataGrid_Emp.Columns["empName"].HeaderText = "ชื่อ";
                     dataGrid_Emp.Columns["empLName"].HeaderText = "นามสกุล";
                     dataGrid_Emp.Columns["empPosition"].HeaderText = "ตำแหน่ง";
-
-
                 }
                 catch (Exception ex)
                 {
@@ -71,30 +77,6 @@ namespace MadyBoardGame_Shop
         }
         private void Bind_DATA()
         {
-            /*// เคลียร์ DataBindings 
-            text_Name.DataBindings.Clear();
-            text_LName.DataBindings.Clear();
-            comboBoxPosition.DataBindings.Clear();
-            text_Salary.DataBindings.Clear();
-            dateTimePicker_DOB.DataBindings.Clear();
-            text_Phone_Emp.DataBindings.Clear();
-            text_location.DataBindings.Clear();
-            txtUsername.DataBindings.Clear();
-            txtPassword.DataBindings.Clear();
-
-            // ใช้ DefaultView แทน DataTable ตรงๆ
-            text_Name.DataBindings.Add("Text", dt.DefaultView, "empName");
-            text_LName.DataBindings.Add("Text", dt.DefaultView, "empLName");
-            comboBoxPosition.DataSource = dt;
-            comboBoxPosition.DisplayMember = "empPosition";
-            comboBoxPosition.ValueMember = "empPosition";
-            comboBoxPosition.DataBindings.Add("SelectedValue", dt.DefaultView, "empPosition");
-            text_Salary.DataBindings.Add("Text", dt.DefaultView, "empSalary");
-            dateTimePicker_DOB.DataBindings.Add("Value", dt.DefaultView, "empBornDate", true, DataSourceUpdateMode.OnPropertyChanged);
-            text_location.DataBindings.Add("Text", dt.DefaultView, "empLocation");
-            text_Phone_Emp.DataBindings.Add("Text", dt.DefaultView, "empNumphone");
-            txtUsername.DataBindings.Add("Text", dt.DefaultView, "Username");
-            txtPassword.DataBindings.Add("Text", ds.Tables["Employees"], "EmpUsername.Password");*/
             // เคลียร์ DataBindings 
             text_Name.DataBindings.Clear();
             text_LName.DataBindings.Clear();
@@ -135,6 +117,12 @@ namespace MadyBoardGame_Shop
             switch (AddState)
             {
                 case "view":
+                    label10.Visible = false;
+                    label11.Visible = false;
+                    txtPassword.ReadOnly = true;
+                    txtUsername.ReadOnly = true;
+                    txtPassword.Visible = false;
+                    txtUsername.Visible = false;
                     text_Name.ReadOnly = true;
                     text_LName.ReadOnly = true;
                     comboBoxPosition.Enabled = false;
@@ -152,6 +140,8 @@ namespace MadyBoardGame_Shop
                     btn_cancel.BackColor = Color.Gray;
                     btn_del.Enabled = false;
                     btn_del.BackColor = Color.Gray;
+                    txtUsername.ReadOnly = true;
+                    txtPassword.ReadOnly = true;
                     //----------------------------------
                     text_Name.BackColor = Color.White;
                     text_LName.BackColor = Color.White;
@@ -164,6 +154,12 @@ namespace MadyBoardGame_Shop
                     txtPassword.BackColor = Color.White;
                     break;
                 case "update":
+                    label10.Visible = false;
+                    label11.Visible = false;
+                    txtPassword.ReadOnly = true;
+                    txtUsername.ReadOnly = true;
+                    txtUsername.Visible = false;
+                    txtPassword.Visible = false;
                     text_Name.ReadOnly = false;
                     text_LName.ReadOnly = false;
                     comboBoxPosition.Enabled = true;
@@ -181,6 +177,8 @@ namespace MadyBoardGame_Shop
                     btn_cancel.BackColor = Color.OrangeRed;
                     btn_del.Enabled = true;
                     btn_del.BackColor = Color.OrangeRed;
+                    txtUsername.ReadOnly = false;
+                    txtPassword.ReadOnly = false;
                     //----------------------------------
                     text_Name.BackColor = Color.Orange;
                     text_LName.BackColor = Color.Orange;
@@ -192,6 +190,44 @@ namespace MadyBoardGame_Shop
                     txtUsername.BackColor = Color.Orange;
                     txtPassword.BackColor = Color.Orange;
                     break;
+                case "add":
+                    label10.Visible = true;
+                    label11.Visible = true;
+                    txtPassword.ReadOnly = false;
+                    txtUsername.ReadOnly = false ;
+                    txtUsername.Visible = true;
+                    txtPassword.Visible = true;
+                    text_Name.ReadOnly = false;
+                    text_LName.ReadOnly = false;
+                    comboBoxPosition.Enabled = true;
+                    text_Salary.ReadOnly = false;
+                    dateTimePicker_DOB.Enabled = true;
+                    text_Phone_Emp.ReadOnly = false;
+                    text_location.ReadOnly = false;
+                    btn_Add.Enabled = false;
+                    btn_Add.BackColor = Color.Gray;
+                    btn_edit.Enabled = false;
+                    btn_edit.BackColor = Color.Gray;
+                    btn_save.Enabled = true;
+                    btn_save.BackColor = Color.YellowGreen;
+                    btn_cancel.Enabled = true;
+                    btn_cancel.BackColor = Color.OrangeRed;
+                    btn_del.Enabled = false;
+                    btn_del.BackColor = Color.Gray;
+                    txtUsername.ReadOnly = false;
+                    txtPassword.ReadOnly = false;
+                    //----------------------------------
+                    text_Name.BackColor = Color.SpringGreen;
+                    text_LName.BackColor = Color.SpringGreen;
+                    comboBoxPosition.BackColor = Color.SpringGreen;
+                    text_Salary.BackColor = Color.SpringGreen;
+                    text_location.BackColor = Color.SpringGreen;
+                    text_Phone_Emp.BackColor = Color.SpringGreen;
+                    dateTimePicker_DOB.CalendarTitleBackColor = Color.SpringGreen;
+                    txtUsername.BackColor = Color.SpringGreen;
+                    txtPassword.BackColor = Color.SpringGreen;
+                    break;
+
                 default:
                     break;
             }
@@ -213,6 +249,7 @@ namespace MadyBoardGame_Shop
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
+
             SetState("update");
         }
 
@@ -224,6 +261,87 @@ namespace MadyBoardGame_Shop
             SetState("view");
             txtUsername.TextChanged += txtUsername_TextChanged;
         }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            SetState("add");
+            /*// เพิ่มแถวใหม่ใน DataTable
+            DataRow newRow = ds.Tables["Employees"].NewRow();
+            ds.Tables["Employees"].Rows.Add(newRow);*/
+            // เลือกแถวสุดท้าย
+            int lastRowIndex = dataGrid_Emp.Rows.Count - 1;
+            dataGrid_Emp.CurrentCell = dataGrid_Emp.Rows[lastRowIndex].Cells[0];
+
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            SetState("view");
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            if(myState == "add")
+            {
+
+            }
+            if(myState == "update")
+            {
+                using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
+                {
+                    try
+                    {
+                        conn.Open();
+                        string queryUser = "UPDATE EmpUsername SET Username = @NewUsername, Password = @Password WHERE Username = @OldUsername";
+                        using (SqlCommand cmdUser = new SqlCommand(queryUser, conn))
+                        {
+                            cmdUser.Parameters.AddWithValue("@NewUsername", txtUsername.Text);
+                            cmdUser.Parameters.AddWithValue("@Password", txtPassword.Text);
+                            cmdUser.Parameters.AddWithValue("@OldUsername", dataGrid_Emp.CurrentRow.Cells["Username"].Value);
+                            cmdUser.ExecuteNonQuery();
+                        }
+
+                        // Update ข้อมูลพนักงานใน Employees
+                        string queryEmp = "UPDATE Employees SET empName = @Name, empLName = @LName, " +
+                                          "empSalary = @Salary, empPosition = @Position, " +
+                                          "empBornDate = @BornDate, empLocation = @Location, " +
+                                          "Username = @NewUsername, empNumphone = @Phone " +
+                                          "WHERE empID = @empID";
+
+                        using (SqlCommand cmdEmp = new SqlCommand(queryEmp, conn))
+                        {
+                            cmdEmp.Parameters.AddWithValue("@Name", text_Name.Text);
+                            cmdEmp.Parameters.AddWithValue("@LName", text_LName.Text);
+                            cmdEmp.Parameters.AddWithValue("@Salary", double.Parse(text_Salary.Text));
+                            cmdEmp.Parameters.AddWithValue("@Position", comboBoxPosition.Text);
+                            cmdEmp.Parameters.AddWithValue("@BornDate", dateTimePicker_DOB.Value);
+                            cmdEmp.Parameters.AddWithValue("@Location", text_location.Text);
+                            cmdEmp.Parameters.AddWithValue("@NewUsername", txtUsername.Text);
+                            cmdEmp.Parameters.AddWithValue("@Phone", text_Phone_Emp.Text);
+                            cmdEmp.Parameters.AddWithValue("@empID", dataGrid_Emp.CurrentRow.Cells["empID"].Value);
+                            cmdEmp.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("บันทึกข้อมูลเรียบร้อย!");
+                        ds.Clear();
+                        loadDataIntoGrid();
+                        SetState("view");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
+                    }
+                }
+                
+            }
+        }
+
+        private void btn_del_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
             if (ds.Tables["EmpUsername"] != null)

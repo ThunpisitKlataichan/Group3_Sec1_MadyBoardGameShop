@@ -140,6 +140,7 @@
             this.btn_cancel.TabIndex = 20;
             this.btn_cancel.Text = "ยกเลิก";
             this.btn_cancel.UseVisualStyleBackColor = false;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_edit
             // 
@@ -161,6 +162,7 @@
             this.btn_Add.TabIndex = 17;
             this.btn_Add.Text = "เพิ่ม";
             this.btn_Add.UseVisualStyleBackColor = false;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // btn_save
             // 
@@ -171,6 +173,7 @@
             this.btn_save.TabIndex = 18;
             this.btn_save.Text = "บันทึก";
             this.btn_save.UseVisualStyleBackColor = false;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_del
             // 
@@ -181,6 +184,7 @@
             this.btn_del.TabIndex = 19;
             this.btn_del.Text = "ลบ";
             this.btn_del.UseVisualStyleBackColor = false;
+            this.btn_del.Click += new System.EventHandler(this.btn_del_Click);
             // 
             // pictureBox1
             // 
@@ -382,6 +386,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formEmployeeManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
