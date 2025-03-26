@@ -32,7 +32,7 @@ namespace MadyBoardGame_Shop
         {
             string command = @"
                 SELECT ShippingPurID , ShippingStatus , ShippingDate  , empID , PurID
-                FROM ShippingPur 
+                FROM ShippingPur WHERE ShippingStatus != 'เติมสินค้าสำเร็จ'
                 ORDER BY CASE ShippingStatus
                             WHEN 'เตรียมการไปรับสินค้า' THEN 1
                             WHEN 'เดินทางไปรับสินค้า' THEN 2
@@ -116,10 +116,6 @@ namespace MadyBoardGame_Shop
                 flowLayoutShippur.Controls.Add(panel);
             }
         }
-        private void LoadDetail()
-        {
-            
-        }
         private void Panal_click(object sender, EventArgs e)
         {
             Panel panel = (Panel)sender;
@@ -163,6 +159,105 @@ namespace MadyBoardGame_Shop
                 dataGridDetails.Columns["ProductID"].Width = 100;
                 dataGridDetails.Columns["ProductName"].Width = 280;
                 dataGridDetails.Columns["Quality"].Width = 100;
+
+                dataGridDetails.RowTemplate.Height = 50;
+
+                dataGridDetails.Columns["ProductID"].ReadOnly = true;
+                dataGridDetails.Columns["ProductName"].ReadOnly = true;
+                dataGridDetails.Columns["Quality"].ReadOnly = true;
+            }
+        }
+        private void dataGridDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridDetails.Rows[e.RowIndex];
+                string suppilerID = row.Cells["SuppilerID"].Value.ToString();
+                string suppilerName = row.Cells["SuppilerName"].Value.ToString();
+                string suppilerCountry = row.Cells["SuppilerCoutry"].Value.ToString();
+
+                textBoxShipID.Text = row.Cells["ShippingPurID"].Value.ToString();
+                textBoxProductID.Text = row.Cells["ProductID"].Value.ToString();
+                textBoxProductName.Text = row.Cells["ProductName"].Value.ToString();
+                textBoxQuality.Text = row.Cells["Quality"].Value.ToString();
+                textBoxSuppilerID.Text = suppilerID;
+                textBoxSuppilerName.Text = suppilerName;
+                textBoxSuppilerCountry.Text = suppilerCountry;
+            }
+        }
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Control control in flowLayoutShippur.Controls)
+                {
+                    Panel panel = (Panel)control;
+                    ComboBox combobox = (ComboBox)panel.Controls[5];
+                    string shipID = panel.Controls[1].Text;
+                    string status = combobox.SelectedItem.ToString();
+                    string empID = panel.Controls[7].Text;
+
+                    string command = @"
+                                        UPDATE ShippingPur
+                                        SET 
+                                            ShippingStatus = @status , 
+                                            empID = @empID
+                                        WHERE ShippingPurID = @shipID";
+                    shippurcommand = new SqlCommand(command, shippurconnection);
+                    shippurcommand.Parameters.AddWithValue("@status", status);
+                    shippurcommand.Parameters.AddWithValue("@shipID", shipID);
+                    shippurcommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                    shippurcommand.ExecuteNonQuery();
+
+                    if (status == "เติมสินค้าสำเร็จ")
+                    {
+                        command = @"
+                                    SELECT 
+                                        sp.ShippingPurID, 
+                                        p.ProductID, 
+                                        p.ProductName, 
+                                        pd.Quality, 
+                                        s.SuppilerID, 
+                                        s.SuppilerName, 
+                                        s.SuppilerCoutry
+                                    FROM 
+                                        ShippingPur sp
+                                        JOIN Purchasing pu ON sp.PurID = pu.PurID
+                                        JOIN PurchaseDetail pd ON pu.PurID = pd.PurID
+                                        JOIN Products p ON pd.ProductID = p.ProductID
+                                        JOIN Suppilers s ON p.SuppilersID = s.SuppilerID
+                                    WHERE sp.ShippingPurID = @shipID";
+                        shippurcommand = new SqlCommand(command, shippurconnection);
+                        shippurcommand.Parameters.AddWithValue("@shipID", shipID);
+                        shippuradapter = new SqlDataAdapter(shippurcommand);
+                        DataTable dataTable = new DataTable();
+                        shippuradapter.Fill(dataTable);
+                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        {
+                            string productID = dataTable.Rows[i]["ProductID"].ToString();
+                            string quality = dataTable.Rows[i]["Quality"].ToString();
+
+                            command = @"
+                                    UPDATE Products
+                                    SET Quality = Quality + @quality
+                                    WHERE ProductID = @productID";
+
+                            using (SqlCommand productupdatequality = new SqlCommand(command, shippurconnection))
+                            {
+                                productupdatequality.Parameters.AddWithValue("@productID", productID);
+                                productupdatequality.Parameters.AddWithValue("@quality", quality);
+                                productupdatequality.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                MessageBox.Show("บันทึกข้อมูลสำเร็จ");
+                flowLayoutShippur.Controls.Clear();
+                LoadData();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("บันทึกข้อมูลไม่สำเร็จ Error : " + ex);
             }
         }
     }
