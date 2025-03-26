@@ -302,5 +302,10 @@ namespace MadyBoardGame_Shop
             }
 
         }
+
+        private void groupBoxOrderdetail_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

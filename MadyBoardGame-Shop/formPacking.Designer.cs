@@ -87,6 +87,7 @@
             this.groupBoxOrderdetail.TabIndex = 2;
             this.groupBoxOrderdetail.TabStop = false;
             this.groupBoxOrderdetail.Text = "รายละเอียดคำสั่งซื้อ";
+            this.groupBoxOrderdetail.Enter += new System.EventHandler(this.groupBoxOrderdetail_Enter);
             // 
             // dataGridOrderDetails
             // 

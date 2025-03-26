@@ -21,9 +21,12 @@ namespace MadyBoardGame_Shop
         private void formShippingOrder_Load(object sender, EventArgs e)
         {
             InitializeUser.Confic();
+            LoadData();
+        }
+        private void LoadData()
+        {
             SqlConnection shippingconection = new SqlConnection(InitializeUser._key_con);
             shippingconection.Open();
-
             string sql = @" SELECT 
                             SUBSTRING(m.memLocation, PATINDEX('%[0-9][0-9][0-9][0-9][0-9]%', m.memLocation), 5) as PostalCode,
                             s.ShipingID, 
@@ -58,7 +61,7 @@ namespace MadyBoardGame_Shop
 
             for (int i = 0; i < shippingtable.Rows.Count; i++)
             {
-                
+
                 PostalCode = shippingtable.Rows[i]["PostalCode"].ToString();
                 ShipingID = shippingtable.Rows[i]["ShipingID"].ToString();
                 ShipingStatus = shippingtable.Rows[i]["ShipingStatus"].ToString();
@@ -116,7 +119,7 @@ namespace MadyBoardGame_Shop
                 labelStatusTitle.Font = new Font("Arial", 14, FontStyle.Bold);
 
                 ComboBox comboBoxStatus = new ComboBox();
-                comboBoxStatus.Items.Add("เตรียมขนส่ง"); 
+                comboBoxStatus.Items.Add("เตรียมขนส่ง");
                 comboBoxStatus.Items.Add("กำลังนำสินค้าไปส่ง");
                 comboBoxStatus.Items.Add("จัดส่งสำเร็จ");
                 comboBoxStatus.SelectedItem = ShipingStatus;
@@ -301,6 +304,8 @@ namespace MadyBoardGame_Shop
                 
             }
             MessageBox.Show("บันทึกข้อมูลจัดส่งสำเร็จ", "บันทึกข้อมูลจัดส่ง" , MessageBoxButtons.OK , MessageBoxIcon.Information);
+            flowLayoutShipList.Controls.Clear();
+            LoadData();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

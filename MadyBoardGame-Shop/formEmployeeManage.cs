@@ -34,7 +34,7 @@ namespace MadyBoardGame_Shop
 
         private void formEmployeeManage_Load(object sender, EventArgs e)
         {
-
+            InitializeUser.Confic();
         }
     }
 }
