@@ -300,6 +300,7 @@ namespace MadyBoardGame_Shop
                         command.Parameters.AddWithValue("@shipID", ShippingID);
                         command.ExecuteNonQuery();
                     }
+                    
                 }
                 
             }

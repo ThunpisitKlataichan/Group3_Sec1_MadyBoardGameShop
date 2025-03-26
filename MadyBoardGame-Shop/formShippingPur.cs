@@ -163,6 +163,31 @@ namespace MadyBoardGame_Shop
                 dataGridDetails.Columns["ProductID"].Width = 100;
                 dataGridDetails.Columns["ProductName"].Width = 280;
                 dataGridDetails.Columns["Quality"].Width = 100;
+
+                dataGridDetails.RowTemplate.Height = 50;
+
+                dataGridDetails.Columns["ProductID"].ReadOnly = true;
+                dataGridDetails.Columns["ProductName"].ReadOnly = true;
+                dataGridDetails.Columns["Quality"].ReadOnly = true;
+            }
+        }
+
+        private void dataGridDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridDetails.Rows[e.RowIndex];
+                string suppilerID = row.Cells["SuppilerID"].Value.ToString();
+                string suppilerName = row.Cells["SuppilerName"].Value.ToString();
+                string suppilerCountry = row.Cells["SuppilerCoutry"].Value.ToString();
+
+                textBoxShipID.Text = row.Cells["ShippingPurID"].Value.ToString();
+                textBoxProductID.Text = row.Cells["ProductID"].Value.ToString();
+                textBoxProductName.Text = row.Cells["ProductName"].Value.ToString();
+                textBoxQuality.Text = row.Cells["Quality"].Value.ToString();
+                textBoxSuppilerID.Text = suppilerID;
+                textBoxSuppilerName.Text = suppilerName;
+                textBoxSuppilerCountry.Text = suppilerCountry;
             }
         }
     }
