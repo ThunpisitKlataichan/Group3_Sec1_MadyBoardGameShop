@@ -44,6 +44,7 @@ namespace MadyBoardGame_Shop
         {
             try 
             {
+                InitializeUser.Confic();
                 productconnection = new SqlConnection(InitializeUser._key_con);
                 productconnection.Open();
                 productcommand = new SqlCommand();

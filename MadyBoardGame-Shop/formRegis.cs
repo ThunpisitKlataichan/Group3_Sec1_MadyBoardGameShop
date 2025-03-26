@@ -279,7 +279,6 @@ namespace MadyBoardGame_Shop
 
         private void formRegis_Load(object sender, EventArgs e)
         {
-
             InitializeUser.Confic();
             AddressUtil.ReadAddressInfoFromCSVFile("ProvinceDistrictSubDis.csv", ref _arProvinces, ref _arDistricts, ref _arSubDistricts, ref _arPostcodes);
             if (_arProvinces != null)

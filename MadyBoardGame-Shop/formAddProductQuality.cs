@@ -51,6 +51,8 @@ namespace MadyBoardGame_Shop
                 comboBoxSupp.DisplayMember = "SuppilerName";
                 comboBoxSupp.ValueMember = "SuppilerID";
 
+                
+
                 productconnect = new SqlConnection(InitializeUser._key_con);
                 productconnect.Open();
                 string qry = "Select ProductID , ProductName , CostPrice , ProductImg , Quality , SuppilersID FROM Products Where SuppilersID = @suppilersID";
@@ -66,6 +68,7 @@ namespace MadyBoardGame_Shop
                 textBoxProID.Text = comboBoxProduct.SelectedValue.ToString();
                 textBoxProCost.Text = productdata.Rows[0]["CostPrice"].ToString();
                 waitforload = true;
+                SetDetail(textBoxProID.Text);
             }
             catch (Exception ex)
             {
@@ -230,7 +233,12 @@ namespace MadyBoardGame_Shop
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxProID.Text = comboBoxProduct.SelectedValue.ToString();
-            textBoxProCost.Text = productdata.Rows[0]["CostPrice"].ToString();
+            textBoxProCost.Text = productdata.Rows[comboBoxProduct.SelectedIndex]["CostPrice"].ToString();
+
+            if (waitforload)
+            {
+                SetDetail(textBoxProID.Text);
+            }
         }
         private void Panel_Click(object sender, EventArgs e)
         {
@@ -324,7 +332,7 @@ namespace MadyBoardGame_Shop
                 shippingconnect.Open();
                 qry = "INSERT INTO ShippingPur (ShippingStatus , ShippingDate , PurID) VALUES(@shippingStatus , @shippingDate , @purID)";
                 shippingcommand = new SqlCommand(qry, shippingconnect);
-                shippingcommand.Parameters.AddWithValue("@shippingStatus", "กำลังขับไปรับสินค้า");
+                shippingcommand.Parameters.AddWithValue("@shippingStatus", "เตรียมการไปรับสินค้า");
                 shippingcommand.Parameters.AddWithValue("@shippingDate", DateTime.Now);
                 shippingcommand.Parameters.AddWithValue("@purID", purID);
                 shippingcommand.ExecuteNonQuery();

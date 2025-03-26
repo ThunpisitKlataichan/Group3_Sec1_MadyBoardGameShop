@@ -24,6 +24,7 @@ namespace MadyBoardGame_Shop
 
         private void formMember_Load(object sender, EventArgs e)
         {
+            InitializeUser.Confic();
             loadDataIntoGrid();
             BindTextBox();
             buttonState();

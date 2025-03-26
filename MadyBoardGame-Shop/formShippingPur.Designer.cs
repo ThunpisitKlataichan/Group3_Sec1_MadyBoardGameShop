@@ -30,23 +30,28 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutShippur = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dataGridDetails = new System.Windows.Forms.DataGridView();
             this.textBoxShipID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBoxMemName = new System.Windows.Forms.TextBox();
+            this.textBoxQuality = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxSuppilerID = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxSuppilerName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxSuppilerCountry = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBoxProductName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxProductID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -56,7 +61,7 @@
             this.panel1.Location = new System.Drawing.Point(-15, -14);
             this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 128);
+            this.panel1.Size = new System.Drawing.Size(1509, 128);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -69,115 +74,76 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ขนส่งสินค้าภายในร้าน";
             // 
-            // flowLayoutPanel1
+            // flowLayoutShippur
             // 
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 134);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(548, 372);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(523, 84);
-            this.panel2.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "กำลังจัดส่ง",
-            "จัดส่งสำเร็จ"});
-            this.comboBox1.Location = new System.Drawing.Point(338, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 32);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 24);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "สถานะจัดส่ง";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "รหัสขนส่งที่ 1";
+            this.flowLayoutShippur.AutoScroll = true;
+            this.flowLayoutShippur.Location = new System.Drawing.Point(12, 134);
+            this.flowLayoutShippur.Name = "flowLayoutShippur";
+            this.flowLayoutShippur.Size = new System.Drawing.Size(550, 372);
+            this.flowLayoutShippur.TabIndex = 5;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.textBoxSuppilerCountry);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.textBoxSuppilerName);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.textBoxSuppilerID);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.dataGridDetails);
+            this.groupBox1.Controls.Add(this.textBoxProductID);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBoxProductName);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBoxShipID);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBoxMemName);
+            this.groupBox1.Controls.Add(this.textBoxQuality);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(581, 123);
+            this.groupBox1.Location = new System.Drawing.Point(562, 123);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(374, 281);
+            this.groupBox1.Size = new System.Drawing.Size(895, 324);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดการขนส่ง";
             // 
-            // textBox1
+            // dataGridDetails
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(90, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 29);
-            this.textBox1.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 76);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 24);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "ชื่อสินค้า :";
+            this.dataGridDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridDetails.Location = new System.Drawing.Point(366, 47);
+            this.dataGridDetails.Name = "dataGridDetails";
+            this.dataGridDetails.Size = new System.Drawing.Size(523, 260);
+            this.dataGridDetails.TabIndex = 14;
             // 
             // textBoxShipID
             // 
             this.textBoxShipID.BackColor = System.Drawing.Color.White;
-            this.textBoxShipID.Location = new System.Drawing.Point(90, 39);
+            this.textBoxShipID.Location = new System.Drawing.Point(143, 42);
             this.textBoxShipID.Name = "textBoxShipID";
-            this.textBoxShipID.Size = new System.Drawing.Size(84, 29);
+            this.textBoxShipID.Size = new System.Drawing.Size(200, 29);
             this.textBoxShipID.TabIndex = 9;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 41);
+            this.label7.Location = new System.Drawing.Point(56, 47);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 24);
             this.label7.TabIndex = 8;
             this.label7.Text = "รหัสขนส่ง :";
             // 
-            // textBoxMemName
+            // textBoxQuality
             // 
-            this.textBoxMemName.BackColor = System.Drawing.Color.White;
-            this.textBoxMemName.Location = new System.Drawing.Point(90, 111);
-            this.textBoxMemName.Name = "textBoxMemName";
-            this.textBoxMemName.Size = new System.Drawing.Size(80, 29);
-            this.textBoxMemName.TabIndex = 5;
+            this.textBoxQuality.BackColor = System.Drawing.Color.White;
+            this.textBoxQuality.Location = new System.Drawing.Point(143, 138);
+            this.textBoxQuality.Name = "textBoxQuality";
+            this.textBoxQuality.Size = new System.Drawing.Size(200, 29);
+            this.textBoxQuality.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 114);
+            this.label5.Location = new System.Drawing.Point(73, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 24);
             this.label5.TabIndex = 4;
@@ -185,20 +151,116 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(581, 408);
+            this.buttonSave.Location = new System.Drawing.Point(1078, 453);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(374, 98);
+            this.buttonSave.Size = new System.Drawing.Size(373, 53);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "บันทึกสถานะจัดส่ง";
             this.buttonSave.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSuppilerID
+            // 
+            this.textBoxSuppilerID.BackColor = System.Drawing.Color.White;
+            this.textBoxSuppilerID.Location = new System.Drawing.Point(143, 167);
+            this.textBoxSuppilerID.Name = "textBoxSuppilerID";
+            this.textBoxSuppilerID.Size = new System.Drawing.Size(200, 29);
+            this.textBoxSuppilerID.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 172);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(140, 24);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "รหัสผู้จัดจำหน่าย :";
+            // 
+            // textBoxSuppilerName
+            // 
+            this.textBoxSuppilerName.BackColor = System.Drawing.Color.White;
+            this.textBoxSuppilerName.Location = new System.Drawing.Point(143, 199);
+            this.textBoxSuppilerName.Name = "textBoxSuppilerName";
+            this.textBoxSuppilerName.Size = new System.Drawing.Size(200, 29);
+            this.textBoxSuppilerName.TabIndex = 18;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(13, 204);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(131, 24);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "ชื่อผู้จัดจำหน่าย :";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(68, 235);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(76, 24);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "ประเทศ :";
+            // 
+            // textBoxSuppilerCountry
+            // 
+            this.textBoxSuppilerCountry.BackColor = System.Drawing.Color.White;
+            this.textBoxSuppilerCountry.Location = new System.Drawing.Point(143, 232);
+            this.textBoxSuppilerCountry.Multiline = true;
+            this.textBoxSuppilerCountry.Name = "textBoxSuppilerCountry";
+            this.textBoxSuppilerCountry.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxSuppilerCountry.Size = new System.Drawing.Size(200, 75);
+            this.textBoxSuppilerCountry.TabIndex = 20;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(362, 20);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(155, 24);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "รายละเอียดคำสั่งซื้อ :";
+            // 
+            // textBoxProductName
+            // 
+            this.textBoxProductName.BackColor = System.Drawing.Color.White;
+            this.textBoxProductName.Location = new System.Drawing.Point(143, 107);
+            this.textBoxProductName.Name = "textBoxProductName";
+            this.textBoxProductName.Size = new System.Drawing.Size(200, 29);
+            this.textBoxProductName.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(63, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 24);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "ชื่อสินค้า :";
+            // 
+            // textBoxProductID
+            // 
+            this.textBoxProductID.BackColor = System.Drawing.Color.White;
+            this.textBoxProductID.Location = new System.Drawing.Point(143, 74);
+            this.textBoxProductID.Name = "textBoxProductID";
+            this.textBoxProductID.Size = new System.Drawing.Size(200, 29);
+            this.textBoxProductID.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(54, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 24);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "รหัสสินค้า :";
             // 
             // formShippingPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 536);
+            this.ClientSize = new System.Drawing.Size(1469, 514);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flowLayoutShippur);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSave);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -208,11 +270,9 @@
             this.Load += new System.EventHandler(this.formShippingPur_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDetails)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,18 +281,24 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutShippur;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxShipID;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxMemName;
+        private System.Windows.Forms.TextBox textBoxQuality;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridDetails;
+        private System.Windows.Forms.TextBox textBoxSuppilerName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBoxSuppilerID;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBoxSuppilerCountry;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxProductID;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxProductName;
         private System.Windows.Forms.Label label6;
     }
 }

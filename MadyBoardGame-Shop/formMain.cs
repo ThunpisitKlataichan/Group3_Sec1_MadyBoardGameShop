@@ -20,6 +20,7 @@ namespace MadyBoardGame_Shop
         }
         private void formMain_Load(object sender, EventArgs e)
         {
+            InitializeUser.Confic();
             SetStage();
         }
         private void btn_member_Click(object sender, EventArgs e)

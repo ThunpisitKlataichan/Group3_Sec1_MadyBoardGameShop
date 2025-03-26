@@ -177,6 +177,7 @@ namespace MadyBoardGame_Shop
 
             // เปลี่ยนไปโหมดแก้ไข
             SetState("update");
+            InitializeUser.Confic();
         }
     }
 }
