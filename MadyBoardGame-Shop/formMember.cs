@@ -298,12 +298,12 @@ namespace MadyBoardGame_Shop
             if (dataGridMem.CurrentRow != null)
             {
                 // สำรองข้อมูลก่อนแก้ไข
-                backupData["mem_Name"] = textMen_Name.Text;
-                backupData["mem_LName"] = textMen_LName.Text;
-                backupData["mem_IdentityNum"] = textIdentityNum.Text;
-                backupData["mem_Phone"] = textPhoneNum.Text;
-                backupData["mem_BornDate"] = dateTimePicker_Born.Value.ToString(); // เก็บค่าเป็น string
-                backupData["mem_Location"] = textLocation.Text;
+                backupData["memName"] = textMen_Name.Text;
+                backupData["memLName"] = textMen_LName.Text;
+                backupData["memIdentityNum"] = textIdentityNum.Text;
+                backupData["memPhoneNum"] = textPhoneNum.Text;
+                backupData["memBornDate"] = dateTimePicker_Born.Value.ToString(); // เก็บค่าเป็น string
+                backupData["memLocation"] = textLocation.Text;
             }
 
             // เปลี่ยนไปโหมดแก้ไข
@@ -362,12 +362,12 @@ namespace MadyBoardGame_Shop
             if (backupData.Count > 0)
             {
                 // คืนค่าที่สำรองไว้
-                textMen_Name.Text = backupData["mem_Name"];
-                textMen_LName.Text = backupData["mem_LName"];
-                textIdentityNum.Text = backupData["mem_IdentityNum"];
-                textPhoneNum.Text = backupData["mem_Phone"];
-                dateTimePicker_Born.Value = Convert.ToDateTime(backupData["mem_BornDate"]);
-                textLocation.Text = backupData["mem_Location"];
+                textMen_Name.Text = backupData["memName"];
+                textMen_LName.Text = backupData["memLName"];
+                textIdentityNum.Text = backupData["memIdentityNum"];
+                textPhoneNum.Text = backupData["memPhoneNum"];
+                dateTimePicker_Born.Value = Convert.ToDateTime(backupData["memBornDate"]);
+                textLocation.Text = backupData["memLocation"];
             }
 
             // กลับสู่โหมดปกติ
