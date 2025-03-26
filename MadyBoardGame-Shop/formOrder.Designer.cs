@@ -121,10 +121,10 @@
             // txtDesription
             // 
             this.txtDesription.BackColor = System.Drawing.Color.White;
-            this.txtDesription.Enabled = false;
             this.txtDesription.Location = new System.Drawing.Point(6, 397);
             this.txtDesription.Multiline = true;
             this.txtDesription.Name = "txtDesription";
+            this.txtDesription.ReadOnly = true;
             this.txtDesription.Size = new System.Drawing.Size(281, 110);
             this.txtDesription.TabIndex = 57;
             // 
@@ -149,9 +149,9 @@
             // txtProductType
             // 
             this.txtProductType.BackColor = System.Drawing.Color.White;
-            this.txtProductType.Enabled = false;
             this.txtProductType.Location = new System.Drawing.Point(108, 334);
             this.txtProductType.Name = "txtProductType";
+            this.txtProductType.ReadOnly = true;
             this.txtProductType.Size = new System.Drawing.Size(179, 29);
             this.txtProductType.TabIndex = 54;
             // 
@@ -167,9 +167,9 @@
             // txtPrice
             // 
             this.txtPrice.BackColor = System.Drawing.Color.White;
-            this.txtPrice.Enabled = false;
             this.txtPrice.Location = new System.Drawing.Point(57, 299);
             this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
             this.txtPrice.Size = new System.Drawing.Size(67, 29);
             this.txtPrice.TabIndex = 52;
             // 
@@ -194,9 +194,9 @@
             // txtProductname
             // 
             this.txtProductname.BackColor = System.Drawing.Color.White;
-            this.txtProductname.Enabled = false;
             this.txtProductname.Location = new System.Drawing.Point(57, 262);
             this.txtProductname.Name = "txtProductname";
+            this.txtProductname.ReadOnly = true;
             this.txtProductname.Size = new System.Drawing.Size(230, 29);
             this.txtProductname.TabIndex = 44;
             // 
