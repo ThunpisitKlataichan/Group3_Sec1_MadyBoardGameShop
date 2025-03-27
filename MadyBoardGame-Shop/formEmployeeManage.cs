@@ -14,6 +14,8 @@ namespace MadyBoardGame_Shop
 {
     public partial class formEmployeeManage : Form
     {
+        SqlConnection connection;
+        SqlCommand command;
         CurrencyManager emp_Manager;
         DataTable dt = new DataTable();
         DataSet ds = new DataSet();
@@ -251,6 +253,7 @@ namespace MadyBoardGame_Shop
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            BackupDATA();
             SetState("add");
             /*// เพิ่มแถวใหม่ใน DataTable
             DataRow newRow = ds.Tables["Employees"].NewRow();
@@ -289,11 +292,76 @@ namespace MadyBoardGame_Shop
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if(myState == "add")
+            if (myState == "add")
             {
+                try
+                {
+                    //ดูว่าใส่ข้อมูลครบทุกช่องไหม
+                    if (!TextBoxNotNullRight())
+                    {
+                        return;
+                    }
+                    string name = text_Name.Text.Trim(); ;
+                    string Lname = text_LName.Text.Trim(); ;
+                    string position = comboBoxPosition.Text.Trim(); ;
+                    decimal salary = decimal.Parse(text_Salary.Text.Trim());
+                    string Phone = text_Phone_Emp.Text.Trim(); ;
+                    string location = text_location.Text;
+                    string username = txtUsername.Text;
+                    string password = txtPassword.Text;
+                    DateTime dateBorn = dateTimePicker_DOB.Value;
+                    int storeID = 1;
+                    if (!ValidateData(username))
+                    {
+                        MessageBox.Show("Username นี้ถูกใช้ไปแล้ว กรุณาใช้ชื่ออื่น");
+                        return;
+                    }
+                    using (connection = new SqlConnection(InitializeUser._key_con))
+                    {
+                        connection.Open();
 
+
+                        string commandprom1 = "INSERT INTO EmpUsername (Username, Password) VALUES (@username, @password)";
+
+                        string commandprom2 = "INSERT INTO Employees (empName, empLName, empPosition, empSalary, empNumphone ,empLocation,empBornDate,Username,StoreID) " +
+                            "VALUES (@name, @lastname, @Position, @Salary, @phonenum , @location, @BornDate,@Username,@StoreID)";
+                        using (command = new SqlCommand(commandprom1, connection))
+                        {
+                            command.Parameters.AddWithValue("@username", username);
+                            command.Parameters.AddWithValue("@password", password);
+                            command.ExecuteNonQuery();
+                        }
+
+                        using (command = new SqlCommand(commandprom2, connection))
+                        {
+                            command.Parameters.AddWithValue("@name", name);
+                            command.Parameters.AddWithValue("@lastname", Lname);
+                            command.Parameters.AddWithValue("@Position", position);
+                            command.Parameters.AddWithValue("@Salary", salary);
+                            command.Parameters.AddWithValue("@phonenum", Phone);
+                            command.Parameters.AddWithValue("@Username", username);
+                            command.Parameters.AddWithValue("@location", location);
+                            command.Parameters.AddWithValue("@BornDate", dateBorn);
+                            command.Parameters.AddWithValue("@StoreID", storeID);
+
+
+                            command.ExecuteNonQuery();
+                        }
+
+                    }
+                    MessageBox.Show("เพิ่มข้อมูลพนักงานสำเร็จ");
+                    ds.Clear();
+                    loadDataIntoGrid();
+                    SetState("view");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ส่งข้อมูลไม่สำเร็จ: " + ex.Message);
+                }
+
+                
             }
-            if(myState == "update")
+            if (myState == "update")
             {
                 using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
                 {
@@ -307,7 +375,7 @@ namespace MadyBoardGame_Shop
                             cmdUser.Parameters.AddWithValue("@Password", txtPassword.Text);
                             cmdUser.Parameters.AddWithValue("@OldUsername", oldUsername);
                             cmdUser.ExecuteNonQuery();
-                            MessageBox.Show($"oldusername is {oldUsername}");
+                            //MessageBox.Show($"oldusername is {oldUsername}");
                         }
 
                         // Update ข้อมูลพนักงานใน Employees
@@ -319,13 +387,13 @@ namespace MadyBoardGame_Shop
 
                         using (SqlCommand cmdEmp = new SqlCommand(queryEmp, conn))
                         {
-                            cmdEmp.Parameters.AddWithValue("@Name", text_Name.Text);
-                            cmdEmp.Parameters.AddWithValue("@LName", text_LName.Text);
-                            cmdEmp.Parameters.AddWithValue("@Salary", double.Parse(text_Salary.Text));
+                            cmdEmp.Parameters.AddWithValue("@Name", text_Name.Text.Trim());
+                            cmdEmp.Parameters.AddWithValue("@LName", text_LName.Text.Trim());
+                            cmdEmp.Parameters.AddWithValue("@Salary", decimal.Parse(text_Salary.Text.Trim()));
                             cmdEmp.Parameters.AddWithValue("@Position", comboBoxPosition.Text);
                             cmdEmp.Parameters.AddWithValue("@BornDate", dateTimePicker_DOB.Value);
                             cmdEmp.Parameters.AddWithValue("@Location", text_location.Text);
-                            cmdEmp.Parameters.AddWithValue("@Phone", text_Phone_Emp.Text);
+                            cmdEmp.Parameters.AddWithValue("@Phone", text_Phone_Emp.Text.Trim());
                             cmdEmp.Parameters.AddWithValue("@empID", dataGrid_Emp.CurrentRow.Cells["empID"].Value);
                             cmdEmp.ExecuteNonQuery();
                         }
@@ -338,11 +406,10 @@ namespace MadyBoardGame_Shop
                     }
                     catch (Exception ex)
                     {
-                        
+
                         MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
                     }
                 }
-                
             }
         }
 
@@ -376,5 +443,94 @@ namespace MadyBoardGame_Shop
             backupData["Password"] = txtPassword.Text;
             backupData["Username"] = txtUsername.Text;
         }
+        private bool ValidateData(string username)
+        {
+            try
+            {
+                string commandprom = "SELECT MemberUsername.Username , EmpUsername.Username FROM MemberUsername , EmpUsername " +
+                    "WHERE MemberUsername.Username = @username or EmpUsername.Username = @username;";
+
+                using (connection = new SqlConnection(InitializeUser._key_con))
+                {
+                    connection.Open();
+
+                    using (command = new SqlCommand(commandprom, connection))
+                    {
+                        command.Parameters.AddWithValue("@username", username);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable datatable = new DataTable();
+                            adapter.Fill(datatable);
+
+                            if (datatable.Rows.Count > 0)
+                            {
+                                return false; //Username ซ้ำ
+                            }
+                        }
+                    }
+                }
+
+                return true; //Username ใช้ได้
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
+                return false;
+            }
+        }
+        private bool TextBoxNotNullRight()
+        {
+            StringBuilder warningstring = new StringBuilder();
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(text_Name.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกชื่อจริง");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(text_LName.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกนามสกุล");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(comboBoxPosition.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกตำแหน่ง");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(text_Salary.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกเงินเดือน");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(text_Phone_Emp.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกเบอร์โทร");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(text_location.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกที่อยู่");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                warningstring.AppendLine("กรุณากรอก Username");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกรหัสผ่าน");
+                isValid = false;
+            }
+            if (!isValid)
+            {
+                MessageBox.Show(warningstring.ToString());
+            }
+
+            return isValid;
+        }
+
     }
 }
