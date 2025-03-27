@@ -59,6 +59,24 @@
     <Compile Include="formAddSuppiler.Designer.cs">
       <DependentUpon>formAddSuppiler.cs</DependentUpon>
     </Compile>
+    <Compile Include="formReportEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportEmployee.Designer.cs">
+      <DependentUpon>formReportEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formReportLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportLedger.Designer.cs">
+      <DependentUpon>formReportLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formReportProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportProduct.Designer.cs">
+      <DependentUpon>formReportProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="formShippingOrder.cs">
       <SubType>Form</SubType>
     </Compile>

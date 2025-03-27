@@ -92,11 +92,11 @@ namespace MadyBoardGame_Shop
             string qry = "Select ProductID , ProductName , CostPrice , ProductImg , Quality , SuppilersID FROM Products Where ProductID = @productID";
             productcommand = new SqlCommand(qry, productconnect);
             productcommand.Parameters.AddWithValue("@productID", comboBoxProduct.SelectedValue);
-            productadapter = new SqlDataAdapter(productcommand);
-            productdata = new DataTable();
-            productadapter.Fill(productdata);
+            SqlDataAdapter productadapter2 = new SqlDataAdapter(productcommand);
+            DataTable productdata2 = new DataTable();
+            productadapter2.Fill(productdata2);
 
-            if (productdata.Rows.Count == 0)
+            if (productdata2.Rows.Count == 0)
             {
                 MessageBox.Show("ไม่พบสินค้า");
                 return;
@@ -108,7 +108,7 @@ namespace MadyBoardGame_Shop
             panel.BorderStyle = BorderStyle.FixedSingle;
             panel.BackColor = Color.DarkGray;
             panel.Tag = comboBoxProduct.SelectedValue.ToString();
-            panel.Tag = productdata.Rows[0]["ProductID"].ToString();
+            panel.Tag = productdata2.Rows[0]["ProductID"].ToString();
             if (listpanel.Any(x => x.Tag.ToString() == panel.Tag.ToString()))
             {
                 MessageBox.Show("มีสินค้านี้อยู่แล้ว");
@@ -124,7 +124,7 @@ namespace MadyBoardGame_Shop
             pic.Size = new Size(116, 97);
             pic.Location = new Point((panel.Width-pic.Width)/2, 2);
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
-            byte[] img = (byte[])productdata.Rows[0]["ProductImg"];
+            byte[] img = (byte[])productdata2.Rows[0]["ProductImg"];
             MemoryStream ms = new MemoryStream(img);
             pic.Image = Image.FromStream(ms);
             pic.Click += PictureBox_Click;
@@ -137,7 +137,7 @@ namespace MadyBoardGame_Shop
             labelNameTitle.Click += Label_Click;
 
             Label labelName = new Label();
-            labelName.Text = productdata.Rows[0]["ProductName"].ToString();
+            labelName.Text = productdata2.Rows[0]["ProductName"].ToString();
             labelName.Location = new Point(26, 103);
             labelName.AutoSize = false;
             labelName.Size = new Size(116, 46);
@@ -167,7 +167,7 @@ namespace MadyBoardGame_Shop
             labelCostPrice.Click += Label_Click;
 
             Label labelCost = new Label();
-            labelCost.Text = Convert.ToDecimal(productdata.Rows[0]["CostPrice"]).ToString("N2");
+            labelCost.Text = Convert.ToDecimal(productdata2.Rows[0]["CostPrice"]).ToString("N2");
             labelCost.Location = new Point(49, 189);
             labelCost.AutoSize = false;
             labelCost.Size = new Size(93, 15);
@@ -234,6 +234,7 @@ namespace MadyBoardGame_Shop
         {
             textBoxProID.Text = comboBoxProduct.SelectedValue.ToString();
             textBoxProCost.Text = productdata.Rows[comboBoxProduct.SelectedIndex]["CostPrice"].ToString();
+
 
             if (waitforload)
             {
