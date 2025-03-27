@@ -118,7 +118,7 @@ namespace MadyBoardGame_Shop
             switch (AddState)
             {
                 case "view":
-                    
+                    dataGrid_Emp.Enabled = true;
                     text_Name.ReadOnly = true;
                     text_LName.ReadOnly = true;
                     comboBoxPosition.Enabled = false;
@@ -150,7 +150,7 @@ namespace MadyBoardGame_Shop
                     txtPassword.BackColor = Color.White;
                     break;
                 case "update":
-                    
+                    dataGrid_Emp.Enabled = false;
                     text_Name.ReadOnly = false;
                     text_LName.ReadOnly = false;
                     comboBoxPosition.Enabled = true;
@@ -182,7 +182,7 @@ namespace MadyBoardGame_Shop
                     txtPassword.BackColor = Color.Orange;
                     break;
                 case "add":
-                   
+                    dataGrid_Emp.Enabled = true;
                     text_Name.ReadOnly = false;
                     text_LName.ReadOnly = false;
                     comboBoxPosition.Enabled = true;
@@ -235,6 +235,7 @@ namespace MadyBoardGame_Shop
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
+            BackupDATA();
             oldUsername  = txtUsername.Text;
             SetState("update");
         }
@@ -262,7 +263,28 @@ namespace MadyBoardGame_Shop
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+                // คืนค่าที่สำรองไว้
+                text_Name.Text = backupData["empName"];
+                text_LName.Text = backupData["empLName"];
+                comboBoxPosition.Text = backupData["empPosition"];
+                text_Salary.Text = backupData["empSalary"];
+                dateTimePicker_DOB.Value = Convert.ToDateTime(backupData["empBornDate"]);
+                text_Phone_Emp.Text = backupData["empNumphone"];
+                text_location.Text = backupData["empLocation"];
+                txtPassword.Text = backupData["Password"];
+                txtUsername.Text = backupData["Username"];
+            // โหลดข้อมูลเก่ากลับไปที่ DataGridView
+            ds.Clear();
+            loadDataIntoGrid(); // โหลดข้อมูลจาก Database อีกครั้ง
+
+            // รีเฟรช DataGridView
+            dataGrid_Emp.DataSource = null;
+            //dataGrid_Emp.DataSource = ds.Tables["Employees"];
+            //dataGrid_Emp.Refresh();
+            loadDataIntoGrid();
             SetState("view");
+
+            //Bind_DATA();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -340,6 +362,19 @@ namespace MadyBoardGame_Shop
 
                 txtPassword.Text = password ?? "";
             }
+        }
+        private void BackupDATA()
+        {
+            // สำรองข้อมูลก่อนแก้ไข
+            backupData["empName"] = text_Name.Text;
+            backupData["empLName"] = text_LName.Text;
+            backupData["empPosition"] = comboBoxPosition.Text;
+            backupData["empSalary"] = text_Salary.Text;
+            backupData["empBornDate"] = dateTimePicker_DOB.Value.ToString(); // เก็บค่าเป็น string
+            backupData["empNumphone"] = text_Phone_Emp.Text;
+            backupData["empLocation"] = text_location.Text;
+            backupData["Password"] = txtPassword.Text;
+            backupData["Username"] = txtUsername.Text;
         }
     }
 }
