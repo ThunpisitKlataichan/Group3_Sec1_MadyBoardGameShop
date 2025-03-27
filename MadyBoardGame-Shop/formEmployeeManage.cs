@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -415,7 +416,54 @@ namespace MadyBoardGame_Shop
 
         private void btn_del_Click(object sender, EventArgs e)
         {
+            if (dataGrid_Emp.CurrentRow == null)
+            {
+                MessageBox.Show("กรุณาเลือกแถวที่ต้องการลบ!", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dataGrid_Emp.CurrentRow != null)
+            {
+                // ดึงค่า Primary Key ของแถวที่เลือก
+                //int empID = Convert.ToInt32(dataGrid_Emp.CurrentRow.Cells["empID"].Value);
+                string username = dataGrid_Emp.CurrentRow.Cells["Username"].Value.ToString();
 
+                // ยืนยันก่อนลบ
+                DialogResult result = MessageBox.Show("คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้?", "ยืนยันการลบ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // เชื่อมต่อฐานข้อมูล
+                        using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
+                        {
+                            conn.Open();
+                            string query1 = "DELETE FROM EmpUsername WHERE Username = @username";
+                            string query2 = "DELETE FROM Employees WHERE Username = @username";
+                            using (SqlCommand cmd = new SqlCommand(query1, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@username", username);
+                                cmd.ExecuteNonQuery();
+                            }
+                            using (SqlCommand cmd = new SqlCommand(query2, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@username", username);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                        }
+                        MessageBox.Show("ลบข้อมูลสำเร็จ!", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ds.Clear();
+                        loadDataIntoGrid();
+                        //LoadData_AfterDelete();
+                        SetState("view");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("เกิดข้อผิดพลาดในการลบข้อมูล: " + ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
