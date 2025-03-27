@@ -55,6 +55,7 @@ namespace MadyBoardGame_Shop
                     return;
                 }
                 //ดึงค่าจาก TextBox และ Trim ช่องว่าง
+                string Email = text_Email.Text.Trim();
                 string name = txtName.Text.Trim();
                 string lname = txtLastName.Text.Trim();
                 string idennum = txtIdentityNum.Text.Trim();
@@ -90,8 +91,8 @@ namespace MadyBoardGame_Shop
                     //ส่งข้อมูลไป Table MemberUsername
                     string commandprom1 = "INSERT INTO MemberUsername (Username, Password) VALUES (@username, @password)";
                     //ส่งข้อมูลไป Table Member
-                    string commandprom2 = "INSERT INTO Member (memName, memLName, memIdentityNum, Username, memPhoneNum , memRegisDate, memLocation , memBornDate) " +
-                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , @dateregis, @location,@BornDate)";
+                    string commandprom2 = "INSERT INTO Member (memName, memLName, memIdentityNum, Username, memPhoneNum , memRegisDate, memLocation , memBornDate, memEmail) " +
+                        "VALUES (@name, @lastname, @idennum, @username, @phonenum , @dateregis, @location,@BornDate ,@Email )";
                     using (regiscommand = new SqlCommand(commandprom1, regisconnection)) 
                     {
                         regiscommand.Parameters.AddWithValue("@username", username);
@@ -109,7 +110,7 @@ namespace MadyBoardGame_Shop
                         regiscommand.Parameters.AddWithValue("@dateregis", dateregis);
                         regiscommand.Parameters.AddWithValue("@location", location);
                         regiscommand.Parameters.AddWithValue("@BornDate", dateBorn);
-
+                        regiscommand.Parameters.AddWithValue("@Email", Email);
 
                         regiscommand.ExecuteNonQuery();
                     }
@@ -146,6 +147,11 @@ namespace MadyBoardGame_Shop
             if (string.IsNullOrWhiteSpace(txtIdentityNum.Text))
             {
                 warningstring.AppendLine("กรุณากรอกรหัสบัตรประชาชน");
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(text_Email.Text))
+            {
+                warningstring.AppendLine("กรุณากรอกEmail");
                 isValid = false;
             }
             if (string.IsNullOrWhiteSpace(textCusHouseNumber.Text))
@@ -222,21 +228,6 @@ namespace MadyBoardGame_Shop
                 return false;
             }
 
-            // ตรวจสอบว่ามีจริงไหม ---เหมือนตอนทำในปี1
-            //int sum = 0;
-            //for (int i = 0; i < 12; i++) 
-            //{
-            //    sum += (id[i] - '0') * (13 - i);
-            //}
-
-            //int checkDigit = (11 - (sum % 11)) % 10; 
-            //int lastDigit = id[12] - '0';
-
-            //if (checkDigit != lastDigit)
-            //{
-            //    MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
-            //    return false;
-            //}
             return true;
         }
 

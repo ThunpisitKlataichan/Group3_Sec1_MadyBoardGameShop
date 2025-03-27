@@ -74,6 +74,10 @@ namespace MadyBoardGame_Shop
                     dataGrid_Emp.Columns["empName"].HeaderText = "ชื่อ";
                     dataGrid_Emp.Columns["empLName"].HeaderText = "นามสกุล";
                     dataGrid_Emp.Columns["empPosition"].HeaderText = "ตำแหน่ง";
+                    dataGrid_Emp.Columns["empName"].AutoSizeMode  = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGrid_Emp.Columns["empLName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGrid_Emp.Columns["empPosition"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                 }
                 catch (Exception ex)
                 {

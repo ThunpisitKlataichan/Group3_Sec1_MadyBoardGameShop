@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker_Born = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Lock = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textLocation = new System.Windows.Forms.TextBox();
             this.textPhoneNum = new System.Windows.Forms.TextBox();
@@ -57,6 +57,8 @@
             this.btn_Next = new System.Windows.Forms.Button();
             this.btn_Previous = new System.Windows.Forms.Button();
             this.btn_Frist = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.text_Email = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMem)).BeginInit();
@@ -65,9 +67,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.text_Email);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTimePicker_Born);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.checkBox_Lock);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.textPhoneNum);
             this.groupBox1.Controls.Add(this.textMen_LName);
@@ -79,7 +83,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(609, 327);
+            this.groupBox1.Size = new System.Drawing.Size(609, 393);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสมาชิค";
@@ -100,22 +104,23 @@
             this.label8.TabIndex = 19;
             this.label8.Text = "วันเกิด";
             // 
-            // checkBox1
+            // checkBox_Lock
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(506, 27);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(93, 28);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "ล็อกบัญชี";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_Lock.AutoSize = true;
+            this.checkBox_Lock.Location = new System.Drawing.Point(506, 27);
+            this.checkBox_Lock.Name = "checkBox_Lock";
+            this.checkBox_Lock.Size = new System.Drawing.Size(93, 28);
+            this.checkBox_Lock.TabIndex = 18;
+            this.checkBox_Lock.Text = "ล็อกบัญชี";
+            this.checkBox_Lock.UseVisualStyleBackColor = true;
+            this.checkBox_Lock.CheckedChanged += new System.EventHandler(this.checkBox_Lock_CheckedChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textLocation);
-            this.groupBox3.Location = new System.Drawing.Point(3, 185);
+            this.groupBox3.Location = new System.Drawing.Point(3, 221);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(593, 135);
+            this.groupBox3.Size = new System.Drawing.Size(593, 151);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ที่อยู่";
@@ -125,7 +130,7 @@
             this.textLocation.Location = new System.Drawing.Point(11, 28);
             this.textLocation.Multiline = true;
             this.textLocation.Name = "textLocation";
-            this.textLocation.Size = new System.Drawing.Size(563, 93);
+            this.textLocation.Size = new System.Drawing.Size(563, 104);
             this.textLocation.TabIndex = 0;
             // 
             // textPhoneNum
@@ -207,7 +212,7 @@
             this.groupBox2.Controls.Add(this.btn_Find);
             this.groupBox2.Controls.Add(this.text_find);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(13, 368);
+            this.groupBox2.Location = new System.Drawing.Point(13, 411);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 186);
             this.groupBox2.TabIndex = 30;
@@ -242,7 +247,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(380, 462);
+            this.btn_Save.Location = new System.Drawing.Point(380, 505);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(111, 38);
             this.btn_Save.TabIndex = 29;
@@ -252,7 +257,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(497, 506);
+            this.button4.Location = new System.Drawing.Point(497, 549);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(111, 38);
             this.button4.TabIndex = 28;
@@ -262,7 +267,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(497, 462);
+            this.btn_Cancel.Location = new System.Drawing.Point(497, 505);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(111, 38);
             this.btn_Cancel.TabIndex = 27;
@@ -272,7 +277,7 @@
             // 
             // btn_Edit
             // 
-            this.btn_Edit.Location = new System.Drawing.Point(263, 506);
+            this.btn_Edit.Location = new System.Drawing.Point(263, 549);
             this.btn_Edit.Name = "btn_Edit";
             this.btn_Edit.Size = new System.Drawing.Size(111, 38);
             this.btn_Edit.TabIndex = 26;
@@ -282,7 +287,7 @@
             // 
             // btn_Del
             // 
-            this.btn_Del.Location = new System.Drawing.Point(380, 506);
+            this.btn_Del.Location = new System.Drawing.Point(380, 549);
             this.btn_Del.Name = "btn_Del";
             this.btn_Del.Size = new System.Drawing.Size(111, 38);
             this.btn_Del.TabIndex = 25;
@@ -292,7 +297,7 @@
             // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(263, 462);
+            this.btn_Add.Location = new System.Drawing.Point(263, 505);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(111, 38);
             this.btn_Add.TabIndex = 24;
@@ -302,7 +307,7 @@
             // 
             // btn_Last
             // 
-            this.btn_Last.Location = new System.Drawing.Point(563, 411);
+            this.btn_Last.Location = new System.Drawing.Point(563, 454);
             this.btn_Last.Name = "btn_Last";
             this.btn_Last.Size = new System.Drawing.Size(45, 45);
             this.btn_Last.TabIndex = 23;
@@ -312,7 +317,7 @@
             // 
             // btn_Next
             // 
-            this.btn_Next.Location = new System.Drawing.Point(474, 411);
+            this.btn_Next.Location = new System.Drawing.Point(474, 454);
             this.btn_Next.Name = "btn_Next";
             this.btn_Next.Size = new System.Drawing.Size(45, 45);
             this.btn_Next.TabIndex = 22;
@@ -322,7 +327,7 @@
             // 
             // btn_Previous
             // 
-            this.btn_Previous.Location = new System.Drawing.Point(354, 411);
+            this.btn_Previous.Location = new System.Drawing.Point(354, 454);
             this.btn_Previous.Name = "btn_Previous";
             this.btn_Previous.Size = new System.Drawing.Size(45, 45);
             this.btn_Previous.TabIndex = 21;
@@ -332,13 +337,29 @@
             // 
             // btn_Frist
             // 
-            this.btn_Frist.Location = new System.Drawing.Point(263, 411);
+            this.btn_Frist.Location = new System.Drawing.Point(263, 454);
             this.btn_Frist.Name = "btn_Frist";
             this.btn_Frist.Size = new System.Drawing.Size(45, 45);
             this.btn_Frist.TabIndex = 20;
             this.btn_Frist.Text = "<<";
             this.btn_Frist.UseVisualStyleBackColor = true;
             this.btn_Frist.Click += new System.EventHandler(this.btn_Frist_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(85, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 24);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Email";
+            // 
+            // text_Email
+            // 
+            this.text_Email.Location = new System.Drawing.Point(148, 179);
+            this.text_Email.Name = "text_Email";
+            this.text_Email.Size = new System.Drawing.Size(331, 29);
+            this.text_Email.TabIndex = 22;
             // 
             // formMember
             // 
@@ -402,10 +423,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textIdentityNum;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_Lock;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Born;
         private System.Windows.Forms.TextBox textLocation;
         private System.Windows.Forms.Button btn_Find;
+        private System.Windows.Forms.TextBox text_Email;
+        private System.Windows.Forms.Label label5;
     }
 }

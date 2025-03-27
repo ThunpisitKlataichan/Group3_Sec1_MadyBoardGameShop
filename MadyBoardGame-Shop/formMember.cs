@@ -16,6 +16,7 @@ namespace MadyBoardGame_Shop
         CurrencyManager mem_Manager;
         DataTable dt = new DataTable();
         string myState;
+        int Lock;
         private Dictionary<string, string> backupData = new Dictionary<string, string>();
         public formMember()
         {
@@ -55,8 +56,14 @@ namespace MadyBoardGame_Shop
                     dataGridMem.Columns["memPhonenum"].Visible = false;
                     dataGridMem.Columns["memLocation"].Visible = false;
                     dataGridMem.Columns["Username"].Visible = false;
+                    dataGridMem.Columns["memLock"].Visible = false;
+                    dataGridMem.Columns["memEmail"].Visible = false;
                     dataGridMem.Columns["memName"].HeaderText = "ชื่อ";
                     dataGridMem.Columns["memLName"].HeaderText = "นามสกุล";
+                    dataGridMem.Columns["memName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridMem.Columns["memLName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    
+
 
                     //  ใช้ DefaultView เพื่อให้สามารถกรองข้อมูลได้
                     mem_Manager = (CurrencyManager)this.BindingContext[dt.DefaultView];
@@ -155,28 +162,7 @@ namespace MadyBoardGame_Shop
             btn_Previous.Enabled = mem_Manager.Position > 0;
             btn_Next.Enabled = mem_Manager.Position < count - 1;
             btn_Last.Enabled = mem_Manager.Position < count - 1;
-            //Codeเก่าก่อนแก้---------------------
-            /*if (mem_Manager.Position == 0) 
-            {
-                btn_Frist.Enabled = false;
-                btn_Previous.Enabled = false;
-            }
-            if (mem_Manager.Position != 0) 
-            {
-                btn_Frist.Enabled = true;
-                btn_Previous.Enabled = true;
-                
-            }
-            if(mem_Manager.Position != mem_Manager.Count - 1)
-            {
-                btn_Next.Enabled = true;
-                btn_Last.Enabled = true;
-            }
-            if (mem_Manager.Position == mem_Manager.Count - 1)
-            {
-                btn_Next.Enabled = false;
-                btn_Last.Enabled = false;
-            }*/
+            
         }
 
         private void btn_Find_Click(object sender, EventArgs e)
@@ -219,6 +205,8 @@ namespace MadyBoardGame_Shop
             textPhoneNum.DataBindings.Clear();
             dateTimePicker_Born.DataBindings.Clear();
             textLocation.DataBindings.Clear();
+            text_Email.DataBindings.Clear();
+            checkBox_Lock.DataBindings.Clear();
 
             // ใช้ DefaultView แทน DataTable ตรงๆ
             textMen_Name.DataBindings.Add("Text", dt.DefaultView, "memName");
@@ -227,6 +215,8 @@ namespace MadyBoardGame_Shop
             textPhoneNum.DataBindings.Add("Text", dt.DefaultView, "memPhonenum");
             dateTimePicker_Born.DataBindings.Add("Value", dt.DefaultView, "memBornDate", true, DataSourceUpdateMode.OnPropertyChanged);
             textLocation.DataBindings.Add("Text", dt.DefaultView, "memLocation");
+            text_Email.DataBindings.Add("Text", dt.DefaultView, "memEmail");
+            checkBox_Lock.DataBindings.Add("Checked", dt.DefaultView, "memLock");
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -304,6 +294,7 @@ namespace MadyBoardGame_Shop
                 backupData["memPhoneNum"] = textPhoneNum.Text;
                 backupData["memBornDate"] = dateTimePicker_Born.Value.ToString(); // เก็บค่าเป็น string
                 backupData["memLocation"] = textLocation.Text;
+                backupData["memEmail"] = text_Email.Text;
             }
 
             // เปลี่ยนไปโหมดแก้ไข
@@ -368,52 +359,15 @@ namespace MadyBoardGame_Shop
                 textPhoneNum.Text = backupData["memPhoneNum"];
                 dateTimePicker_Born.Value = Convert.ToDateTime(backupData["memBornDate"]);
                 textLocation.Text = backupData["memLocation"];
+                text_Email.Text  = backupData["memEmail"];
             }
 
             // กลับสู่โหมดปกติ
             SetState("view");
         }
-        private bool ValidateThaiID(string id)
-        {
-            // เช็คว่ามี 13 หลัก
-            if (id.Length != 13)
-            {
-                MessageBox.Show("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
-                return false;
-            }
-
-            // เช็คว่าเป็นตัวเลขทั้งหมด
-            if (!long.TryParse(id, out _))
-            {
-                MessageBox.Show("หมายเลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น");
-                return false;
-            }
-
-            // ตรวจสอบว่ามีจริงไหม ---เหมือนตอนทำในปี1
-            int sum = 0;
-            for (int i = 0; i < 12; i++)
-            {
-                sum += (id[i] - '0') * (13 - i);
-            }
-
-            int checkDigit = (11 - (sum % 11)) % 10;
-            int lastDigit = id[12] - '0';
-
-            if (checkDigit != lastDigit)
-            {
-                MessageBox.Show("หมายเลขบัตรประชาชนไม่ถูกต้อง");
-                return false;
-            }
-            return true;
-        }
+        
         private void btn_Save_Click(object sender, EventArgs e)
-        {   /* check รหัสบัตรปชช เช่น เลขไม่ครบ13หลัก
-                                      มีตัวอักษรอยู่ไหม
-                                      มีจริงไหม*/
-            /*if (!ValidateThaiID(textIdentityNum.Text))
-            {
-                return;
-            }*/
+        {   
             using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
             {
                 try
@@ -423,11 +377,19 @@ namespace MadyBoardGame_Shop
 
                     if (myState == "update")
                     {
+                        if (checkBox_Lock.Checked)
+                        {
+                            Lock = 1; // Lock
+                        }
+                        if (!checkBox_Lock.Checked)
+                        {
+                            Lock = 0; // Unlock
+                        }
                         // อัปเดตข้อมูลสมาชิกเดิม
-                        query = "UPDATE Member SET mem_Name = @Name, mem_LName = @LName, " +
-                                "mem_IdentityNum = @IdentityNum, mem_Phone = @Phone, " +
-                                "mem_BornDate = @BornDate, mem_Location = @Location " +
-                                "WHERE mem_ID = @MemID";
+                        query = "UPDATE Member SET memName = @Name, memLName = @LName, " +
+                                "memIdentityNum = @IdentityNum, memPhoneNum = @Phone, " +
+                                "memBornDate = @BornDate, memLocation = @Location , memEmail = @memEmail , memLock = @Lock " +
+                                "WHERE memID = @MemID";
                     }
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -439,10 +401,12 @@ namespace MadyBoardGame_Shop
                         cmd.Parameters.AddWithValue("@Phone", textPhoneNum.Text);
                         cmd.Parameters.AddWithValue("@BornDate", dateTimePicker_Born.Value);
                         cmd.Parameters.AddWithValue("@Location", textLocation.Text);
+                        cmd.Parameters.AddWithValue("@memEmail", text_Email.Text);
+                        cmd.Parameters.AddWithValue("@Lock", Lock);
 
                         if (myState == "update")
                         {
-                            cmd.Parameters.AddWithValue("@MemID", dataGridMem.CurrentRow.Cells["mem_ID"].Value);
+                            cmd.Parameters.AddWithValue("@MemID", dataGridMem.CurrentRow.Cells["memID"].Value);
                         }
 
                         cmd.ExecuteNonQuery();
@@ -531,6 +495,11 @@ namespace MadyBoardGame_Shop
         }
 
         private void dataGridMem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void checkBox_Lock_CheckedChanged(object sender, EventArgs e)
         {
 
         }

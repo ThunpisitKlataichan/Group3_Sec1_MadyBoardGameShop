@@ -65,6 +65,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
+            this.text_Email = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -192,7 +194,7 @@
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtUsername);
-            this.groupBox1.Location = new System.Drawing.Point(12, 451);
+            this.groupBox1.Location = new System.Drawing.Point(12, 510);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(605, 140);
             this.groupBox1.TabIndex = 14;
@@ -201,6 +203,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.text_Email);
+            this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.dateTimePicker_Born);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.groupBox3);
@@ -214,7 +218,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(605, 433);
+            this.groupBox2.Size = new System.Drawing.Size(605, 492);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ข้อมูลส่วนตัว";
@@ -253,7 +257,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.textCusHouseNumber);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(6, 186);
+            this.groupBox3.Location = new System.Drawing.Point(6, 229);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(593, 241);
             this.groupBox3.TabIndex = 8;
@@ -410,7 +414,7 @@
             // 
             // btn_Confirm
             // 
-            this.btn_Confirm.Location = new System.Drawing.Point(148, 611);
+            this.btn_Confirm.Location = new System.Drawing.Point(148, 670);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(142, 45);
             this.btn_Confirm.TabIndex = 16;
@@ -420,7 +424,7 @@
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(324, 611);
+            this.btn_close.Location = new System.Drawing.Point(324, 670);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(142, 45);
             this.btn_close.TabIndex = 17;
@@ -428,11 +432,27 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // text_Email
+            // 
+            this.text_Email.Location = new System.Drawing.Point(154, 194);
+            this.text_Email.Name = "text_Email";
+            this.text_Email.Size = new System.Drawing.Size(239, 29);
+            this.text_Email.TabIndex = 24;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(91, 197);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(57, 24);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Email";
+            // 
             // formRegis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 676);
+            this.ClientSize = new System.Drawing.Size(632, 742);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_Confirm);
             this.Controls.Add(this.groupBox2);
@@ -493,5 +513,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Born;
+        private System.Windows.Forms.TextBox text_Email;
+        private System.Windows.Forms.Label label17;
     }
 }
