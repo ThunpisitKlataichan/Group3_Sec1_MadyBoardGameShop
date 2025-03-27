@@ -300,7 +300,7 @@
                     productcommand.Parameters.AddWithValue("@ProductType", txtProductType.Text);
                     productcommand.Parameters.AddWithValue("@CostPrice", Convert.ToDecimal(txtCostPrice.Text));
                     productcommand.Parameters.AddWithValue("@Price", Convert.ToDecimal(txtPrice.Text));
-                    productcommand.Parameters.AddWithValue("@Quality", Convert.ToInt32(txtAmountremain.Text));
+                    productcommand.Parameters.AddWithValue("@Quality", Convert.ToInt32(0));
                     productcommand.Parameters.AddWithValue("@ProductDetail", txtDetails.Text);
                     productcommand.Parameters.AddWithValue("@LatestDate", DateTime.Now);
                     productcommand.Parameters.AddWithValue("@ProductsShelf", checkBoxShowonShelf.Checked ? "True" : "False");

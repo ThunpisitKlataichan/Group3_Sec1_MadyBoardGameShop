@@ -55,6 +55,7 @@
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.btnAddSupplier = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTotleorder = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
@@ -127,13 +128,13 @@
             this.groupBoxUser.Controls.Add(this.labelUsername);
             this.groupBoxUser.Location = new System.Drawing.Point(25, 67);
             this.groupBoxUser.Name = "groupBoxUser";
-            this.groupBoxUser.Size = new System.Drawing.Size(436, 73);
+            this.groupBoxUser.Size = new System.Drawing.Size(485, 73);
             this.groupBoxUser.TabIndex = 6;
             this.groupBoxUser.TabStop = false;
             // 
             // pictureUserPic
             // 
-            this.pictureUserPic.Location = new System.Drawing.Point(380, 17);
+            this.pictureUserPic.Location = new System.Drawing.Point(429, 16);
             this.pictureUserPic.Name = "pictureUserPic";
             this.pictureUserPic.Size = new System.Drawing.Size(50, 50);
             this.pictureUserPic.TabIndex = 1;
@@ -166,7 +167,7 @@
             this.groupBoxCashier.Controls.Add(this.btn_member);
             this.groupBoxCashier.Location = new System.Drawing.Point(194, 144);
             this.groupBoxCashier.Name = "groupBoxCashier";
-            this.groupBoxCashier.Size = new System.Drawing.Size(177, 204);
+            this.groupBoxCashier.Size = new System.Drawing.Size(177, 207);
             this.groupBoxCashier.TabIndex = 8;
             this.groupBoxCashier.TabStop = false;
             this.groupBoxCashier.Text = "Cashier";
@@ -184,6 +185,7 @@
             // 
             // groupBoxmanager
             // 
+            this.groupBoxmanager.Controls.Add(this.btnTotleorder);
             this.groupBoxmanager.Controls.Add(this.buttonStoreInfo);
             this.groupBoxmanager.Controls.Add(this.button1);
             this.groupBoxmanager.Controls.Add(this.buttonformEmpmange);
@@ -191,7 +193,7 @@
             this.groupBoxmanager.Controls.Add(this.button3);
             this.groupBoxmanager.Location = new System.Drawing.Point(377, 144);
             this.groupBoxmanager.Name = "groupBoxmanager";
-            this.groupBoxmanager.Size = new System.Drawing.Size(356, 204);
+            this.groupBoxmanager.Size = new System.Drawing.Size(356, 207);
             this.groupBoxmanager.TabIndex = 9;
             this.groupBoxmanager.TabStop = false;
             this.groupBoxmanager.Text = "Manager";
@@ -253,7 +255,7 @@
             this.groupMember.Controls.Add(this.btn_Order);
             this.groupMember.Location = new System.Drawing.Point(10, 144);
             this.groupMember.Name = "groupMember";
-            this.groupMember.Size = new System.Drawing.Size(173, 204);
+            this.groupMember.Size = new System.Drawing.Size(173, 207);
             this.groupMember.TabIndex = 4;
             this.groupMember.TabStop = false;
             this.groupMember.Text = "Member";
@@ -356,12 +358,23 @@
             this.panel1.Size = new System.Drawing.Size(774, 150);
             this.panel1.TabIndex = 13;
             // 
+            // btnTotleorder
+            // 
+            this.btnTotleorder.Location = new System.Drawing.Point(183, 145);
+            this.btnTotleorder.Margin = new System.Windows.Forms.Padding(6);
+            this.btnTotleorder.Name = "btnTotleorder";
+            this.btnTotleorder.Size = new System.Drawing.Size(163, 45);
+            this.btnTotleorder.TabIndex = 6;
+            this.btnTotleorder.Text = "รายงานยอดคำสั่งซื้อ";
+            this.btnTotleorder.UseVisualStyleBackColor = true;
+            this.btnTotleorder.Click += new System.EventHandler(this.btnTotleorder_Click);
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(746, 568);
+            this.ClientSize = new System.Drawing.Size(745, 568);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupboxStock);
             this.Controls.Add(this.groupShipping);
@@ -422,6 +435,7 @@
         private System.Windows.Forms.Button btnAddSupplier;
         private System.Windows.Forms.Button buttonStoreInfo;
         private System.Windows.Forms.PictureBox pictureUserPic;
+        private System.Windows.Forms.Button btnTotleorder;
     }
 }
 

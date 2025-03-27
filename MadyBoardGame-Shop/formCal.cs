@@ -175,15 +175,17 @@ namespace MadyBoardGame_Shop
                 try
                 {
                     SqlConnection PayfrontStoreConnection = new SqlConnection(InitializeUser._key_con);
-                    string qry = "INSERT INTO PayFrontStore(Amount , empID , Paymethod) VALUES(@amount , @empID , @paymethod)";
+                    string qry = "INSERT INTO PayFrontStore(Amount , empID , Paymethod , Paydate) VALUES(@amount , @empID , @paymethod , @date)";
                     SqlCommand PayfrontStoreCommand = new SqlCommand(qry , PayfrontStoreConnection);
                     PayfrontStoreConnection.Open();
                     PayfrontStoreCommand.Parameters.AddWithValue("@amount", amount);
                     PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
                     PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
-                    DecressProductQuality(flowLayoutProduct);
+                    PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);
+
 
                     PayfrontStoreCommand.ExecuteNonQuery();
+                    DecressProductQuality(flowLayoutProduct);
 
                     MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     flowLayoutProduct.Controls.Clear();
@@ -202,78 +204,93 @@ namespace MadyBoardGame_Shop
         {
             int quality = 0;
             string productID = "0";
-            foreach (Control control in flows.Controls) // ลบของตามจำนวณที่สั่ง
+            int PayfrontProductID = 0;
+            using (SqlConnection PayfStore = new SqlConnection())
             {
-                if (control is Panel panel)
+                foreach (Control control in flows.Controls) // ลบของตามจำนวณที่สั่ง
                 {
-                    foreach (Control panelControl in panel.Controls)
+                    if (control is Panel panel)
                     {
-                        if (panelControl is Label label)
+                        foreach (Control panelControl in panel.Controls)
                         {
-                            if (label.Tag != null)
+                            if (panelControl is Label label)
                             {
-                                switch (label.Tag.ToString())
+                                if (label.Tag != null)
                                 {
-                                    case "Quality":
-                                        string qual = label.Text.Split(' ')[1];
-                                        if (int.TryParse(qual, out int parsedQuality))
-                                        {
-                                            quality = parsedQuality;
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Invalid quality value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            return; 
-                                        }
-                                        break;
+                                    switch (label.Tag.ToString())
+                                    {
+                                        case "Quality":
+                                            string qual = label.Text.Split(' ')[1];
+                                            if (int.TryParse(qual, out int parsedQuality))
+                                            {
+                                                quality = parsedQuality;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Invalid quality value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                return;
+                                            }
+                                            break;
 
-                                    case "ProductID":
-                                        productID = label.Text;
-                                        break;
+                                        case "ProductID":
+                                            productID = label.Text;
+                                            break;
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (productID != "0" && quality > 0)
-                    {
-                        UpdateProductQualityInDatabase(productID, quality);
-                    }
-                    else
-                    {
-                        MessageBox.Show("ไม่เขอ ID หรือ จำนวน", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (productID != "0" && quality > 0)
+                        {
+                            UpdateProductQualityInDatabase(productID, quality, PayfrontProductID);
+                        }
+                        else
+                        {
+                            MessageBox.Show("ไม่เขอ ID หรือ จำนวน", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
         }
 
-        private void UpdateProductQualityInDatabase(string productID, int quality)
+        private void UpdateProductQualityInDatabase(string productID, int quality , int payfID)
         {
             using (productcon = new SqlConnection(InitializeUser._key_con))
             {
-                int originQuality = 0;
                 productcon.Open();
 
-                string qry1 = "Select Quality FROM Products WHERE ProductID = @productID";
-                using (productcommand = new SqlCommand(qry1, productcon))
-                {
-                    productcommand.Parameters.AddWithValue("@productID", productID);
-                    productdataadapter.SelectCommand = productcommand;
-                    productdatatable = new DataTable();
-                    productdataadapter.Fill(productdatatable);
-                    if (productdatatable.Rows.Count > 0)
-                    {
-                        originQuality = int.Parse(productdatatable.Rows[0][0].ToString());
-                    }
-                    productdatatable.Clear();
-                }
-
-                string qry2 = "UPDATE Products SET Quality = @qualityupdate WHERE ProductID = @productID";
+                string qry2 = "UPDATE Products SET Quality = Quality - @qualityupdate WHERE ProductID = @productID";
                 using (productcommand = new SqlCommand(qry2, productcon))
                 {
                     productcommand.Parameters.AddWithValue("@productID", productID);
-                    productcommand.Parameters.AddWithValue("@qualityupdate", originQuality - quality);
+                    productcommand.Parameters.AddWithValue("@qualityupdate", quality);
                     productcommand.ExecuteNonQuery();
                 }
+                string qry = "SELECT TOP 1 * FROM PayFrontStore ORDER BY PayfID DESC ;";
+                using (SqlCommand command = new SqlCommand(qry, productcon))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        payfID = int.Parse(dataTable.Rows[0]["PayfID"].ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่พบ ID ของ PayFrontStore", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                string qry3 = "INSERT INTO PayFrontStoreDetails(Quality , ProductID , PayfID) VALUES(@quality , @productID , @payfID)";
+                using (productcommand = new SqlCommand(qry3, productcon))
+                {
+                    productcommand.Parameters.AddWithValue("@payfID", payfID);
+                    productcommand.Parameters.AddWithValue("@productID", productID);
+                    productcommand.Parameters.AddWithValue("@quality", quality);
+                    productcommand.ExecuteNonQuery();
+                }
+
+                
             }
 
         }

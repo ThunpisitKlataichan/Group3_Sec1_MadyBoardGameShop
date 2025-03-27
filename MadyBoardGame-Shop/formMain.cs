@@ -101,5 +101,11 @@ namespace MadyBoardGame_Shop
             formAddSuppiler formAddSuppiler = new formAddSuppiler();
             formAddSuppiler.ShowDialog();
         }
+
+        private void btnTotleorder_Click(object sender, EventArgs e)
+        {
+            formReportTotalOrders formReportTotalOrders = new formReportTotalOrders();
+            formReportTotalOrders.ShowDialog();
+        }
     }
 }

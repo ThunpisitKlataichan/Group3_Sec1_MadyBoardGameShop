@@ -33,6 +33,8 @@ namespace MadyBoardGame_Shop
         List<Panel> panelscart = new List<Panel>();
         List<Panel> panelsearch = new List<Panel>();
 
+        string empIDmanager = "3";
+
         private decimal totalPrice = 0;
         public formOrder()
         {
@@ -455,8 +457,9 @@ namespace MadyBoardGame_Shop
                     rechack += "\n- " + pn.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "ProductName").Text;
                     rechack += " จำนวน " + pn.Controls.OfType<NumericUpDown>().FirstOrDefault(l => l.Tag?.ToString() == "NumericUpDown").Value + " ชิ้น";
                 }
+                rechack += "\nราคารวม " + totalPrice.ToString("N2") + " บาท";
 
-                    if (MessageBox.Show(rechack, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(rechack, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
                         {
@@ -509,12 +512,12 @@ namespace MadyBoardGame_Shop
 
                         SqlConnection packconnection = new SqlConnection(InitializeUser._key_con);
                         packconnection.Open();
-                        string command3 = "INSERT INTO Packing(PackStatus , PackDate , OrderID , empID) VALUES(@packstatus , @packDate , @orderID , @empID)";
+                        string command3 = "INSERT INTO Packing(PackStatus , PackDate , OrderID , empID) VALUES(@packstatus , @packDate , @orderID , @empID) ";
                         SqlCommand packcommand = new SqlCommand(command3, packconnection);
                         packcommand.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
                         packcommand.Parameters.AddWithValue("@packDate", DateTime.Now);
                         packcommand.Parameters.AddWithValue("@orderID", orderID);
-                        packcommand.Parameters.AddWithValue("@empID", 1); //เซ็ตค่าเป็น 1 ก่อน
+                        packcommand.Parameters.AddWithValue("@empID", InitializeUser.ManagerID); //เซ็ตค่าเป็น 1 ก่อน
                         packcommand.ExecuteNonQuery();
                         packconnection.Close();
 
