@@ -59,6 +59,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.button_All = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.text_Email = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,20 +94,19 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(779, 69);
+            this.label8.Location = new System.Drawing.Point(681, 63);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 24);
+            this.label8.Size = new System.Drawing.Size(152, 24);
             this.label8.TabIndex = 16;
-            this.label8.Text = "ค้นหา : ";
+            this.label8.Text = "ค้นหาชื่อพนักงาน : ";
             // 
             // textSearch
             // 
-            this.textSearch.ForeColor = System.Drawing.Color.DarkGray;
-            this.textSearch.Location = new System.Drawing.Point(854, 66);
+            this.textSearch.ForeColor = System.Drawing.Color.Black;
+            this.textSearch.Location = new System.Drawing.Point(834, 61);
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(226, 29);
             this.textSearch.TabIndex = 5;
-            this.textSearch.Text = "Search";
             this.textSearch.Click += new System.EventHandler(this.textSearch_Click);
             this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
             // 
@@ -214,7 +216,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(654, 112);
+            this.label3.Location = new System.Drawing.Point(667, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 24);
             this.label3.TabIndex = 5;
@@ -239,7 +241,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(653, 145);
+            this.label5.Location = new System.Drawing.Point(667, 146);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 24);
             this.label5.TabIndex = 10;
@@ -282,9 +284,9 @@
             // dataGrid_Emp
             // 
             this.dataGrid_Emp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_Emp.Location = new System.Drawing.Point(594, 187);
+            this.dataGrid_Emp.Location = new System.Drawing.Point(594, 215);
             this.dataGrid_Emp.Name = "dataGrid_Emp";
-            this.dataGrid_Emp.Size = new System.Drawing.Size(461, 267);
+            this.dataGrid_Emp.Size = new System.Drawing.Size(461, 239);
             this.dataGrid_Emp.TabIndex = 16;
             // 
             // comboBoxPosition
@@ -358,11 +360,41 @@
             this.txtUsername.Size = new System.Drawing.Size(300, 29);
             this.txtUsername.TabIndex = 24;
             // 
+            // button_All
+            // 
+            this.button_All.BackColor = System.Drawing.Color.Aquamarine;
+            this.button_All.Location = new System.Drawing.Point(722, 460);
+            this.button_All.Name = "button_All";
+            this.button_All.Size = new System.Drawing.Size(221, 35);
+            this.button_All.TabIndex = 22;
+            this.button_All.Text = "รายชื่อพนักงานทั้งหมด";
+            this.button_All.UseVisualStyleBackColor = false;
+            this.button_All.Click += new System.EventHandler(this.button_All_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(680, 178);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 24);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Email :";
+            // 
+            // text_Email
+            // 
+            this.text_Email.Location = new System.Drawing.Point(775, 179);
+            this.text_Email.Name = "text_Email";
+            this.text_Email.Size = new System.Drawing.Size(280, 29);
+            this.text_Email.TabIndex = 26;
+            // 
             // formEmployeeManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 560);
+            this.Controls.Add(this.text_Email);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.button_All);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label11);
@@ -435,5 +467,8 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
         public System.Windows.Forms.ComboBox comboBoxPosition;
+        private System.Windows.Forms.Button button_All;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox text_Email;
     }
 }
