@@ -492,8 +492,8 @@ namespace MadyBoardGame_Shop
             if (dataGridMem.CurrentRow != null)
             {
                 // ดึงค่า Primary Key ของแถวที่เลือก
-                int memID = Convert.ToInt32(dataGridMem.CurrentRow.Cells["memID"].Value);
-
+                //int memID = Convert.ToInt32(dataGridMem.CurrentRow.Cells["memID"].Value);
+                string username = dataGridMem.CurrentRow.Cells["Username"].Value.ToString();
                 // ยืนยันก่อนลบ
                 DialogResult result = MessageBox.Show("คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้?", "ยืนยันการลบ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -505,10 +505,16 @@ namespace MadyBoardGame_Shop
                         using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
                         {
                             conn.Open();
-                            string query = "DELETE FROM Member WHERE memID = @memID";
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            string query1 = "DELETE FROM MemberUsername WHERE Username = @username";
+                            string query2 = "DELETE FROM Member WHERE Username = @username";
+                            using (SqlCommand cmd = new SqlCommand(query1, conn))
                             {
-                                cmd.Parameters.AddWithValue("@memID", memID);
+                                cmd.Parameters.AddWithValue("@username", username);
+                                cmd.ExecuteNonQuery();
+                            }
+                            using (SqlCommand cmd = new SqlCommand(query2, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@username", username);
                                 cmd.ExecuteNonQuery();
                             }
                         }
