@@ -18,6 +18,7 @@ namespace MadyBoardGame_Shop
         DataTable dt = new DataTable();
         DataSet ds = new DataSet();
         SqlDataAdapter empAdapter, credAdapter;
+        string oldUsername;
         private Dictionary<string, string> backupData = new Dictionary<string, string>();
         string myState;
         public formEmployeeManage()
@@ -117,12 +118,7 @@ namespace MadyBoardGame_Shop
             switch (AddState)
             {
                 case "view":
-                    label10.Visible = false;
-                    label11.Visible = false;
-                    txtPassword.ReadOnly = true;
-                    txtUsername.ReadOnly = true;
-                    txtPassword.Visible = false;
-                    txtUsername.Visible = false;
+                    
                     text_Name.ReadOnly = true;
                     text_LName.ReadOnly = true;
                     comboBoxPosition.Enabled = false;
@@ -154,12 +150,7 @@ namespace MadyBoardGame_Shop
                     txtPassword.BackColor = Color.White;
                     break;
                 case "update":
-                    label10.Visible = false;
-                    label11.Visible = false;
-                    txtPassword.ReadOnly = true;
-                    txtUsername.ReadOnly = true;
-                    txtUsername.Visible = false;
-                    txtPassword.Visible = false;
+                    
                     text_Name.ReadOnly = false;
                     text_LName.ReadOnly = false;
                     comboBoxPosition.Enabled = true;
@@ -191,12 +182,7 @@ namespace MadyBoardGame_Shop
                     txtPassword.BackColor = Color.Orange;
                     break;
                 case "add":
-                    label10.Visible = true;
-                    label11.Visible = true;
-                    txtPassword.ReadOnly = false;
-                    txtUsername.ReadOnly = false ;
-                    txtUsername.Visible = true;
-                    txtPassword.Visible = true;
+                   
                     text_Name.ReadOnly = false;
                     text_LName.ReadOnly = false;
                     comboBoxPosition.Enabled = true;
@@ -249,7 +235,7 @@ namespace MadyBoardGame_Shop
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-
+            oldUsername  = txtUsername.Text;
             SetState("update");
         }
 
@@ -297,15 +283,16 @@ namespace MadyBoardGame_Shop
                         {
                             cmdUser.Parameters.AddWithValue("@NewUsername", txtUsername.Text);
                             cmdUser.Parameters.AddWithValue("@Password", txtPassword.Text);
-                            cmdUser.Parameters.AddWithValue("@OldUsername", dataGrid_Emp.CurrentRow.Cells["Username"].Value);
+                            cmdUser.Parameters.AddWithValue("@OldUsername", oldUsername);
                             cmdUser.ExecuteNonQuery();
+                            MessageBox.Show($"oldusername is {oldUsername}");
                         }
 
                         // Update ข้อมูลพนักงานใน Employees
                         string queryEmp = "UPDATE Employees SET empName = @Name, empLName = @LName, " +
                                           "empSalary = @Salary, empPosition = @Position, " +
                                           "empBornDate = @BornDate, empLocation = @Location, " +
-                                          "Username = @NewUsername, empNumphone = @Phone " +
+                                          " empNumphone = @Phone " +
                                           "WHERE empID = @empID";
 
                         using (SqlCommand cmdEmp = new SqlCommand(queryEmp, conn))
@@ -316,7 +303,6 @@ namespace MadyBoardGame_Shop
                             cmdEmp.Parameters.AddWithValue("@Position", comboBoxPosition.Text);
                             cmdEmp.Parameters.AddWithValue("@BornDate", dateTimePicker_DOB.Value);
                             cmdEmp.Parameters.AddWithValue("@Location", text_location.Text);
-                            cmdEmp.Parameters.AddWithValue("@NewUsername", txtUsername.Text);
                             cmdEmp.Parameters.AddWithValue("@Phone", text_Phone_Emp.Text);
                             cmdEmp.Parameters.AddWithValue("@empID", dataGrid_Emp.CurrentRow.Cells["empID"].Value);
                             cmdEmp.ExecuteNonQuery();
@@ -330,6 +316,7 @@ namespace MadyBoardGame_Shop
                     }
                     catch (Exception ex)
                     {
+                        
                         MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
                     }
                 }
