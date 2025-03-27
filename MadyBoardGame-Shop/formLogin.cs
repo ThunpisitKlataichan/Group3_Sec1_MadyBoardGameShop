@@ -29,74 +29,89 @@ namespace MadyBoardGame_Shop
                 using (loginConnection = new SqlConnection(InitializeUser._key_con))
                 {
                     loginConnection.Open();
-                    
-                    //เช็ค Usernamw และ Password ใน MemberUsername
-                    string query = @"
-                                    SELECT 
-                                        MemberUsername.Username , memID , memName , memLName , memLock 
-                                    FROM 
-                                        MemberUsername , Member 
-                                    WHERE MemberUsername.Username = @username and Password = @password and MemberUsername.Username = Member.Username and Member.memLock = 0";
-                    using (loginCommand = new SqlCommand(query, loginConnection))
+
+                    // Check employee login first
+                    string employeeQuery = @"SELECT EmpUsername.Username, Password, empID, empName, empLName, empPosition 
+                                FROM EmpUsername, Employees 
+                                WHERE EmpUsername.Username = @username AND Password = @password";
+
+                    using (loginCommand = new SqlCommand(employeeQuery, loginConnection))
                     {
                         loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
                         loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim());
+
                         using (loginAdapter = new SqlDataAdapter(loginCommand))
                         {
-                            logintable = new DataTable();
-                            loginAdapter.Fill(logintable);
+                            DataTable loginTable = new DataTable();
+                            loginAdapter.Fill(loginTable);
 
-                            if (logintable.Rows.Count > 0)
+                            if (loginTable.Rows.Count > 0)
                             {
-                                InitializeUser.UserState = "Member";
-                                InitializeUser.Userusername = logintable.Rows[0]["Username"].ToString();
-                                InitializeUser.UserNameLogin = logintable.Rows[0]["memName"].ToString();
-                                InitializeUser.UserLastNameLogin = logintable.Rows[0]["memLName"].ToString();
-                                InitializeUser.UserID = logintable.Rows[0]["memID"].ToString();
+                                InitializeUser.UserState = loginTable.Rows[0]["empPosition"].ToString();
+                                InitializeUser.UserNameLogin = loginTable.Rows[0]["empName"].ToString();
+                                InitializeUser.UserLastNameLogin = loginTable.Rows[0]["empLName"].ToString();
+                                InitializeUser.UserID = loginTable.Rows[0]["empID"].ToString();
+                                InitializeUser.Userusername = loginTable.Rows[0]["Username"].ToString();
+
                                 formMain mainForm = new formMain();
                                 this.Hide();
                                 mainForm.ShowDialog();
                                 this.Dispose();
+                                return;
                             }
-                            else
-                            {
-                                query = "SELECT EmpUsername.Username , Password , empID , empName , empLName , empPosition FROM EmpUsername , Employees WHERE EmpUsername.Username = @username and Password = @password";
-                                using (loginCommand = new SqlCommand(query , loginConnection))
-                                {
-                                    loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
-                                    loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim());
-                                    using (loginAdapter = new SqlDataAdapter(loginCommand))
-                                    {
-                                        logintable = new DataTable();
-                                        loginAdapter.Fill(logintable);
-                                        if (logintable.Rows.Count > 0)
-                                        {
-                                            InitializeUser.UserState = logintable.Rows[0]["empPosition"].ToString();
-                                            InitializeUser.UserNameLogin = logintable.Rows[0]["empName"].ToString();
-                                            InitializeUser.UserLastNameLogin = logintable.Rows[0]["empLName"].ToString();
-                                            InitializeUser.UserID = logintable.Rows[0]["empID"].ToString();
-                                            InitializeUser.Userusername = logintable.Rows[0]["Username"].ToString();
-                                            formMain mainForm = new formMain();
-                                            this.Hide();
-                                            mainForm.ShowDialog();
-                                            this.Dispose();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Username หรือ Password ไม่ถูกต้อง");
-                                        }
-                                    }
-                                }
-                            }
-                            
                         }
                     }
-                    
+
+                    // Check member login if employee login failed
+                    string memberQuery = @"SELECT MemberUsername.Username, memID, memName, memLName, memLock 
+                              FROM MemberUsername, Member 
+                              WHERE MemberUsername.Username = @username 
+                              AND Password = @password 
+                              AND MemberUsername.Username = Member.Username";
+
+                    using (loginCommand = new SqlCommand(memberQuery, loginConnection))
+                    {
+                        loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
+                        loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim());
+
+                        using (loginAdapter = new SqlDataAdapter(loginCommand))
+                        {
+                            DataTable memberTable = new DataTable();
+                            loginAdapter.Fill(memberTable);
+
+                            if (memberTable.Rows.Count > 0)
+                            {
+                                // Check if account is locked
+                                bool isLocked = Convert.ToBoolean(memberTable.Rows[0]["memLock"]);
+
+                                if (isLocked)
+                                {
+                                    MessageBox.Show("บัญชีผู้ใช้นี้ถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ");
+                                    return;
+                                }
+
+                                InitializeUser.UserState = "Member";
+                                InitializeUser.Userusername = memberTable.Rows[0]["Username"].ToString();
+                                InitializeUser.UserNameLogin = memberTable.Rows[0]["memName"].ToString();
+                                InitializeUser.UserLastNameLogin = memberTable.Rows[0]["memLName"].ToString();
+                                InitializeUser.UserID = memberTable.Rows[0]["memID"].ToString();
+
+                                formMain mainForm = new formMain();
+                                this.Hide();
+                                mainForm.ShowDialog();
+                                this.Dispose();
+                                return;
+                            }
+                        }
+                    }
+
+                    // If neither employee nor member login succeeded
+                    MessageBox.Show("Username หรือ Password ไม่ถูกต้อง");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
+                MessageBox.Show("เกิดข้อผิดพลาดในการเข้าสู่ระบบ: " + ex.Message);
             }
         }
 
