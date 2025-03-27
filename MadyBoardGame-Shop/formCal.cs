@@ -175,10 +175,9 @@ namespace MadyBoardGame_Shop
                 try
                 {
                     SqlConnection PayfrontStoreConnection = new SqlConnection(InitializeUser._key_con);
-                    string qry = "INSERT INTO PayFrontStore(Amount , empID , Paymethod , Paydate) VALUES(@amount , @empID , @paymethod , @date)";
+                    string qry = "INSERT INTO PayFrontStore(empID , Paymethod , Paydate) VALUES(@empID , @paymethod , @date)";
                     SqlCommand PayfrontStoreCommand = new SqlCommand(qry , PayfrontStoreConnection);
                     PayfrontStoreConnection.Open();
-                    PayfrontStoreCommand.Parameters.AddWithValue("@amount", amount);
                     PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
                     PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
                     PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);

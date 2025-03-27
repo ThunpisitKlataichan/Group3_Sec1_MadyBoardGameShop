@@ -107,5 +107,11 @@ namespace MadyBoardGame_Shop
             formReportTotalOrders formReportTotalOrders = new formReportTotalOrders();
             formReportTotalOrders.ShowDialog();
         }
+
+        private void btnReportFrontStore_Click(object sender, EventArgs e)
+        {
+            formReportFrontStore formReportFrontStore = new formReportFrontStore();
+            formReportFrontStore.ShowDialog();
+        }
     }
 }
