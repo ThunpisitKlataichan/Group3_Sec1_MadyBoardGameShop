@@ -16,6 +16,7 @@ namespace MadyBoardGame_Shop
         public static string Userusername;
         public static string UserNameLogin;
         public static string UserLastNameLogin;
+        public static string ManagerID;
         public static void Confic()
         {
             string stringcon = Path.Combine(Application.StartupPath, "ConnectionString.ini");
@@ -23,6 +24,15 @@ namespace MadyBoardGame_Shop
             if (File.Exists(stringcon))
             {
                 InitializeUser._key_con = File.ReadAllText(stringcon).Trim();
+                if (string.IsNullOrWhiteSpace(InitializeUser._key_con))
+                {
+                    MessageBox.Show("ไฟล์ ConnectionString.ini ว่างเปล่า หรือไม่ได้ตั้งค่า");
+                }
+            }
+            string manageridcon = Path.Combine(Application.StartupPath, "ManagerIDString.ini");
+            if (File.Exists(manageridcon))
+            {
+                InitializeUser.ManagerID = File.ReadAllText(manageridcon).Trim();
                 if (string.IsNullOrWhiteSpace(InitializeUser._key_con))
                 {
                     MessageBox.Show("ไฟล์ ConnectionString.ini ว่างเปล่า หรือไม่ได้ตั้งค่า");

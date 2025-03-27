@@ -457,8 +457,9 @@ namespace MadyBoardGame_Shop
                     rechack += "\n- " + pn.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "ProductName").Text;
                     rechack += " จำนวน " + pn.Controls.OfType<NumericUpDown>().FirstOrDefault(l => l.Tag?.ToString() == "NumericUpDown").Value + " ชิ้น";
                 }
+                rechack += "\nราคารวม " + totalPrice.ToString("N2") + " บาท";
 
-                    if (MessageBox.Show(rechack, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(rechack, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
                         {
@@ -516,7 +517,7 @@ namespace MadyBoardGame_Shop
                         packcommand.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
                         packcommand.Parameters.AddWithValue("@packDate", DateTime.Now);
                         packcommand.Parameters.AddWithValue("@orderID", orderID);
-                        packcommand.Parameters.AddWithValue("@empID", empIDmanager); //เซ็ตค่าเป็น 1 ก่อน
+                        packcommand.Parameters.AddWithValue("@empID", InitializeUser.ManagerID); //เซ็ตค่าเป็น 1 ก่อน
                         packcommand.ExecuteNonQuery();
                         packconnection.Close();
 
