@@ -32,13 +32,16 @@ namespace MadyBoardGame_Shop
 
                     // Check employee login first
                     string employeeQuery = @"SELECT EmpUsername.Username, Password, empID, empName, empLName, empPosition 
-                                FROM EmpUsername, Employees 
-                                WHERE EmpUsername.Username = @username AND Password = @password";
+                                                FROM EmpUsername
+                                                INNER JOIN Employees ON Employees.Username = EmpUsername.Username
+                                                WHERE EmpUsername.Username = @username 
+                                                AND Password = @password";
 
                     using (loginCommand = new SqlCommand(employeeQuery, loginConnection))
                     {
                         loginCommand.Parameters.AddWithValue("@username", txt_Username.Text.Trim().ToLower());
                         loginCommand.Parameters.AddWithValue("@password", txt_Password.Text.Trim());
+
 
                         using (loginAdapter = new SqlDataAdapter(loginCommand))
                         {
@@ -52,6 +55,7 @@ namespace MadyBoardGame_Shop
                                 InitializeUser.UserLastNameLogin = loginTable.Rows[0]["empLName"].ToString();
                                 InitializeUser.UserID = loginTable.Rows[0]["empID"].ToString();
                                 InitializeUser.Userusername = loginTable.Rows[0]["Username"].ToString();
+
 
                                 formMain mainForm = new formMain();
                                 this.Hide();

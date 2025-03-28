@@ -284,28 +284,57 @@ namespace MadyBoardGame_Shop
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show("คุณยืนยันการเปลี่ยนแปลงสถานะขนส่งหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
-            using( SqlConnection UpdatadataShippingOrder = new SqlConnection(InitializeUser._key_con))
+            if (MessageBox.Show("คุณยืนยันการเปลี่ยนแปลงสถานะขนส่งหรือไม่",
+                   "ยืนยัน",
+                   MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Question) == DialogResult.No)
             {
-                UpdatadataShippingOrder.Open();
-                foreach (Control control in flowLayoutShipList.Controls)
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(InitializeUser._key_con))
                 {
-                    ComboBox comboBoxStatus = (ComboBox)control.Controls[7];
-                    string ShippingID = control.Controls[1].Text;
-                    string sql = "UPDATE ShippingOrder SET ShipingStatus = @status , empID = @empID WHERE ShipingID = @shipID";
-                    using (SqlCommand command = new SqlCommand(sql, UpdatadataShippingOrder))
+                    connection.Open();
+
+                    foreach (Control control in flowLayoutShipList.Controls)
                     {
-                        command.Parameters.AddWithValue("@status", comboBoxStatus.SelectedItem.ToString());
-                        command.Parameters.AddWithValue("@empID", InitializeUser.UserID);
-                        command.Parameters.AddWithValue("@shipID", ShippingID);
-                        command.ExecuteNonQuery();
+                        // Safely get the ComboBox and ShippingID
+                        ComboBox comboBoxStatus = control.Controls[7] as ComboBox;
+                        string ShippingID = control.Controls[1].Text;
+
+                        // Validate inputs
+                        if (comboBoxStatus == null || comboBoxStatus.SelectedItem == null || string.IsNullOrEmpty(ShippingID))
+                        {
+                            continue; // or log error
+                        }
+
+                        string sql = @"UPDATE ShippingOrder 
+                          SET ShipingStatus = @status, 
+                              empID = @empID, 
+                              ShipingDate = GETDATE() -- Optional: track when update occurred
+                          WHERE ShipingID = @shipID AND empID IS NULL";
+
+                        using (SqlCommand command = new SqlCommand(sql, connection))
+                        {
+                            command.Parameters.AddWithValue("@status", comboBoxStatus.SelectedItem.ToString());
+                            command.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                            command.Parameters.AddWithValue("@shipID", ShippingID);
+                            command.ExecuteNonQuery();
+                        }
                     }
                 }
-                
+                MessageBox.Show("บันทึกข้อมูลจัดส่งสำเร็จ", "บันทึกข้อมูลจัดส่ง", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                flowLayoutShipList.Controls.Clear();
+                LoadData();
             }
-            MessageBox.Show("บันทึกข้อมูลจัดส่งสำเร็จ", "บันทึกข้อมูลจัดส่ง" , MessageBoxButtons.OK , MessageBoxIcon.Information);
-            flowLayoutShipList.Controls.Clear();
-            LoadData();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"เกิดข้อผิดพลาดในการอัพเดท: {ex.Message}", "ข้อผิดพลาด",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Consider logging the full error
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
