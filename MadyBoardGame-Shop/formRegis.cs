@@ -48,11 +48,14 @@ namespace MadyBoardGame_Shop
                 }
 
                 // check หมู่ ว่าเป็นตัวเลขไหม
-                if (!int.TryParse(textCusMoo.Text, out int check_moo))
+                if (!string.IsNullOrWhiteSpace(textCusMoo.Text))
                 {
-                    // กรณีแปลงเป็น int ไม่ได้ (เช่น ผู้ใช้กรอกตัวอักษร)
-                    MessageBox.Show("ที่ช่องหมู่กรุณากรอกข้อมูลเป็นตัวเลข");
-                    return;
+                    if (!int.TryParse(textCusMoo.Text, out int check_moo))
+                    {
+                        // กรณีแปลงเป็น int ไม่ได้ (เช่น ผู้ใช้กรอกตัวอักษร)
+                        MessageBox.Show("ที่ช่องหมู่กรุณากรอกข้อมูลเป็นตัวเลข");
+                        return;
+                    }
                 }
                 //ดึงค่าจาก TextBox และ Trim ช่องว่าง
                 string Email = text_Email.Text.Trim();
@@ -64,7 +67,7 @@ namespace MadyBoardGame_Shop
                 string password = txtPassword.Text;
                 string confirmPassword = txtConPassword.Text;
                 string location = "เลขที่อยู่" + textCusHouseNumber.Text + "  หมู่ที่  " + textCusMoo.Text + "  ซอย  " + textCusSoi.Text
-                                   + "  ถนน  " + textCusRoad.Text + "  จังหวัด  " + comboBoxProvince.Text + "  อำเภอ/เขต  " + comboBoxDistrict.Text
+                                   + "  ถนน  " + textCusRoad.Text + "  หมู่บ้าน  "+text_Mooban.Text+ "  จังหวัด  " + comboBoxProvince.Text + "  อำเภอ/เขต  " + comboBoxDistrict.Text
                                    + "  ตำบล/แขวง  " + comboBoxSubDistrict.Text + "  รหัสไปรษณีย์  " + textCusPostalCode.Text;
                 DateTime dateregis = DateTime.Now;
                 DateTime dateBorn = dateTimePicker_Born.Value;
@@ -159,21 +162,21 @@ namespace MadyBoardGame_Shop
                 warningstring.AppendLine("กรุณากรอกเลขที่อยู่");
                 isValid = false;
             }
-            if (string.IsNullOrWhiteSpace(textCusMoo.Text))
+            /*if (string.IsNullOrWhiteSpace(textCusMoo.Text))
             {
                 warningstring.AppendLine("กรุณากรอกหมู่");
                 isValid = false;
-            }
-            if (string.IsNullOrWhiteSpace(textCusSoi.Text))
+            }*/
+            /*if (string.IsNullOrWhiteSpace(textCusSoi.Text))
             {
                 warningstring.AppendLine("กรุณากรอกซอย");
                 isValid = false;
-            }
-            if (string.IsNullOrWhiteSpace(textCusRoad.Text))
+            }*/
+            /*if (string.IsNullOrWhiteSpace(textCusRoad.Text))
             {
                 warningstring.AppendLine("กรุณากรอกชื่อถนน");
                 isValid = false;
-            }
+            }*/
             if (string.IsNullOrWhiteSpace(comboBoxProvince.Text))
             {
                 warningstring.AppendLine("กรุณาเลือกจังหวัด");

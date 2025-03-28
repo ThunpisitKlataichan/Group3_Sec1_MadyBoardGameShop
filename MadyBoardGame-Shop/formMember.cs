@@ -236,6 +236,7 @@ namespace MadyBoardGame_Shop
             switch (AddState)
             {
                 case "view":
+                    checkBox_Lock.Enabled = false;
                     textMen_Name.ReadOnly = true;
                     textMen_LName.ReadOnly = true;
                     textIdentityNum.ReadOnly = true;
@@ -257,6 +258,7 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_Born.CalendarTitleBackColor = Color.White;
                     break;
                 case "update":
+                    checkBox_Lock.Enabled = true;
                     textMen_Name.ReadOnly = false;
                     textMen_LName.ReadOnly = false;
                     textIdentityNum.ReadOnly = false;

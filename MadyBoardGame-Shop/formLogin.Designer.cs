@@ -88,12 +88,12 @@
             this.lableregis.AutoSize = true;
             this.lableregis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lableregis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lableregis.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lableregis.ForeColor = System.Drawing.Color.DarkCyan;
             this.lableregis.Location = new System.Drawing.Point(389, 144);
             this.lableregis.Name = "lableregis";
             this.lableregis.Size = new System.Drawing.Size(86, 20);
             this.lableregis.TabIndex = 5;
-            this.lableregis.Text = "สมัครสมาชิค";
+            this.lableregis.Text = "สมัครสมาชิก";
             this.lableregis.Click += new System.EventHandler(this.lableregis_Click);
             // 
             // btnClose
