@@ -144,6 +144,14 @@ namespace MadyBoardGame_Shop
                     labelprice.BackColor = Color.Orange;
                     labelprice.TextAlign = ContentAlignment.MiddleRight;
 
+                    Button buttonDelete = new Button();
+                    buttonDelete.Text = "X";
+                    buttonDelete.Size = new Size(20, 20);
+                    buttonDelete.Location = new Point(panel.Width - buttonDelete.Width - 5, 3);
+                    buttonDelete.BackColor = Color.Red;
+                    buttonDelete.Font = new Font("Arial", 8, FontStyle.Bold);
+                    buttonDelete.Click += buttonDelete_Click;
+
                     amount += Convert.ToDecimal(productdatatable.Rows[0]["Price"]);
                     labelAmount.Text = amount.ToString("F2") + " ฿";
 
@@ -151,6 +159,7 @@ namespace MadyBoardGame_Shop
                     panel.Controls.Add(labelprice);
                     panel.Controls.Add(labelProID);
                     panel.Controls.Add(labelproname);
+                    panel.Controls.Add(buttonDelete);
 
                     flowLayoutProduct.Controls.Add(panel);
                     textQRcode.Text = "";
@@ -166,6 +175,66 @@ namespace MadyBoardGame_Shop
         {
             InitializeUser.Confic();
             amount = 0m;
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Remove this item from cart?", "Confirm",MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+            // Get the button that was clicked and its parent panel
+            if (!(sender is Button button) || !(button.Parent is Panel panel))
+                return;
+
+            try
+            {
+                // Find the quantity label and price label
+                Label quantityLabel = null;
+                Label priceLabel = null;
+                decimal itemPrice = 0;
+                int quantity = 0;
+
+                foreach (Control control in panel.Controls)
+                {
+                    if (control is Label label)
+                    {
+                        // Find quantity label
+                        if (label.Tag?.ToString() == "Quality")
+                        {
+                            quantityLabel = label;
+                            if (int.TryParse(label.Text.Split(' ')[1], out int qty))
+                                quantity = qty;
+                        }
+                        // Find price label
+                        else if (label.Text.Contains("฿"))
+                        {
+                            priceLabel = label;
+                            if (decimal.TryParse(label.Text.Replace("฿", "").Trim(), out decimal price))
+                                itemPrice = price;
+                        }
+                    }
+                }
+
+                // Calculate and update total amount
+                if (quantityLabel != null && priceLabel != null)
+                {
+                    decimal itemTotal = itemPrice * quantity;
+                    amount -= itemTotal;
+                    labelAmount.Text = amount.ToString("F2") + " ฿";
+                }
+
+                // Remove the panel from layout and tracking collection
+                flowLayoutProduct.Controls.Remove(panel);
+
+                if (panel.Tag != null)
+                    checkTagCartpanalTag.Remove(panel.Tag.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error removing item: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e) // ยืนยันการชำระเงิน เเละ ลดจำนวณสินค้าเสร็จเเล้ว

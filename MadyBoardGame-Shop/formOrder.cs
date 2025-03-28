@@ -627,5 +627,11 @@ namespace MadyBoardGame_Shop
                 }
             }
         } // ค้นหา Panel จากชื่อสินค้า
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            panelscart.Clear();
+            flowLayoutCart.Controls.Clear();
+        }
     }
 }

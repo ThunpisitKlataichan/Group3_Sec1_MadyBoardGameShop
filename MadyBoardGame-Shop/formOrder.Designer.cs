@@ -33,6 +33,8 @@
             this.comboBoxmethonPayment = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxProRemain = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtDesription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -50,8 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxProRemain = new System.Windows.Forms.TextBox();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -121,6 +122,24 @@
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
+            // 
+            // textBoxProRemain
+            // 
+            this.textBoxProRemain.BackColor = System.Drawing.Color.White;
+            this.textBoxProRemain.Location = new System.Drawing.Point(119, 372);
+            this.textBoxProRemain.Name = "textBoxProRemain";
+            this.textBoxProRemain.ReadOnly = true;
+            this.textBoxProRemain.Size = new System.Drawing.Size(179, 29);
+            this.textBoxProRemain.TabIndex = 59;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(-1, 375);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 24);
+            this.label11.TabIndex = 58;
+            this.label11.Text = "จำนวนคงเหลือ";
             // 
             // txtDesription
             // 
@@ -277,29 +296,22 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "สั่งซื้อสินค้า";
             // 
-            // label11
+            // buttonRefresh
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(-1, 375);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 24);
-            this.label11.TabIndex = 58;
-            this.label11.Text = "จำนวนคงเหลือ";
-            // 
-            // textBoxProRemain
-            // 
-            this.textBoxProRemain.BackColor = System.Drawing.Color.White;
-            this.textBoxProRemain.Location = new System.Drawing.Point(119, 372);
-            this.textBoxProRemain.Name = "textBoxProRemain";
-            this.textBoxProRemain.ReadOnly = true;
-            this.textBoxProRemain.Size = new System.Drawing.Size(179, 29);
-            this.textBoxProRemain.TabIndex = 59;
+            this.buttonRefresh.Location = new System.Drawing.Point(670, 103);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(148, 29);
+            this.buttonRefresh.TabIndex = 60;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // formOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1143, 764);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
@@ -352,5 +364,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxProRemain;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
