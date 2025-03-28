@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.text_Email = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker_Born = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox_Lock = new System.Windows.Forms.CheckBox();
@@ -57,8 +59,8 @@
             this.btn_Next = new System.Windows.Forms.Button();
             this.btn_Previous = new System.Windows.Forms.Button();
             this.btn_Frist = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.text_Email = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMem)).BeginInit();
@@ -67,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FloralWhite;
             this.groupBox1.Controls.Add(this.text_Email);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTimePicker_Born);
@@ -81,12 +84,28 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textIdentityNum);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 98);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(609, 393);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายละเอียดสมาชิค";
+            // 
+            // text_Email
+            // 
+            this.text_Email.Location = new System.Drawing.Point(148, 179);
+            this.text_Email.Name = "text_Email";
+            this.text_Email.Size = new System.Drawing.Size(331, 29);
+            this.text_Email.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(85, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 24);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Email";
             // 
             // dateTimePicker_Born
             // 
@@ -199,8 +218,9 @@
             // 
             // dataGridMem
             // 
+            this.dataGridMem.BackgroundColor = System.Drawing.Color.Linen;
             this.dataGridMem.ColumnHeadersHeight = 40;
-            this.dataGridMem.Location = new System.Drawing.Point(627, 12);
+            this.dataGridMem.Location = new System.Drawing.Point(627, 98);
             this.dataGridMem.Name = "dataGridMem";
             this.dataGridMem.RowHeadersWidth = 4;
             this.dataGridMem.Size = new System.Drawing.Size(321, 560);
@@ -209,10 +229,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.FloralWhite;
             this.groupBox2.Controls.Add(this.btn_Find);
             this.groupBox2.Controls.Add(this.text_find);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(13, 411);
+            this.groupBox2.Location = new System.Drawing.Point(13, 497);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 186);
             this.groupBox2.TabIndex = 30;
@@ -247,7 +268,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(380, 505);
+            this.btn_Save.Location = new System.Drawing.Point(380, 591);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(111, 38);
             this.btn_Save.TabIndex = 29;
@@ -257,7 +278,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(497, 549);
+            this.button4.Location = new System.Drawing.Point(497, 635);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(111, 38);
             this.button4.TabIndex = 28;
@@ -267,7 +288,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(497, 505);
+            this.btn_Cancel.Location = new System.Drawing.Point(497, 591);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(111, 38);
             this.btn_Cancel.TabIndex = 27;
@@ -277,7 +298,7 @@
             // 
             // btn_Edit
             // 
-            this.btn_Edit.Location = new System.Drawing.Point(263, 549);
+            this.btn_Edit.Location = new System.Drawing.Point(263, 635);
             this.btn_Edit.Name = "btn_Edit";
             this.btn_Edit.Size = new System.Drawing.Size(111, 38);
             this.btn_Edit.TabIndex = 26;
@@ -287,7 +308,7 @@
             // 
             // btn_Del
             // 
-            this.btn_Del.Location = new System.Drawing.Point(380, 549);
+            this.btn_Del.Location = new System.Drawing.Point(380, 635);
             this.btn_Del.Name = "btn_Del";
             this.btn_Del.Size = new System.Drawing.Size(111, 38);
             this.btn_Del.TabIndex = 25;
@@ -297,7 +318,7 @@
             // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(263, 505);
+            this.btn_Add.Location = new System.Drawing.Point(263, 591);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(111, 38);
             this.btn_Add.TabIndex = 24;
@@ -307,7 +328,7 @@
             // 
             // btn_Last
             // 
-            this.btn_Last.Location = new System.Drawing.Point(563, 454);
+            this.btn_Last.Location = new System.Drawing.Point(563, 540);
             this.btn_Last.Name = "btn_Last";
             this.btn_Last.Size = new System.Drawing.Size(45, 45);
             this.btn_Last.TabIndex = 23;
@@ -317,7 +338,7 @@
             // 
             // btn_Next
             // 
-            this.btn_Next.Location = new System.Drawing.Point(474, 454);
+            this.btn_Next.Location = new System.Drawing.Point(474, 540);
             this.btn_Next.Name = "btn_Next";
             this.btn_Next.Size = new System.Drawing.Size(45, 45);
             this.btn_Next.TabIndex = 22;
@@ -327,7 +348,7 @@
             // 
             // btn_Previous
             // 
-            this.btn_Previous.Location = new System.Drawing.Point(354, 454);
+            this.btn_Previous.Location = new System.Drawing.Point(354, 540);
             this.btn_Previous.Name = "btn_Previous";
             this.btn_Previous.Size = new System.Drawing.Size(45, 45);
             this.btn_Previous.TabIndex = 21;
@@ -337,7 +358,7 @@
             // 
             // btn_Frist
             // 
-            this.btn_Frist.Location = new System.Drawing.Point(263, 454);
+            this.btn_Frist.Location = new System.Drawing.Point(263, 540);
             this.btn_Frist.Name = "btn_Frist";
             this.btn_Frist.Size = new System.Drawing.Size(45, 45);
             this.btn_Frist.TabIndex = 20;
@@ -345,27 +366,34 @@
             this.btn_Frist.UseVisualStyleBackColor = true;
             this.btn_Frist.Click += new System.EventHandler(this.btn_Frist_Click);
             // 
-            // label5
+            // label7
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(85, 182);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 24);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Email";
+            this.label7.BackColor = System.Drawing.Color.Brown;
+            this.label7.Location = new System.Drawing.Point(-5, -2);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(974, 86);
+            this.label7.TabIndex = 31;
             // 
-            // text_Email
+            // label9
             // 
-            this.text_Email.Location = new System.Drawing.Point(148, 179);
-            this.text_Email.Name = "text_Email";
-            this.text_Email.Size = new System.Drawing.Size(331, 29);
-            this.text_Email.TabIndex = 22;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Brown;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(28, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(176, 37);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "จัดการสมาชิก";
             // 
             // formMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 599);
+            this.BackColor = System.Drawing.Color.PapayaWhip;
+            this.ClientSize = new System.Drawing.Size(960, 693);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.button4);
@@ -380,7 +408,10 @@
             this.Controls.Add(this.dataGridMem);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "formMember";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "จัดการสมัครชิค";
@@ -394,6 +425,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -430,5 +462,7 @@
         private System.Windows.Forms.Button btn_Find;
         private System.Windows.Forms.TextBox text_Email;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -257,9 +257,10 @@ namespace MadyBoardGame_Shop
                 emp_Manager.Position = 0;
                 dataGrid_Emp.CurrentCell = dataGrid_Emp.Rows[0].Cells[1]; // เลือกแถวแรก
             }
+           
 
             // เคลียร์ & รีเซ็ต DataBindings ใหม่
-            Bind_DATA();
+            //Bind_DATA();
             loadDataIntoGrid();
         }
 
