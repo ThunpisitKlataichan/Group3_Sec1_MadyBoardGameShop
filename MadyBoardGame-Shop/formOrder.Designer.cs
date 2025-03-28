@@ -50,6 +50,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxProRemain = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -66,7 +68,7 @@
             // 
             // btnpayment
             // 
-            this.btnpayment.Location = new System.Drawing.Point(827, 626);
+            this.btnpayment.Location = new System.Drawing.Point(827, 706);
             this.btnpayment.Name = "btnpayment";
             this.btnpayment.Size = new System.Drawing.Size(304, 46);
             this.btnpayment.TabIndex = 3;
@@ -84,7 +86,7 @@
             "ทรูวอเลท",
             "ธนาคาร",
             "พร้อมเพย์"});
-            this.comboBoxmethonPayment.Location = new System.Drawing.Point(896, 588);
+            this.comboBoxmethonPayment.Location = new System.Drawing.Point(896, 668);
             this.comboBoxmethonPayment.Name = "comboBoxmethonPayment";
             this.comboBoxmethonPayment.Size = new System.Drawing.Size(218, 32);
             this.comboBoxmethonPayment.Sorted = true;
@@ -93,7 +95,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(826, 588);
+            this.label1.Location = new System.Drawing.Point(826, 668);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 46;
@@ -101,6 +103,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBoxProRemain);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txtDesription);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label9);
@@ -113,7 +117,7 @@
             this.groupBox2.Controls.Add(this.picProduct);
             this.groupBox2.Location = new System.Drawing.Point(827, 75);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 510);
+            this.groupBox2.Size = new System.Drawing.Size(304, 587);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "รายละเอียดสินค้า";
@@ -121,7 +125,7 @@
             // txtDesription
             // 
             this.txtDesription.BackColor = System.Drawing.Color.White;
-            this.txtDesription.Location = new System.Drawing.Point(6, 397);
+            this.txtDesription.Location = new System.Drawing.Point(6, 471);
             this.txtDesription.Multiline = true;
             this.txtDesription.Name = "txtDesription";
             this.txtDesription.ReadOnly = true;
@@ -131,7 +135,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 370);
+            this.label6.Location = new System.Drawing.Point(2, 444);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 24);
             this.label6.TabIndex = 56;
@@ -206,7 +210,7 @@
             this.flowLayoutProduct.BackColor = System.Drawing.SystemColors.GrayText;
             this.flowLayoutProduct.Location = new System.Drawing.Point(12, 133);
             this.flowLayoutProduct.Name = "flowLayoutProduct";
-            this.flowLayoutProduct.Size = new System.Drawing.Size(486, 539);
+            this.flowLayoutProduct.Size = new System.Drawing.Size(486, 619);
             this.flowLayoutProduct.TabIndex = 51;
             // 
             // flowLayoutCart
@@ -215,7 +219,7 @@
             this.flowLayoutCart.BackColor = System.Drawing.SystemColors.ControlLight;
             this.flowLayoutCart.Location = new System.Drawing.Point(504, 133);
             this.flowLayoutCart.Name = "flowLayoutCart";
-            this.flowLayoutCart.Size = new System.Drawing.Size(314, 539);
+            this.flowLayoutCart.Size = new System.Drawing.Size(314, 619);
             this.flowLayoutCart.TabIndex = 52;
             // 
             // txtFindProduct
@@ -273,11 +277,29 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "สั่งซื้อสินค้า";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(-1, 375);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 24);
+            this.label11.TabIndex = 58;
+            this.label11.Text = "จำนวนคงเหลือ";
+            // 
+            // textBoxProRemain
+            // 
+            this.textBoxProRemain.BackColor = System.Drawing.Color.White;
+            this.textBoxProRemain.Location = new System.Drawing.Point(119, 372);
+            this.textBoxProRemain.Name = "textBoxProRemain";
+            this.textBoxProRemain.ReadOnly = true;
+            this.textBoxProRemain.Size = new System.Drawing.Size(179, 29);
+            this.textBoxProRemain.TabIndex = 59;
+            // 
             // formOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1143, 684);
+            this.ClientSize = new System.Drawing.Size(1143, 764);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
@@ -328,5 +350,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxProRemain;
+        private System.Windows.Forms.Label label11;
     }
 }

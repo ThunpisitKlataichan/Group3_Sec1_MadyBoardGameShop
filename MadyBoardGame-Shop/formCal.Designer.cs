@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.textQRcode = new System.Windows.Forms.TextBox();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.flowLayoutProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.labelAmount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,11 +58,6 @@
             this.buttonBack.Text = "กลับ";
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // flowLayoutProduct
             // 
@@ -148,7 +141,6 @@
 
         private System.Windows.Forms.TextBox textQRcode;
         private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
         private System.Windows.Forms.Label labelAmount;
         private System.Windows.Forms.Panel panel2;

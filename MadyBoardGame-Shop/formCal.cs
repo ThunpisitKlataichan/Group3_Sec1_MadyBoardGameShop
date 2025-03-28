@@ -170,28 +170,78 @@ namespace MadyBoardGame_Shop
 
         private void buttonConfirm_Click(object sender, EventArgs e) // ยืนยันการชำระเงิน เเละ ลดจำนวณสินค้าเสร็จเเล้ว
         {
+            string qry = "";
+            SqlConnection PayfrontStoreConnection = new SqlConnection(InitializeUser._key_con);
             if (MessageBox.Show("ยืนยันการชำระเงินหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    SqlConnection PayfrontStoreConnection = new SqlConnection(InitializeUser._key_con);
-                    string qry = "INSERT INTO PayFrontStore(empID , Paymethod , Paydate) VALUES(@empID , @paymethod , @date)";
-                    SqlCommand PayfrontStoreCommand = new SqlCommand(qry , PayfrontStoreConnection);
-                    PayfrontStoreConnection.Open();
-                    PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
-                    PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
-                    PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);
+                    foreach (Control c in flowLayoutProduct.Controls)
+                    {
+                        string productID = "";
+                        string quality = "";
+                        if (c is Panel)
+                        {
+                            Panel panel = c as Panel;
+                            foreach (Control c2 in panel.Controls)
+                            {
+                                if (c2 is Label)
+                                {
+                                    if (c2.Tag != null && c2.Tag.ToString() == "ProductID")
+                                    {
+                                        productID = c2.Text;
+                                        if (string.IsNullOrEmpty(productID))
+                                        {
+                                            MessageBox.Show("ไม่พบ ID สินค้า", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                    else if (c2.Tag != null && c2.Tag.ToString() == "Quality")
+                                    {
+                                        quality = c2.Text.Split(' ')[1];
+                                        if (string.IsNullOrEmpty(quality))
+                                        {
+                                            MessageBox.Show("ไม่พบจำนวนสินค้า", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                }
+                                qry = "SELECT Quality FROM Products WHERE ProductID = @productID AND Quality < @quality";
+                                using (SqlCommand command = new SqlCommand(qry, PayfrontStoreConnection))
+                                {
+                                    command.Parameters.AddWithValue("@productID", productID);
+                                    command.Parameters.AddWithValue("@quality", quality);
+                                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                                    DataTable dataTable = new DataTable();
+                                    adapter.Fill(dataTable);
+                                    if (dataTable.Rows.Count > 0)
+                                    {
+                                        MessageBox.Show("สินค้า " + productID + " มีจำนวนไม่พอ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
 
 
-                    PayfrontStoreCommand.ExecuteNonQuery();
-                    DecressProductQuality(flowLayoutProduct);
+                        qry = "INSERT INTO PayFrontStore(empID , Paymethod , Paydate) VALUES(@empID , @paymethod , @date)";
+                        SqlCommand PayfrontStoreCommand = new SqlCommand(qry, PayfrontStoreConnection);
+                        PayfrontStoreConnection.Open();
+                        PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                        PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
+                        PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);
 
-                    MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    flowLayoutProduct.Controls.Clear();
-                    amount = 0;
-                    checkTagCartpanalTag.Clear();
 
-                    labelAmount.Text = "0.00 ฿";
+                        PayfrontStoreCommand.ExecuteNonQuery();
+                        DecressProductQuality(flowLayoutProduct);
+
+                        MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        flowLayoutProduct.Controls.Clear();
+                        amount = 0;
+                        checkTagCartpanalTag.Clear();
+
+                        labelAmount.Text = "0.00 ฿";
+                    }
                 }
                 catch (Exception ex)
                 {

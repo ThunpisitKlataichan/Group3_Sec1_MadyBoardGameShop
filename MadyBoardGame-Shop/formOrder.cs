@@ -64,7 +64,7 @@ namespace MadyBoardGame_Shop
                 orderdetailcommand = new SqlCommand();
 
 
-                string command = "SELECT ProductID , ProductName , Price , ProductType , ProductImg , ProductsShelf , ProductImg FROM Products Where ProductsShelf = 1";
+                string command = "SELECT ProductID , ProductName , Price , ProductType , ProductImg , ProductsShelf , ProductImg , Quality FROM Products Where ProductsShelf = 1";
                 productcommand = new SqlCommand(command, productconnection);
                 productdataadapter = new SqlDataAdapter(productcommand);
                 producttable = new DataTable();
@@ -409,7 +409,7 @@ namespace MadyBoardGame_Shop
                 }
                 productconnection = new SqlConnection(InitializeUser._key_con);
                 productconnection.Open();
-                string command = "SELECT ProductID , ProductName , Price , ProductType, ProductDetail , ProductImg , ProductsShelf FROM Products Where ProductsShelf = 1 And ProductID = @key_ProductID";
+                string command = "SELECT ProductID , ProductName , Price , ProductType, ProductDetail , ProductImg , ProductsShelf , Quality FROM Products Where ProductsShelf = 1 And ProductID = @key_ProductID";
                 productcommand = new SqlCommand(command, productconnection);
                 productcommand.Parameters.AddWithValue("@key_ProductID", key_ProductID);
                 productdataadapter = new SqlDataAdapter(productcommand);
@@ -421,6 +421,7 @@ namespace MadyBoardGame_Shop
                 txtPrice.Text = Convert.ToDecimal(txtPrice.Text).ToString("N2") + " ฿";
                 txtProductType.Text = producttable.Rows[0]["ProductType"].ToString();
                 txtDesription.Text = producttable.Rows[0]["ProductDetail"].ToString();
+                textBoxProRemain.Text = producttable.Rows[0]["Quality"].ToString();
                 byte[] imageBytes = (byte[])producttable.Rows[0]["ProductImg"];
                 MemoryStream ms = new MemoryStream(imageBytes);
                 picProduct.Image = Image.FromStream(ms);
@@ -463,8 +464,40 @@ namespace MadyBoardGame_Shop
                     {
                         try
                         {
-                            // ส่งข้อมูลไปยังฐานข้อมูล Orders
-                            orderconnection = new SqlConnection(InitializeUser._key_con);
+                        foreach (Control control in flowLayoutCart.Controls)
+                        {
+                            if (control is Panel panel)
+                            {
+                                Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
+                                Label lblProductName = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductName");
+                                NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+
+                                if (lblProductID != null && quantityControl != null && lblProductName != null)
+                                {
+                                    string command1 = "SELECT Quality FROM Products WHERE ProductID = @productID";
+
+                                    using (SqlCommand orderdetailcommand = new SqlCommand(command1, orderdetailconnection))
+                                    {
+                                        orderdetailcommand.Parameters.AddWithValue("@productID", lblProductID.Text);
+                                        int currentStock = (int)orderdetailcommand.ExecuteScalar();
+
+                                        if (currentStock < quantityControl.Value)
+                                        {
+                                            MessageBox.Show($"สินค้า '{lblProductName.Text}' มีจำนวนไม่พอ\n" +
+                                                          $"คงเหลือ: {currentStock} ชิ้น\n" +
+                                                          $"ต้องการ: {quantityControl.Value} ชิ้น",
+                                                          "สินค้าไม่เพียงพอ",
+                                                          MessageBoxButtons.OK,
+                                                          MessageBoxIcon.Warning);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // ส่งข้อมูลไปยังฐานข้อมูล Orders
+                        orderconnection = new SqlConnection(InitializeUser._key_con);
                             orderconnection.Open();
                             paymentconnection = new SqlConnection(InitializeUser._key_con);
                             paymentconnection.Open();
