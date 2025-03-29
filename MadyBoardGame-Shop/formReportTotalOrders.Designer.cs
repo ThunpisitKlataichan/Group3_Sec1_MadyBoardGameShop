@@ -29,48 +29,57 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonRedate = new System.Windows.Forms.Button();
             this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridResult = new System.Windows.Forms.DataGridView();
-            this.buttonRedate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(-11, -7);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(-7, -33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(949, 103);
+            this.panel1.Size = new System.Drawing.Size(1254, 133);
             this.panel1.TabIndex = 0;
             // 
-            // label4
+            // label1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(124, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 24);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "รายงานสรุปยอดขาย";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(30, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(246, 39);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "รายงานยอดสั่งซื้อ";
+            // 
+            // dataGridResult
+            // 
+            this.dataGridResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridResult.Location = new System.Drawing.Point(12, 296);
+            this.dataGridResult.Name = "dataGridResult";
+            this.dataGridResult.Size = new System.Drawing.Size(1208, 281);
+            this.dataGridResult.TabIndex = 4;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 102);
+            this.groupBox1.Location = new System.Drawing.Point(12, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(896, 184);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(812, 184);
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
             // panel2
@@ -82,11 +91,21 @@
             this.panel2.Controls.Add(this.dateTimeStart);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.comboDateTypeSelect);
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(6, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(884, 143);
+            this.panel2.Size = new System.Drawing.Size(779, 143);
             this.panel2.TabIndex = 0;
+            // 
+            // buttonRedate
+            // 
+            this.buttonRedate.Location = new System.Drawing.Point(527, 100);
+            this.buttonRedate.Name = "buttonRedate";
+            this.buttonRedate.Size = new System.Drawing.Size(135, 29);
+            this.buttonRedate.TabIndex = 6;
+            this.buttonRedate.Text = "Refrash Date";
+            this.buttonRedate.UseVisualStyleBackColor = true;
+            this.buttonRedate.Click += new System.EventHandler(this.buttonRedate_Click);
             // 
             // dateTimeEnd
             // 
@@ -137,52 +156,34 @@
             this.comboDateTypeSelect.TabIndex = 1;
             this.comboDateTypeSelect.SelectedIndexChanged += new System.EventHandler(this.comboDateTypeSelect_SelectedIndexChanged);
             // 
-            // label1
+            // label4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ช่วงเวลาที่ต้องการ";
-            // 
-            // dataGridResult
-            // 
-            this.dataGridResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridResult.Location = new System.Drawing.Point(12, 292);
-            this.dataGridResult.Name = "dataGridResult";
-            this.dataGridResult.Size = new System.Drawing.Size(896, 281);
-            this.dataGridResult.TabIndex = 2;
-            // 
-            // buttonRedate
-            // 
-            this.buttonRedate.Location = new System.Drawing.Point(527, 100);
-            this.buttonRedate.Name = "buttonRedate";
-            this.buttonRedate.Size = new System.Drawing.Size(135, 29);
-            this.buttonRedate.TabIndex = 6;
-            this.buttonRedate.Text = "Refrash Date";
-            this.buttonRedate.UseVisualStyleBackColor = true;
-            this.buttonRedate.Click += new System.EventHandler(this.buttonRedate_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "ช่วงเวลาที่ต้องการ";
             // 
             // formReportTotalOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 585);
+            this.ClientSize = new System.Drawing.Size(1232, 589);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formReportTotalOrders";
-            this.Text = "formReportTotalOrders";
-            this.Load += new System.EventHandler(this.formReportTotalOrders_Load);
+            this.Text = "formReportFrontStore";
+            this.Load += new System.EventHandler(this.formReportFrontStore_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -190,16 +191,16 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridResult;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboDateTypeSelect;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimeStart;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridResult;
+        private System.Windows.Forms.Button buttonRedate;
         private System.Windows.Forms.DateTimePicker dateTimeEnd;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimeStart;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttonRedate;
     }
 }

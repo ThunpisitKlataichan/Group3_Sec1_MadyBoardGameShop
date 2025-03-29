@@ -159,16 +159,15 @@ namespace MadyBoardGame_Shop
             formAddSuppiler.ShowDialog();
         }
 
-        private void btnTotleorder_Click(object sender, EventArgs e)
-        {
-            formReportTotalOrders formReportTotalOrders = new formReportTotalOrders();
-            formReportTotalOrders.ShowDialog();
-        }
-
         private void btnReportFrontStore_Click(object sender, EventArgs e)
         {
-            formReportFrontStore formReportFrontStore = new formReportFrontStore();
+            formReportTotalOrders formReportFrontStore = new formReportTotalOrders();
             formReportFrontStore.ShowDialog();
+        }
+
+        private void btnTotalPur_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

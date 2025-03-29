@@ -40,11 +40,10 @@
             this.groupBoxCashier = new System.Windows.Forms.GroupBox();
             this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
-            this.btnTotleorder = new System.Windows.Forms.Button();
             this.buttonStoreInfo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
-            this.btnReportFrontStore = new System.Windows.Forms.Button();
+            this.btnReportTotalOrder = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupMember = new System.Windows.Forms.GroupBox();
             this.groupPacking = new System.Windows.Forms.GroupBox();
@@ -56,6 +55,8 @@
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.btnAddSupplier = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTotalPur = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
@@ -65,6 +66,7 @@
             this.groupShipping.SuspendLayout();
             this.groupboxStock.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -92,10 +94,10 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(555, 360);
+            this.btn_exit.Location = new System.Drawing.Point(633, 94);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(176, 45);
+            this.btn_exit.Size = new System.Drawing.Size(96, 45);
             this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "ออก";
             this.btn_exit.UseVisualStyleBackColor = false;
@@ -152,10 +154,10 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(555, 414);
+            this.btn_LogOut.Location = new System.Drawing.Point(633, 47);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
-            this.btn_LogOut.Size = new System.Drawing.Size(176, 45);
+            this.btn_LogOut.Size = new System.Drawing.Size(96, 45);
             this.btn_LogOut.TabIndex = 7;
             this.btn_LogOut.Text = "ล็อกเอ้าร์";
             this.btn_LogOut.UseVisualStyleBackColor = false;
@@ -185,33 +187,18 @@
             // 
             // groupBoxmanager
             // 
-            this.groupBoxmanager.Controls.Add(this.btnTotleorder);
             this.groupBoxmanager.Controls.Add(this.buttonStoreInfo);
-            this.groupBoxmanager.Controls.Add(this.button1);
             this.groupBoxmanager.Controls.Add(this.buttonformEmpmange);
-            this.groupBoxmanager.Controls.Add(this.btnReportFrontStore);
-            this.groupBoxmanager.Controls.Add(this.button3);
             this.groupBoxmanager.Location = new System.Drawing.Point(377, 144);
             this.groupBoxmanager.Name = "groupBoxmanager";
-            this.groupBoxmanager.Size = new System.Drawing.Size(356, 207);
+            this.groupBoxmanager.Size = new System.Drawing.Size(171, 207);
             this.groupBoxmanager.TabIndex = 9;
             this.groupBoxmanager.TabStop = false;
             this.groupBoxmanager.Text = "Manager";
             // 
-            // btnTotleorder
-            // 
-            this.btnTotleorder.Location = new System.Drawing.Point(183, 145);
-            this.btnTotleorder.Margin = new System.Windows.Forms.Padding(6);
-            this.btnTotleorder.Name = "btnTotleorder";
-            this.btnTotleorder.Size = new System.Drawing.Size(163, 45);
-            this.btnTotleorder.TabIndex = 6;
-            this.btnTotleorder.Text = "รายงานยอดคำสั่งซื้อ";
-            this.btnTotleorder.UseVisualStyleBackColor = true;
-            this.btnTotleorder.Click += new System.EventHandler(this.btnTotleorder_Click);
-            // 
             // buttonStoreInfo
             // 
-            this.buttonStoreInfo.Location = new System.Drawing.Point(183, 88);
+            this.buttonStoreInfo.Location = new System.Drawing.Point(3, 88);
             this.buttonStoreInfo.Margin = new System.Windows.Forms.Padding(6);
             this.buttonStoreInfo.Name = "buttonStoreInfo";
             this.buttonStoreInfo.Size = new System.Drawing.Size(163, 45);
@@ -221,7 +208,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(8, 88);
+            this.button1.Location = new System.Drawing.Point(3, 88);
             this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 45);
@@ -231,7 +218,7 @@
             // 
             // buttonformEmpmange
             // 
-            this.buttonformEmpmange.Location = new System.Drawing.Point(183, 31);
+            this.buttonformEmpmange.Location = new System.Drawing.Point(3, 31);
             this.buttonformEmpmange.Margin = new System.Windows.Forms.Padding(6);
             this.buttonformEmpmange.Name = "buttonformEmpmange";
             this.buttonformEmpmange.Size = new System.Drawing.Size(163, 45);
@@ -240,22 +227,22 @@
             this.buttonformEmpmange.UseVisualStyleBackColor = true;
             this.buttonformEmpmange.Click += new System.EventHandler(this.buttonformEmpmange_Click);
             // 
-            // btnReportFrontStore
+            // btnReportTotalOrder
             // 
-            this.btnReportFrontStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnReportFrontStore.Location = new System.Drawing.Point(8, 145);
-            this.btnReportFrontStore.Margin = new System.Windows.Forms.Padding(6);
-            this.btnReportFrontStore.Name = "btnReportFrontStore";
-            this.btnReportFrontStore.Size = new System.Drawing.Size(163, 45);
-            this.btnReportFrontStore.TabIndex = 2;
-            this.btnReportFrontStore.Text = "รายงานยอดซื้อหน้าร้าน";
-            this.btnReportFrontStore.UseVisualStyleBackColor = true;
-            this.btnReportFrontStore.Click += new System.EventHandler(this.btnReportFrontStore_Click);
+            this.btnReportTotalOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnReportTotalOrder.Location = new System.Drawing.Point(5, 145);
+            this.btnReportTotalOrder.Margin = new System.Windows.Forms.Padding(6);
+            this.btnReportTotalOrder.Name = "btnReportTotalOrder";
+            this.btnReportTotalOrder.Size = new System.Drawing.Size(163, 45);
+            this.btnReportTotalOrder.TabIndex = 2;
+            this.btnReportTotalOrder.Text = "รายงานยอดสั่งซื้อ";
+            this.btnReportTotalOrder.UseVisualStyleBackColor = true;
+            this.btnReportTotalOrder.Click += new System.EventHandler(this.btnReportFrontStore_Click);
             // 
             // button3
             // 
             this.button3.FlatAppearance.BorderSize = 2;
-            this.button3.Location = new System.Drawing.Point(8, 31);
+            this.button3.Location = new System.Drawing.Point(0, 31);
             this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(163, 45);
@@ -366,25 +353,52 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.groupBoxUser);
+            this.panel1.Controls.Add(this.btn_exit);
+            this.panel1.Controls.Add(this.btn_LogOut);
             this.panel1.Location = new System.Drawing.Point(-6, -16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(774, 150);
+            this.panel1.Size = new System.Drawing.Size(960, 150);
             this.panel1.TabIndex = 13;
+            // 
+            // btnTotalPur
+            // 
+            this.btnTotalPur.FlatAppearance.BorderSize = 2;
+            this.btnTotalPur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnTotalPur.Location = new System.Drawing.Point(5, 202);
+            this.btnTotalPur.Margin = new System.Windows.Forms.Padding(6);
+            this.btnTotalPur.Name = "btnTotalPur";
+            this.btnTotalPur.Size = new System.Drawing.Size(163, 45);
+            this.btnTotalPur.TabIndex = 6;
+            this.btnTotalPur.Text = "รายงานยอดซื้อของเข้า";
+            this.btnTotalPur.UseVisualStyleBackColor = true;
+            this.btnTotalPur.Click += new System.EventHandler(this.btnTotalPur_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnTotalPur);
+            this.groupBox1.Controls.Add(this.btnReportTotalOrder);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(552, 144);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(171, 409);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Report";
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(748, 570);
+            this.ClientSize = new System.Drawing.Size(739, 570);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupboxStock);
             this.Controls.Add(this.groupShipping);
             this.Controls.Add(this.groupPacking);
             this.Controls.Add(this.groupMember);
-            this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.groupBoxmanager);
-            this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.groupBoxCashier);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -404,6 +418,7 @@
             this.groupboxStock.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -421,7 +436,7 @@
         private System.Windows.Forms.GroupBox groupBoxCashier;
         private System.Windows.Forms.GroupBox groupBoxmanager;
         private System.Windows.Forms.Button buttonformEmpmange;
-        private System.Windows.Forms.Button btnReportFrontStore;
+        private System.Windows.Forms.Button btnReportTotalOrder;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupMember;
         private System.Windows.Forms.Button button1;
@@ -437,7 +452,8 @@
         private System.Windows.Forms.Button btnAddSupplier;
         private System.Windows.Forms.Button buttonStoreInfo;
         private System.Windows.Forms.PictureBox pictureUserPic;
-        private System.Windows.Forms.Button btnTotleorder;
+        private System.Windows.Forms.Button btnTotalPur;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
