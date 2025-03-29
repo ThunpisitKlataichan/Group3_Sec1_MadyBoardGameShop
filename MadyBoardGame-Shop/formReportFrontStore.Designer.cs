@@ -151,6 +151,7 @@
             this.comboDateTypeSelect.Name = "comboDateTypeSelect";
             this.comboDateTypeSelect.Size = new System.Drawing.Size(205, 32);
             this.comboDateTypeSelect.TabIndex = 1;
+            this.comboDateTypeSelect.SelectedIndexChanged += new System.EventHandler(this.comboDateTypeSelect_SelectedIndexChanged);
             // 
             // label4
             // 
