@@ -57,9 +57,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnTotalPur = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonReportProfit = new System.Windows.Forms.Button();
+            this.buttonReportSuppiler = new System.Windows.Forms.Button();
+            this.buttonReportOrders = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
@@ -97,7 +97,7 @@
             // btn_exit
             // 
             this.btn_exit.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_exit.Location = new System.Drawing.Point(653, 104);
+            this.btn_exit.Location = new System.Drawing.Point(630, 106);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(6);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(96, 40);
@@ -144,6 +144,7 @@
             this.pictureUserPic.Size = new System.Drawing.Size(50, 50);
             this.pictureUserPic.TabIndex = 1;
             this.pictureUserPic.TabStop = false;
+            this.pictureUserPic.Click += new System.EventHandler(this.pictureUserPic_Click);
             // 
             // labelUsername
             // 
@@ -157,7 +158,7 @@
             // btn_LogOut
             // 
             this.btn_LogOut.BackColor = System.Drawing.Color.LightCoral;
-            this.btn_LogOut.Location = new System.Drawing.Point(653, 52);
+            this.btn_LogOut.Location = new System.Drawing.Point(630, 54);
             this.btn_LogOut.Margin = new System.Windows.Forms.Padding(6);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(96, 40);
@@ -231,6 +232,7 @@
             this.buttonReportEmp.TabIndex = 4;
             this.buttonReportEmp.Text = "รายงานพนักงาน";
             this.buttonReportEmp.UseVisualStyleBackColor = true;
+            this.buttonReportEmp.Click += new System.EventHandler(this.buttonReportEmp_Click);
             // 
             // btnReportTotalOrder
             // 
@@ -255,6 +257,7 @@
             this.buttonReportProduct.TabIndex = 1;
             this.buttonReportProduct.Text = "รายงานสินค้า";
             this.buttonReportProduct.UseVisualStyleBackColor = true;
+            this.buttonReportProduct.Click += new System.EventHandler(this.buttonReportProduct_Click);
             // 
             // groupMember
             // 
@@ -381,62 +384,65 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.buttonReportOrders);
+            this.groupBox1.Controls.Add(this.buttonReportSuppiler);
+            this.groupBox1.Controls.Add(this.buttonReportProfit);
             this.groupBox1.Controls.Add(this.buttonReportProduct);
             this.groupBox1.Controls.Add(this.btnTotalPur);
             this.groupBox1.Controls.Add(this.btnReportTotalOrder);
             this.groupBox1.Controls.Add(this.buttonReportEmp);
             this.groupBox1.Location = new System.Drawing.Point(552, 144);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 435);
+            this.groupBox1.Size = new System.Drawing.Size(181, 435);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Report";
             // 
-            // button2
+            // buttonReportProfit
             // 
-            this.button2.FlatAppearance.BorderSize = 2;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button2.Location = new System.Drawing.Point(5, 259);
-            this.button2.Margin = new System.Windows.Forms.Padding(6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 45);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "รายงานกำไรสุทธิ";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonReportProfit.FlatAppearance.BorderSize = 2;
+            this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportProfit.Location = new System.Drawing.Point(5, 259);
+            this.buttonReportProfit.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonReportProfit.Name = "buttonReportProfit";
+            this.buttonReportProfit.Size = new System.Drawing.Size(163, 45);
+            this.buttonReportProfit.TabIndex = 7;
+            this.buttonReportProfit.Text = "รายงานกำไรสุทธิ";
+            this.buttonReportProfit.UseVisualStyleBackColor = true;
+            this.buttonReportProfit.Click += new System.EventHandler(this.buttonReportProfit_Click);
             // 
-            // button4
+            // buttonReportSuppiler
             // 
-            this.button4.FlatAppearance.BorderSize = 2;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button4.Location = new System.Drawing.Point(5, 316);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(163, 45);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "รายงานผู้จัดจำหน่าย";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonReportSuppiler.FlatAppearance.BorderSize = 2;
+            this.buttonReportSuppiler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportSuppiler.Location = new System.Drawing.Point(5, 316);
+            this.buttonReportSuppiler.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonReportSuppiler.Name = "buttonReportSuppiler";
+            this.buttonReportSuppiler.Size = new System.Drawing.Size(163, 45);
+            this.buttonReportSuppiler.TabIndex = 8;
+            this.buttonReportSuppiler.Text = "รายงานผู้จัดจำหน่าย";
+            this.buttonReportSuppiler.UseVisualStyleBackColor = true;
+            this.buttonReportSuppiler.Click += new System.EventHandler(this.buttonReportSuppiler_Click);
             // 
-            // button5
+            // buttonReportOrders
             // 
-            this.button5.FlatAppearance.BorderSize = 2;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button5.Location = new System.Drawing.Point(5, 373);
-            this.button5.Margin = new System.Windows.Forms.Padding(6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(163, 45);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "รายงานการสั่งซื้อสินค้า";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonReportOrders.FlatAppearance.BorderSize = 2;
+            this.buttonReportOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportOrders.Location = new System.Drawing.Point(5, 373);
+            this.buttonReportOrders.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonReportOrders.Name = "buttonReportOrders";
+            this.buttonReportOrders.Size = new System.Drawing.Size(163, 45);
+            this.buttonReportOrders.TabIndex = 9;
+            this.buttonReportOrders.Text = "รายงานการสั่งซื้อสินค้า";
+            this.buttonReportOrders.UseVisualStyleBackColor = true;
+            this.buttonReportOrders.Click += new System.EventHandler(this.buttonReportOrders_Click);
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(757, 602);
+            this.ClientSize = new System.Drawing.Size(743, 602);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupboxStock);
@@ -499,9 +505,9 @@
         private System.Windows.Forms.PictureBox pictureUserPic;
         private System.Windows.Forms.Button btnTotalPur;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonReportProfit;
+        private System.Windows.Forms.Button buttonReportSuppiler;
+        private System.Windows.Forms.Button buttonReportOrders;
     }
 }
 

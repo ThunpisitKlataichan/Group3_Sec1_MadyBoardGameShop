@@ -167,13 +167,50 @@ namespace MadyBoardGame_Shop
 
         private void btnTotalPur_Click(object sender, EventArgs e)
         {
-
+            formReportPur formReportPur = new formReportPur();
+            formReportPur.ShowDialog();
         }
 
         private void buttonStoreInfo_Click(object sender, EventArgs e)
         {
             formStoreINFO formStoreINFO = new formStoreINFO();
             formStoreINFO.ShowDialog();
+        }
+
+        private void pictureUserPic_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonReportProduct_Click(object sender, EventArgs e)
+        {
+            formReportProduct formReportProduct = new formReportProduct();
+            formReportProduct.ShowDialog();
+
+        }
+
+        private void buttonReportEmp_Click(object sender, EventArgs e)
+        {
+            formReportEmployee formReportEmployee = new formReportEmployee();
+            formReportEmployee.ShowDialog();
+        }
+
+        private void buttonReportProfit_Click(object sender, EventArgs e)
+        {
+            formReportProfit formReportProfit = new formReportProfit();
+            formReportProfit.ShowDialog();
+        }
+
+        private void buttonReportSuppiler_Click(object sender, EventArgs e)
+        {
+            formAddSuppiler formAddSuppiler = new formAddSuppiler();
+            formAddSuppiler.ShowDialog();
+        }
+
+        private void buttonReportOrders_Click(object sender, EventArgs e)
+        {
+            formReportOrders formReportOrders = new formReportOrders();
+            formReportOrders.ShowDialog();
         }
     }
 }
