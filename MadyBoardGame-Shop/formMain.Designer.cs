@@ -41,8 +41,8 @@
             this.buttonCashierCal = new System.Windows.Forms.Button();
             this.groupBoxmanager = new System.Windows.Forms.GroupBox();
             this.buttonStoreInfo = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.buttonformEmpmange = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnReportTotalOrder = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupMember = new System.Windows.Forms.GroupBox();
@@ -205,16 +205,7 @@
             this.buttonStoreInfo.TabIndex = 5;
             this.buttonStoreInfo.Text = "ข้อมูลร้านค้า";
             this.buttonStoreInfo.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 88);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 45);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "รายงานพนักงาน";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonStoreInfo.Click += new System.EventHandler(this.buttonStoreInfo_Click);
             // 
             // buttonformEmpmange
             // 
@@ -226,6 +217,16 @@
             this.buttonformEmpmange.Text = "จัดการพนักงาน";
             this.buttonformEmpmange.UseVisualStyleBackColor = true;
             this.buttonformEmpmange.Click += new System.EventHandler(this.buttonformEmpmange_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 45);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "รายงานพนักงาน";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnReportTotalOrder
             // 

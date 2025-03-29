@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonprint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -49,19 +51,30 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-7, -33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1254, 133);
             this.panel1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.Location = new System.Drawing.Point(1097, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 53);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "ปิด";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(30, 58);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(19, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 39);
+            this.label1.Size = new System.Drawing.Size(463, 73);
             this.label1.TabIndex = 6;
             this.label1.Text = "รายงานยอดสั่งซื้อ";
             // 
@@ -165,11 +178,22 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "ช่วงเวลาที่ต้องการ";
             // 
+            // buttonprint
+            // 
+            this.buttonprint.Location = new System.Drawing.Point(1087, 113);
+            this.buttonprint.Name = "buttonprint";
+            this.buttonprint.Size = new System.Drawing.Size(133, 56);
+            this.buttonprint.TabIndex = 5;
+            this.buttonprint.Text = "print";
+            this.buttonprint.UseVisualStyleBackColor = true;
+            this.buttonprint.Click += new System.EventHandler(this.buttonprint_Click);
+            // 
             // formReportTotalOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 589);
+            this.Controls.Add(this.buttonprint);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -202,5 +226,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonprint;
     }
 }

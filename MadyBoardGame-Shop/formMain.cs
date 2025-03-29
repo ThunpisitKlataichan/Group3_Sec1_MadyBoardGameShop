@@ -169,5 +169,11 @@ namespace MadyBoardGame_Shop
         {
 
         }
+
+        private void buttonStoreInfo_Click(object sender, EventArgs e)
+        {
+            formStoreINFO formStoreINFO = new formStoreINFO();
+            formStoreINFO.ShowDialog();
+        }
     }
 }

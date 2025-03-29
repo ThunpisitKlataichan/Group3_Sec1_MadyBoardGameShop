@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -411,6 +414,134 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show($"เกิดข้อผิดพลาดในการตั้งค่าวันที่: {ex.Message}", "ข้อผิดพลาด",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void buttonprint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GenerateReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"เกิดข้อผิดพลาดในการสร้างรายงาน: {ex.Message}",
+                              "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void GenerateReport()
+        {
+            // ตรวจสอบว่ามีข้อมูลที่จะรายงานหรือไม่
+            var reportData = GetReportData();
+            if (reportData == null || reportData.Count == 0)
+            {
+                MessageBox.Show("ไม่พบข้อมูลที่จะแสดงในรายงาน", "แจ้งเตือน",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // สร้างและตั้งค่า ReportViewer
+            ReportViewer reportViewer = new ReportViewer
+            {
+                ProcessingMode = ProcessingMode.Local,
+                WaitControlDisplayAfter = 500 // หน่วงเวลาแสดง loading 500 มิลลิวินาที
+            };
+
+            // ตรวจสอบว่าไฟล์รายงานมีอยู่จริง
+            string reportPath = "Reports/Report1.rdlc";
+            if (!File.Exists(reportPath))
+            {
+                MessageBox.Show("ไม่พบไฟล์รายงานที่กำหนด", "ข้อผิดพลาด",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // ตั้งค่า ReportViewer
+            reportViewer.LocalReport.ReportPath = reportPath;
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", reportData));
+
+            // ตั้งค่าพารามิเตอร์เพิ่มเติม (ถ้ามี)
+            // reportViewer.LocalReport.SetParameters(new ReportParameter("Parameter1", value));
+
+            // สร้างฟอร์มสำหรับแสดงรายงาน
+            Form reportForm = new Form
+            {
+                WindowState = FormWindowState.Maximized,
+                Text = "รายงานการขาย",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            // เพิ่ม ReportViewer ลงในฟอร์ม
+            reportViewer.Dock = DockStyle.Fill;
+            reportForm.Controls.Add(reportViewer);
+
+            // ปุ่มพิมพ์และตัวเลือกอื่นๆ
+            reportViewer.ShowPrintButton = true;
+            reportViewer.ShowExportButton = true;
+            reportViewer.ShowZoomControl = true;
+            reportViewer.ShowPageNavigationControls = true;
+            reportViewer.ShowRefreshButton = false;
+            reportViewer.ShowBackButton = false;
+
+            // โหลดรายงาน
+            reportViewer.RefreshReport();
+
+            // แสดงฟอร์ม
+            reportForm.ShowDialog();
+        }
+
+        private List<ReportData> GetReportData()
+        {
+            // ตัวอย่างการดึงข้อมูลจากฐานข้อมูล
+            List<ReportData> data = new List<ReportData>();
+
+            try
+            {
+                string sql = @"SELECT * FROM Orders 
+INNER JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID
+WHERE OrderDate BETWEEN @StartDate AND @EndDate";
+
+                using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
+                {
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@StartDate", dateTimeStart.Value.Date);
+                    cmd.Parameters.AddWithValue("@EndDate", dateTimeEnd.Value.Date);
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            data.Add(new ReportData
+                            {
+                                OrderID = reader["OrderID"].ToString(),
+                                ProductName = reader["ProductName"].ToString(),
+                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                SaleDate = Convert.ToDateTime(reader["SaleDate"])
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"เกิดข้อผิดพลาดในการดึงข้อมูล: {ex.Message}",
+                              "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return data;
+        }
+
+        // คลาสสำหรับเก็บข้อมูลรายงาน
+        public class ReportData
+        {
+            public string OrderID { get; set; }
+            public string ProductName { get; set; }
+            public int Quantity { get; set; }
+            public decimal Price { get; set; }
+            public DateTime SaleDate { get; set; }
         }
     }
 }
