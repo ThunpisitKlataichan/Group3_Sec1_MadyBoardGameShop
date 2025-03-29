@@ -215,6 +215,7 @@ namespace MadyBoardGame_Shop
                         }
                     }
                 }
+                 
 
                 // Calculate and update total amount
                 if (quantityLabel != null && priceLabel != null)
