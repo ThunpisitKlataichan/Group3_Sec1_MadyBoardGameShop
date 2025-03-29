@@ -235,7 +235,7 @@ namespace MadyBoardGame_Shop
         private void textSearch_TextChanged(object sender, EventArgs e)
         {
             string searchText = textSearch.Text.Trim();
-
+            
             if (string.IsNullOrEmpty(searchText))
             {
                 ds.Tables[0].DefaultView.RowFilter = ""; // แสดงข้อมูลทั้งหมดถ้าช่องค้นหาว่าง
@@ -245,23 +245,6 @@ namespace MadyBoardGame_Shop
                 ds.Tables[0].DefaultView.RowFilter = $"empName LIKE '%{searchText}%'"; // กรองข้อมูลตามชื่อ
             }
 
-            // เปลี่ยน DataSource ของ DataGridView ให้ใช้ข้อมูลที่ถูกกรอง
-            dataGrid_Emp.DataSource = ds.Tables[0].DefaultView;
-
-            // อัปเดต CurrencyManager ให้ใช้ DefaultView
-            emp_Manager = (CurrencyManager)dataGrid_Emp.BindingContext[ds.Tables[0].DefaultView];
-
-            // รีเซ็ตตำแหน่งไปที่รายการแรกสุดของข้อมูลที่ถูกกรอง
-            if (emp_Manager.Count > 0)
-            {
-                emp_Manager.Position = 0;
-                dataGrid_Emp.CurrentCell = dataGrid_Emp.Rows[0].Cells[1]; // เลือกแถวแรก
-            }
-           
-
-            // เคลียร์ & รีเซ็ต DataBindings ใหม่
-            //Bind_DATA();
-            loadDataIntoGrid();
         }
 
         private void textSearch_Click(object sender, EventArgs e)
