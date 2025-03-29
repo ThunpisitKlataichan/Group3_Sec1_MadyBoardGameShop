@@ -18,10 +18,10 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
-        SqlConnection loginConnection;
-        SqlCommand loginCommand;
-        SqlDataAdapter loginAdapter;
-        DataTable logintable;
+        SqlConnection loginConnection; // Connection to database
+        SqlCommand loginCommand; // ส่งคำสั่งไปที่ฐานข้อมูล
+        SqlDataAdapter loginAdapter; // ดึงข้อมูลจากฐานข้อมูล
+        DataTable logintable; // ตารางเก็บข้อมูล
         private void btn_confirm_Click(object sender, EventArgs e)
         {
             try
@@ -55,7 +55,6 @@ namespace MadyBoardGame_Shop
                                 InitializeUser.UserLastNameLogin = loginTable.Rows[0]["empLName"].ToString();
                                 InitializeUser.UserID = loginTable.Rows[0]["empID"].ToString();
                                 InitializeUser.Userusername = loginTable.Rows[0]["Username"].ToString();
-
 
                                 formMain mainForm = new formMain();
                                 this.Hide();

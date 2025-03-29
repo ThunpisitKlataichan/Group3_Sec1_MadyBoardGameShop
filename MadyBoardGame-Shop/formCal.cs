@@ -179,7 +179,7 @@ namespace MadyBoardGame_Shop
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Remove this item from cart?", "Confirm",MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ต้องการลบรายการหรือไม่?", "ยืนยัน",MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
@@ -216,7 +216,6 @@ namespace MadyBoardGame_Shop
                     }
                 }
                  
-
                 // Calculate and update total amount
                 if (quantityLabel != null && priceLabel != null)
                 {
@@ -276,41 +275,49 @@ namespace MadyBoardGame_Shop
                                         }
                                     }
                                 }
-                                qry = "SELECT Quality FROM Products WHERE ProductID = @productID AND Quality < @quality";
+                                qry = "SELECT 1 FROM Products WHERE ProductID = @productID AND Quality < @quality";
                                 using (SqlCommand command = new SqlCommand(qry, PayfrontStoreConnection))
                                 {
                                     command.Parameters.AddWithValue("@productID", productID);
                                     command.Parameters.AddWithValue("@quality", quality);
-                                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                                    DataTable dataTable = new DataTable();
-                                    adapter.Fill(dataTable);
-                                    if (dataTable.Rows.Count > 0)
+
+                                    try
                                     {
-                                        MessageBox.Show("สินค้า " + productID + " มีจำนวนไม่พอ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        return;
+                                        PayfrontStoreConnection.Open();
+                                        var result = command.ExecuteScalar();
+                                        if (result != null)
+                                        {
+                                            MessageBox.Show("สินค้า " + productID + " มีจำนวนไม่พอ", "Error",
+                                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                    finally
+                                    {
+                                        PayfrontStoreConnection.Close();
                                     }
                                 }
                             }
+
+
+                            qry = "INSERT INTO PayFrontStore(empID , Paymethod , Paydate) VALUES(@empID , @paymethod , @date)";
+                            SqlCommand PayfrontStoreCommand = new SqlCommand(qry, PayfrontStoreConnection);
+                            PayfrontStoreConnection.Open();
+                            PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
+                            PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
+                            PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);
+
+
+                            PayfrontStoreCommand.ExecuteNonQuery();
+                            DecressProductQuality(flowLayoutProduct);
+
+                            MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            flowLayoutProduct.Controls.Clear();
+                            amount = 0;
+                            checkTagCartpanalTag.Clear();
+
+                            labelAmount.Text = "0.00 ฿";
                         }
-
-
-                        qry = "INSERT INTO PayFrontStore(empID , Paymethod , Paydate) VALUES(@empID , @paymethod , @date)";
-                        SqlCommand PayfrontStoreCommand = new SqlCommand(qry, PayfrontStoreConnection);
-                        PayfrontStoreConnection.Open();
-                        PayfrontStoreCommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
-                        PayfrontStoreCommand.Parameters.AddWithValue("@paymethod", comboMethodPay.Text);
-                        PayfrontStoreCommand.Parameters.AddWithValue("@date", DateTime.Now);
-
-
-                        PayfrontStoreCommand.ExecuteNonQuery();
-                        DecressProductQuality(flowLayoutProduct);
-
-                        MessageBox.Show("ทำรายการสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        flowLayoutProduct.Controls.Clear();
-                        amount = 0;
-                        checkTagCartpanalTag.Clear();
-
-                        labelAmount.Text = "0.00 ฿";
                     }
                 }
                 catch (Exception ex)

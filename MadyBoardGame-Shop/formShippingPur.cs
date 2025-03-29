@@ -73,7 +73,7 @@ namespace MadyBoardGame_Shop
                 labelrespon.Text = shippurtable.Rows[i]["empID"].ToString();
                 labelrespon.Location = new Point(120, 30);
                 labelrespon.AutoSize = true;
-                if (labelrespon.Text == "" || labelrespon.Text == null)
+                if (labelrespon.Text == "" || labelrespon.Text == null || labelrespon.Text == "0")
                 {
                     labelrespon.Text = "-";
                 }
@@ -88,6 +88,15 @@ namespace MadyBoardGame_Shop
                 labelDate.Text = shippurtable.Rows[i]["ShippingDate"].ToString();
                 labelDate.Location = new Point(170, 55);
                 labelDate.AutoSize = true;
+                switch (labelDate.Text)
+                {
+                    case "":
+                        labelDate.Text = "ยังไม่มีการอัพเดต";
+                        break;
+                    default:
+                        labelDate.Text = Convert.ToDateTime(labelDate.Text).ToString("dd/MM/yyyy HH:mm:ss");
+                        break;
+                }
 
                 Label labelStatusTitle = new Label();
                 labelStatusTitle.Text = "สถานะขนส่ง : ";
@@ -102,6 +111,18 @@ namespace MadyBoardGame_Shop
                 comboboxStasus.Location = new Point(310, 3);
                 comboboxStasus.Size = new Size(200, 32);
                 comboboxStasus.SelectedItem = shippurtable.Rows[i]["ShippingStatus"].ToString();
+                switch (comboboxStasus.SelectedItem)
+                {
+                    case "เตรียมการไปรับสินค้า":
+                        panel.BackColor = Color.AliceBlue;
+                        break;
+                    case "เดินทางไปรับสินค้า":
+                        panel.BackColor = Color.LightYellow;
+                        break;
+                    case "เติมสินค้าสำเร็จ":
+                        panel.BackColor = Color.LightGreen;
+                        break;
+                }
 
                 panel.Controls.Add(labelshippingIDTitle);
                 panel.Controls.Add(labelshippingID);
@@ -195,20 +216,27 @@ namespace MadyBoardGame_Shop
                     ComboBox combobox = (ComboBox)panel.Controls[5];
                     string shipID = panel.Controls[1].Text;
                     string status = combobox.SelectedItem.ToString();
-                    string empID = panel.Controls[7].Text;
-
                     string command = @"
                                         UPDATE ShippingPur
                                         SET 
                                             ShippingStatus = @status , 
-                                            empID = @empID
-                                        WHERE ShippingPurID = @shipID";
+                                            empID = @empID , 
+                                            ShippingDate = GETDATE()
+                                        WHERE 
+                                            ShippingPurID = @shipID AND
+                                            (empID is NULL or empID = @empID)";
                     shippurcommand = new SqlCommand(command, shippurconnection);
                     shippurcommand.Parameters.AddWithValue("@status", status);
                     shippurcommand.Parameters.AddWithValue("@shipID", shipID);
                     shippurcommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
                     shippurcommand.ExecuteNonQuery();
+                    int rowsAffected = shippurcommand.ExecuteNonQuery();
 
+                    if (rowsAffected == 0)
+                    {
+                        // Handle case where no rows were updated
+                        throw new Exception("No records were updated. Possible reasons: Invalid ShippingPurID or empID mismatch.");
+                    }
                     if (status == "เติมสินค้าสำเร็จ")
                     {
                         command = @"
@@ -226,9 +254,12 @@ namespace MadyBoardGame_Shop
                                         JOIN PurchaseDetail pd ON pu.PurID = pd.PurID
                                         JOIN Products p ON pd.ProductID = p.ProductID
                                         JOIN Suppilers s ON p.SuppilersID = s.SuppilerID
-                                    WHERE sp.ShippingPurID = @shipID";
+                                    WHERE 
+                                        sp.ShippingPurID = @shipID AND
+                                        (empID is NULL or empID = @empID)";
                         shippurcommand = new SqlCommand(command, shippurconnection);
                         shippurcommand.Parameters.AddWithValue("@shipID", shipID);
+                        shippurcommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
                         shippuradapter = new SqlDataAdapter(shippurcommand);
                         DataTable dataTable = new DataTable();
                         shippuradapter.Fill(dataTable);

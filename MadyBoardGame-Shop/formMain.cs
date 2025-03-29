@@ -44,21 +44,78 @@ namespace MadyBoardGame_Shop
         {
             switch (InitializeUser.UserState)
             {
-                case "Employee":
-                    groupBoxCashier.Enabled = true;
-                    groupBoxmanager.Enabled = false;
-                    this.Text = "MadyStore (Employee)";
-                    break;
                 case "Member":
                     groupBoxCashier.Enabled = false;
                     groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = true;
                     this.Text = "MadyStore (Member)";
                     break;
-                case "Manager":
-                    groupBoxCashier.Enabled = true;
-                    groupBoxmanager.Enabled = true;
+                case "ผู้จัดการ":
                     this.Text = "MadyStore (Manager)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = true;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupShipping.Enabled = false;
+                    groupMember.Enabled = false;//6
                     break;
+                case "เจ้าหน้าที่จัดส่งสินค้า":
+                    this.Text = "MadyStore (Shipping)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = true;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = false;//6
+                    break;
+                case "เจ้าหน้าที่บริการลูกค้า":
+                    this.Text = "MadyStore (Cashier)";
+                    groupBoxCashier.Enabled = true;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = false;//6
+                    break;
+                case "เจ้าหน้าที่คลังสินค้า":
+                    this.Text = "MadyStore (Stock)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = true;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = false;//6
+                    break;
+                case "เจ้าหน้าที่บัญชี":
+                    this.Text = "MadyStore (Accounting)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = false;//6
+                    break;
+                case "เจ้าหน้าที่ขนส่ง":
+                    this.Text = "MadyStore (Shipping)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = true;//6
+                    break;
+                default:
+                    this.Text = "MadyStore (Guest)";
+                    groupBoxCashier.Enabled = false;
+                    groupBoxmanager.Enabled = false;
+                    groupboxStock.Enabled = false;
+                    groupPacking.Enabled = false;
+                    groupMember.Enabled = false;
+                    groupShipping.Enabled = false;//6
+                    break;
+
             }
             labelUsername.Text = $"Username : {InitializeUser.Userusername}\n" + InitializeUser.UserNameLogin + "  " + InitializeUser.UserLastNameLogin;
         }

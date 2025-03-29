@@ -331,11 +331,12 @@ namespace MadyBoardGame_Shop
 
                 shippingconnect = new SqlConnection(InitializeUser._key_con);
                 shippingconnect.Open();
-                qry = "INSERT INTO ShippingPur (ShippingStatus , ShippingDate , PurID) VALUES(@shippingStatus , @shippingDate , @purID)";
+                qry = "INSERT INTO ShippingPur (ShippingStatus , ShippingDate , PurID , empID) VALUES(@shippingStatus , @shippingDate , @purID , @empID)";
                 shippingcommand = new SqlCommand(qry, shippingconnect);
                 shippingcommand.Parameters.AddWithValue("@shippingStatus", "เตรียมการไปรับสินค้า");
                 shippingcommand.Parameters.AddWithValue("@shippingDate", DateTime.Now);
                 shippingcommand.Parameters.AddWithValue("@purID", purID);
+                shippingcommand.Parameters.AddWithValue("@empID", DBNull.Value);
                 shippingcommand.ExecuteNonQuery();
 
                 string ID = "";

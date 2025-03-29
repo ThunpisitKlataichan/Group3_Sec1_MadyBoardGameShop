@@ -314,7 +314,7 @@ namespace MadyBoardGame_Shop
                           SET ShipingStatus = @status, 
                               empID = @empID, 
                               ShipingDate = GETDATE() -- Optional: track when update occurred
-                          WHERE ShipingID = @shipID AND empID IS NULL";
+                          WHERE ShipingID = @shipID AND empID IS NULL OR empID = @empID";
 
                         using (SqlCommand command = new SqlCommand(sql, connection))
                         {
