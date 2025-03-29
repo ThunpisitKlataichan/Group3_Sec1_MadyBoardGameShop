@@ -41,7 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonprint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -107,7 +106,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(6, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(779, 143);
+            this.panel2.Size = new System.Drawing.Size(791, 143);
             this.panel2.TabIndex = 0;
             // 
             // buttonRedate
@@ -178,22 +177,11 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "ช่วงเวลาที่ต้องการ";
             // 
-            // buttonprint
-            // 
-            this.buttonprint.Location = new System.Drawing.Point(1087, 113);
-            this.buttonprint.Name = "buttonprint";
-            this.buttonprint.Size = new System.Drawing.Size(133, 56);
-            this.buttonprint.TabIndex = 5;
-            this.buttonprint.Text = "print";
-            this.buttonprint.UseVisualStyleBackColor = true;
-            this.buttonprint.Click += new System.EventHandler(this.buttonprint_Click);
-            // 
             // formReportTotalOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 589);
-            this.Controls.Add(this.buttonprint);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -227,6 +215,5 @@
         private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button buttonprint;
     }
 }

@@ -231,7 +231,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Report1.rdlc" />
     <None Include="MadyStoreDBDataSet.xsc">
       <DependentUpon>MadyStoreDBDataSet.xsd</DependentUpon>
     </None>
