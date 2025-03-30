@@ -65,12 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressUtil.cs" />
-    <Compile Include="formReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formReport.Designer.cs">
-      <DependentUpon>formReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="formReportDetailPur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,8 +238,14 @@
     <EmbeddedResource Include="formReportDetailPur.resx">
       <DependentUpon>formReportDetailPur.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formReportEmployee.resx">
+      <DependentUpon>formReportEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formReportOrderDetail.resx">
       <DependentUpon>formReportOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportProduct.resx">
+      <DependentUpon>formReportProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formReportProfit.resx">
       <DependentUpon>formReportProfit.cs</DependentUpon>

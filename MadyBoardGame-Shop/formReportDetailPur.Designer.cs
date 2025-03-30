@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonFind = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@
             this.txtOrderFind = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -56,14 +57,6 @@
             this.panel1.Size = new System.Drawing.Size(1152, 110);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridResult
-            // 
-            this.dataGridResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridResult.Location = new System.Drawing.Point(12, 296);
-            this.dataGridResult.Name = "dataGridResult";
-            this.dataGridResult.Size = new System.Drawing.Size(1113, 272);
-            this.dataGridResult.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -73,6 +66,14 @@
             this.label1.Size = new System.Drawing.Size(981, 73);
             this.label1.TabIndex = 0;
             this.label1.Text = "รายงานรายละเอียดการซื้อสินค้าในร้าน";
+            // 
+            // dataGridResult
+            // 
+            this.dataGridResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridResult.Location = new System.Drawing.Point(12, 296);
+            this.dataGridResult.Name = "dataGridResult";
+            this.dataGridResult.Size = new System.Drawing.Size(1113, 272);
+            this.dataGridResult.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -174,16 +175,27 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "ค้นหาเลขที่จ่ายซื้อเข้าร้าน :";
             // 
+            // btn_print_to_pdf
+            // 
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(871, 204);
+            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.TabIndex = 4;
+            this.btn_print_to_pdf.Text = "print";
+            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
+            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
+            // 
             // formReportDetailPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1137, 580);
+            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "formReportDetailPur";
             this.Text = "formReportDetailPur";
             this.Load += new System.EventHandler(this.formReportDetailPur_Load);
@@ -212,5 +224,6 @@
         private System.Windows.Forms.TextBox txtOrderFind;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_print_to_pdf;
     }
 }

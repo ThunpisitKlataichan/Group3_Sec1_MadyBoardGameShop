@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -177,11 +178,22 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "ช่วงเวลาที่ต้องการ";
             // 
+            // btn_print_to_pdf
+            // 
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(1025, 213);
+            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.TabIndex = 5;
+            this.btn_print_to_pdf.Text = "print";
+            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
+            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
+            // 
             // formReportTotalOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 589);
+            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_print_to_pdf;
     }
 }
