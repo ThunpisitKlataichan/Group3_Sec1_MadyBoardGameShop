@@ -21,7 +21,6 @@ namespace MadyBoardGame_Shop
         SqlConnection loginConnection; // Connection to database
         SqlCommand loginCommand; // ส่งคำสั่งไปที่ฐานข้อมูล
         SqlDataAdapter loginAdapter; // ดึงข้อมูลจากฐานข้อมูล
-        DataTable logintable; // ตารางเก็บข้อมูล
         private void btn_confirm_Click(object sender, EventArgs e)
         {
             try

@@ -21,9 +21,6 @@ namespace MadyBoardGame_Shop
             InitializeComponent();
         }
         SqlConnection _connection;
-        SqlCommand _command;
-        SqlDataAdapter _adapter;
-        DataTable _dataTable;
         private void formReportFrontStore_Load(object sender, EventArgs e)
         {
             dateTimeStart.MaxDate = DateTime.Now;

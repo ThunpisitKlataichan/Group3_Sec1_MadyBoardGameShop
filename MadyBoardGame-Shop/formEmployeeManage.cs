@@ -18,10 +18,9 @@ namespace MadyBoardGame_Shop
     {
         SqlConnection connection;
         SqlCommand command;
-        CurrencyManager emp_Manager;
         DataTable dt = new DataTable();
         DataSet ds = new DataSet();
-        SqlDataAdapter empAdapter, credAdapter;
+        SqlDataAdapter credAdapter;
         string oldUsername;
         private Dictionary<string, string> backupData = new Dictionary<string, string>();
         string myState;

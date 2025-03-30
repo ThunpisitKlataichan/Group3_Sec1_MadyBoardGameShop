@@ -33,7 +33,6 @@ namespace MadyBoardGame_Shop
         List<Panel> panelscart = new List<Panel>();
         List<Panel> panelsearch = new List<Panel>();
 
-        string empIDmanager = "3";
 
         private decimal totalPrice = 0;
         public formOrder()

@@ -50,6 +50,7 @@ namespace MadyBoardGame_Shop
                     groupboxStock.Enabled = false;
                     groupPacking.Enabled = false;
                     groupMember.Enabled = true;
+                    groupShipping.Enabled = false;//6
                     this.Text = "MadyStore (Member)";
                     break;
                 case "ผู้จัดการ":
@@ -203,8 +204,8 @@ namespace MadyBoardGame_Shop
 
         private void buttonReportSuppiler_Click(object sender, EventArgs e)
         {
-            formAddSuppiler formAddSuppiler = new formAddSuppiler();
-            formAddSuppiler.ShowDialog();
+            formReportSuppiler formReportSuppiler = new formReportSuppiler();
+            formReportSuppiler.ShowDialog();
         }
 
         private void buttonReportOrders_Click(object sender, EventArgs e)
