@@ -32,16 +32,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtSuppilerID = new System.Windows.Forms.TextBox();
-            this.txtSuppilerName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtProductID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonFind = new System.Windows.Forms.Button();
-            this.txtProductID = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.txtSuppilerID = new System.Windows.Forms.TextBox();
+            this.txtSuppilerName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -94,41 +95,41 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ค้นหา";
             // 
-            // txtSuppilerID
+            // txtProductName
             // 
-            this.txtSuppilerID.Location = new System.Drawing.Point(133, 21);
-            this.txtSuppilerID.Name = "txtSuppilerID";
-            this.txtSuppilerID.Size = new System.Drawing.Size(143, 29);
-            this.txtSuppilerID.TabIndex = 4;
-            this.txtSuppilerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSuppilerID_KeyPress);
+            this.txtProductName.Location = new System.Drawing.Point(390, 58);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(143, 29);
+            this.txtProductName.TabIndex = 18;
+            this.txtProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductName_KeyPress);
             // 
-            // txtSuppilerName
+            // label4
             // 
-            this.txtSuppilerName.Location = new System.Drawing.Point(390, 23);
-            this.txtSuppilerName.Name = "txtSuppilerName";
-            this.txtSuppilerName.Size = new System.Drawing.Size(143, 29);
-            this.txtSuppilerName.TabIndex = 3;
-            this.txtSuppilerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSuppilerName_KeyPress);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.Location = new System.Drawing.Point(37, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 24);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "รหัสสินค้า :";
             // 
-            // label3
+            // txtProductID
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(7, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 24);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "รหัสผู้จำหน่าย :";
+            this.txtProductID.Location = new System.Drawing.Point(133, 56);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(143, 29);
+            this.txtProductID.TabIndex = 15;
+            this.txtProductID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductID_KeyPress);
             // 
-            // label2
+            // label5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(283, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "ชื่อผู้จำหน่าย :";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label5.Location = new System.Drawing.Point(303, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 24);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "ชื่อสินค้า :";
             // 
             // buttonReset
             // 
@@ -152,47 +153,58 @@
             this.buttonFind.UseVisualStyleBackColor = true;
             this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
             // 
-            // txtProductID
+            // txtSuppilerID
             // 
-            this.txtProductID.Location = new System.Drawing.Point(133, 56);
-            this.txtProductID.Name = "txtProductID";
-            this.txtProductID.Size = new System.Drawing.Size(143, 29);
-            this.txtProductID.TabIndex = 15;
-            this.txtProductID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductID_KeyPress);
+            this.txtSuppilerID.Location = new System.Drawing.Point(133, 21);
+            this.txtSuppilerID.Name = "txtSuppilerID";
+            this.txtSuppilerID.Size = new System.Drawing.Size(143, 29);
+            this.txtSuppilerID.TabIndex = 4;
+            this.txtSuppilerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSuppilerID_KeyPress);
             // 
-            // label4
+            // txtSuppilerName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label4.Location = new System.Drawing.Point(37, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 24);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "รหัสสินค้า :";
+            this.txtSuppilerName.Location = new System.Drawing.Point(390, 23);
+            this.txtSuppilerName.Name = "txtSuppilerName";
+            this.txtSuppilerName.Size = new System.Drawing.Size(143, 29);
+            this.txtSuppilerName.TabIndex = 3;
+            this.txtSuppilerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSuppilerName_KeyPress);
             // 
-            // label5
+            // label2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label5.Location = new System.Drawing.Point(303, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 24);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "ชื่อสินค้า :";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(283, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 24);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "ชื่อผู้จำหน่าย :";
             // 
-            // txtProductName
+            // label3
             // 
-            this.txtProductName.Location = new System.Drawing.Point(390, 58);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(143, 29);
-            this.txtProductName.TabIndex = 18;
-            this.txtProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductName_KeyPress);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(7, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 24);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "รหัสผู้จำหน่าย :";
+            // 
+            // btn_print_to_pdf
+            // 
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(710, 153);
+            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.TabIndex = 4;
+            this.btn_print_to_pdf.Text = "print";
+            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
+            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
             // 
             // formReportSuppiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 561);
+            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.panel1);
@@ -226,5 +238,6 @@
         private System.Windows.Forms.TextBox txtProductID;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_print_to_pdf;
     }
 }

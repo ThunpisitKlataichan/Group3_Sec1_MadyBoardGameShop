@@ -43,6 +43,7 @@
             this.txtOrderFind = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -191,11 +192,22 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "ค้นหาเลขที่คำสั่งซื้อ :";
             // 
+            // btn_print_to_pdf
+            // 
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(844, 221);
+            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.TabIndex = 3;
+            this.btn_print_to_pdf.Text = "print";
+            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
+            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
+            // 
             // formReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 548);
+            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridResult);
@@ -230,5 +242,6 @@
         private System.Windows.Forms.TextBox textTotalPricemin;
         private System.Windows.Forms.Button buttonFind;
         private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.Button btn_print_to_pdf;
     }
 }
