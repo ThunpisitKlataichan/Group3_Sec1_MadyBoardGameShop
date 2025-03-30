@@ -168,7 +168,7 @@ namespace MadyBoardGame_Shop
 
         private void btnTotalPur_Click(object sender, EventArgs e)
         {
-            formReportPur formReportPur = new formReportPur();
+            formReportTotalPur formReportPur = new formReportTotalPur();
             formReportPur.ShowDialog();
         }
 
@@ -210,7 +210,7 @@ namespace MadyBoardGame_Shop
 
         private void buttonReportOrders_Click(object sender, EventArgs e)
         {
-            formReportOrders formReportOrders = new formReportOrders();
+            formReportOrderDetail formReportOrders = new formReportOrderDetail();
             formReportOrders.ShowDialog();
         }
     }

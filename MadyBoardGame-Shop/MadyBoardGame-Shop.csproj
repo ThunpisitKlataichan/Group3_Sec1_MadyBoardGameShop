@@ -71,11 +71,11 @@
     <Compile Include="formReport.Designer.cs">
       <DependentUpon>formReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="formReportOrders.cs">
+    <Compile Include="formReportOrderDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formReportOrders.Designer.cs">
-      <DependentUpon>formReportOrders.cs</DependentUpon>
+    <Compile Include="formReportOrderDetail.Designer.cs">
+      <DependentUpon>formReportOrderDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="formReportSuppiler.cs">
       <SubType>Form</SubType>
@@ -107,11 +107,11 @@
     <Compile Include="formReportEmployee.Designer.cs">
       <DependentUpon>formReportEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="formReportPur.cs">
+    <Compile Include="formReportTotalPur.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formReportPur.Designer.cs">
-      <DependentUpon>formReportPur.cs</DependentUpon>
+    <Compile Include="formReportTotalPur.Designer.cs">
+      <DependentUpon>formReportTotalPur.cs</DependentUpon>
     </Compile>
     <Compile Include="formReportTotalOrders.cs">
       <SubType>Form</SubType>
@@ -235,14 +235,14 @@
     <EmbeddedResource Include="formRegis.resx">
       <DependentUpon>formRegis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formReportOrders.resx">
-      <DependentUpon>formReportOrders.cs</DependentUpon>
+    <EmbeddedResource Include="formReportOrderDetail.resx">
+      <DependentUpon>formReportOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formReportProfit.resx">
       <DependentUpon>formReportProfit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formReportPur.resx">
-      <DependentUpon>formReportPur.cs</DependentUpon>
+    <EmbeddedResource Include="formReportTotalPur.resx">
+      <DependentUpon>formReportTotalPur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formReportSuppiler.resx">
       <DependentUpon>formReportSuppiler.cs</DependentUpon>

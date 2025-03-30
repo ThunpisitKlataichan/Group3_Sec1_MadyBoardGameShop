@@ -60,6 +60,8 @@
             this.buttonReportOrders = new System.Windows.Forms.Button();
             this.buttonReportSuppiler = new System.Windows.Forms.Button();
             this.buttonReportProfit = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
@@ -70,6 +72,7 @@
             this.groupboxStock.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_stock
@@ -224,8 +227,8 @@
             // 
             // buttonReportEmp
             // 
-            this.buttonReportEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportEmp.Location = new System.Drawing.Point(5, 88);
+            this.buttonReportEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportEmp.Location = new System.Drawing.Point(9, 31);
             this.buttonReportEmp.Margin = new System.Windows.Forms.Padding(6);
             this.buttonReportEmp.Name = "buttonReportEmp";
             this.buttonReportEmp.Size = new System.Drawing.Size(163, 45);
@@ -236,8 +239,8 @@
             // 
             // btnReportTotalOrder
             // 
-            this.btnReportTotalOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnReportTotalOrder.Location = new System.Drawing.Point(5, 145);
+            this.btnReportTotalOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnReportTotalOrder.Location = new System.Drawing.Point(201, 31);
             this.btnReportTotalOrder.Margin = new System.Windows.Forms.Padding(6);
             this.btnReportTotalOrder.Name = "btnReportTotalOrder";
             this.btnReportTotalOrder.Size = new System.Drawing.Size(163, 45);
@@ -249,8 +252,8 @@
             // buttonReportProduct
             // 
             this.buttonReportProduct.FlatAppearance.BorderSize = 2;
-            this.buttonReportProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportProduct.Location = new System.Drawing.Point(5, 32);
+            this.buttonReportProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportProduct.Location = new System.Drawing.Point(9, 88);
             this.buttonReportProduct.Margin = new System.Windows.Forms.Padding(6);
             this.buttonReportProduct.Name = "buttonReportProduct";
             this.buttonReportProduct.Size = new System.Drawing.Size(163, 45);
@@ -366,49 +369,45 @@
             this.panel1.Controls.Add(this.btn_exit);
             this.panel1.Location = new System.Drawing.Point(-6, -16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(835, 150);
+            this.panel1.Size = new System.Drawing.Size(1028, 150);
             this.panel1.TabIndex = 13;
             // 
             // btnTotalPur
             // 
             this.btnTotalPur.FlatAppearance.BorderSize = 2;
-            this.btnTotalPur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnTotalPur.Location = new System.Drawing.Point(5, 202);
+            this.btnTotalPur.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnTotalPur.Location = new System.Drawing.Point(9, 32);
             this.btnTotalPur.Margin = new System.Windows.Forms.Padding(6);
             this.btnTotalPur.Name = "btnTotalPur";
             this.btnTotalPur.Size = new System.Drawing.Size(163, 45);
             this.btnTotalPur.TabIndex = 6;
-            this.btnTotalPur.Text = "รายงานยอดซื้อของเข้า";
+            this.btnTotalPur.Text = "รายงานการสั่งซื้อสินค้าร้าน";
             this.btnTotalPur.UseVisualStyleBackColor = true;
             this.btnTotalPur.Click += new System.EventHandler(this.btnTotalPur_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonReportOrders);
-            this.groupBox1.Controls.Add(this.buttonReportSuppiler);
-            this.groupBox1.Controls.Add(this.buttonReportProfit);
             this.groupBox1.Controls.Add(this.buttonReportProduct);
-            this.groupBox1.Controls.Add(this.btnTotalPur);
-            this.groupBox1.Controls.Add(this.btnReportTotalOrder);
+            this.groupBox1.Controls.Add(this.buttonReportSuppiler);
             this.groupBox1.Controls.Add(this.buttonReportEmp);
             this.groupBox1.Location = new System.Drawing.Point(552, 144);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 435);
+            this.groupBox1.Size = new System.Drawing.Size(197, 207);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Report";
+            this.groupBox1.Text = "Report Store";
             // 
             // buttonReportOrders
             // 
             this.buttonReportOrders.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonReportOrders.FlatAppearance.BorderSize = 2;
-            this.buttonReportOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportOrders.Location = new System.Drawing.Point(5, 373);
+            this.buttonReportOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportOrders.Location = new System.Drawing.Point(201, 88);
             this.buttonReportOrders.Margin = new System.Windows.Forms.Padding(6);
             this.buttonReportOrders.Name = "buttonReportOrders";
             this.buttonReportOrders.Size = new System.Drawing.Size(163, 45);
             this.buttonReportOrders.TabIndex = 9;
-            this.buttonReportOrders.Text = "รายงานการสั่งซื้อสินค้า";
+            this.buttonReportOrders.Text = "รายงานรายละเอียดยอดสั่งซื้อ";
             this.buttonReportOrders.UseVisualStyleBackColor = false;
             this.buttonReportOrders.Click += new System.EventHandler(this.buttonReportOrders_Click);
             // 
@@ -416,8 +415,8 @@
             // 
             this.buttonReportSuppiler.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonReportSuppiler.FlatAppearance.BorderSize = 2;
-            this.buttonReportSuppiler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportSuppiler.Location = new System.Drawing.Point(5, 316);
+            this.buttonReportSuppiler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportSuppiler.Location = new System.Drawing.Point(9, 145);
             this.buttonReportSuppiler.Margin = new System.Windows.Forms.Padding(6);
             this.buttonReportSuppiler.Name = "buttonReportSuppiler";
             this.buttonReportSuppiler.Size = new System.Drawing.Size(163, 45);
@@ -429,8 +428,8 @@
             // buttonReportProfit
             // 
             this.buttonReportProfit.FlatAppearance.BorderSize = 2;
-            this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportProfit.Location = new System.Drawing.Point(5, 259);
+            this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportProfit.Location = new System.Drawing.Point(201, 142);
             this.buttonReportProfit.Margin = new System.Windows.Forms.Padding(6);
             this.buttonReportProfit.Name = "buttonReportProfit";
             this.buttonReportProfit.Size = new System.Drawing.Size(163, 45);
@@ -439,12 +438,39 @@
             this.buttonReportProfit.UseVisualStyleBackColor = true;
             this.buttonReportProfit.Click += new System.EventHandler(this.buttonReportProfit_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnTotalPur);
+            this.groupBox2.Controls.Add(this.btnReportTotalOrder);
+            this.groupBox2.Controls.Add(this.buttonReportProfit);
+            this.groupBox2.Controls.Add(this.buttonReportOrders);
+            this.groupBox2.Location = new System.Drawing.Point(552, 357);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(395, 222);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Report Profit And Spend";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button1.Location = new System.Drawing.Point(9, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 45);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "รายงานรายละเอัยดสั่งซื้อสินค้าร้าน";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(743, 602);
+            this.ClientSize = new System.Drawing.Size(1001, 602);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupboxStock);
@@ -472,6 +498,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -510,6 +537,8 @@
         private System.Windows.Forms.Button buttonReportProfit;
         private System.Windows.Forms.Button buttonReportSuppiler;
         private System.Windows.Forms.Button buttonReportOrders;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
