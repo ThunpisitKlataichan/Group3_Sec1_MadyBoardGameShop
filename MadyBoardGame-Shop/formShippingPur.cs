@@ -256,7 +256,7 @@ namespace MadyBoardGame_Shop
                                         JOIN Suppilers s ON p.SuppilersID = s.SuppilerID
                                     WHERE 
                                         sp.ShippingPurID = @shipID AND
-                                        (empID is NULL or empID = @empID)";
+                                        (sp.empID is NULL or sp.empID = @empID)";
                         shippurcommand = new SqlCommand(command, shippurconnection);
                         shippurcommand.Parameters.AddWithValue("@shipID", shipID);
                         shippurcommand.Parameters.AddWithValue("@empID", InitializeUser.UserID);
