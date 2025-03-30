@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.buttonFind = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textTotalPricemac = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
             this.txtOrderFind = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -99,9 +99,19 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 117);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(713, 182);
+            this.groupBox1.Size = new System.Drawing.Size(560, 182);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(144, 145);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(96, 31);
+            this.buttonReset.TabIndex = 12;
+            this.buttonReset.Text = "รีเซ็ท";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonFind
             // 
@@ -180,16 +190,6 @@
             this.label3.Size = new System.Drawing.Size(156, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "ค้นหาเลขที่คำสั่งซื้อ :";
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Location = new System.Drawing.Point(144, 145);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(96, 31);
-            this.buttonReset.TabIndex = 12;
-            this.buttonReset.Text = "รีเซ็ท";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // formReportOrders
             // 

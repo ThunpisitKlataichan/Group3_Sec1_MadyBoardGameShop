@@ -57,9 +57,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnTotalPur = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonReportProfit = new System.Windows.Forms.Button();
-            this.buttonReportSuppiler = new System.Windows.Forms.Button();
             this.buttonReportOrders = new System.Windows.Forms.Button();
+            this.buttonReportSuppiler = new System.Windows.Forms.Button();
+            this.buttonReportProfit = new System.Windows.Forms.Button();
             this.groupBoxUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserPic)).BeginInit();
             this.groupBoxCashier.SuspendLayout();
@@ -398,18 +398,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Report";
             // 
-            // buttonReportProfit
+            // buttonReportOrders
             // 
-            this.buttonReportProfit.FlatAppearance.BorderSize = 2;
-            this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportProfit.Location = new System.Drawing.Point(5, 259);
-            this.buttonReportProfit.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonReportProfit.Name = "buttonReportProfit";
-            this.buttonReportProfit.Size = new System.Drawing.Size(163, 45);
-            this.buttonReportProfit.TabIndex = 7;
-            this.buttonReportProfit.Text = "รายงานกำไรสุทธิ";
-            this.buttonReportProfit.UseVisualStyleBackColor = true;
-            this.buttonReportProfit.Click += new System.EventHandler(this.buttonReportProfit_Click);
+            this.buttonReportOrders.BackColor = System.Drawing.Color.GreenYellow;
+            this.buttonReportOrders.FlatAppearance.BorderSize = 2;
+            this.buttonReportOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportOrders.Location = new System.Drawing.Point(5, 373);
+            this.buttonReportOrders.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonReportOrders.Name = "buttonReportOrders";
+            this.buttonReportOrders.Size = new System.Drawing.Size(163, 45);
+            this.buttonReportOrders.TabIndex = 9;
+            this.buttonReportOrders.Text = "รายงานการสั่งซื้อสินค้า";
+            this.buttonReportOrders.UseVisualStyleBackColor = false;
+            this.buttonReportOrders.Click += new System.EventHandler(this.buttonReportOrders_Click);
             // 
             // buttonReportSuppiler
             // 
@@ -424,18 +425,18 @@
             this.buttonReportSuppiler.UseVisualStyleBackColor = true;
             this.buttonReportSuppiler.Click += new System.EventHandler(this.buttonReportSuppiler_Click);
             // 
-            // buttonReportOrders
+            // buttonReportProfit
             // 
-            this.buttonReportOrders.FlatAppearance.BorderSize = 2;
-            this.buttonReportOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.buttonReportOrders.Location = new System.Drawing.Point(5, 373);
-            this.buttonReportOrders.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonReportOrders.Name = "buttonReportOrders";
-            this.buttonReportOrders.Size = new System.Drawing.Size(163, 45);
-            this.buttonReportOrders.TabIndex = 9;
-            this.buttonReportOrders.Text = "รายงานการสั่งซื้อสินค้า";
-            this.buttonReportOrders.UseVisualStyleBackColor = true;
-            this.buttonReportOrders.Click += new System.EventHandler(this.buttonReportOrders_Click);
+            this.buttonReportProfit.FlatAppearance.BorderSize = 2;
+            this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonReportProfit.Location = new System.Drawing.Point(5, 259);
+            this.buttonReportProfit.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonReportProfit.Name = "buttonReportProfit";
+            this.buttonReportProfit.Size = new System.Drawing.Size(163, 45);
+            this.buttonReportProfit.TabIndex = 7;
+            this.buttonReportProfit.Text = "รายงานกำไรสุทธิ";
+            this.buttonReportProfit.UseVisualStyleBackColor = true;
+            this.buttonReportProfit.Click += new System.EventHandler(this.buttonReportProfit_Click);
             // 
             // formMain
             // 
