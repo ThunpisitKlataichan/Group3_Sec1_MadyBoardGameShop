@@ -35,11 +35,11 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonFind = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textTotalPricemac = new System.Windows.Forms.TextBox();
+            this.textTotalPricemax = new System.Windows.Forms.TextBox();
             this.textTotalPricemin = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtmemIDFind = new System.Windows.Forms.TextBox();
-            this.txtOrderFind = new System.Windows.Forms.TextBox();
+            this.txtempIDFind = new System.Windows.Forms.TextBox();
+            this.txtPurIDFind = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_print_to_pdf = new System.Windows.Forms.Button();
@@ -80,11 +80,11 @@
             this.groupBox1.Controls.Add(this.buttonReset);
             this.groupBox1.Controls.Add(this.buttonFind);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textTotalPricemac);
+            this.groupBox1.Controls.Add(this.textTotalPricemax);
             this.groupBox1.Controls.Add(this.textTotalPricemin);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtmemIDFind);
-            this.groupBox1.Controls.Add(this.txtOrderFind);
+            this.groupBox1.Controls.Add(this.txtempIDFind);
+            this.groupBox1.Controls.Add(this.txtPurIDFind);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 108);
@@ -101,6 +101,7 @@
             this.buttonReset.TabIndex = 12;
             this.buttonReset.Text = "รีเซ็ท";
             this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonFind
             // 
@@ -110,26 +111,27 @@
             this.buttonFind.TabIndex = 11;
             this.buttonFind.Text = "ค้นหา";
             this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(291, 98);
+            this.label6.Location = new System.Drawing.Point(316, 100);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(16, 24);
             this.label6.TabIndex = 10;
             this.label6.Text = "-";
             // 
-            // textTotalPricemac
+            // textTotalPricemax
             // 
-            this.textTotalPricemac.Location = new System.Drawing.Point(323, 96);
-            this.textTotalPricemac.Name = "textTotalPricemac";
-            this.textTotalPricemac.Size = new System.Drawing.Size(156, 29);
-            this.textTotalPricemac.TabIndex = 9;
+            this.textTotalPricemax.Location = new System.Drawing.Point(348, 98);
+            this.textTotalPricemax.Name = "textTotalPricemax";
+            this.textTotalPricemax.Size = new System.Drawing.Size(156, 29);
+            this.textTotalPricemax.TabIndex = 9;
             // 
             // textTotalPricemin
             // 
-            this.textTotalPricemin.Location = new System.Drawing.Point(121, 98);
+            this.textTotalPricemin.Location = new System.Drawing.Point(146, 100);
             this.textTotalPricemin.Name = "textTotalPricemin";
             this.textTotalPricemin.Size = new System.Drawing.Size(156, 29);
             this.textTotalPricemin.TabIndex = 8;
@@ -139,23 +141,23 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 101);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 24);
+            this.label5.Size = new System.Drawing.Size(120, 24);
             this.label5.TabIndex = 7;
-            this.label5.Text = "ช่วงราคาจ่าย :";
+            this.label5.Text = "ช่วงราคาที่จ่าย :";
             // 
-            // txtmemIDFind
+            // txtempIDFind
             // 
-            this.txtmemIDFind.Location = new System.Drawing.Point(169, 63);
-            this.txtmemIDFind.Name = "txtmemIDFind";
-            this.txtmemIDFind.Size = new System.Drawing.Size(156, 29);
-            this.txtmemIDFind.TabIndex = 6;
+            this.txtempIDFind.Location = new System.Drawing.Point(169, 63);
+            this.txtempIDFind.Name = "txtempIDFind";
+            this.txtempIDFind.Size = new System.Drawing.Size(156, 29);
+            this.txtempIDFind.TabIndex = 6;
             // 
-            // txtOrderFind
+            // txtPurIDFind
             // 
-            this.txtOrderFind.Location = new System.Drawing.Point(213, 28);
-            this.txtOrderFind.Name = "txtOrderFind";
-            this.txtOrderFind.Size = new System.Drawing.Size(156, 29);
-            this.txtOrderFind.TabIndex = 3;
+            this.txtPurIDFind.Location = new System.Drawing.Point(213, 28);
+            this.txtPurIDFind.Name = "txtPurIDFind";
+            this.txtPurIDFind.Size = new System.Drawing.Size(156, 29);
+            this.txtPurIDFind.TabIndex = 3;
             // 
             // label4
             // 
@@ -177,7 +179,7 @@
             // 
             // btn_print_to_pdf
             // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(871, 204);
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(1003, 108);
             this.btn_print_to_pdf.Name = "btn_print_to_pdf";
             this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
             this.btn_print_to_pdf.TabIndex = 4;
@@ -217,11 +219,11 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonFind;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textTotalPricemac;
+        private System.Windows.Forms.TextBox textTotalPricemax;
         private System.Windows.Forms.TextBox textTotalPricemin;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtmemIDFind;
-        private System.Windows.Forms.TextBox txtOrderFind;
+        private System.Windows.Forms.TextBox txtempIDFind;
+        private System.Windows.Forms.TextBox txtPurIDFind;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_print_to_pdf;

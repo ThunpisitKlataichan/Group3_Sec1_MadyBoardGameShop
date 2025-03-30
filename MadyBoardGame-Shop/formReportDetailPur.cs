@@ -35,29 +35,105 @@ namespace MadyBoardGame_Shop
         }
         private void LoadDatatoGrid()
         {
-            using (detailpurconnection = new SqlConnection(InitializeUser._key_con))
+            try
             {
-                detailpurconnection.Open();
-                string qry = BuildBaseQuery();
-
-                using (detailpurcommand = new SqlCommand(qry, detailpurconnection))
+                using (detailpurconnection = new SqlConnection(InitializeUser._key_con))
                 {
-                    detailpuradapter = new SqlDataAdapter(detailpurcommand);
-                    detailpurtable = new DataTable();
-                    detailpuradapter.Fill(detailpurtable);
-                    dataGridResult.DataSource = detailpurtable;
+                    detailpurconnection.Open();
+
+                    using (detailpurcommand = new SqlCommand(GetPurchaseDetailQuery(), detailpurconnection))
+                    {
+                        // Add parameters for search functionality
+                        if (!string.IsNullOrEmpty(txtPurIDFind.Text))
+                            detailpurcommand.Parameters.AddWithValue("@PurID", txtPurIDFind.Text);
+
+                        if (!string.IsNullOrEmpty(txtempIDFind.Text))
+                            detailpurcommand.Parameters.AddWithValue("@empID", txtempIDFind.Text);
+
+                        if (!string.IsNullOrEmpty(textTotalPricemin.Text) && decimal.TryParse(textTotalPricemin.Text, out decimal minPrice))
+                            detailpurcommand.Parameters.AddWithValue("@MinPrice", minPrice);
+
+                        if (!string.IsNullOrEmpty(textTotalPricemax.Text) && decimal.TryParse(textTotalPricemax.Text, out decimal maxPrice))
+                            detailpurcommand.Parameters.AddWithValue("@MaxPrice", maxPrice);
+
+                        detailpuradapter = new SqlDataAdapter(detailpurcommand);
+                        detailpurtable = new DataTable();
+                        detailpuradapter.Fill(detailpurtable);
+
+                        dataGridResult.DataSource = detailpurtable;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}");
+            }
         }
-        private string BuildBaseQuery()
+        private string GetPurchaseDetailQuery()
         {
-            return @"
-                    SELECT * FROM PurchaseDetail
-                    INNER JOIN Purchasing ON PurchaseDetail.PurID = Purchasing.PurID
-                    INNER JOIN Products ON PurchaseDetail.ProductID = Products.ProductID
-                    INNER JOIN Employees ON Purchasing.empID = Employees.empID
-";
+            string query = @"
+                SELECT 
+                    CASE WHEN ROW_NUMBER() OVER (PARTITION BY Purchasing.PurID ORDER BY PurDetailID) = 1 
+                        THEN CAST(Purchasing.PurID AS VARCHAR) 
+                        ELSE '' 
+                    END AS PurID,
+                    PurDetailID,
+                    empName AS [Employee Name],
+                    CASE WHEN ROW_NUMBER() OVER (PARTITION BY Purchasing.PurID ORDER BY PurDetailID) = 1 
+                        THEN FORMAT(PurlDate, 'dd/MM/yyyy') 
+                        ELSE '' 
+                    END AS PurlDate,
+                    ProductName,
+                    PurchaseDetail.Quality,
+                    (PurchaseDetail.Quality * CostPrice) AS [Total Price]
+                FROM PurchaseDetail
+                INNER JOIN Purchasing ON PurchaseDetail.PurID = Purchasing.PurID
+                INNER JOIN Products ON PurchaseDetail.ProductID = Products.ProductID
+                INNER JOIN Employees ON Purchasing.empID = Employees.empID
+                WHERE 1=1"; // Base condition for easy WHERE clause building
+
+            // Add search conditions based on input
+            if (!string.IsNullOrEmpty(txtPurIDFind.Text))
+                query += " AND Purchasing.PurID = @PurID";
+
+            if (!string.IsNullOrEmpty(txtempIDFind.Text))
+                query += " AND Purchasing.empID = @empID";
+
+            if (!string.IsNullOrEmpty(textTotalPricemin.Text) && decimal.TryParse(textTotalPricemin.Text, out _))
+                query += " AND (PurchaseDetail.Quality * CostPrice) >= @MinPrice";
+
+            if (!string.IsNullOrEmpty(textTotalPricemax.Text) && decimal.TryParse(textTotalPricemax.Text, out _))
+                query += " AND (PurchaseDetail.Quality * CostPrice) <= @MaxPrice";
+
+            query += " ORDER BY Purchasing.PurID, PurDetailID";
+
+            return query;
         }
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+            // Validate price inputs
+            if ((!string.IsNullOrEmpty(textTotalPricemin.Text) && !decimal.TryParse(textTotalPricemin.Text, out _)) ||
+                (!string.IsNullOrEmpty(textTotalPricemax.Text) && !decimal.TryParse(textTotalPricemax.Text, out _)))
+            {
+                MessageBox.Show("กรุณากรอกช่วงราคาเป็นตัวเลข");
+                return;
+            }
+
+            LoadDatatoGrid();
+        }
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            // Clear all search fields
+            txtPurIDFind.Text = "";
+            txtempIDFind.Text = "";
+            textTotalPricemin.Text = "";
+            textTotalPricemax.Text = "";
+
+            LoadDatatoGrid();
+        }
+
+
+
         private int currentRowIndex = 0; // ใช้เก็บ index ของแถวที่พิมพ์ล่าสุด
         private void btn_print_to_pdf_Click(object sender, EventArgs e)
         {
@@ -128,5 +204,7 @@ namespace MadyBoardGame_Shop
                 currentRowIndex = 0; // รีเซ็ตค่า
             }
         }
+
+        
     }
 }
