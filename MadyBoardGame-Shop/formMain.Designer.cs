@@ -416,6 +416,7 @@
             // 
             // buttonReportProfit
             // 
+            this.buttonReportProfit.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonReportProfit.FlatAppearance.BorderSize = 2;
             this.buttonReportProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.buttonReportProfit.Location = new System.Drawing.Point(201, 142);
@@ -424,7 +425,7 @@
             this.buttonReportProfit.Size = new System.Drawing.Size(163, 45);
             this.buttonReportProfit.TabIndex = 7;
             this.buttonReportProfit.Text = "รายงานกำไรสุทธิ";
-            this.buttonReportProfit.UseVisualStyleBackColor = true;
+            this.buttonReportProfit.UseVisualStyleBackColor = false;
             this.buttonReportProfit.Click += new System.EventHandler(this.buttonReportProfit_Click);
             // 
             // groupBox2
@@ -443,6 +444,7 @@
             // 
             // buttonReportDetailPur
             // 
+            this.buttonReportDetailPur.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonReportDetailPur.FlatAppearance.BorderSize = 2;
             this.buttonReportDetailPur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.buttonReportDetailPur.Location = new System.Drawing.Point(9, 88);
@@ -451,7 +453,7 @@
             this.buttonReportDetailPur.Size = new System.Drawing.Size(163, 45);
             this.buttonReportDetailPur.TabIndex = 10;
             this.buttonReportDetailPur.Text = "รายงานรายละเอัยดสั่งซื้อสินค้าร้าน";
-            this.buttonReportDetailPur.UseVisualStyleBackColor = true;
+            this.buttonReportDetailPur.UseVisualStyleBackColor = false;
             this.buttonReportDetailPur.Click += new System.EventHandler(this.buttonReportDetailPur_Click);
             // 
             // formMain
