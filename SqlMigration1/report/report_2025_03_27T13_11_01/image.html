@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>SQL Server Migration Assistant: Assessment Report</title>
+    <link media="all" rel="stylesheet" type="text/css" href="css/image.css" />
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript">
+        function isExpanded() {
+            return this.innerHeight > 9;
+        }
+
+        function resetButtonStatus() {
+            var expander = document.getElementById("expander-up");
+            if (isExpanded()) {
+                expander.classList.remove("close");
+                expander.setAttribute("aria-label", "Header section expanded, press Enter to collapse")
+            } else {
+                expander.classList.add("close");
+                expander.setAttribute("aria-label", "Header section collapsed, press Enter to expand")
+            }
+        }
+    </script>
+</head>
+<body onresize="resetButtonStatus()">
+    <div id="image-block" class="image-block">
+        <div class="ssma-title">
+            <span tabindex="0" class="ssma-title-bold" aria-label="Microsoft SQL Server">Microsoft SQL Server</span>
+            <span tabindex="0" class="ssma-title-light" aria-label="Migration Assistant">Migration Assistant</span>
+            <span tabindex="0" class="image-block-container">
+                <img tabindex="0" src="img/ms_logo.png" alt="Microsoft Logo" class="image-block-img-ms-logo" aria-label="Microsoft Logo">
+            </span>
+            <div class="clearfix"></div>
+        </div>
+        <a id="expander-up" class="expander-up" onclick="showReportHeader(!isExpanded())" href="javascript:void(0);" aria-label="Header section expanded, press Enter to collapse" role="button"><span></span></a>
+    </div>
+</body>
+</html>

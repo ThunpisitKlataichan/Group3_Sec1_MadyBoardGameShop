@@ -56,7 +56,7 @@
 
                     // ตั้งค่า ComboBox
                     cbb_Suppiler.DataSource = supplierTable;
-                    cbb_Suppiler.DisplayMember = "SuppilerID";
+                    cbb_Suppiler.DisplayMember = "SuppilerName";
                     cbb_Suppiler.ValueMember = "SuppilerID";
 
                     // Binding SelectedValue
