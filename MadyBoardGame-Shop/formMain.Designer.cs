@@ -414,6 +414,7 @@
             // 
             // buttonReportSuppiler
             // 
+            this.buttonReportSuppiler.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonReportSuppiler.FlatAppearance.BorderSize = 2;
             this.buttonReportSuppiler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.buttonReportSuppiler.Location = new System.Drawing.Point(5, 316);
@@ -422,7 +423,7 @@
             this.buttonReportSuppiler.Size = new System.Drawing.Size(163, 45);
             this.buttonReportSuppiler.TabIndex = 8;
             this.buttonReportSuppiler.Text = "รายงานผู้จัดจำหน่าย";
-            this.buttonReportSuppiler.UseVisualStyleBackColor = true;
+            this.buttonReportSuppiler.UseVisualStyleBackColor = false;
             this.buttonReportSuppiler.Click += new System.EventHandler(this.buttonReportSuppiler_Click);
             // 
             // buttonReportProfit

@@ -28,12 +28,196 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridReusalt = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxSumPur = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonRedate = new System.Windows.Forms.Button();
+            this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonFind = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.Location = new System.Drawing.Point(-3, -5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1121, 114);
+            this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(13, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(620, 55);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "รายงานค่าใช้จ่ายในการซื้อสินค้า";
+            // 
+            // dataGridReusalt
+            // 
+            this.dataGridReusalt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReusalt.Location = new System.Drawing.Point(20, 260);
+            this.dataGridReusalt.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridReusalt.Name = "dataGridReusalt";
+            this.dataGridReusalt.Size = new System.Drawing.Size(1098, 260);
+            this.dataGridReusalt.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(505, 555);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(206, 24);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "ค่าใช้จ่ายในการซื้อทั้งหมด :";
+            // 
+            // textBoxSumPur
+            // 
+            this.textBoxSumPur.Location = new System.Drawing.Point(721, 552);
+            this.textBoxSumPur.Name = "textBoxSumPur";
+            this.textBoxSumPur.Size = new System.Drawing.Size(261, 29);
+            this.textBoxSumPur.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(996, 555);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 24);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "บาท";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.buttonFind);
+            this.panel2.Controls.Add(this.buttonRedate);
+            this.panel2.Controls.Add(this.dateTimeStart);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.comboDateTypeSelect);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Location = new System.Drawing.Point(20, 113);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(728, 143);
+            this.panel2.TabIndex = 6;
+            // 
+            // buttonRedate
+            // 
+            this.buttonRedate.Location = new System.Drawing.Point(258, 67);
+            this.buttonRedate.Name = "buttonRedate";
+            this.buttonRedate.Size = new System.Drawing.Size(135, 29);
+            this.buttonRedate.TabIndex = 6;
+            this.buttonRedate.Text = "Refrash Date";
+            this.buttonRedate.UseVisualStyleBackColor = true;
+            this.buttonRedate.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // dateTimeStart
+            // 
+            this.dateTimeStart.Location = new System.Drawing.Point(17, 100);
+            this.dateTimeStart.MaxDate = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
+            this.dateTimeStart.Name = "dateTimeStart";
+            this.dateTimeStart.Size = new System.Drawing.Size(205, 29);
+            this.dateTimeStart.TabIndex = 3;
+            this.dateTimeStart.Value = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 73);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 24);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "วันที่เริ่มต้น";
+            // 
+            // comboDateTypeSelect
+            // 
+            this.comboDateTypeSelect.FormattingEnabled = true;
+            this.comboDateTypeSelect.Items.AddRange(new object[] {
+            "รายวัน",
+            "รายเดือน",
+            "รายปี"});
+            this.comboDateTypeSelect.Location = new System.Drawing.Point(17, 38);
+            this.comboDateTypeSelect.Name = "comboDateTypeSelect";
+            this.comboDateTypeSelect.Size = new System.Drawing.Size(205, 32);
+            this.comboDateTypeSelect.TabIndex = 1;
+            this.comboDateTypeSelect.SelectedIndexChanged += new System.EventHandler(this.comboDateTypeSelect_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 24);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "ช่วงเวลาที่ต้องการ";
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.Location = new System.Drawing.Point(258, 102);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(135, 29);
+            this.buttonFind.TabIndex = 7;
+            this.buttonFind.Text = "ค้นหา";
+            this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            // 
+            // formReportPur
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1128, 593);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxSumPur);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dataGridReusalt);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Name = "formReportPur";
             this.Text = "formReportPur";
+            this.Load += new System.EventHandler(this.formReportPur_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridReusalt;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxSumPur;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonRedate;
+        private System.Windows.Forms.DateTimePicker dateTimeStart;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboDateTypeSelect;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonFind;
     }
 }
