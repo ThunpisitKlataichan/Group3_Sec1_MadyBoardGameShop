@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace MadyBoardGame_Shop
         {
             InitializeComponent();
         }
+        SqlConnection connection;
+        SqlCommand command;
+        SqlDataAdapter adapter;
+        DataTable table;
+
         private int currentRowIndex = 0; // ใช้เก็บ index ของแถวที่พิมพ์ล่าสุด
         private void btn_print_to_pdf_Click(object sender, EventArgs e)
         {
@@ -85,6 +91,123 @@ namespace MadyBoardGame_Shop
                 e.HasMorePages = false;
                 currentRowIndex = 0; // รีเซ็ตค่า
             }
+        }
+
+        private void formReportEmployee_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadIntoDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadIntoDataGrid()
+        {
+            try
+            {
+                connection = new SqlConnection(InitializeUser._key_con);
+                connection.Open();
+
+                // แก้ไข query ให้ตรงกับชื่อคอลัมน์จริงในฐานข้อมูล
+                string query = "SELECT empID, empName, empPosition, empEmail, empSalary FROM Employees WHERE 1=1";
+
+                // เพิ่มเงื่อนไขการค้นหาตามที่ระบุในฟอร์ม
+                if (!string.IsNullOrEmpty(textBoxempID.Text))
+                {
+                    query += " AND empID LIKE @EmployeeID";
+                }
+
+                if (!string.IsNullOrEmpty(textBoxempName.Text))
+                {
+                    query += " AND empName LIKE @EmployeeName";
+                }
+
+                command = new SqlCommand(query, connection);
+
+                // เพิ่ม parameters เพื่อป้องกัน SQL Injection
+                if (!string.IsNullOrEmpty(textBoxempID.Text))
+                {
+                    command.Parameters.AddWithValue("@EmployeeID", "%" + textBoxempID.Text + "%");
+                }
+
+                if (!string.IsNullOrEmpty(textBoxempName.Text))
+                {
+                    command.Parameters.AddWithValue("@EmployeeName", "%" + textBoxempName.Text + "%");
+                }
+
+                adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                dataGridResult.DataSource = table;
+
+                // ปรับแต่งการแสดงผลใน DataGridView
+                CustomizeDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูล: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void CustomizeDataGridView()
+        {
+            // จัดรูปแบบคอลัมน์ต่างๆ
+            if (dataGridResult.Columns.Contains("empSalary"))
+            {
+                dataGridResult.Columns["empSalary"].DefaultCellStyle.Format = "N2";
+            }
+
+            // ตั้งค่าความกว้างคอลัมน์อัตโนมัติ
+            dataGridResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // ตั้งชื่อหัวคอลัมน์ให้อ่านง่าย (ใช้ชื่อคอลัมน์ตามที่ query มา)
+            if (dataGridResult.Columns.Contains("empID"))
+            {
+                dataGridResult.Columns["empID"].HeaderText = "รหัสพนักงาน";
+            }
+            if (dataGridResult.Columns.Contains("empName"))
+            {
+                dataGridResult.Columns["empName"].HeaderText = "ชื่อพนักงาน";
+            }
+            if (dataGridResult.Columns.Contains("empPosition"))
+            {
+                dataGridResult.Columns["empPosition"].HeaderText = "ตำแหน่ง";
+            }
+            if (dataGridResult.Columns.Contains("empEmail"))
+            {
+                dataGridResult.Columns["empEmail"].HeaderText = "อีเมล";
+            }
+            if (dataGridResult.Columns.Contains("empSalary"))
+            {
+                dataGridResult.Columns["empSalary"].HeaderText = "เงินเดือน";
+            }
+        }
+
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+            LoadIntoDataGrid();
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            // ล้างข้อมูลใน TextBox ทั้งหมด
+            textBoxempID.Text = "";
+            textBoxempName.Text = "";
+
+            // โหลดข้อมูลทั้งหมดใหม่
+            LoadIntoDataGrid();
         }
     }
 }
