@@ -1,6 +1,6 @@
 ﻿namespace MadyBoardGame_Shop
 {
-    partial class formReportPur
+    partial class formReportTotalPur
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,8 @@
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonFind = new System.Windows.Forms.Button();
+            this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).BeginInit();
             this.panel2.SuspendLayout();
@@ -107,6 +109,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.dateTimeEnd);
             this.panel2.Controls.Add(this.buttonFind);
             this.panel2.Controls.Add(this.buttonRedate);
             this.panel2.Controls.Add(this.dateTimeStart);
@@ -120,7 +124,7 @@
             // 
             // buttonRedate
             // 
-            this.buttonRedate.Location = new System.Drawing.Point(258, 67);
+            this.buttonRedate.Location = new System.Drawing.Point(590, 67);
             this.buttonRedate.Name = "buttonRedate";
             this.buttonRedate.Size = new System.Drawing.Size(135, 29);
             this.buttonRedate.TabIndex = 6;
@@ -131,7 +135,7 @@
             // dateTimeStart
             // 
             this.dateTimeStart.Location = new System.Drawing.Point(17, 100);
-            this.dateTimeStart.MaxDate = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
+            this.dateTimeStart.MaxDate = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
             this.dateTimeStart.Name = "dateTimeStart";
             this.dateTimeStart.Size = new System.Drawing.Size(205, 29);
             this.dateTimeStart.TabIndex = 3;
@@ -170,13 +174,31 @@
             // 
             // buttonFind
             // 
-            this.buttonFind.Location = new System.Drawing.Point(258, 102);
+            this.buttonFind.Location = new System.Drawing.Point(590, 102);
             this.buttonFind.Name = "buttonFind";
             this.buttonFind.Size = new System.Drawing.Size(135, 29);
             this.buttonFind.TabIndex = 7;
             this.buttonFind.Text = "ค้นหา";
             this.buttonFind.UseVisualStyleBackColor = true;
             this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            // 
+            // dateTimeEnd
+            // 
+            this.dateTimeEnd.Location = new System.Drawing.Point(271, 100);
+            this.dateTimeEnd.MaxDate = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
+            this.dateTimeEnd.Name = "dateTimeEnd";
+            this.dateTimeEnd.Size = new System.Drawing.Size(205, 29);
+            this.dateTimeEnd.TabIndex = 8;
+            this.dateTimeEnd.Value = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(267, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 24);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "วันที่สิ้นสุด";
             // 
             // formReportPur
             // 
@@ -219,5 +241,7 @@
         private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonFind;
+        private System.Windows.Forms.DateTimePicker dateTimeEnd;
+        private System.Windows.Forms.Label label4;
     }
 }

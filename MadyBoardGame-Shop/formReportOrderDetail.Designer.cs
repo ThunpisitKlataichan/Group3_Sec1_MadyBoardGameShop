@@ -1,6 +1,6 @@
 ﻿namespace MadyBoardGame_Shop
 {
-    partial class formReportOrders
+    partial class formReportOrderDetail
     {
         /// <summary>
         /// Required designer variable.

@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace MadyBoardGame_Shop
 {
-    public partial class formReportOrders : Form
+    public partial class formReportOrderDetail : Form
     {
-        public formReportOrders()
+        public formReportOrderDetail()
         {
             InitializeComponent();
         }
