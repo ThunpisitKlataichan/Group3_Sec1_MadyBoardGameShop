@@ -10,7 +10,7 @@ namespace MadyBoardGame_Shop
     public partial class formReportOrderDetail : Form
     {
         private int currentRowIndex = 0; // ใช้เก็บ index ของแถวที่พิมพ์ล่าสุด
-        public formReportOrders()
+        public formReportOrderDetail()
         {
             InitializeComponent();
         }

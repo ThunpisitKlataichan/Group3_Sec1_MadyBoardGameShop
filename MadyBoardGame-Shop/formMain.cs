@@ -213,5 +213,11 @@ namespace MadyBoardGame_Shop
             formReportOrderDetail formReportOrders = new formReportOrderDetail();
             formReportOrders.ShowDialog();
         }
+
+        private void buttonReportDetailPur_Click(object sender, EventArgs e)
+        {
+            formReportDetailPur formReportDetailPur = new formReportDetailPur();
+            formReportDetailPur.ShowDialog();
+        }
     }
 }

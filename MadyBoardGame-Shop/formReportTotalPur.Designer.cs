@@ -35,14 +35,14 @@
             this.textBoxSumPur = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.buttonFind = new System.Windows.Forms.Button();
             this.buttonRedate = new System.Windows.Forms.Button();
             this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.buttonFind = new System.Windows.Forms.Button();
-            this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).BeginInit();
             this.panel2.SuspendLayout();
@@ -82,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(505, 555);
+            this.label2.Location = new System.Drawing.Point(586, 560);
             this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(206, 24);
@@ -91,7 +91,7 @@
             // 
             // textBoxSumPur
             // 
-            this.textBoxSumPur.Location = new System.Drawing.Point(721, 552);
+            this.textBoxSumPur.Location = new System.Drawing.Point(802, 557);
             this.textBoxSumPur.Name = "textBoxSumPur";
             this.textBoxSumPur.Size = new System.Drawing.Size(261, 29);
             this.textBoxSumPur.TabIndex = 3;
@@ -99,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(996, 555);
+            this.label3.Location = new System.Drawing.Point(1077, 560);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 24);
@@ -121,6 +121,34 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(728, 143);
             this.panel2.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(267, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 24);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "วันที่สิ้นสุด";
+            // 
+            // dateTimeEnd
+            // 
+            this.dateTimeEnd.Location = new System.Drawing.Point(271, 100);
+            this.dateTimeEnd.MaxDate = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
+            this.dateTimeEnd.Name = "dateTimeEnd";
+            this.dateTimeEnd.Size = new System.Drawing.Size(205, 29);
+            this.dateTimeEnd.TabIndex = 8;
+            this.dateTimeEnd.Value = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.Location = new System.Drawing.Point(590, 102);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(135, 29);
+            this.buttonFind.TabIndex = 7;
+            this.buttonFind.Text = "ค้นหา";
+            this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
             // 
             // buttonRedate
             // 
@@ -172,35 +200,7 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "ช่วงเวลาที่ต้องการ";
             // 
-            // buttonFind
-            // 
-            this.buttonFind.Location = new System.Drawing.Point(590, 102);
-            this.buttonFind.Name = "buttonFind";
-            this.buttonFind.Size = new System.Drawing.Size(135, 29);
-            this.buttonFind.TabIndex = 7;
-            this.buttonFind.Text = "ค้นหา";
-            this.buttonFind.UseVisualStyleBackColor = true;
-            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
-            // 
-            // dateTimeEnd
-            // 
-            this.dateTimeEnd.Location = new System.Drawing.Point(271, 100);
-            this.dateTimeEnd.MaxDate = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
-            this.dateTimeEnd.Name = "dateTimeEnd";
-            this.dateTimeEnd.Size = new System.Drawing.Size(205, 29);
-            this.dateTimeEnd.TabIndex = 8;
-            this.dateTimeEnd.Value = new System.DateTime(2025, 3, 27, 0, 0, 0, 0);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(267, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 24);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "วันที่สิ้นสุด";
-            // 
-            // formReportPur
+            // formReportTotalPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,7 +213,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.Name = "formReportPur";
+            this.Name = "formReportTotalPur";
             this.Text = "formReportPur";
             this.Load += new System.EventHandler(this.formReportPur_Load);
             this.panel1.ResumeLayout(false);
