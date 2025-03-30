@@ -99,8 +99,8 @@ namespace MadyBoardGame_Shop
                 purtable = new DataTable();
                 puradapter.Fill(purtable);
 
-                dataGridReusalt.DataSource = purtable;
-                dataGridReusalt.AutoResizeColumns();
+                dataGridResult.DataSource = purtable;
+                dataGridResult.AutoResizeColumns();
             }
             catch (Exception ex)
             {

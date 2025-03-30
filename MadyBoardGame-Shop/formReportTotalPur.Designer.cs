@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridReusalt = new System.Windows.Forms.DataGridView();
+            this.dataGridResult = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxSumPur = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,14 +70,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "รายงานค่าใช้จ่ายในการซื้อสินค้า";
             // 
-            // dataGridReusalt
+            // dataGridResult
             // 
-            this.dataGridReusalt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridReusalt.Location = new System.Drawing.Point(20, 260);
-            this.dataGridReusalt.Margin = new System.Windows.Forms.Padding(1);
-            this.dataGridReusalt.Name = "dataGridReusalt";
-            this.dataGridReusalt.Size = new System.Drawing.Size(1098, 260);
-            this.dataGridReusalt.TabIndex = 1;
+            this.dataGridResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridResult.Location = new System.Drawing.Point(20, 260);
+            this.dataGridResult.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridResult.Name = "dataGridResult";
+            this.dataGridResult.Size = new System.Drawing.Size(1098, 260);
+            this.dataGridResult.TabIndex = 1;
             // 
             // label2
             // 
@@ -209,7 +209,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxSumPur);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridReusalt);
+            this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -218,7 +218,7 @@
             this.Load += new System.EventHandler(this.formReportPur_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReusalt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -230,7 +230,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridReusalt;
+        private System.Windows.Forms.DataGridView dataGridResult;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxSumPur;
         private System.Windows.Forms.Label label3;
