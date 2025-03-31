@@ -84,7 +84,7 @@
             this.groupBoxOrderdetail.Controls.Add(this.dataGridOrderDetails);
             this.groupBoxOrderdetail.Location = new System.Drawing.Point(435, 112);
             this.groupBoxOrderdetail.Name = "groupBoxOrderdetail";
-            this.groupBoxOrderdetail.Size = new System.Drawing.Size(625, 390);
+            this.groupBoxOrderdetail.Size = new System.Drawing.Size(625, 344);
             this.groupBoxOrderdetail.TabIndex = 2;
             this.groupBoxOrderdetail.TabStop = false;
             this.groupBoxOrderdetail.Text = "รายละเอียดคำสั่งซื้อ";

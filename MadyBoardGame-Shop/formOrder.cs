@@ -612,7 +612,6 @@ namespace MadyBoardGame_Shop
                 }
             }
         }
-
         private void txtFindProduct_TextChanged(object sender, EventArgs e)
         {
             panelsearch.Clear();

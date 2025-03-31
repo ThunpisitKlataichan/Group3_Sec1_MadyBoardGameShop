@@ -149,6 +149,7 @@
             // flowLayoutListProduct
             // 
             this.flowLayoutListProduct.AutoScroll = true;
+            this.flowLayoutListProduct.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutListProduct.Location = new System.Drawing.Point(12, 251);
             this.flowLayoutListProduct.Name = "flowLayoutListProduct";
             this.flowLayoutListProduct.Size = new System.Drawing.Size(551, 447);
