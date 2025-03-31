@@ -32,6 +32,33 @@ namespace MadyBoardGame_Shop
             // เพิ่ม Event เพื่อให้เมื่อเลือกแถวใหม่ใน DataGridView ปุ่มจะอัปเดตสถานะ
             dataGridMem.SelectionChanged += DataGridMem_SelectionChanged;
             SetState("view");
+            ApplyDataGridViewStyling();
+        }
+        private Color headerColor = Color.FromArgb(34, 34, 59);
+        private Color alternateRowColor = Color.FromArgb(240, 240, 250);
+        private void ApplyDataGridViewStyling()
+        {
+            // Basic Grid Styling
+            dataGridMem.BorderStyle = BorderStyle.None;
+            dataGridMem.EnableHeadersVisualStyles = false;
+            dataGridMem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridMem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridMem.RowHeadersVisible = false;
+            dataGridMem.AllowUserToAddRows = false;
+            dataGridMem.ReadOnly = true;
+            dataGridMem.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridMem.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridMem.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGridMem.ColumnHeadersHeight = 40;
+            dataGridMem.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            dataGridMem.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridMem.AlternatingRowsDefaultCellStyle.BackColor = alternateRowColor;
+            dataGridMem.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridMem.GridColor = Color.FromArgb(221, 221, 221);
+
+            // Add some padding to cells
+            dataGridMem.DefaultCellStyle.Padding = new Padding(5);
+            dataGridMem.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
         }
         private void loadDataIntoGrid()
         {
