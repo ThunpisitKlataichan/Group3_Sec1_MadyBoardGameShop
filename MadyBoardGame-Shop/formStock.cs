@@ -365,7 +365,6 @@
                         txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
                         txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
                         checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
-
                         ChangeImage();
                     }
                 }
