@@ -613,5 +613,9 @@ namespace MadyBoardGame_Shop
             return isValid;
         }
 
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
