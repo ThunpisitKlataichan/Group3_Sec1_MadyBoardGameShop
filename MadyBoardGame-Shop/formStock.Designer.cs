@@ -83,11 +83,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 97);
+            this.label1.Location = new System.Drawing.Point(80, 95);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 24);
+            this.label1.Size = new System.Drawing.Size(71, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ชื่อบอร์ดเกม";
+            this.label1.Text = "ชื่อสินค้า";
             // 
             // label2
             // 
@@ -101,11 +101,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 133);
+            this.label3.Location = new System.Drawing.Point(45, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 24);
+            this.label3.Size = new System.Drawing.Size(107, 24);
             this.label3.TabIndex = 2;
-            this.label3.Text = "ประเภทของบอร์ดเกม";
+            this.label3.Text = "ประเภทสินค้า";
             // 
             // txtproductName
             // 
@@ -125,7 +125,7 @@
             // 
             this.txtCostPrice.Location = new System.Drawing.Point(164, 165);
             this.txtCostPrice.Name = "txtCostPrice";
-            this.txtCostPrice.Size = new System.Drawing.Size(128, 29);
+            this.txtCostPrice.Size = new System.Drawing.Size(155, 29);
             this.txtCostPrice.TabIndex = 5;
             // 
             // groupBox1
@@ -161,7 +161,7 @@
             this.cbb_Suppiler.FormattingEnabled = true;
             this.cbb_Suppiler.Location = new System.Drawing.Point(164, 270);
             this.cbb_Suppiler.Name = "cbb_Suppiler";
-            this.cbb_Suppiler.Size = new System.Drawing.Size(128, 32);
+            this.cbb_Suppiler.Size = new System.Drawing.Size(155, 32);
             this.cbb_Suppiler.TabIndex = 29;
             // 
             // txtDetails
@@ -194,23 +194,23 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(63, 57);
+            this.label7.Location = new System.Drawing.Point(73, 56);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 24);
+            this.label7.Size = new System.Drawing.Size(80, 24);
             this.label7.TabIndex = 23;
-            this.label7.Text = "รหัสบอร์ดเกม";
+            this.label7.Text = "รหัสสินค้า";
             // 
             // txtProductID
             // 
             this.txtProductID.Location = new System.Drawing.Point(164, 54);
             this.txtProductID.Name = "txtProductID";
-            this.txtProductID.Size = new System.Drawing.Size(396, 29);
+            this.txtProductID.Size = new System.Drawing.Size(155, 29);
             this.txtProductID.TabIndex = 24;
             // 
             // checkBoxShowonShelf
             // 
             this.checkBoxShowonShelf.AutoSize = true;
-            this.checkBoxShowonShelf.Location = new System.Drawing.Point(318, 201);
+            this.checkBoxShowonShelf.Location = new System.Drawing.Point(329, 201);
             this.checkBoxShowonShelf.Name = "checkBoxShowonShelf";
             this.checkBoxShowonShelf.Size = new System.Drawing.Size(180, 28);
             this.checkBoxShowonShelf.TabIndex = 22;
@@ -219,15 +219,15 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(377, 165);
+            this.txtPrice.Location = new System.Drawing.Point(404, 165);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(128, 29);
+            this.txtPrice.Size = new System.Drawing.Size(156, 29);
             this.txtPrice.TabIndex = 21;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(298, 168);
+            this.label8.Location = new System.Drawing.Point(325, 168);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 24);
             this.label8.TabIndex = 20;
@@ -237,7 +237,7 @@
             // 
             this.txtleastUpdate.Location = new System.Drawing.Point(164, 235);
             this.txtleastUpdate.Name = "txtleastUpdate";
-            this.txtleastUpdate.Size = new System.Drawing.Size(128, 29);
+            this.txtleastUpdate.Size = new System.Drawing.Size(396, 29);
             this.txtleastUpdate.TabIndex = 9;
             // 
             // label5
@@ -253,7 +253,7 @@
             // 
             this.txtAmountremain.Location = new System.Drawing.Point(164, 200);
             this.txtAmountremain.Name = "txtAmountremain";
-            this.txtAmountremain.Size = new System.Drawing.Size(128, 29);
+            this.txtAmountremain.Size = new System.Drawing.Size(155, 29);
             this.txtAmountremain.TabIndex = 7;
             // 
             // label4
@@ -446,7 +446,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label11.Location = new System.Drawing.Point(12, 9);
+            this.label11.Location = new System.Drawing.Point(27, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(196, 55);
             this.label11.TabIndex = 0;

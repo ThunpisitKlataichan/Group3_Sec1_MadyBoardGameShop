@@ -502,9 +502,10 @@
                         btn_Frist.Enabled = true;
                         btn_Find.Enabled = true;
                         btn_Find.BackColor = Color.White;
+                        txtDetails.BackColor = Color.White;
 
-                        // ดึงข้อมูลสินค้าจากฐานข้อมูลและอัปเดต
-                        productcommand = new SqlCommand("SELECT p.ProductID, p.ProductName, p.ProductType,p.CostPrice, p.Price, p.Quality, p.ProductDetail, p.LatestDate, p.ProductImg, p.ProductsShelf, s.SuppilerID, s.SuppilerName FROM Products p JOIN Suppilers s ON p.SuppilersID = s.SuppilerID;", productsconnection);
+                    // ดึงข้อมูลสินค้าจากฐานข้อมูลและอัปเดต
+                    productcommand = new SqlCommand("SELECT p.ProductID, p.ProductName, p.ProductType,p.CostPrice, p.Price, p.Quality, p.ProductDetail, p.LatestDate, p.ProductImg, p.ProductsShelf, s.SuppilerID, s.SuppilerName FROM Products p JOIN Suppilers s ON p.SuppilersID = s.SuppilerID;", productsconnection);
                         productadapter = new SqlDataAdapter(productcommand);
                         productdatatable.Clear(); // เคลียร์ข้อมูลเดิมใน DataTable
                         productadapter.Fill(productdatatable);
@@ -516,10 +517,10 @@
                         txtAmountremain.Enabled = true;
                         txtSearch.Enabled = false;
                         txtSearch.BackColor = Color.Gray;
-                        txtProductID.BackColor = Color.Red;
+                        txtProductID.BackColor = Color.White;
                         txtAmountremain.BackColor = Color.Orange;
                         txtCostPrice.BackColor = Color.Orange;
-                        txtleastUpdate.BackColor = Color.Orange;
+                        txtleastUpdate.BackColor = Color.White;
                         txtPrice.BackColor = Color.Orange;
                         txtproductName.BackColor = Color.Orange;
                         txtProductType.BackColor = Color.Orange;
@@ -554,9 +555,10 @@
                         button_browse.Enabled = true;
                         button_browse.BackColor = Color.White;
                         cbb_Suppiler.Enabled = true;
-                        cbb_Suppiler.BackColor = Color.Yellow;
+                        cbb_Suppiler.BackColor = Color.Orange;
                         btn_Find.Enabled = false;
                         btn_Find.BackColor = Color.Gray;
+                        txtDetails.BackColor = Color.Orange;
                         break;
 
                     default: // สถานะการเพิ่มข้อมูลใหม่ (insert)
@@ -567,15 +569,15 @@
                         txtSearch.Enabled = false;
                         txtSearch.BackColor = Color.Gray;
                         txtProductID.ReadOnly = true;
-                        txtProductID.BackColor = Color.DarkGreen;
-                        txtAmountremain.BackColor = Color.Green;
-                        txtCostPrice.BackColor = Color.Green;
-                        txtleastUpdate.BackColor = Color.Green;
-                        txtPrice.BackColor = Color.Green;
-                        txtproductName.BackColor = Color.Green;
-                        txtProductType.BackColor = Color.Green;
-
-                        txtAmountremain.Clear();
+                        txtProductID.BackColor = Color.White;
+                        txtAmountremain.BackColor = Color.White;
+                        txtCostPrice.BackColor = Color.GreenYellow;
+                        txtleastUpdate.BackColor = Color.White;
+                        txtPrice.BackColor = Color.GreenYellow;
+                        txtproductName.BackColor = Color.GreenYellow;
+                        txtProductType.BackColor = Color.GreenYellow;
+                        txtDetails.BackColor = Color.GreenYellow;
+                    txtAmountremain.Clear();
                         txtProductID.Clear();
                         txtCostPrice.Clear();
                         txtleastUpdate.Clear();
@@ -619,6 +621,7 @@
                         btn_Save.BackColor = Color.White;
                         btn_Cancle.Enabled = true;
                         btn_Cancle.BackColor = Color.White;
+                        
 
                         button_browse.Enabled = true;
                         button_browse.BackColor = Color.White;
@@ -636,6 +639,7 @@
                         btn_Last.Enabled = false;
                         btn_Previous.Enabled = false;
                         btn_Frist.Enabled = false;
+                        txtDetails.BackColor = Color.GreenYellow;
                     break;
                     }
                 }
