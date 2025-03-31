@@ -313,6 +313,10 @@ namespace MadyBoardGame_Shop
         }
         private void buttonPur_Click(object sender, EventArgs e)
         {
+            if(MessageBox.Show("ยืนยันการสั่งซื้อสินค้า", "สั่งซื้อ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
             try
             {
                 if (listpanel.Count == 0)

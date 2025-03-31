@@ -314,7 +314,7 @@ namespace MadyBoardGame_Shop
                           SET ShipingStatus = @status, 
                               empID = @empID, 
                               ShipingDate = GETDATE() -- Optional: track when update occurred
-                          WHERE ShipingID = @shipID AND empID IS NULL OR empID = @empID";
+                          WHERE ShipingID = @shipID AND (empID IS NULL OR empID = @empID)";
 
                         using (SqlCommand command = new SqlCommand(sql, connection))
                         {
@@ -340,6 +340,11 @@ namespace MadyBoardGame_Shop
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -160,7 +160,6 @@ namespace MadyBoardGame_Shop
             paymentcommand.Dispose();
             paymentconnection.Dispose();
         }
-
         private void Addtocart_click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -197,7 +196,8 @@ namespace MadyBoardGame_Shop
             numericUpDown.Size = new Size(50, 25);
             numericUpDown.Location = new Point((cartPanel.Width - numericUpDown.Width) - 50, cartPanel.Height - 30);
             numericUpDown.Tag = "NumericUpDown";
-
+            numericUpDown.Maximum = 1000;
+           
             // สร้างปุ่มลบสินค้า
             Button removebtn = new Button();// ปุ่มลบสินค้า
             removebtn.Text = "X";
@@ -283,7 +283,6 @@ namespace MadyBoardGame_Shop
 
             flowLayoutCart.Controls.Remove(cartPanel); // ลบ Panel ออกจากตะกร้า
         }// ลบสินค้าออกจากตะกร้า
-
         // ส่วนของการเปลี่ยนสีเมื่อเมาส์เข้าไป
         private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -430,141 +429,170 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        private void Checkpayment()
+        private bool Checkpayment()
         {
             if (string.IsNullOrEmpty(comboBoxmethonPayment.Text))
             {
                 MessageBox.Show("โปรดเลือกวิธีชำระเงิน" , "เกิดข้อผิดพลาด" , MessageBoxButtons.OK , MessageBoxIcon.Error);
-                return;
+                return false;
             }
+            return true;
 
         }
 
         private void btnpayment_Click(object sender, EventArgs e)
         {
-            Checkpayment();
-            CalculateTotalPrice();
-            if (totalPrice == 0)
+            if (!Checkpayment())
             {
-                MessageBox.Show("กรุณาเลือกสินค้าก่อนชำระเงิน");
                 return;
             }
-            if (InitializeUser.UserState is "Member")
+            CalculateTotalPrice();
+            if (flowLayoutCart.Controls.Count == 0)
             {
-                string rechack = "ยืนยันการสั่งซื้อสินค้าหรือไม่";
+                MessageBox.Show("ไม่มีสินค้าในตะกร้า", "เกิดข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (InitializeUser.UserState == "Member")
+            {
+                // ยืนยันรายการสินค้า
+                string confirmationMsg = "ยืนยันการสั่งซื้อสินค้าหรือไม่";
                 foreach (Panel pn in panelscart)
                 {
-                    rechack += "\n- " + pn.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "ProductName").Text;
-                    rechack += " จำนวน " + pn.Controls.OfType<NumericUpDown>().FirstOrDefault(l => l.Tag?.ToString() == "NumericUpDown").Value + " ชิ้น";
+                    string productName = pn.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "ProductName")?.Text;
+                    decimal quantity = pn.Controls.OfType<NumericUpDown>().FirstOrDefault(l => l.Tag?.ToString() == "NumericUpDown")?.Value ?? 0;
+                    confirmationMsg += $"\n- {productName} จำนวน {quantity} ชิ้น";
                 }
-                rechack += "\nราคารวม " + totalPrice.ToString("N2") + " บาท";
+                confirmationMsg += $"\nราคารวม {totalPrice:N2} บาท";
 
-                if (MessageBox.Show(rechack, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(confirmationMsg, "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
                     {
-                        try
+                        using (SqlConnection conn = new SqlConnection(InitializeUser._key_con))
                         {
-                        foreach (Control control in flowLayoutCart.Controls)
-                        {
-                            if (control is Panel panel)
+                            conn.Open();
+                            SqlTransaction transaction = conn.BeginTransaction(); // ใช้ Transaction ป้องกันข้อมูลสูญหาย
+                            try
                             {
-                                Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
-                                Label lblProductName = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductName");
-                                NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
-
-                                if (lblProductID != null && quantityControl != null && lblProductName != null)
+                                // ตรวจสอบจำนวนสินค้าก่อนสั่งซื้อ
+                                foreach (Control control in flowLayoutCart.Controls)
                                 {
-                                    string command1 = "SELECT Quality FROM Products WHERE ProductID = @productID";
-
-                                    using (SqlCommand orderdetailcommand = new SqlCommand(command1, orderdetailconnection))
+                                    if (control is Panel panel)
                                     {
-                                        orderdetailcommand.Parameters.AddWithValue("@productID", lblProductID.Text);
-                                        int currentStock = (int)orderdetailcommand.ExecuteScalar();
+                                        Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
+                                        NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+                                        Label lblProductName = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductName");
 
-                                        if (currentStock < quantityControl.Value)
+                                        if (lblProductID != null && quantityControl != null && lblProductName != null)
                                         {
-                                            MessageBox.Show($"สินค้า '{lblProductName.Text}' มีจำนวนไม่พอ\n" +
-                                                          $"คงเหลือ: {currentStock} ชิ้น\n" +
-                                                          $"ต้องการ: {quantityControl.Value} ชิ้น",
-                                                          "สินค้าไม่เพียงพอ",
-                                                          MessageBoxButtons.OK,
-                                                          MessageBoxIcon.Warning);
-                                            return;
+                                            string checkStockQuery = "SELECT Quality FROM Products WHERE ProductID = @productID";
+                                            using (SqlCommand checkStockCmd = new SqlCommand(checkStockQuery, conn, transaction))
+                                            {
+                                                checkStockCmd.Parameters.AddWithValue("@productID", lblProductID.Text);
+                                                int currentStock = (int)checkStockCmd.ExecuteScalar();
+
+                                                if (currentStock < quantityControl.Value)
+                                                {
+                                                    MessageBox.Show($"สินค้า '{lblProductName.Text}' มีจำนวนไม่พอ\n" +
+                                                                    $"คงเหลือ: {currentStock} ชิ้น\n" +
+                                                                    $"ต้องการ: {quantityControl.Value} ชิ้น",
+                                                                    "สินค้าไม่เพียงพอ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                    transaction.Rollback();
+                                                    return;
+                                                }
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        }
 
-                        // ส่งข้อมูลไปยังฐานข้อมูล Orders
-                        orderconnection = new SqlConnection(InitializeUser._key_con);
-                            orderconnection.Open();
-                            paymentconnection = new SqlConnection(InitializeUser._key_con);
-                            paymentconnection.Open();
-                            int orderID = 0;
-                            string command = "INSERT INTO Orders (memID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
-                            ordercommand = new SqlCommand(command, orderconnection);
-                            ordercommand.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
-                            ordercommand.Parameters.AddWithValue("@OrderDate", DateTime.Now);
-                            orderID = (int)ordercommand.ExecuteScalar();
-                            orderconnection.Close();
-
-                            // ส่งข้อมูลไปยังฐานข้อมูล OrderDetails
-                            orderdetailconnection = new SqlConnection(InitializeUser._key_con);
-                            orderdetailconnection.Open();
-                            foreach (Control control in flowLayoutCart.Controls)
-                            {
-                                if (control is Panel panel)
+                                // บันทึกข้อมูลการสั่งซื้อในตาราง Orders
+                                string orderQuery = "INSERT INTO Orders (memID, OrderDate) OUTPUT INSERTED.OrderID VALUES (@UserID, @OrderDate)";
+                                int orderID;
+                                using (SqlCommand orderCmd = new SqlCommand(orderQuery, conn, transaction))
                                 {
-                                    Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
-                                    NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
-                                    Label priceLabel = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "Price");
+                                    orderCmd.Parameters.AddWithValue("@UserID", InitializeUser.UserID);
+                                    orderCmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
+                                    orderID = (int)orderCmd.ExecuteScalar();
+                                }
 
-                                    if (lblProductID != null && quantityControl != null && priceLabel != null)
+                                // บันทึกข้อมูลในตาราง OrderDetails และอัปเดตสต็อกสินค้า
+                                foreach (Control control in flowLayoutCart.Controls)
+                                {
+                                    if (control is Panel panel)
                                     {
-                                        string command1 = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
-                                        orderdetailcommand = new SqlCommand(command1, orderdetailconnection);
-                                        orderdetailcommand.Parameters.AddWithValue("@OrderID", orderID);
-                                        orderdetailcommand.Parameters.AddWithValue("@ProductID", lblProductID.Text);
-                                        orderdetailcommand.Parameters.AddWithValue("@Quantity", quantityControl.Value);
-                                        orderdetailcommand.ExecuteNonQuery();
+                                        Label lblProductID = panel.Controls.OfType<Label>().FirstOrDefault(lbl => lbl.Tag?.ToString() == "ProductID");
+                                        NumericUpDown quantityControl = panel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+
+                                        if (lblProductID != null && quantityControl != null)
+                                        {
+                                            // บันทึกข้อมูล OrderDetails
+                                            string orderDetailQuery = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity) VALUES (@OrderID, @ProductID, @Quantity)";
+                                            using (SqlCommand orderDetailCmd = new SqlCommand(orderDetailQuery, conn, transaction))
+                                            {
+                                                orderDetailCmd.Parameters.AddWithValue("@OrderID", orderID);
+                                                orderDetailCmd.Parameters.AddWithValue("@ProductID", lblProductID.Text);
+                                                orderDetailCmd.Parameters.AddWithValue("@Quantity", quantityControl.Value);
+                                                orderDetailCmd.ExecuteNonQuery();
+                                            }
+
+                                            // อัปเดตจำนวนสินค้าในสต็อก
+                                            string updateStockQuery = "UPDATE Products SET Quality = Quality - @quantity WHERE ProductID = @productID";
+                                            using (SqlCommand updateStockCmd = new SqlCommand(updateStockQuery, conn, transaction))
+                                            {
+                                                updateStockCmd.Parameters.AddWithValue("@quantity", quantityControl.Value);
+                                                updateStockCmd.Parameters.AddWithValue("@productID", lblProductID.Text);
+                                                updateStockCmd.ExecuteNonQuery();
+                                            }
+                                        }
                                     }
                                 }
+
+                                // บันทึกข้อมูลการชำระเงินในตาราง Payments
+                                string paymentQuery = "INSERT INTO Payments (Amount, Paydate, OrderID, Method) VALUES (@amount, @paydate, @orderid, @method)";
+                                using (SqlCommand paymentCmd = new SqlCommand(paymentQuery, conn, transaction))
+                                {
+                                    paymentCmd.Parameters.AddWithValue("@amount", totalPrice);
+                                    paymentCmd.Parameters.AddWithValue("@paydate", DateTime.Now);
+                                    paymentCmd.Parameters.AddWithValue("@orderid", orderID);
+                                    paymentCmd.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
+                                    paymentCmd.ExecuteNonQuery();
+                                }
+
+                                // บันทึกข้อมูลการแพ็กสินค้า
+                                string packingQuery = "INSERT INTO Packing (PackStatus, PackDate, OrderID, empID) VALUES (@packstatus, @packDate, @orderID, @empID)";
+                                using (SqlCommand packingCmd = new SqlCommand(packingQuery, conn, transaction))
+                                {
+                                    packingCmd.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
+                                    packingCmd.Parameters.AddWithValue("@packDate", DateTime.Now);
+                                    packingCmd.Parameters.AddWithValue("@orderID", orderID);
+                                    packingCmd.Parameters.AddWithValue("@empID", InitializeUser.ManagerID);
+                                    packingCmd.ExecuteNonQuery();
+                                }
+
+                                // ยืนยันการทำรายการ
+                                transaction.Commit();
+                                MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // ล้างข้อมูลในตะกร้า
+                                flowLayoutCart.Controls.Clear();
+                                panelscart.Clear();
                             }
-                        
-                        
-                        orderdetailconnection.Close();
-                        string command2 = "INSERT INTO Payments(Amount , Paydate , OrderID , Method) VALUES(@amount , @paydate , @orderid , @method)";
-                        paymentcommand = new SqlCommand(command2, paymentconnection);
-                        paymentcommand.Parameters.AddWithValue("@amount", totalPrice);
-                        paymentcommand.Parameters.AddWithValue("@paydate", DateTime.Now);
-                        paymentcommand.Parameters.AddWithValue("@orderid", orderID);
-                        paymentcommand.Parameters.AddWithValue("@method", comboBoxmethonPayment.Text);
-                        paymentcommand.ExecuteNonQuery();
-                        paymentconnection.Close();
-
-                        SqlConnection packconnection = new SqlConnection(InitializeUser._key_con);
-                        packconnection.Open();
-                        string command3 = "INSERT INTO Packing(PackStatus , PackDate , OrderID , empID) VALUES(@packstatus , @packDate , @orderID , @empID) ";
-                        SqlCommand packcommand = new SqlCommand(command3, packconnection);
-                        packcommand.Parameters.AddWithValue("@packstatus", "รอจัดส่ง");
-                        packcommand.Parameters.AddWithValue("@packDate", DateTime.Now);
-                        packcommand.Parameters.AddWithValue("@orderID", orderID);
-                        packcommand.Parameters.AddWithValue("@empID", InitializeUser.ManagerID); //เซ็ตค่าเป็น 1 ก่อน
-                        packcommand.ExecuteNonQuery();
-                        packconnection.Close();
-
-                        MessageBox.Show("สั่งซื้อสินค้าเรียบร้อย");
-
-                            flowLayoutCart.Controls.Clear();
-                            panelscart.Clear();
-                    }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message);
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
             }
         }
+
         // ส่งข้อมูลไปยังฐานข้อมูล
         private void CalculateTotalPrice()
         {
@@ -626,7 +654,6 @@ namespace MadyBoardGame_Shop
                 }
             }
         } // ค้นหา Panel จากชื่อสินค้า
-
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             panelscart.Clear();

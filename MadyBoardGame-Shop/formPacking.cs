@@ -93,6 +93,14 @@ namespace MadyBoardGame_Shop
                 btnconfirm.Size = new Size(100, 34);
                 btnconfirm.Click += buttonConfiem_Click;
 
+                Button btnremove = new Button();
+                btnremove.Text = "ลบ";
+                btnremove.Location = new Point(200, 12);
+                btnremove.Size = new Size(100, 34);
+                btnremove.BackColor = Color.Red;
+                btnremove.ForeColor = Color.White;
+                btnremove.Click += buttonRemove_Click;
+
                 panel.Controls.Add(labelordertitle);
                 panel.Controls.Add(labelorder);
                 panel.Controls.Add(labelDatetitle);
@@ -101,7 +109,61 @@ namespace MadyBoardGame_Shop
                 panel.Controls.Add(labelstatusTitle);
                 panel.Controls.Add(labelstatus);
                 panel.Controls.Add(btnconfirm);
+                panel.Controls.Add(btnremove);
                 flowLayoutPackOrder.Controls.Add(panel);
+            }
+        }
+        private void buttonRemove_Click(object sender , EventArgs e)
+        {
+            try
+            {
+                button_click(sender);
+                if (MessageBox.Show("ยืนยันการลบข้อมูล", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Label label = (Label)((Button)sender).Parent.Controls[5];
+                    string orderID = ((Button)sender).Parent.Controls[1].Text;
+                    using (SqlConnection removeConnection = new SqlConnection(InitializeUser._key_con))
+                    {
+                        removeConnection.Open();
+                        string query = "DELETE FROM Packing WHERE OrderID = @orderID";
+                        using (SqlCommand removeCommand = new SqlCommand(query, removeConnection))
+                        {
+                            removeCommand.Parameters.AddWithValue("@orderID", orderID);
+                            removeCommand.ExecuteNonQuery();
+                        }
+                        query = "DELETE FROM OrderDetails WHERE OrderID = @orderID";
+                        using (SqlCommand removeCommand = new SqlCommand(query, removeConnection))
+                        {
+                            removeCommand.Parameters.AddWithValue("@orderID", orderID);
+                            removeCommand.ExecuteNonQuery();
+                        }
+                        query = "DELETE FROM Orders WHERE OrderID = @orderID";
+                        using (SqlCommand removeCommand = new SqlCommand(query, removeConnection))
+                        {
+                            removeCommand.Parameters.AddWithValue("@orderID", orderID);
+                            removeCommand.ExecuteNonQuery();
+                        }
+                        query = "UPDATE Products SET Quality = Quality + @quality Where ProductID = @productID;";
+                        using (SqlCommand removeCommand = new SqlCommand(query, removeConnection))
+                        {
+                            for (int i = 0; i < dataGridOrderDetails.Rows.Count -1 ; i++)
+                            {
+                                removeCommand.Parameters.Clear();
+                                removeCommand.Parameters.AddWithValue("@quality", dataGridOrderDetails.Rows[i].Cells[2].Value);
+                                removeCommand.Parameters.AddWithValue("@productID", dataGridOrderDetails.Rows[i].Cells[0].Value);
+                                removeCommand.ExecuteNonQuery();
+                            }
+                        }
+                        ((Button)sender).Parent.Controls[6].Enabled = false;
+                        ((Button)sender).Parent.Controls[7].Enabled = false;
+                        label.Text = "ลบข้อมูลสำเร็จ ✔️";
+                        MessageBox.Show("ลบข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Label_Click(object sender, EventArgs e)
@@ -223,7 +285,7 @@ namespace MadyBoardGame_Shop
             }
         }
         
-        private void buttonConfiem_Click(object sender, EventArgs e) // ยืนยันจัดส่ง เเละ หักสินค้าใน Stock เสร็จเเล้ว
+        private void buttonConfiem_Click(object sender, EventArgs e) // ยืนยันจัดส่ง เสร็จเเล้ว
         {
             try
             {
@@ -236,8 +298,6 @@ namespace MadyBoardGame_Shop
                     using (SqlConnection updateConnection = new SqlConnection(InitializeUser._key_con))
                     {
                         updateConnection.Open();
-                        
-
                         string query = "UPDATE Packing SET PackStatus = @packStatus WHERE OrderID = @orderID";
                         using (SqlCommand updateCommand = new SqlCommand(query, updateConnection))
                         {
@@ -246,33 +306,6 @@ namespace MadyBoardGame_Shop
                             updateCommand.ExecuteNonQuery();
                         }
 
-                        string query2 = "UPDATE Products SET Quality = @quality WHERE ProductID = @productID";
-                        using (SqlCommand updateCommand2 = new SqlCommand(query2, updateConnection))
-                        {
-                            for (int i = 0; i < dataGridOrderDetails.Rows.Count - 1; i++)
-                            {
-                                string productID = dataGridOrderDetails.Rows[i].Cells[0].Value.ToString();
-
-                                string qry = "SELECT Quality FROM Products WHERE ProductID = @productID";
-                                using (SqlCommand command = new SqlCommand(qry, updateConnection))
-                                {
-                                    command.Parameters.AddWithValue("@productID", productID);
-                                    object result = command.ExecuteScalar();
-
-                                    if (result != null)
-                                    {
-                                        int originalQuantity = Convert.ToInt32(result);
-                                        int orderedQuantity = Convert.ToInt32(dataGridOrderDetails.Rows[i].Cells[2].Value);
-                                        int newQuantity = originalQuantity - orderedQuantity;
-
-                                        updateCommand2.Parameters.Clear();
-                                        updateCommand2.Parameters.AddWithValue("@quality", newQuantity);
-                                        updateCommand2.Parameters.AddWithValue("@productID", productID);
-                                        updateCommand2.ExecuteNonQuery();
-                                    }
-                                }
-                            }
-                        }
                         string query3 = "SELECT PackID FROM Packing WHERE OrderID = @orderID";
                         using (SqlCommand insertcommand = new SqlCommand(query3, updateConnection))
                         {
@@ -302,7 +335,6 @@ namespace MadyBoardGame_Shop
             }
 
         }
-
         private void groupBoxOrderdetail_Enter(object sender, EventArgs e)
         {
 

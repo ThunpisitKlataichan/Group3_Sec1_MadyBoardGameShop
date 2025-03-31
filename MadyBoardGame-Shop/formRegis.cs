@@ -82,7 +82,7 @@ namespace MadyBoardGame_Shop
                 //ตรวจสอบว่า Username ซ้ำหรือไม่
                 if (!ValidateData(username))
                 {
-                    MessageBox.Show("Username นี้ถูกใช้ไปแล้ว กรุณาใช้ชื่ออื่น");
+                    MessageBox.Show("Username นี้ถูกใช้ไปแล้ว กรุณาใช้ชื่ออื่น" , "Error" , MessageBoxButtons.OK , MessageBoxIcon.Error);
                     return;
                 }
                 //ตรวจสอบว่า ข้อความช่องต่าง ๆ กรอกได้ถูกต้อง
@@ -119,12 +119,12 @@ namespace MadyBoardGame_Shop
                     }
                     
                 }
-                MessageBox.Show("ลงทะเบียนสำเร็จ");
+                MessageBox.Show("ลงทะเบียนสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ส่งข้อมูลไม่สำเร็จ: " + ex.Message);
+                MessageBox.Show("ส่งข้อมูลไม่สำเร็จ: " + ex.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private bool TextBoxNotNullRight()
@@ -220,14 +220,14 @@ namespace MadyBoardGame_Shop
             // เช็คว่ามี 13 หลัก
             if (id.Length != 13)
             {
-                MessageBox.Show("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
+                MessageBox.Show("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             // เช็คว่าเป็นตัวเลขทั้งหมด
             if (!long.TryParse(id, out _))
             {
-                MessageBox.Show("หมายเลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น");
+                MessageBox.Show("หมายเลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -266,7 +266,7 @@ namespace MadyBoardGame_Shop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message);
+                MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

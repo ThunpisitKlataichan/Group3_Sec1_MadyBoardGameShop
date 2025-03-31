@@ -72,6 +72,7 @@
             // 
             // flowLayoutPackOrder
             // 
+            this.flowLayoutPackOrder.AutoScroll = true;
             this.flowLayoutPackOrder.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPackOrder.Location = new System.Drawing.Point(12, 123);
             this.flowLayoutPackOrder.Name = "flowLayoutPackOrder";

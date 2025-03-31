@@ -66,12 +66,13 @@
             // 
             // buttonSave
             // 
+            this.buttonSave.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonSave.Location = new System.Drawing.Point(516, 307);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(305, 62);
             this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "บันทึกสถานะจัดส่ง";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBox1
@@ -98,12 +99,14 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
             this.button1.Location = new System.Drawing.Point(374, 307);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 62);
             this.button1.TabIndex = 17;
             this.button1.Text = "ปิด";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
