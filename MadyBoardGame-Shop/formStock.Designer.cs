@@ -411,6 +411,8 @@
             this.dataGridStock.RowHeadersWidth = 51;
             this.dataGridStock.Size = new System.Drawing.Size(1185, 188);
             this.dataGridStock.TabIndex = 18;
+            this.dataGridStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridStock_CellClick);
+            this.dataGridStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridStock_CellContentClick);
             // 
             // pictureBoxProduct
             // 

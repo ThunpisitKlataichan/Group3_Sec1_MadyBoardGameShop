@@ -373,6 +373,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(974, 86);
             this.label7.TabIndex = 31;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label9
             // 

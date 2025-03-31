@@ -340,7 +340,9 @@
                         SetState("view");
 
                         // อัปเดตข้อมูลใน DataTable
-                        using (SqlCommand productcommand = new SqlCommand("SELECT a.ProductID, a.ProductName, a.CostPrice,   a.Price,  a.Quality, a.ProductType,a.LatestDate,a.ProductDetail, b.SuppilerName,  b.SuppilerID AS SuppilerID FROM Products a INNER JOIN Suppilers b ON a.SuppilersID = b.SuppilerID", productsconnection))
+                        using (SqlCommand productcommand = new SqlCommand("SELECT a.ProductID, a.ProductName, a.CostPrice,   " +
+                            "a.Price,  a.Quality, a.ProductType,a.LatestDate,a.ProductDetail, b.SuppilerName,  b.SuppilerID AS SuppilerID ," +
+                            "a.ProductsShelf , a.ProductImg FROM Products a INNER JOIN Suppilers b ON a.SuppilersID = b.SuppilerID", productsconnection))
                         using (SqlDataAdapter productadapter = new SqlDataAdapter(productcommand))
                         {
                             productdatatable.Clear();
@@ -368,6 +370,7 @@
                         ChangeImage();
                     }
                 }
+                ChangeImage();
             }
             catch (Exception ex)
             {
@@ -496,6 +499,7 @@
                         txtPrice.BackColor = Color.Green;
                         txtproductName.BackColor = Color.Green;
                         txtProductType.BackColor = Color.Green;
+
                         txtAmountremain.Clear();
                         txtProductID.Clear();
                         txtCostPrice.Clear();
@@ -503,13 +507,20 @@
                         txtPrice.Clear();
                         txtproductName.Clear();
                         txtProductType.Clear();
-                        pictureBoxProduct.Image = null;
+                    txtDetails.Clear();
+                    txtPrice.Clear();
+                    txtCostPrice.Clear();
+
+                    cbb_Suppiler.SelectedIndex = -1;
+                    txtleastUpdate.Text = DateTime.Now.ToString();
+                    pictureBoxProduct.Image = null;
                         txtAmountremain.ReadOnly = false;
                         txtCostPrice.ReadOnly = false;
                         txtleastUpdate.Text = DateTime.Now.ToString();
                         txtPrice.ReadOnly = false;
                         txtproductName.ReadOnly = false;
                         txtProductType.ReadOnly = false;
+
                         btn_Add.Enabled = false;
                         btn_Add.BackColor = Color.Gray;
                         btn_Close.Enabled = false;
@@ -522,6 +533,7 @@
                         btn_Save.BackColor = Color.White;
                         btn_Cancle.Enabled = true;
                         btn_Cancle.BackColor = Color.White;
+
                         button_browse.Enabled = true;
                         button_browse.BackColor = Color.White;
                         btn_Find.Enabled = false;
@@ -739,7 +751,6 @@
                     }
 
                     dataGridStock.DataSource = productdatatable;
-                    dataGridStock.DataSource = productdatatable;
                     if (dataGridStock.Columns.Contains("ProductName"))
                     {
                         dataGridStock.Columns["ProductName"].HeaderText = "ชื่อสินค้า";
@@ -798,7 +809,15 @@
                 }
             }
 
-        
+        private void dataGridStock_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ChangeImage();
+        }
     }
 }
 
