@@ -49,6 +49,7 @@
             this.textBoxQuality = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDetails)).BeginInit();
@@ -248,19 +249,32 @@
             // 
             // buttonSave
             // 
+            this.buttonSave.BackColor = System.Drawing.Color.GreenYellow;
             this.buttonSave.Location = new System.Drawing.Point(1107, 453);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(344, 53);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "บันทึกสถานะจัดส่ง";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.Location = new System.Drawing.Point(928, 453);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(173, 53);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "ปิด";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // formShippingPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1469, 514);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutShippur);
             this.Controls.Add(this.groupBox1);
@@ -302,5 +316,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxProductName;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
     }
 }
