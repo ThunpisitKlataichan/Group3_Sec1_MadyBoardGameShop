@@ -26,7 +26,9 @@
             SqlDataAdapter productadapter;
             DataTable productdatatable;
             CurrencyManager productmanager;
-            string immage = ""; // เก็บชื่อไฟล์รูปภาพ
+        private Color headerColor = Color.FromArgb(34, 34, 59);
+        private Color alternateRowColor = Color.FromArgb(240, 240, 250);
+        string immage = ""; // เก็บชื่อไฟล์รูปภาพ
             int Productmark;
             string mystate = ""; // ใช้เพื่อระบุสถานะ (insert, update, view)
 
@@ -59,8 +61,20 @@
                     cbb_Suppiler.DisplayMember = "SuppilerName";
                     cbb_Suppiler.ValueMember = "SuppilerID";
 
-                    // Binding SelectedValue
-                    if (productdatatable.Rows.Count > 0)
+                //
+                txtProductID.DataBindings.Clear();
+                txtproductName.DataBindings.Clear();
+                txtCostPrice.DataBindings.Clear();
+                txtPrice.DataBindings.Clear();
+                txtAmountremain.DataBindings.Clear();
+                txtProductType.DataBindings.Clear();
+                txtleastUpdate.DataBindings.Clear();
+                txtDetails.DataBindings.Clear();
+                checkBoxShowonShelf.DataBindings.Clear();
+                cbb_Suppiler.DataBindings.Clear();
+
+                // Binding SelectedValue
+                if (productdatatable.Rows.Count > 0)
                     {
                         cbb_Suppiler.DataBindings.Add("SelectedValue", productdatatable, "SuppilerID");
                     }
@@ -75,6 +89,7 @@
                     txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
                     txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
                     checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");
+                cbb_Suppiler.DataBindings.Add("Text", productdatatable, "SuppilerName");
 
                 // แก้ไขการเข้าถึง Columns
                 dataGridStock.DataSource = productdatatable;
@@ -155,12 +170,42 @@
                 {
                     MessageBox.Show("เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            dataGridStock.Columns["ProductName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["ProductType"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["CostPrice"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["Quality"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["ProductDetail"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridStock.Columns["LatestDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ApplyDataGridViewStyling();
+        }
+        private void ApplyDataGridViewStyling()
+        {
+            // Basic Grid Styling
+            dataGridStock.BorderStyle = BorderStyle.None;
+            dataGridStock.EnableHeadersVisualStyles = false;
+            dataGridStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridStock.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridStock.RowHeadersVisible = false;
+            dataGridStock.AllowUserToAddRows = false;
+            dataGridStock.ReadOnly = true;
+            dataGridStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridStock.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridStock.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGridStock.ColumnHeadersHeight = 40;
+            dataGridStock.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            dataGridStock.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridStock.AlternatingRowsDefaultCellStyle.BackColor = alternateRowColor;
+            dataGridStock.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridStock.GridColor = Color.FromArgb(221, 221, 221);
 
-            }   
+            // Add some padding to cells
+            dataGridStock.DefaultCellStyle.Padding = new Padding(5);
+            dataGridStock.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
+        }
 
-
-             // เมื่อฟอร์มปิด
-            private void formStock_FormClosing(object sender, FormClosingEventArgs e)
+        // เมื่อฟอร์มปิด
+        private void formStock_FormClosing(object sender, FormClosingEventArgs e)
             {
                 productsconnection.Close();
                 productsconnection.Dispose();
@@ -356,7 +401,8 @@
                         txtProductType.DataBindings.Clear();
                         txtleastUpdate.DataBindings.Clear();
                         txtDetails.DataBindings.Clear();
-                        checkBoxShowonShelf.DataBindings.Clear(); // 9
+                        checkBoxShowonShelf.DataBindings.Clear();
+                        cbb_Suppiler.DataBindings.Clear();// 9
 
                         txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
                         txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
@@ -367,6 +413,7 @@
                         txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
                         txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
                         checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
+                        cbb_Suppiler.DataBindings.Add("Text", productdatatable, "SuppilerName");
                         ChangeImage();
                     }
                 }
@@ -385,6 +432,32 @@
                 {
                     // สถานะการแสดงผลข้อมูล (view)
                     case "view":
+                    txtProductID.DataBindings.Clear();
+                    txtproductName.DataBindings.Clear();
+                    txtCostPrice.DataBindings.Clear();
+                    txtPrice.DataBindings.Clear();
+                    txtAmountremain.DataBindings.Clear();
+                    txtProductType.DataBindings.Clear();
+                    txtleastUpdate.DataBindings.Clear();
+                    txtDetails.DataBindings.Clear();
+                    checkBoxShowonShelf.DataBindings.Clear();
+                    cbb_Suppiler.DataBindings.Clear();// 9
+
+                    txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
+                    txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
+                    txtCostPrice.DataBindings.Add("Text", productdatatable, "CostPrice");
+                    txtPrice.DataBindings.Add("Text", productdatatable, "Price");
+                    txtAmountremain.DataBindings.Add("Text", productdatatable, "Quality");
+                    txtProductType.DataBindings.Add("Text", productdatatable, "ProductType");
+                    txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
+                    txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
+                    checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
+                    cbb_Suppiler.DataBindings.Add("Text", productdatatable, "SuppilerName");
+                    ChangeImage();
+
+
+
+                    dataGridStock.Enabled = true;
                         checkBoxShowonShelf.Enabled = false;
                         txtSearch.Enabled = true;
                         txtSearch.BackColor = Color.White;
@@ -438,7 +511,8 @@
                         ChangeImage();
                     break;
                     case "update": // สถานะการอัปเดตข้อมูล (update)
-                        checkBoxShowonShelf.Enabled = true;
+                    dataGridStock.Enabled = false;
+                    checkBoxShowonShelf.Enabled = true;
                         txtAmountremain.Enabled = true;
                         txtSearch.Enabled = false;
                         txtSearch.BackColor = Color.Gray;
@@ -486,7 +560,8 @@
                         break;
 
                     default: // สถานะการเพิ่มข้อมูลใหม่ (insert)
-                        checkBoxShowonShelf.Enabled = true;
+                    dataGridStock.Enabled = false;
+                    checkBoxShowonShelf.Enabled = true;
                         txtAmountremain.Enabled = false;
                         txtDetails.ReadOnly = false;
                         txtSearch.Enabled = false;
@@ -510,6 +585,17 @@
                     txtDetails.Clear();
                     txtPrice.Clear();
                     txtCostPrice.Clear();
+
+                    txtProductID.DataBindings.Clear();
+                    txtproductName.DataBindings.Clear();
+                    txtCostPrice.DataBindings.Clear();
+                    txtPrice.DataBindings.Clear();
+                    txtAmountremain.DataBindings.Clear();
+                    txtProductType.DataBindings.Clear();
+                    txtleastUpdate.DataBindings.Clear();
+                    txtDetails.DataBindings.Clear();
+                    checkBoxShowonShelf.DataBindings.Clear();
+                    cbb_Suppiler.DataBindings.Clear();// 9
 
                     cbb_Suppiler.SelectedIndex = -1;
                     txtleastUpdate.Text = DateTime.Now.ToString();
@@ -559,8 +645,11 @@
             }
 
             private void btn_Add_Click(object sender, EventArgs e)
-            {      
-                SetState("insert"); // เปลี่ยนสถานะเป็น "insert"
+            {
+            
+            int lastRowIndex = dataGridStock.Rows.Count - 1;
+            dataGridStock.CurrentCell = dataGridStock.Rows[lastRowIndex].Cells[0];
+            SetState("insert"); // เปลี่ยนสถานะเป็น "insert"
             }
 
         // ฟังก์ชันสำหรับยกเลิกการแก้ไขและคืนสถานะเป็น "view"
@@ -642,11 +731,54 @@
                 if (string.IsNullOrEmpty(searchText))
                 {
                     LoadAllProducts(); // โหลดข้อมูลสินค้าทั้งหมด
-                    return;
+                SearchProducts(searchText); // ค้นหาสินค้า
+                txtProductID.DataBindings.Clear();
+                txtproductName.DataBindings.Clear();
+                txtCostPrice.DataBindings.Clear();
+                txtPrice.DataBindings.Clear();
+                txtAmountremain.DataBindings.Clear();
+                txtProductType.DataBindings.Clear();
+                txtleastUpdate.DataBindings.Clear();
+                txtDetails.DataBindings.Clear();
+                checkBoxShowonShelf.DataBindings.Clear();
+                cbb_Suppiler.DataBindings.Clear();// 9
+
+                txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
+                txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
+                txtCostPrice.DataBindings.Add("Text", productdatatable, "CostPrice");
+                txtPrice.DataBindings.Add("Text", productdatatable, "Price");
+                txtAmountremain.DataBindings.Add("Text", productdatatable, "Quality");
+                txtProductType.DataBindings.Add("Text", productdatatable, "ProductType");
+                txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
+                txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
+                checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
+                cbb_Suppiler.DataBindings.Add("Text", productdatatable, "SuppilerName");
+                return;
                 }
 
                 SearchProducts(searchText); // ค้นหาสินค้า
-            }
+            txtProductID.DataBindings.Clear();
+            txtproductName.DataBindings.Clear();
+            txtCostPrice.DataBindings.Clear();
+            txtPrice.DataBindings.Clear();
+            txtAmountremain.DataBindings.Clear();
+            txtProductType.DataBindings.Clear();
+            txtleastUpdate.DataBindings.Clear();
+            txtDetails.DataBindings.Clear();
+            checkBoxShowonShelf.DataBindings.Clear();
+            cbb_Suppiler.DataBindings.Clear();// 9
+
+            txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
+            txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
+            txtCostPrice.DataBindings.Add("Text", productdatatable, "CostPrice");
+            txtPrice.DataBindings.Add("Text", productdatatable, "Price");
+            txtAmountremain.DataBindings.Add("Text", productdatatable, "Quality");
+            txtProductType.DataBindings.Add("Text", productdatatable, "ProductType");
+            txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
+            txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
+            checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
+            cbb_Suppiler.DataBindings.Add("Text", productdatatable, "SuppilerName");
+        }
 
             // ฟังก์ชันค้นหาสินค้า
             private void SearchProducts(string searchText)
