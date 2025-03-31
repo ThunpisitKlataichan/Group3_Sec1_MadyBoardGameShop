@@ -346,6 +346,26 @@
                             productdatatable.Clear();
                             productadapter.Fill(productdatatable);
                         }
+                        txtProductID.DataBindings.Clear();
+                        txtproductName.DataBindings.Clear();
+                        txtCostPrice.DataBindings.Clear();
+                        txtPrice.DataBindings.Clear();
+                        txtAmountremain.DataBindings.Clear();
+                        txtProductType.DataBindings.Clear();
+                        txtleastUpdate.DataBindings.Clear();
+                        txtDetails.DataBindings.Clear();
+                        checkBoxShowonShelf.DataBindings.Clear(); // 9
+
+                        txtProductID.DataBindings.Add("Text", productdatatable, "ProductID");
+                        txtproductName.DataBindings.Add("Text", productdatatable, "ProductName");
+                        txtCostPrice.DataBindings.Add("Text", productdatatable, "CostPrice");
+                        txtPrice.DataBindings.Add("Text", productdatatable, "Price");
+                        txtAmountremain.DataBindings.Add("Text", productdatatable, "Quality");
+                        txtProductType.DataBindings.Add("Text", productdatatable, "ProductType");
+                        txtleastUpdate.DataBindings.Add("Text", productdatatable, "LatestDate");
+                        txtDetails.DataBindings.Add("Text", productdatatable, "ProductDetail");
+                        checkBoxShowonShelf.DataBindings.Add("Checked", productdatatable, "ProductsShelf");//9
+
                         ChangeImage();
                     }
                 }
