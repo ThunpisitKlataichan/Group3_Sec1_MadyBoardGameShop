@@ -155,6 +155,7 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_DOB.CalendarTitleBackColor = Color.White;
                     txtUsername.BackColor = Color.White;
                     txtPassword.BackColor = Color.White;
+                    dataGrid_Emp.Enabled = true;
                     break;
                 case "update":
                     text_Email.ReadOnly = false;
@@ -190,6 +191,7 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_DOB.CalendarTitleBackColor = Color.Orange;
                     txtUsername.BackColor = Color.Orange;
                     txtPassword.BackColor = Color.Orange;
+                    dataGrid_Emp.Enabled = true;
                     break;
                 case "add":
                     text_Email.ReadOnly = false;
@@ -225,6 +227,7 @@ namespace MadyBoardGame_Shop
                     dateTimePicker_DOB.CalendarTitleBackColor = Color.SpringGreen;
                     txtUsername.BackColor = Color.SpringGreen;
                     txtPassword.BackColor = Color.SpringGreen;
+                    dataGrid_Emp.Enabled = false;
                     break;
 
                 default:

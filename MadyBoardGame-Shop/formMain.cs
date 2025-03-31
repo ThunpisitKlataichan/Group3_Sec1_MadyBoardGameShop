@@ -11,7 +11,8 @@ namespace MadyBoardGame_Shop
         }
         private void btn_exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("คุณต้องการออกจากระบบใช่หรือไม่", "ออกจากระบบ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) this.Close();
+            return;
         }
         private void btn_stock_Click(object sender, EventArgs e)
         {
@@ -30,10 +31,13 @@ namespace MadyBoardGame_Shop
         }
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            formLogin a = new formLogin();
-            a.ShowDialog();
-            this.Dispose();
+            if (MessageBox.Show("คุณต้องการออกจากระบบใช่หรือไม่", "ออกจากระบบ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                formLogin a = new formLogin();
+                a.ShowDialog();
+                this.Dispose();
+            }
         }
         private void btn_Order_Click(object sender, EventArgs e)
         {
@@ -51,6 +55,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = true;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     this.Text = "MadyStore (Member)";
                     break;
                 case "ผู้จัดการ":
@@ -61,6 +67,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupShipping.Enabled = false;
                     groupMember.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = true;
+                    groupBoxReportStore.Enabled = true;
                     break;
                 case "เจ้าหน้าที่จัดส่งสินค้า":
                     this.Text = "MadyStore (Shipping)";
@@ -70,6 +78,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = true;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     break;
                 case "เจ้าหน้าที่บริการลูกค้า":
                     this.Text = "MadyStore (Cashier)";
@@ -79,6 +89,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     break;
                 case "เจ้าหน้าที่คลังสินค้า":
                     this.Text = "MadyStore (Stock)";
@@ -88,6 +100,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     break;
                 case "เจ้าหน้าที่บัญชี":
                     this.Text = "MadyStore (Accounting)";
@@ -97,6 +111,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = true;
+                    groupBoxReportStore.Enabled = true;
                     break;
                 case "เจ้าหน้าที่ขนส่ง":
                     this.Text = "MadyStore (Shipping)";
@@ -106,6 +122,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = true;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     break;
                 default:
                     this.Text = "MadyStore (Guest)";
@@ -115,6 +133,8 @@ namespace MadyBoardGame_Shop
                     groupPacking.Enabled = false;
                     groupMember.Enabled = false;
                     groupShipping.Enabled = false;//6
+                    groupBoxReportProfit.Enabled = false;
+                    groupBoxReportStore.Enabled = false;
                     break;
 
             }
@@ -218,6 +238,11 @@ namespace MadyBoardGame_Shop
         {
             formReportDetailPur formReportDetailPur = new formReportDetailPur();
             formReportDetailPur.ShowDialog();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -140,7 +140,8 @@ namespace MadyBoardGame_Shop
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("คุณต้องการออกจากระบบใช่หรือไม่", "ออกจากระบบ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) this.Close();
+            return;
         }
     }
 }

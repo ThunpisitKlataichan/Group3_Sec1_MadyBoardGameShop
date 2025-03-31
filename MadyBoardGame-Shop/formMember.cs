@@ -252,6 +252,7 @@ namespace MadyBoardGame_Shop
                     textMen_Name.BackColor = Color.White;
                     textMen_LName.BackColor = Color.White;
                     textIdentityNum.BackColor = Color.White;
+                    text_Email.BackColor = Color.White;
                     textPhoneNum.BackColor = Color.White;
                     dateTimePicker_Born.BackColor = Color.White;
                     textLocation.BackColor = Color.White;
@@ -272,6 +273,7 @@ namespace MadyBoardGame_Shop
                     btn_Del.Enabled = true;
                     //----------------------------------
                     textMen_Name.BackColor = Color.Orange;
+                    text_Email.BackColor = Color.Orange;
                     textMen_LName.BackColor = Color.Orange;
                     textIdentityNum.BackColor = Color.Orange;
                     textPhoneNum.BackColor = Color.Orange;

@@ -35,6 +35,7 @@
             this.btn_confirm = new System.Windows.Forms.Button();
             this.lableregis = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +62,6 @@
             this.txt_Username.Name = "txt_Username";
             this.txt_Username.Size = new System.Drawing.Size(349, 29);
             this.txt_Username.TabIndex = 2;
-            this.txt_Username.Text = "manager";
             // 
             // txt_Password
             // 
@@ -69,7 +69,6 @@
             this.txt_Password.Name = "txt_Password";
             this.txt_Password.Size = new System.Drawing.Size(349, 29);
             this.txt_Password.TabIndex = 3;
-            this.txt_Password.Text = "123456";
             this.txt_Password.UseSystemPasswordChar = true;
             // 
             // btn_confirm
@@ -107,11 +106,23 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(183, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 39);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Mady Store";
+            // 
             // formLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(566, 241);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lableregis);
             this.Controls.Add(this.btn_confirm);
@@ -141,5 +152,6 @@
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Label lableregis;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label3;
     }
 }
