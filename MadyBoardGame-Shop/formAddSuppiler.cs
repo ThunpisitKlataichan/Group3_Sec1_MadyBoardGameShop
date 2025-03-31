@@ -37,6 +37,33 @@ namespace MadyBoardGame_Shop
             loadDataIntoGrid();
             Bind_DATA();
             SetState("view");
+            ApplyDataGridViewStyling();
+        }
+        private Color headerColor = Color.FromArgb(34, 34, 59);
+        private Color alternateRowColor = Color.FromArgb(240, 240, 250);
+        private void ApplyDataGridViewStyling()
+        {
+            // Basic Grid Styling
+            dataGrid_Suppiler.BorderStyle = BorderStyle.None;
+            dataGrid_Suppiler.EnableHeadersVisualStyles = false;
+            dataGrid_Suppiler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGrid_Suppiler.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGrid_Suppiler.RowHeadersVisible = false;
+            dataGrid_Suppiler.AllowUserToAddRows = false;
+            dataGrid_Suppiler.ReadOnly = true;
+            dataGrid_Suppiler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGrid_Suppiler.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGrid_Suppiler.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGrid_Suppiler.ColumnHeadersHeight = 40;
+            dataGrid_Suppiler.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            dataGrid_Suppiler.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGrid_Suppiler.AlternatingRowsDefaultCellStyle.BackColor = alternateRowColor;
+            dataGrid_Suppiler.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGrid_Suppiler.GridColor = Color.FromArgb(221, 221, 221);
+
+            // Add some padding to cells
+            dataGrid_Suppiler.DefaultCellStyle.Padding = new Padding(5);
+            dataGrid_Suppiler.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
         }
         private void Bind_DATA()
         {
@@ -309,7 +336,7 @@ namespace MadyBoardGame_Shop
             if (dataGrid_Suppiler.CurrentRow != null)
             {
                 
-                //int empID = Convert.ToInt32(dataGrid_Emp.CurrentRow.Cells["empID"].Value);
+                
                 string ID = dataGrid_Suppiler.CurrentRow.Cells["SuppilerID"].Value.ToString();
 
                 // ยืนยันก่อนลบ

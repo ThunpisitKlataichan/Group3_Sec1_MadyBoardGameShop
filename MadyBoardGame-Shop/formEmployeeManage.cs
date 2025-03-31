@@ -268,7 +268,8 @@ namespace MadyBoardGame_Shop
                 SetState("update");
             }
         }
-
+        private Color headerColor = Color.FromArgb(34, 34, 59);
+        private Color alternateRowColor = Color.FromArgb(240, 240, 250);
         private void formEmployeeManage_Load(object sender, EventArgs e)
         {
             
@@ -276,8 +277,32 @@ namespace MadyBoardGame_Shop
             Bind_DATA();
             SetState("view");
             txtUsername.TextChanged += txtUsername_TextChanged;
+            ApplyDataGridViewStyling();
         }
+        private void ApplyDataGridViewStyling()
+        {
+            // Basic Grid Styling
+            dataGrid_Emp.BorderStyle = BorderStyle.None;
+            dataGrid_Emp.EnableHeadersVisualStyles = false;
+            dataGrid_Emp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGrid_Emp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGrid_Emp.RowHeadersVisible = false;
+            dataGrid_Emp.AllowUserToAddRows = false;
+            dataGrid_Emp.ReadOnly = true;
+            dataGrid_Emp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGrid_Emp.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGrid_Emp.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGrid_Emp.ColumnHeadersHeight = 40;
+            dataGrid_Emp.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            dataGrid_Emp.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGrid_Emp.AlternatingRowsDefaultCellStyle.BackColor = alternateRowColor;
+            dataGrid_Emp.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGrid_Emp.GridColor = Color.FromArgb(221, 221, 221);
 
+            // Add some padding to cells
+            dataGrid_Emp.DefaultCellStyle.Padding = new Padding(5);
+            dataGrid_Emp.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
+        }
         private void btn_Add_Click(object sender, EventArgs e)
         {
             BackupDATA();
@@ -616,6 +641,11 @@ namespace MadyBoardGame_Shop
         }
 
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
