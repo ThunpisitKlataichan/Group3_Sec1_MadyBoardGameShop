@@ -109,6 +109,7 @@ namespace MadyBoardGame_Shop
 
                     // If neither employee nor member login succeeded
                     MessageBox.Show("Username หรือ Password ไม่ถูกต้อง");
+                    txt_Password.Focus();
                 }
             }
             catch (Exception ex)

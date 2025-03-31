@@ -182,7 +182,7 @@ namespace MadyBoardGame_Shop
                 dataGridDetails.Columns["Quality"].Width = 100;
 
                 dataGridDetails.RowTemplate.Height = 50;
-
+                 
                 dataGridDetails.Columns["ProductID"].ReadOnly = true;
                 dataGridDetails.Columns["ProductName"].ReadOnly = true;
                 dataGridDetails.Columns["Quality"].ReadOnly = true;
@@ -208,7 +208,7 @@ namespace MadyBoardGame_Shop
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("คุณต้องการบันทึกข้อมูลใช่หรือไม่", "ยืนยัน", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (MessageBox.Show("คุณต้องการบันทึกข้อมูลใช่หรือไม่", "ยืนยัน", MessageBoxButtons.YesNo , MessageBoxIcon.Question)== DialogResult.No)
             {   
                 return;
             }
@@ -286,13 +286,13 @@ namespace MadyBoardGame_Shop
                         }
                     }
                 }
-                MessageBox.Show("บันทึกข้อมูลสำเร็จ");
+                MessageBox.Show("บันทึกข้อมูลสำเร็จ" , "สำเร็จ" , MessageBoxButtons.OK , MessageBoxIcon.Information);
                 flowLayoutShippur.Controls.Clear();
                 LoadData();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("บันทึกข้อมูลไม่สำเร็จ Error : " + ex);
+                MessageBox.Show("บันทึกข้อมูลไม่สำเร็จ Error : " + ex , "Error" , MessageBoxButtons.OK , MessageBoxIcon.Error);
             }
         }
 

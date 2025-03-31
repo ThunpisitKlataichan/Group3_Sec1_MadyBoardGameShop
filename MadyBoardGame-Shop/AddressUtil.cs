@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace MadyBoardGame_Shop
 {
-    static class AddressUtil
+    static public class AddressUtil
     {
         static public void ReadAddressInfoFromCSVFile(string strAddressCSVFile,
                                                       ref string[] arProvinces,
                                                       ref string[][] arDistricts,
                                                       ref string[][][] arSubDistricts,
                                                       ref string[][][] arPostcodes)
-        {
-
+        {   
             if (File.Exists(strAddressCSVFile))
             {
                 string[] arDataAddress = File.ReadAllLines(strAddressCSVFile, Encoding.GetEncoding("utf-8"));
