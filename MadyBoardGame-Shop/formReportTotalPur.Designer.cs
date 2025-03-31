@@ -44,6 +44,7 @@
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_print_to_pdf = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.panel2.SuspendLayout();
@@ -52,6 +53,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btn_print_to_pdf);
             this.panel1.Controls.Add(this.label1);
             this.panel1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.panel1.Location = new System.Drawing.Point(-3, -5);
@@ -203,7 +206,7 @@
             // 
             // btn_print_to_pdf
             // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(994, 194);
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(818, 34);
             this.btn_print_to_pdf.Name = "btn_print_to_pdf";
             this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
             this.btn_print_to_pdf.TabIndex = 7;
@@ -211,12 +214,22 @@
             this.btn_print_to_pdf.UseVisualStyleBackColor = true;
             this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.Location = new System.Drawing.Point(958, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 53);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "ปิด";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // formReportTotalPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 593);
-            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxSumPur);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.DateTimePicker dateTimeEnd;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_print_to_pdf;
+        private System.Windows.Forms.Button button1;
     }
 }

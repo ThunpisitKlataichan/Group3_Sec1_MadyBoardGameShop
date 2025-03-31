@@ -1,220 +1,282 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MadyBoardGame_Shop
 {
     public partial class formReportProduct : Form
     {
+        private int currentRowIndex = 0;
+
         public formReportProduct()
         {
             InitializeComponent();
         }
+
         SqlConnection conn;
         SqlCommand cmd;
         SqlDataAdapter da;
         DataTable dt;
-        private int currentRowIndex = 0; // ใช้เก็บ index ของแถวที่พิมพ์ล่าสุด
-        private void btn_print_to_pdf_Click(object sender, EventArgs e)
-        {
-            currentRowIndex = 0; // รีเซ็ตค่าเมื่อเริ่มพิมพ์ใหม่
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
-            printDocument.PrinterSettings.PrintFileName = "C:\\Users\\Public\\Documents\\DataGridView_AutoFit.pdf";
-            printDocument.DefaultPageSettings.Landscape = true; // พิมพ์แนวนอน
-            printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
-            printDocument.Print();
-        }
-        private void PrintPage(object sender, PrintPageEventArgs e)
-        {
-            int pageWidth = e.PageBounds.Width - 100;  // เหลือขอบซ้าย/ขวา 50px
-            int pageHeight = e.PageBounds.Height - 100; // เหลือขอบบน/ล่าง 50px
-            int columnCount = dataGridResult.ColumnCount;
-            int rowCount = dataGridResult.RowCount;
 
-            int cellHeight = 50; // ความสูงของแต่ละเซลล์
-            int startX = 50; // จุดเริ่มต้น X
-            int startY = 50; // จุดเริ่มต้น Y
-
-            int cellWidth = pageWidth / columnCount;
-            using (Pen blackPen = new Pen(Color.Black, 1))
-            using (Font font = new Font("Arial", 12))
-            using (Brush brush = new SolidBrush(Color.Black))
-            {
-                //  วาด Header
-                for (int i = 0; i < columnCount; i++)
-                {
-                    e.Graphics.DrawRectangle(blackPen, startX + (i * cellWidth), startY, cellWidth, cellHeight);
-                    e.Graphics.DrawString(
-                        dataGridResult.Columns[i].HeaderText, font, brush,
-                        new RectangleF(startX + (i * cellWidth), startY, cellWidth, cellHeight),
-                        new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
-                    );
-                }
-
-                // วาดข้อมูลตาราง เริ่มจาก currentRowIndex
-                int rowY = startY + cellHeight;
-                for (int i = currentRowIndex; i < rowCount - 1; i++)
-                {
-                    for (int j = 0; j < columnCount; j++)
-                    {
-                        string cellText = dataGridResult.Rows[i].Cells[j].Value?.ToString() ?? "";
-                        e.Graphics.DrawRectangle(blackPen, startX + (j * cellWidth), rowY, cellWidth, cellHeight);
-                        e.Graphics.DrawString(
-                            cellText, font, brush,
-                            new RectangleF(startX + (j * cellWidth), rowY, cellWidth, cellHeight),
-                            new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
-                        );
-                    }
-
-                    rowY += cellHeight;
-
-                    // ถ้าเกินหน้ากระดาษให้หยุดพิมพ์และขึ้นหน้าใหม่
-                    if (rowY + cellHeight > pageHeight)
-                    {
-                        currentRowIndex = i + 1; // บันทึกแถวสุดท้ายที่พิมพ์
-                        e.HasMorePages = true;
-                        return;
-                    }
-                }
-
-                //ถ้าพิมพ์ครบทุกแถวแล้วให้ปิด HasMorePages
-                e.HasMorePages = false;
-                currentRowIndex = 0; // รีเซ็ตค่า
-            }
-        }
         private void formReportProduct_Load(object sender, EventArgs e)
         {
             try
             {
                 LoadDataToGrid();
+                ApplyDataGridViewStyling();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ShowErrorMessage("เกิดข้อผิดพลาดในการโหลดฟอร์ม", ex);
             }
         }
+
+        private void ApplyDataGridViewStyling()
+        {
+            // Basic Grid Styling
+            dataGridResult.BorderStyle = BorderStyle.None;
+            dataGridResult.EnableHeadersVisualStyles = false;
+            dataGridResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridResult.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridResult.RowHeadersVisible = false;
+            dataGridResult.AllowUserToAddRows = false;
+            dataGridResult.ReadOnly = true;
+            dataGridResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridResult.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridResult.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGridResult.ColumnHeadersHeight = 40;
+            dataGridResult.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(34, 34, 59);
+            dataGridResult.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridResult.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 255);
+            dataGridResult.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridResult.GridColor = Color.FromArgb(221, 221, 221);
+
+            // Column-specific formatting
+            if (dataGridResult.Columns.Contains("Price") || dataGridResult.Columns.Contains("CostPrice"))
+            {
+                dataGridResult.Columns["Price"].DefaultCellStyle.Format = "N2";
+                dataGridResult.Columns["CostPrice"].DefaultCellStyle.Format = "N2";
+                dataGridResult.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridResult.Columns["CostPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+
+            if (dataGridResult.Columns.Contains("Quality"))
+            {
+                dataGridResult.Columns["Quality"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            // Set Thai column headers
+            if (dataGridResult.Columns.Contains("SuppilerName")) dataGridResult.Columns["SuppilerName"].HeaderText = "ชื่อผู้ผลิต";
+            if (dataGridResult.Columns.Contains("ProductID")) dataGridResult.Columns["ProductID"].HeaderText = "รหัสสินค้า";
+            if (dataGridResult.Columns.Contains("ProductName")) dataGridResult.Columns["ProductName"].HeaderText = "ชื่อสินค้า";
+            if (dataGridResult.Columns.Contains("CostPrice")) dataGridResult.Columns["CostPrice"].HeaderText = "ราคาทุน";
+            if (dataGridResult.Columns.Contains("Price")) dataGridResult.Columns["Price"].HeaderText = "ราคาขาย";
+            if (dataGridResult.Columns.Contains("Quality")) dataGridResult.Columns["Quality"].HeaderText = "จำนวน";
+            if (dataGridResult.Columns.Contains("ProductType")) dataGridResult.Columns["ProductType"].HeaderText = "ประเภท";
+
+            // Add some padding to cells
+            dataGridResult.DefaultCellStyle.Padding = new Padding(5);
+            dataGridResult.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
+        }
+
         private void LoadDataToGrid()
         {
             try
             {
-                conn = new SqlConnection(InitializeUser._key_con);
-                conn.Open();
-
-                string query = @"
-            SELECT 
-                CASE 
-                    WHEN ROW_NUMBER() OVER (PARTITION BY Suppilers.SuppilerID ORDER BY Products.ProductID) = 1 
-                    THEN Suppilers.SuppilerName 
-                    ELSE '' 
-                END AS SuppilerName,
-                Products.ProductID,  
-                Products.ProductName,
-                Products.CostPrice,
-                Products.Price,
-                Products.Quality,
-                Products.ProductType
-            FROM Products 
-            INNER JOIN Suppilers ON Products.SuppilersID = Suppilers.SuppilerID
-            WHERE 1=1";
-
-                // เพิ่มเงื่อนไขการค้นหาตามที่ระบุในฟอร์ม
-                if (!string.IsNullOrEmpty(txtProductID.Text))
+                using (conn = new SqlConnection(InitializeUser._key_con))
                 {
-                    query += " AND Products.ProductID LIKE @ProductID";
+                    conn.Open();
+                    string query = BuildBaseQuery();
+                    cmd = new SqlCommand(query, conn);
+                    AddSearchParameters();
+
+                    da = new SqlDataAdapter(cmd);
+                    dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridResult.DataSource = dt;
                 }
-
-                if (!string.IsNullOrEmpty(txtProductName.Text))
-                {
-                    query += " AND Products.ProductName LIKE @ProductName";
-                }
-
-                if (!string.IsNullOrEmpty(txtStartPrice.Text) && decimal.TryParse(txtStartPrice.Text, out decimal startPrice))
-                {
-                    query += " AND Products.Price >= @StartPrice";
-                }
-
-                if (!string.IsNullOrEmpty(txtEndPrice.Text) && decimal.TryParse(txtEndPrice.Text, out decimal endPrice))
-                {
-                    query += " AND Products.Price <= @EndPrice";
-                }
-
-                query += " ORDER BY Suppilers.SuppilerName, Products.ProductID";
-
-                cmd = new SqlCommand(query, conn);
-
-                // เพิ่ม parameters เพื่อป้องกัน SQL Injection
-                if (!string.IsNullOrEmpty(txtProductID.Text))
-                {
-                    cmd.Parameters.AddWithValue("@ProductID", "%" + txtProductID.Text + "%");
-                }
-
-                if (!string.IsNullOrEmpty(txtProductName.Text))
-                {
-                    cmd.Parameters.AddWithValue("@ProductName", "%" + txtProductName.Text + "%");
-                }
-
-                if (!string.IsNullOrEmpty(txtStartPrice.Text) && decimal.TryParse(txtStartPrice.Text, out startPrice))
-                {
-                    cmd.Parameters.AddWithValue("@StartPrice", startPrice);
-                }
-
-                if (!string.IsNullOrEmpty(txtEndPrice.Text) && decimal.TryParse(txtEndPrice.Text, out endPrice))
-                {
-                    cmd.Parameters.AddWithValue("@EndPrice", endPrice);
-                }
-
-                da = new SqlDataAdapter(cmd);
-                dt = new DataTable();
-                da.Fill(dt);
-
-                dataGridResult.DataSource = dt;
-
-                // ปรับแต่งการแสดงผลใน DataGridView
-                CustomizeDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูล: " + ex.Message);
-            }
-            finally
-            {
-                if (conn != null && conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
+                ShowErrorMessage("เกิดข้อผิดพลาดในการโหลดข้อมูล", ex);
             }
         }
-        private void CustomizeDataGridView()
+
+        private string BuildBaseQuery()
         {
-            // ซ่อนคอลัมน์ SuppilerID ถ้ามี
-            if (dataGridResult.Columns.Contains("SuppilerID"))
-            {
-                dataGridResult.Columns["SuppilerID"].Visible = false;
-            }
-
-            // จัดรูปแบบคอลัมน์ต่างๆ
-            if (dataGridResult.Columns.Contains("Price"))
-            {
-                dataGridResult.Columns["Price"].DefaultCellStyle.Format = "N2";
-            }
-
-            if (dataGridResult.Columns.Contains("CostPrice"))
-            {
-                dataGridResult.Columns["CostPrice"].DefaultCellStyle.Format = "N2";
-            }
-
-            // ตั้งค่าความกว้างคอลัมน์อัตโนมัติ
-            dataGridResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            return @"
+                SELECT 
+                    CASE 
+                        WHEN ROW_NUMBER() OVER (PARTITION BY Suppilers.SuppilerID ORDER BY Products.ProductID) = 1 
+                        THEN Suppilers.SuppilerName 
+                        ELSE '' 
+                    END AS SuppilerName,
+                    Products.ProductID,  
+                    Products.ProductName,
+                    Products.CostPrice,
+                    Products.Price,
+                    Products.Quality,
+                    Products.ProductType
+                FROM Products 
+                INNER JOIN Suppilers ON Products.SuppilersID = Suppilers.SuppilerID
+                WHERE 1=1";
         }
+
+        private void AddSearchParameters()
+        {
+            // Product ID filter
+            if (!string.IsNullOrEmpty(txtProductID.Text))
+            {
+                cmd.CommandText += " AND Products.ProductID LIKE @ProductID";
+                cmd.Parameters.AddWithValue("@ProductID", "%" + txtProductID.Text + "%");
+            }
+
+            // Product Name filter
+            if (!string.IsNullOrEmpty(txtProductName.Text))
+            {
+                cmd.CommandText += " AND Products.ProductName LIKE @ProductName";
+                cmd.Parameters.AddWithValue("@ProductName", "%" + txtProductName.Text + "%");
+            }
+
+            // Price range filter
+            if (!string.IsNullOrEmpty(txtStartPrice.Text) && decimal.TryParse(txtStartPrice.Text, out decimal startPrice))
+            {
+                cmd.CommandText += " AND Products.Price >= @StartPrice";
+                cmd.Parameters.AddWithValue("@StartPrice", startPrice);
+            }
+
+            if (!string.IsNullOrEmpty(txtEndPrice.Text) && decimal.TryParse(txtEndPrice.Text, out decimal endPrice))
+            {
+                cmd.CommandText += " AND Products.Price <= @EndPrice";
+                cmd.Parameters.AddWithValue("@EndPrice", endPrice);
+            }
+
+            cmd.CommandText += " ORDER BY Suppilers.SuppilerName, Products.ProductID";
+        }
+
+        private void btn_print_to_pdf_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                currentRowIndex = 0;
+                PrintDocument printDocument = new PrintDocument();
+                printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                printDocument.PrinterSettings.PrintFileName = "C:\\Users\\Public\\Documents\\Product_Report.pdf";
+                printDocument.DefaultPageSettings.Landscape = true;
+                printDocument.PrintPage += PrintPageHandler;
+                printDocument.Print();
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("เกิดข้อผิดพลาดในการพิมพ์", ex);
+            }
+        }
+
+        private void PrintPageHandler(object sender, PrintPageEventArgs e)
+        {
+            try
+            {
+                int pageWidth = e.PageBounds.Width - 100;
+                int pageHeight = e.PageBounds.Height - 100;
+                int columnCount = dataGridResult.ColumnCount;
+                int rowCount = dataGridResult.RowCount;
+
+                int cellHeight = 40;
+                int startX = 50;
+                int startY = 50;
+                int cellWidth = (pageWidth - startX) / columnCount;
+
+                // Header style
+                Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+                Brush headerBrush = new SolidBrush(Color.White);
+                Pen headerBorderPen = new Pen(Color.FromArgb(34, 34, 59), 1);
+                Brush headerBackBrush = new SolidBrush(Color.FromArgb(34, 34, 59));
+
+                // Cell style
+                Font cellFont = new Font("Arial", 11);
+                Brush cellBrush = new SolidBrush(Color.Black);
+                Pen cellBorderPen = new Pen(Color.LightGray, 1);
+
+                // Draw header
+                for (int i = 0; i < columnCount; i++)
+                {
+                    RectangleF headerRect = new RectangleF(startX + (i * cellWidth), startY, cellWidth, cellHeight);
+
+                    // Draw header background and border
+                    e.Graphics.FillRectangle(headerBackBrush, headerRect);
+                    e.Graphics.DrawRectangle(headerBorderPen, headerRect.X, headerRect.Y, headerRect.Width, headerRect.Height);
+
+                    // Draw header text
+                    e.Graphics.DrawString(
+                        dataGridResult.Columns[i].HeaderText,
+                        headerFont,
+                        headerBrush,
+                        headerRect,
+                        new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
+                    );
+                }
+
+                // Draw rows
+                int rowY = startY + cellHeight;
+                for (int i = currentRowIndex; i < rowCount; i++)
+                {
+                    // Alternate row color
+                    Brush rowBrush = (i % 2 == 0) ? Brushes.White : new SolidBrush(Color.FromArgb(245, 245, 255));
+
+                    for (int j = 0; j < columnCount; j++)
+                    {
+                        RectangleF cellRect = new RectangleF(startX + (j * cellWidth), rowY, cellWidth, cellHeight);
+                        string cellText = dataGridResult.Rows[i].Cells[j].Value?.ToString() ?? "";
+
+                        // Draw cell background and border
+                        e.Graphics.FillRectangle(rowBrush, cellRect);
+                        e.Graphics.DrawRectangle(cellBorderPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+
+                        // Draw cell text with proper alignment
+                        StringFormat format = new StringFormat();
+                        if (dataGridResult.Columns[j].DefaultCellStyle.Alignment == DataGridViewContentAlignment.MiddleRight)
+                            format.Alignment = StringAlignment.Far;
+                        else if (dataGridResult.Columns[j].DefaultCellStyle.Alignment == DataGridViewContentAlignment.MiddleCenter)
+                            format.Alignment = StringAlignment.Center;
+                        else
+                            format.Alignment = StringAlignment.Near;
+
+                        format.LineAlignment = StringAlignment.Center;
+
+                        e.Graphics.DrawString(
+                            cellText,
+                            cellFont,
+                            cellBrush,
+                            cellRect,
+                            format
+                        );
+                    }
+
+                    rowY += cellHeight;
+
+                    // Check for page break
+                    if (rowY + cellHeight > pageHeight && i < rowCount - 1)
+                    {
+                        currentRowIndex = i + 1;
+                        e.HasMorePages = true;
+                        return;
+                    }
+                }
+
+                e.HasMorePages = false;
+                currentRowIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("เกิดข้อผิดพลาดในการสร้างรายงาน", ex);
+                e.HasMorePages = false;
+            }
+        }
+
         private void buttonFind_Click(object sender, EventArgs e)
         {
             LoadDataToGrid();
@@ -227,6 +289,47 @@ namespace MadyBoardGame_Shop
             txtStartPrice.Text = "";
             txtEndPrice.Text = "";
             LoadDataToGrid();
+        }
+
+        private void ShowErrorMessage(string message, Exception ex)
+        {
+            MessageBox.Show($"{message}: {ex.Message}", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        // Validate numeric input for price fields
+        private void txtStartPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumericInput(sender, e);
+        }
+
+        private void txtEndPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumericInput(sender, e);
+        }
+
+        private void ValidateNumericInput(object sender ,  KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // Only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtEndPrice_KeyPress(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

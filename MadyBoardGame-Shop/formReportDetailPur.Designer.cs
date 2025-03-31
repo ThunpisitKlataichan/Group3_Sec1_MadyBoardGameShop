@@ -43,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_print_to_pdf = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -51,6 +52,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btn_print_to_pdf);
+            this.panel1.Controls.Add(this.buttonExit);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-7, -8);
             this.panel1.Name = "panel1";
@@ -60,10 +63,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(19, 17);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(9, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(981, 73);
+            this.label1.Size = new System.Drawing.Size(739, 55);
             this.label1.TabIndex = 0;
             this.label1.Text = "รายงานรายละเอียดการซื้อสินค้าในร้าน";
             // 
@@ -179,20 +182,30 @@
             // 
             // btn_print_to_pdf
             // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(1003, 108);
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(885, 37);
             this.btn_print_to_pdf.Name = "btn_print_to_pdf";
-            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 53);
             this.btn_print_to_pdf.TabIndex = 4;
             this.btn_print_to_pdf.Text = "print";
             this.btn_print_to_pdf.UseVisualStyleBackColor = true;
             this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
             // 
+            // buttonExit
+            // 
+            this.buttonExit.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonExit.Location = new System.Drawing.Point(1013, 37);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(119, 53);
+            this.buttonExit.TabIndex = 8;
+            this.buttonExit.Text = "ปิด";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
             // formReportDetailPur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1137, 580);
-            this.Controls.Add(this.btn_print_to_pdf);
+            this.ClientSize = new System.Drawing.Size(1138, 580);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.panel1);
@@ -227,5 +240,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_print_to_pdf;
+        private System.Windows.Forms.Button buttonExit;
     }
 }

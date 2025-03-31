@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_print_to_pdf = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -51,6 +52,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.buttonExit);
+            this.panel1.Controls.Add(this.btn_print_to_pdf);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, -10);
             this.panel1.Name = "panel1";
@@ -191,7 +194,7 @@
             // 
             // btn_print_to_pdf
             // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(710, 153);
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(695, 45);
             this.btn_print_to_pdf.Name = "btn_print_to_pdf";
             this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
             this.btn_print_to_pdf.TabIndex = 4;
@@ -199,12 +202,22 @@
             this.btn_print_to_pdf.UseVisualStyleBackColor = true;
             this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
             // 
+            // buttonExit
+            // 
+            this.buttonExit.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonExit.Location = new System.Drawing.Point(823, 45);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(126, 50);
+            this.buttonExit.TabIndex = 12;
+            this.buttonExit.Text = "ปิด";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
             // formReportSuppiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 561);
-            this.Controls.Add(this.btn_print_to_pdf);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.panel1);
@@ -239,5 +252,6 @@
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_print_to_pdf;
+        private System.Windows.Forms.Button buttonExit;
     }
 }

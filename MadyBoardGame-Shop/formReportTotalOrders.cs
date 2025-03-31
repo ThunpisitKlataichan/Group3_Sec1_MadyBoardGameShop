@@ -21,6 +21,7 @@ namespace MadyBoardGame_Shop
             InitializeComponent();
         }
         SqlConnection _connection;
+
         private void formReportFrontStore_Load(object sender, EventArgs e)
         {
             dateTimeStart.MaxDate = DateTime.Now;
@@ -480,6 +481,11 @@ namespace MadyBoardGame_Shop
                 e.HasMorePages = false;
                 currentRowIndex = 0; // รีเซ็ตค่า
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

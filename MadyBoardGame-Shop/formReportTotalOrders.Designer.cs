@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridResult = new System.Windows.Forms.DataGridView();
@@ -41,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_print_to_pdf = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -51,12 +51,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btn_print_to_pdf);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-7, -33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1254, 133);
             this.panel1.TabIndex = 0;
+            // 
+            // btn_print_to_pdf
+            // 
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(969, 62);
+            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 53);
+            this.btn_print_to_pdf.TabIndex = 5;
+            this.btn_print_to_pdf.Text = "print";
+            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
+            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
             // 
             // button1
             // 
@@ -67,6 +78,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "ปิด";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -178,22 +190,11 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "ช่วงเวลาที่ต้องการ";
             // 
-            // btn_print_to_pdf
-            // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(1025, 213);
-            this.btn_print_to_pdf.Name = "btn_print_to_pdf";
-            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
-            this.btn_print_to_pdf.TabIndex = 5;
-            this.btn_print_to_pdf.Text = "print";
-            this.btn_print_to_pdf.UseVisualStyleBackColor = true;
-            this.btn_print_to_pdf.Click += new System.EventHandler(this.btn_print_to_pdf_Click);
-            // 
             // formReportTotalOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1232, 589);
-            this.Controls.Add(this.btn_print_to_pdf);
+            this.ClientSize = new System.Drawing.Size(1232, 594);
             this.Controls.Add(this.dataGridResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);

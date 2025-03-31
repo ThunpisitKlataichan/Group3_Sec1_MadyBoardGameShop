@@ -35,6 +35,7 @@
             this.textBoxProfit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonFind = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,7 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboDateTypeSelect = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.buttonFind = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResult)).BeginInit();
             this.panel2.SuspendLayout();
@@ -51,6 +52,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.buttonExit);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btn_print_to_pdf);
             this.panel1.Location = new System.Drawing.Point(-11, -23);
@@ -70,9 +72,9 @@
             // 
             // btn_print_to_pdf
             // 
-            this.btn_print_to_pdf.Location = new System.Drawing.Point(989, 74);
+            this.btn_print_to_pdf.Location = new System.Drawing.Point(833, 54);
             this.btn_print_to_pdf.Name = "btn_print_to_pdf";
-            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 50);
+            this.btn_print_to_pdf.Size = new System.Drawing.Size(122, 70);
             this.btn_print_to_pdf.TabIndex = 5;
             this.btn_print_to_pdf.Text = "print";
             this.btn_print_to_pdf.UseVisualStyleBackColor = true;
@@ -117,6 +119,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(791, 143);
             this.panel2.TabIndex = 9;
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.Location = new System.Drawing.Point(550, 111);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(135, 29);
+            this.buttonFind.TabIndex = 7;
+            this.buttonFind.Text = "Find";
+            this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
             // 
             // buttonReset
             // 
@@ -184,15 +196,16 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ช่วงเวลาที่ต้องการ";
             // 
-            // buttonFind
+            // buttonExit
             // 
-            this.buttonFind.Location = new System.Drawing.Point(550, 111);
-            this.buttonFind.Name = "buttonFind";
-            this.buttonFind.Size = new System.Drawing.Size(135, 29);
-            this.buttonFind.TabIndex = 7;
-            this.buttonFind.Text = "Find";
-            this.buttonFind.UseVisualStyleBackColor = true;
-            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            this.buttonExit.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonExit.Location = new System.Drawing.Point(961, 54);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(126, 70);
+            this.buttonExit.TabIndex = 11;
+            this.buttonExit.Text = "ปิด";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // formReportProfit
             // 
@@ -236,5 +249,6 @@
         private System.Windows.Forms.ComboBox comboDateTypeSelect;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonFind;
+        private System.Windows.Forms.Button buttonExit;
     }
 }

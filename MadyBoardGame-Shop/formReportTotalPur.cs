@@ -39,6 +39,70 @@ namespace MadyBoardGame_Shop
                 MessageBox.Show($"ไม่สามารถเชื่อมต่อกับฐานข้อมูลได้: {ex.Message}");
             }
         }
+        private void CalculateTotalSum()
+        {
+            decimal totalSum = 0;
+
+            // ตรวจสอบว่ามีข้อมูลใน DataGridView หรือไม่
+            if (dataGridResult.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataGridResult.Rows)
+                {
+                    if (row.Cells["Total Spend"].Value != null)
+                    {
+                        decimal value;
+                        if (decimal.TryParse(row.Cells["Total Spend"].Value.ToString(), out value))
+                        {
+                            totalSum += value;
+                        }
+                    }
+                }
+            }
+
+            // แสดงผลรวมใน textBoxSumPur พร้อมหน่วย "บาท"
+            textBoxSumPur.Text = $"{totalSum:N2} บาท";
+        }
+
+        private void CustomizeDataGridView()
+        {
+            // ตั้งค่าพื้นหลัง
+            dataGridResult.BackgroundColor = Color.White;
+            dataGridResult.GridColor = Color.LightGray;
+            dataGridResult.BorderStyle = BorderStyle.None;
+
+            // ตั้งค่าหัวตาราง
+            dataGridResult.EnableHeadersVisualStyles = false;
+            dataGridResult.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
+            dataGridResult.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridResult.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+            dataGridResult.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridResult.ColumnHeadersHeight = 40;
+
+            // ตั้งค่าตัวอักษรภายใน DataGridView
+            dataGridResult.DefaultCellStyle.Font = new Font("Arial", 11);
+            dataGridResult.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridResult.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+            dataGridResult.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridResult.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // ตั้งค่าสีแถวสลับ
+            dataGridResult.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 255);
+
+            // ปิดไฮไลท์ที่แถว
+            dataGridResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridResult.MultiSelect = false;
+
+            // ปิดการแก้ไขค่าใน DataGridView
+            dataGridResult.ReadOnly = true;
+
+            // ซ่อนเส้นขอบ
+            dataGridResult.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridResult.RowHeadersVisible = false;
+
+            // ตั้งค่าขนาดของแถวให้พอดี
+            dataGridResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridResult.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        }
 
         private string GetReportQuery()
         {
@@ -103,6 +167,10 @@ namespace MadyBoardGame_Shop
 
                 dataGridResult.DataSource = purtable;
                 dataGridResult.AutoResizeColumns();
+                CustomizeDataGridView();
+                FormatPriceColumn();
+                CalculateTotalSum();
+
             }
             catch (Exception ex)
             {
@@ -112,6 +180,20 @@ namespace MadyBoardGame_Shop
             {
                 if (purconnection.State == ConnectionState.Open)
                     purconnection.Close();
+            }
+        }
+        private void FormatPriceColumn()
+        {
+            // ตรวจสอบว่าตารางมีข้อมูลหรือไม่
+            if (dataGridResult.Columns.Count == 0) return;
+
+            // ระบุชื่อคอลัมน์ที่ต้องการจัดรูปแบบ (ชื่อจาก SQL Query)
+            string columnName = "Total Spend"; // หรือใช้ชื่อที่ตรงกับฐานข้อมูล
+
+            if (dataGridResult.Columns.Contains(columnName))
+            {
+                dataGridResult.Columns[columnName].DefaultCellStyle.Format = "N2"; // แสดง 2 ตำแหน่งทศนิยม
+                dataGridResult.Columns[columnName].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; // ชิดขวา
             }
         }
 
@@ -138,6 +220,7 @@ namespace MadyBoardGame_Shop
         {
             LoadDataToDataGrid();
         }
+
         private int currentRowIndex = 0; // ใช้เก็บ index ของแถวที่พิมพ์ล่าสุด
         private void btn_print_to_pdf_Click(object sender, EventArgs e)
         {
@@ -206,6 +289,11 @@ namespace MadyBoardGame_Shop
                 e.HasMorePages = false;
                 currentRowIndex = 0; // รีเซ็ตค่า
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

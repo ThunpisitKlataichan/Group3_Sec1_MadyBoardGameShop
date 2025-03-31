@@ -61,6 +61,7 @@ namespace MadyBoardGame_Shop
                         detailpuradapter.Fill(detailpurtable);
 
                         dataGridResult.DataSource = detailpurtable;
+                        ConfigureDataGridView();
                     }
                 }
             }
@@ -68,6 +69,44 @@ namespace MadyBoardGame_Shop
             {
                 MessageBox.Show($"Error loading data: {ex.Message}");
             }
+        }
+        private void ConfigureDataGridView()
+        {
+            // ตั้งค่าคุณสมบัติพื้นฐานของ DataGridView
+            dataGridResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridResult.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridResult.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridResult.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridResult.EnableHeadersVisualStyles = false;
+            dataGridResult.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+            dataGridResult.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dataGridResult.ColumnHeadersHeight = 40;
+            dataGridResult.RowHeadersVisible = false;
+            dataGridResult.AllowUserToAddRows = false;
+            dataGridResult.ReadOnly = true;
+            dataGridResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridResult.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // ตั้งค่าการจัดเรียงข้อมูล
+            dataGridResult.Columns["PurID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridResult.Columns["PurDetailID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridResult.Columns["Quality"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridResult.Columns["Total Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // ตั้งค่ารูปแบบตัวเลข
+            dataGridResult.Columns["Total Price"].DefaultCellStyle.Format = "N2";
+
+            // ตั้งค่าสีสลับแถว
+            dataGridResult.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
+            // ตั้งค่าความกว้างของคอลัมน์ (ถ้าต้องการกำหนดเอง)
+            dataGridResult.Columns["PurID"].Width = 80;
+            dataGridResult.Columns["PurDetailID"].Width = 80;
+            dataGridResult.Columns["Employee Name"].Width = 150;
+            dataGridResult.Columns["PurlDate"].Width = 100;
+            dataGridResult.Columns["ProductName"].Width = 200;
+            dataGridResult.Columns["Quality"].Width = 80;
+            dataGridResult.Columns["Total Price"].Width = 100;
         }
         private string GetPurchaseDetailQuery()
         {
@@ -205,6 +244,9 @@ namespace MadyBoardGame_Shop
             }
         }
 
-        
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
