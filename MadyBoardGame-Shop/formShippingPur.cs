@@ -208,6 +208,10 @@ namespace MadyBoardGame_Shop
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("คุณต้องการบันทึกข้อมูลใช่หรือไม่", "ยืนยัน", MessageBoxButtons.YesNo) == DialogResult.No)
+            {   
+                return;
+            }
             try
             {
                 foreach (Control control in flowLayoutShippur.Controls)
@@ -290,6 +294,11 @@ namespace MadyBoardGame_Shop
             {
                 MessageBox.Show("บันทึกข้อมูลไม่สำเร็จ Error : " + ex);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

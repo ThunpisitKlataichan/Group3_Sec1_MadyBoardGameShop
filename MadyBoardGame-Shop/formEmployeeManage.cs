@@ -370,7 +370,7 @@ namespace MadyBoardGame_Shop
                         }
 
                     }
-                    MessageBox.Show("เพิ่มข้อมูลพนักงานสำเร็จ");
+                    MessageBox.Show("เพิ่มข้อมูลพนักงานสำเร็จ" ,"Success" , MessageBoxButtons.OK , MessageBoxIcon.Information);
                     ds.Clear();
                     loadDataIntoGrid();
                     SetState("view");
@@ -420,7 +420,7 @@ namespace MadyBoardGame_Shop
                             cmdEmp.ExecuteNonQuery();
                         }
 
-                        MessageBox.Show("บันทึกข้อมูลเรียบร้อย!");
+                        MessageBox.Show("บันทึกข้อมูลเรียบร้อย!", "Success" , MessageBoxButtons.OK , MessageBoxIcon.Information);
                         ds.Clear();
                         loadDataIntoGrid();
                         SetState("view");
@@ -486,7 +486,6 @@ namespace MadyBoardGame_Shop
                 }
             }
         }
-
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
             if (ds.Tables["EmpUsername"] != null)

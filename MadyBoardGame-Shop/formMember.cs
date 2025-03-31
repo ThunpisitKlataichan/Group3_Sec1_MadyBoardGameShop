@@ -305,7 +305,6 @@ namespace MadyBoardGame_Shop
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-
             formRegis form = new formRegis();
             form.ShowDialog();
             dt.Clear();
@@ -414,7 +413,7 @@ namespace MadyBoardGame_Shop
                         cmd.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("บันทึกข้อมูลเรียบร้อย!");
+                    MessageBox.Show("บันทึกข้อมูลเรียบร้อย!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // โหลดข้อมูลใหม่และแสดงในตาราง
                     dt.Clear();

@@ -52,7 +52,7 @@
             // buttonBack
             // 
             this.buttonBack.BackColor = System.Drawing.Color.IndianRed;
-            this.buttonBack.Location = new System.Drawing.Point(46, 41);
+            this.buttonBack.Location = new System.Drawing.Point(44, 53);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(69, 39);
             this.buttonBack.TabIndex = 1;
